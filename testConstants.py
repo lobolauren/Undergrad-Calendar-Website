@@ -6,4 +6,5 @@ TEST_DICT = {
   "year": 2020
 }
 TEST_FILENAME = "test.json"
-TEST_COURSE_CODE = ['acct']
+TEST_COURSE_CODE = "acct"
+TEST_COURSE = [TEST_COURSE_CODE]

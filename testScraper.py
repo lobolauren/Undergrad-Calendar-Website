@@ -1,23 +1,31 @@
 import unittest
 import os
 import json
-from testConstants import NUM_COURSE_CODES, TEST_DICT, TEST_FILENAME, TEST_COURSE_CODE
+from testConstants import NUM_COURSE_CODES, TEST_DICT, TEST_FILENAME, TEST_COURSE_CODE, TEST_COURSE
 import scraper
 
 class TestScraper(unittest.TestCase):
 
-    # Needs course_codes.txt for test to run
     def test_getCourseCodeFunction(self):
         courseCodes = scraper.get_course_codes()
         self.assertIsNotNone(courseCodes)
         self.assertEqual(len(courseCodes), NUM_COURSE_CODES)
+        self.assertEqual(courseCodes[0], TEST_COURSE_CODE)
 
-    # Takes a long time to run
     def test_getCourseInfo(self):
-        codes = scraper.get_course_codes()
         # test scrapper with one course only
-        course_info = scraper.get_course_info(TEST_COURSE_CODE)
+        course_info = scraper.get_course_info(TEST_COURSE)
         self.assertIsNotNone(course_info)
+
+        courses = course_info[TEST_COURSE_CODE.upper()]
+        self.assertIsNotNone(courses)
+
+        introAccounting = courses[0]
+        self.assertIsNotNone(introAccounting)
+        self.assertEqual(introAccounting["code"], "ACCT*1220")
+        self.assertEqual(introAccounting["name"], "Introductory Financial Accounting")
+        self.assertEqual(introAccounting["terms"], ["F", "W"])
+        self.assertEqual(introAccounting["weight"], 0.5)
 
     def test_saveDictAsJSON(self):
         try:
