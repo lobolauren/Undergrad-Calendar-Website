@@ -1,55 +1,79 @@
-commands = []
-correct_input = 0
-incorrect_coursesearch = False
-while correct_input <= 0:
+import json
+
+f = open("ex.json", "r")
+x = f.read()
+y = json.loads(x)
+
+search = True
+while search:
     # Reset flags
     correct_input = 0
     incorrect_coursesearch = False
 
     # User input
-    commands = input("Course search: ").split()
+    inputFlag = True
+    print("Hit enter to skip skip field")
+    while inputFlag:
+        name = raw_input("Course search criteria(name): ")
+        if name.isalpha() or name == "":
+            inputFlag = False
+        else:
+            print("try again")
+    inputFlag = True
+    while inputFlag:
+        code = raw_input("Course search criteria(code): ")
+        inputFlag = False
+    inputFlag = True
+    while inputFlag:
+        term = raw_input("Course search criteria(season/term): ")
+        # Season (either S, F, or W)
+        if term == 'S' or term == 's' or term == 'F' or term == 'f' or term == 'W' or term == 'w' or term == "":
+            inputFlag = False
+        else:
+            print("try again")
+    inputFlag = True
+    while inputFlag:
+        weight = raw_input("Course search criteria(weight): ")
+        # Weight (must be a decimal value)
+        if len(weight) != 0:
+            try:
+                float(weight)
+                inputFlag = False
+            except ValueError:
+                continue
+        else:
+            inputFlag = False
 
-    # Quit CLI program
-    if commands[0] == "quit" or commands[0] == "exit":
-        break
+    check = True
+    print("\n\nCourses Found:")
+    for k in y["courses"][code[:-4].replace("*","")]:
+        check = True
+        #print(k.keys())
 
-    # "coursesearch" (must be first argument if included)
-    if commands[0] == "coursesearch":
-        correct_input += 1
-    else:
-        for i in range(len(commands)):
-            if commands[i] == "coursesearch":
-                correct_input = 0
-                incorrect_coursesearch = True
+        if k.get("weight") != float(weight) and weight != "":
+            #print("weight")
+            check = False
+        elif code[-4:] not in k.get("code") and code != "":
+            #print("code")
+            check = False
+        elif name.lower() not in (k.get("name")).lower() and name != "":
+            #print("name")
+            check = False
 
-    # Course name (keyword such as: programming, algebra, chemistry)
+        check2 = False
+        for j in k.get("terms"):
+            if term.lower() in j.lower() and term != "":
+                check2 = True
 
-    # Course code (acceptable input examples: CIS*1300, CIS, 1300)
-    for command in commands:
-        if command >= 1000: # course code number will always be >= 1000
-            correct_input += 1
+        if not check2:
+            check = False
 
-    # Weight (must be a decimal value)
-    for command in commands:
-        try:
-            float(command)
-            correct_input += 1
-        except ValueError:
-            continue
+        #final output
+        if check:
+            print(k.get("code"))
 
-    # Season (either S, F, or W)
-    for command in commands:
-        if command == 'S' or command == 's' or command == 'F' or command == 'f' or command == 'W' or command == 'w':
-            correct_input += 1
 
-    # Minimum command-line arguments required: 2 (coursesearch + argument). Maximum: 5
-    if incorrect_coursesearch == True:
-        print("'coursesearch' must be the first argument")
-        correct_input = 0
-    if correct_input < 2:
-        print("Too few arguments.")
-        correct_input = 0
-    elif correct_input > 5:
-        print("Too many arguments.")
-        correct_input = 0
-print(commands)
+    #Menu ------------------------------------------------------
+    print("would you like to search again?(1-y, 0-n)")
+    search = raw_input()
+
