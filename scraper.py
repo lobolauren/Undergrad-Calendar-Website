@@ -2,16 +2,35 @@ import json
 from typing import List
 from playwright.sync_api import sync_playwright
 
-
+#scrapes page for all coruse codes (ex. CIS, MATH, AGGR)
 def get_course_codes():
-    codes = []
-    with open('course_codes.txt', 'r') as f:
-        while True:
-            line = f.readline()
-            if not line:
-                break
-            codes.append(line.strip())
-    return codes
+
+    codes_list = []
+
+    #Using synchronus playwright
+    with sync_playwright() as pw:
+        #launch chromium headless
+        browser = pw.chromium.launch(headless=True)
+        page = browser.new_page()
+
+        page.goto(
+            f'https://calendar.uoguelph.ca/undergraduate-calendar/course-descriptions/')
+
+        #select part of page containing links to course codes
+        codes_region = page.query_selector('.az_sitemap')
+        codes = codes_region.query_selector_all('li')[27:] #select all lists (ignore first 27, which are letters of the alphabet)
+        #for each code in the list of names
+        for code in codes: 
+
+            code_str = code.inner_text()
+            #extract the code from the text
+            code_str_final = code_str[code_str.index('(')+1:-1] #finds index of first bracket, grabs string between that index & the last character
+            #add code to the list in lower case (for navigation on the website)
+            codes_list.append(code_str_final.lower())
+
+        browser.close()
+
+    return codes_list
 
 
 def get_course_info(course_codes: List[str]):
