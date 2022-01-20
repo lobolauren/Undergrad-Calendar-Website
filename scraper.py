@@ -1,6 +1,4 @@
 import json
-from textwrap import indent
-from tkinter import W
 from typing import List
 from playwright.sync_api import sync_playwright
 
