@@ -12,29 +12,35 @@ while search:
 
     # User input
     inputFlag = True
-    print("Hit enter to skip skip field")
+    print("Welcome to UoG Course Search")
+
+    # Course name ("programming", "math", "chemistry")
     while inputFlag:
-        name = raw_input("Course search criteria(name): ")
+        name = input("Course name (hit enter to skip field): ")
         if name.isalpha() or name == "":
             inputFlag = False
         else:
-            print("try again")
+            print("Error: name cannot contain numbers")
     inputFlag = True
+
+    # Course code (CIS*1300 or 1300)
     while inputFlag:
-        code = raw_input("Course search criteria(code): ")
+        code = input("Course code (hit enter to skip field): ")
         inputFlag = False
     inputFlag = True
+
+    # Season/term (either S, F, or W)
     while inputFlag:
-        term = raw_input("Course search criteria(season/term): ")
-        # Season (either S, F, or W)
+        term = input("Course season/term (hit enter to skip field): ")
         if term == 'S' or term == 's' or term == 'F' or term == 'f' or term == 'W' or term == 'w' or term == "":
             inputFlag = False
         else:
-            print("try again")
+            print("Valid seasons: S, W, or F")
     inputFlag = True
+
+    # Weight/credit (must be a decimal value)
     while inputFlag:
-        weight = raw_input("Course search criteria(weight): ")
-        # Weight (must be a decimal value)
+        weight = input("Course weight (hit enter to skip field): ")
         if len(weight) != 0:
             try:
                 float(weight)
@@ -46,7 +52,7 @@ while search:
 
     check = True
     print("\n\nCourses Found:")
-    for k in y["courses"][code[:-4].replace("*","")]:
+    for k in y["courses"][code[:-4].replace("*","").lower()]:
         check = True
         #print(k.keys())
 
@@ -74,6 +80,6 @@ while search:
 
 
     #Menu ------------------------------------------------------
-    print("would you like to search again?(1-y, 0-n)")
-    search = raw_input()
-
+    continueSearch = input("Search again?[y/n]")
+    if continueSearch.lower() == "n":
+        search = False
