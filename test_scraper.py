@@ -1,7 +1,7 @@
 import unittest
 import os
 import json
-from testConstants import NUM_COURSE_CODES, TEST_DICT, TEST_FILENAME, TEST_COURSE_CODE, TEST_COURSE
+from test_constants import NUM_COURSE_CODES, TEST_DICT, TEST_FILENAME, TEST_COURSE_CODE, TEST_COURSE
 import scraper
 
 class TestScraper(unittest.TestCase):
