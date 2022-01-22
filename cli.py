@@ -12,7 +12,7 @@ while search:
 
     # User input
     inputFlag = True
-    print("Welcome to UoG Course Search")
+    print("\n\nWelcome to UoG Course Search")
 
     # Course name ("programming", "math", "chemistry")
     while inputFlag:
@@ -52,34 +52,72 @@ while search:
 
     check = True
     print("\n\nCourses Found:")
-    for k in y["courses"][code[:-4].replace("*","").lower()]:
-        check = True
-        #print(k.keys())
+    if(code):
+        for k in y["courses"][code[:-4].replace("*","").lower()]:
+            check = True
+            #print(k.keys())
 
-        if k.get("weight") != float(weight) and weight != "":
-            #print("weight")
-            check = False
-        elif code[-4:] not in k.get("code") and code != "":
-            #print("code")
-            check = False
-        elif name.lower() not in (k.get("name")).lower() and name != "":
-            #print("name")
-            check = False
+            if(weight):
+                if k.get("weight") != float(weight):
+                    #print("weight")
+                    check = False
+            if(code):
+                if code[-4:] not in k.get("code"):
+                    #print("code")
+                    check = False
+            if(name):
+                if name.lower() not in (k.get("name")).lower():
+                    #print("name")
+                    check = False
 
-        check2 = False
-        for j in k.get("terms"):
-            if term.lower() in j.lower() and term != "":
-                check2 = True
+            
+            if(term):
+                check2 = False
+                for p in k.get("terms"):
+                    if term.lower() in p.lower() and term != "":
+                        check2 = True
+                if not check2:
+                    check = False
 
-        if not check2:
-            check = False
+            #final output
+            if check:
+                print(k.get("code"))
+    else:
+        for k in y["courses"]:
+            for j in y["courses"][k]:
+                check = True
+                #print(j.keys())
 
-        #final output
-        if check:
-            print(k.get("code"))
+                if(weight):
+                    if j.get("weight") != float(weight):
+                        #print("weight")
+                        check = False
+                if(code):
+                    if code[-4:] not in j.get("code"):
+                        #print("code")
+                        check = False
+                if(name):
+                    if name.lower() not in (j.get("name")).lower():
+                        #print("name")
+                        check = False
+
+                
+                if(term):
+                    check2 = False
+                    for p in j.get("terms"):
+                        if term.lower() in p.lower() and term != "":
+                            check2 = True
+                    if not check2:
+                        check = False
+
+                
+
+                #final output
+                if check:
+                    print(j.get("code"))
 
 
     #Menu ------------------------------------------------------
-    continueSearch = input("Search again?[y/n]")
+    continueSearch = input("\n\nSearch again?[y/n]")
     if continueSearch.lower() == "n":
         search = False
