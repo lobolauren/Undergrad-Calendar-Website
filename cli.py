@@ -74,6 +74,8 @@ def cli(data):
                 print("Not a valid course code")
             else:
                 inputFlag = False
+        elif len(code) > 4:
+            print("Not a valid course code")
         elif len(code) < 5 and not code.isnumeric() and code not in data['courses'].keys():
             print("Not a valid course code")
         elif code.isnumeric() and len(code) != 4:
