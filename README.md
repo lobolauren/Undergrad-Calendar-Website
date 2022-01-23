@@ -4,7 +4,7 @@ README for 3760 Project
 
 ## Running the scraper:
 
-NOTE: Playwright or Chromium must be installed and updated prior to running this python program.
+NOTE: Playwright and Chromium must be installed and updated prior to running this python program.
 
 ``` 
 python scraper.py
