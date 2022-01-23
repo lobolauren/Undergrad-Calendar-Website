@@ -1,8 +1,6 @@
 import json
 
 # function if course code (ex. CIS*1300) is not entered
-
-
 def get_courses_without_code(data, weight, name, term):
     course_list = []
     for course_attr in data["courses"]:
@@ -122,20 +120,23 @@ def cli(data):
         else:
             inputFlag = False
 
+    #ask user whether or not to show course descriptions
+    print_desc = False
+    print_desc_query = input("Show Course Descriptions? [y/n] ")
+    if print_desc_query.lower() == "y" or print_desc_query.lower() == "yes":
+        print_desc = True
+
     # check for length of code name and if inputted for example cis*1300, cis1300, cis, 1300, or null
     # get course list depending on user input
     if code and len(code) > 4:
-
         final_course_list = get_courses_with_code(
             data, code, weight, name, term)
-
     elif code and len(code) < 5:
-
         final_course_list = get_courses_with_partial_code(
             data, code, weight, name, term)
-
     else:
-        final_course_list = get_courses_without_code(data, weight, name, term)
+        final_course_list = get_courses_without_code(
+            data, weight, name, term)
 
     # check length of list of found courses and print to user
     if len(final_course_list) == 0:
@@ -143,29 +144,14 @@ def cli(data):
     else:
         print("\nCourses Found:")
 
-        #ask user whether or not to show course descriptions
-        print_desc = False
-
-        print_desc_query = input("Show Course Descriptions? [y/n] ")
-        if print_desc_query.lower() == "y" or print_desc_query.lower() == "yes":
-            print_desc = True
-
         for course in final_course_list:
 
-            #put list of terms into a readable format
-            term_str = "( "
-            for term in course["terms"]:
-                term_str += term + " "
-            term_str += ")"
-
-            #print course info
-            print('\n', course['code'], course['name'],
-                  term_str, '[',course['weight'],']')
+            # print course info
+            print(f"{course['code']} - {course['name']} ( {' '.join(course['terms'])} ) [{course['weight']}]")
             
-            #print description
+            # print description
             if print_desc:
-                print('\t', course['description'])
-            print() #extra newline
+                print(f"   {course['description']}\n")
 
     continueSearch = input("\nSearch again? [y/n] ")
     if continueSearch.lower() == "n" or continueSearch.lower() == "no":
@@ -180,7 +166,7 @@ def get_course_info(filename):
             data = file.read()
             coursedata = json.loads(data)
             
-    #if the file isnt found, return nothing
+    # if the file isnt found, return nothing
     except FileNotFoundError as e:
         return {}
     return coursedata
@@ -190,7 +176,7 @@ def main():
 
     course_info = get_course_info("course_info.json")
     
-    #if the get_course_info function failed, don't run
+    # if the get_course_info function failed, don't run
     if not course_info:
         print("\nFile not found, run scraper.py")
         return
