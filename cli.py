@@ -65,21 +65,21 @@ def cli(data):
     # Course code (ex. CIS*1300 or CIS or 1300)
     inputFlag = True
     while inputFlag:
-        code = input("Course code (hit enter to skip field): ").strip().lower()
+        code = input("Course code/number (hit enter to skip field): ").strip().lower()
         if code == "":
             inputFlag = False
         elif "*" in code:
             dept, num = code.split('*')
             if dept not in data['courses'].keys() or len(num) != 4 or not num.isnumeric():
-                print("Not a valid course code")
+                print("Not a valid course code. Format: [code]/[number]/[code]*[number] (ex. cis or 1000 or cis*1000)")
             else:
                 inputFlag = False
         elif len(code) > 4:
-            print("Not a valid course code")
+            print("Not a valid course code. Format: [code]/[number]/[code]*[number] (ex. cis or 1000 or cis*1000)")
         elif len(code) < 5 and not code.isnumeric() and code not in data['courses'].keys():
-            print("Not a valid course code")
+            print("Not a valid course code. Format: [code]/[number]/[code]*[number] (ex. cis or 1000 or cis*1000)")
         elif code.isnumeric() and len(code) != 4:
-            print("Not a valid course code")
+            print("Not a valid course code. Format: [code]/[number]/[code]*[number] (ex. cis or 1000 or cis*1000)")
         else:
             inputFlag = False
 
@@ -138,14 +138,17 @@ def get_course_info(filename):
 
 
 def main():
-    course_info = get_course_info("course_info.json")
-    print("\nWelcome to UoG Course Search")
+    try:
+        course_info = get_course_info("course_info.json")
+        print("\nWelcome to UoG Course Search")
 
-    while True:
-        keep_going = cli(course_info)
-        if not keep_going:
-            break
-
+        while True:
+            keep_going = cli(course_info)
+            if not keep_going:
+                break
+    except:
+        print("File not found, run scraper.py")
+        
 
 if __name__ == '__main__':
     main()

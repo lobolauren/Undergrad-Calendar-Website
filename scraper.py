@@ -92,9 +92,13 @@ def save_dict_as_json(course_info, filename):
 
 
 def main():
+    print("Scraping...")
     codes = get_course_codes()
+    print("Getting course info... (this may take a minute)")
     course_info = get_course_info(codes)
+    print("Saving file...")
     save_dict_as_json(course_info, filename='course_info.json')
+    print("Done.")
 
 
 if __name__ == '__main__':
