@@ -2,8 +2,6 @@ README for 3760 Project - Team 2, W22
 
 # Sprint 1
 
-## Running the scraper:
-
 NOTE: Requires python version 3+, Playwright and Chromium must be installed and updated prior to running this python program.
 - Playwright install: 
 ``` 
@@ -15,6 +13,7 @@ playwright install
 sudo apt-get install chromium
 ```
 
+## Running the scraper:
 ``` 
 python scraper.py
 ```
