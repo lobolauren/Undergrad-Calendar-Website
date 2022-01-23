@@ -147,7 +147,7 @@ def cli(data):
     
 #function to open JSON file
 def get_course_info():
-    file = open("ex.json", "r") 
+    file = open("course_info.json", "r") 
     data = file.read()
     coursedata = json.loads(data)
     return coursedata
