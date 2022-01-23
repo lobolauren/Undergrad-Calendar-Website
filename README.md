@@ -21,6 +21,7 @@ python cli.py
 
 ## Running the unit tests:
 ```
+cd tests
 python test_scraper.py
 ```
 - Tests for the web scraper functions
