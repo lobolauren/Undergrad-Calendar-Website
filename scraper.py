@@ -43,7 +43,7 @@ def get_course_info(course_codes: List[str]):
         page = browser.new_page()
 
         for code in course_codes:
-            course_info[code.upper()] = []
+            course_info[code] = []
             page.goto(f'https://calendar.uoguelph.ca/undergraduate-calendar/course-descriptions/{code}/')
 
             courses = page.query_selector_all('.courseblock')
@@ -68,16 +68,22 @@ def get_course_info(course_codes: List[str]):
                 course_weight_el = course.query_selector('.detail-hours_html')
                 course_weight = float(course_weight_el.inner_text()[1:-1])
 
-                course_info[code.upper()].append({
+                course_desc_el = course.query_selector('.courseblockextra')
+                course_desc = course_desc_el.inner_text() if course_desc_el else ''
+
+                course_info[code].append({
                     'code': course_code.upper(),
                     'name': course_title,
                     'terms': course_terms,
-                    'weight': course_weight
+                    'weight': course_weight,
+                    'description': course_desc,
                 })
 
         browser.close()
 
-    return course_info
+    return {
+        'courses': course_info
+    }
 
 
 def save_dict_as_json(course_info, filename):
