@@ -34,7 +34,11 @@ Or (if python 2 is installed or 'python' does not work)
 python3 cli.py
 ```
 
-- Follow the command line interface to search for your desired course at UoG
+#### current commands:
+
+- `coursesearch` search for courses at UoG
+  - includes search parameters such as course title, code, term, weight
+- `makegraph` create prerequsite graph for UoG courses
 
 ## Running the unit tests:
 ```
