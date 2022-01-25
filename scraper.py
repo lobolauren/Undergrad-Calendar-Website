@@ -1,5 +1,6 @@
 import json
-from typing import List
+from posixpath import split
+from typing import List, final
 from playwright.sync_api import sync_playwright
 
 
@@ -34,6 +35,7 @@ def get_course_codes():
 
 # get individual course details from course object
 def get_course_details(course):
+
     course_code_el = course.query_selector('.detail-code')
     course_code = course_code_el.inner_text()
 
@@ -42,6 +44,79 @@ def get_course_details(course):
 
     course_offerings_el = course.query_selector('.detail-typically_offered')
     course_offerings = course_offerings_el.inner_text() if course_offerings_el else ''
+
+    course_prereqs_el = course.query_selector('.detail-prerequisite_s_ span') 
+    course_prereqs_a = course_prereqs_el.query_selector_all('a') if course_prereqs_el else []
+
+    final_prereqs = [req.inner_text() for req in course_prereqs_a]
+
+    prereqs = {
+        'reg_prereqs': [],
+        'eq_prereqs': []
+    }
+
+    #search list of prereqs to check if in a '1 of' block
+    if course_prereqs_el:
+        prereq_text = course_prereqs_el.inner_text()
+
+        #remove commas inside brackets
+        inside_brackets = False
+        new_str = ''
+        for c in prereq_text:
+            if c == ')':
+                inside_brackets = False
+            if not inside_brackets or (inside_brackets and c != ','):
+                new_str += c
+            if c == '(':
+                inside_brackets = True
+
+        prereq_text = new_str
+
+        sub_prereq_text = prereq_text.split(',')
+
+        ftr = lambda s: True if '(' in s or '[' in s else False
+
+        eq_prereqs = list(filter(ftr,sub_prereq_text))
+
+        if not eq_prereqs and ('or' in prereq_text or 'of' in prereq_text):
+            prereqs['eq_prereqs'] = [final_prereqs]
+
+        else:
+
+            final_prereqs_copy = final_prereqs[:]
+
+            #for each 'block' of prerequisits, check if any codes from the full list are contained in it, if so, add to the eq_prereqs list
+            for sub in eq_prereqs:
+                sub_list = []
+
+                for code in final_prereqs:
+
+                    if code in sub:
+                        sub_list.append(code)
+                        #double checking
+                        if code in final_prereqs_copy:
+                            final_prereqs_copy.remove(code)
+
+                prereqs['eq_prereqs'].append(sub_list)
+            
+            prereqs['reg_prereqs'] = final_prereqs_copy
+
+        #consistency for courses that no longer exist (and therefore dont appear in the full list)
+        #ex. ([existing*course] or [doesnt*exist]), put existing course in reg_prereqs list
+
+        eq_prereqs_copy = prereqs['eq_prereqs'][:]
+
+        idx = 0
+        for block in eq_prereqs_copy:
+
+            if len(block) < 2:
+
+                if block:
+                    prereqs['reg_prereqs'].append(block[0])
+                prereqs['eq_prereqs'].pop(idx)
+                idx -= 1
+            idx += 1
+
 
     course_terms = []
     if 'fall' in course_offerings.lower():
@@ -63,6 +138,7 @@ def get_course_details(course):
         'terms': course_terms,
         'weight': course_weight,
         'description': course_desc,
+        'prereqs': prereqs
     }
 
 
@@ -83,6 +159,7 @@ def get_course_info(course_codes: List[str]):
             courses = page.query_selector_all('.courseblock')
             for course in courses:
                 course_info[code].append(get_course_details(course))
+            
 
         browser.close()
 

@@ -44,3 +44,4 @@ python test_scraper.py
 - Tests for the web scraper functions
 
 # Sprint 2
+ NOTE: Ignoring '2+ of' cases
