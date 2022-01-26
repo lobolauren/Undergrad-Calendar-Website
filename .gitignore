@@ -1,2 +1,5 @@
 course_info.json
 __pycache__
+docttest-output
+*.gv
+*.pdf
