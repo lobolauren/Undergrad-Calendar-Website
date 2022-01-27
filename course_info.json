@@ -24,10 +24,12 @@
                 "weight": 0.5,
                 "description": "This course requires students to apply the fundamental principles emanating from accounting's conceptual framework and undertake the practice of financial accounting. Students will become adept at performing the functions related to each step in the accounting cycle, up to and including the preparation of the financial statements and client reports. Students will also develop the skills necessary for assessing an organization's system of internal controls and financial conditions.",
                 "prereqs": {
-                    "reg_prereqs": [
-                        "ACCT*1220"
-                    ],
-                    "eq_prereqs": []
+                    "reg_prereqs": [],
+                    "eq_prereqs": [
+                        [
+                            "ACCT*1220"
+                        ]
+                    ]
                 }
             },
             {
@@ -40,10 +42,12 @@
                 "weight": 0.5,
                 "description": "This course emphasizes the use of accounting information to facilitate effective management decisions. Topics include cost determination, cost control and analysis, budgeting, profit-volume analysis and capital investment analysis.",
                 "prereqs": {
-                    "reg_prereqs": [
-                        "ACCT*1220"
-                    ],
-                    "eq_prereqs": []
+                    "reg_prereqs": [],
+                    "eq_prereqs": [
+                        [
+                            "ACCT*1220"
+                        ]
+                    ]
                 }
             },
             {
@@ -88,10 +92,12 @@
                 "weight": 0.5,
                 "description": "This course presents a critical evaluation of accounting concepts, principles and practices in relation to both the traditional and current value accounting measurement models. Emphasis will be on the effect of alternative accounting practices and measurement models on income determination and asset valuation.",
                 "prereqs": {
-                    "reg_prereqs": [
-                        "ACCT*1220"
-                    ],
-                    "eq_prereqs": []
+                    "reg_prereqs": [],
+                    "eq_prereqs": [
+                        [
+                            "ACCT*1220"
+                        ]
+                    ]
                 }
             },
             {
@@ -151,10 +157,12 @@
                 "weight": 0.5,
                 "description": "This course provides advanced coverage of management accounting concepts and the application of management accounting information for managerial decision-making. This course extends the concepts covered in intermediate management accounting and also integrates pertinent situational problems from other functional areas of enterprises such as global trade and process controls.",
                 "prereqs": {
-                    "reg_prereqs": [
-                        "ACCT*3230"
-                    ],
-                    "eq_prereqs": []
+                    "reg_prereqs": [],
+                    "eq_prereqs": [
+                        [
+                            "ACCT*3230"
+                        ]
+                    ]
                 }
             },
             {
@@ -166,10 +174,12 @@
                 "weight": 0.5,
                 "description": "This course considers a number of advanced topics concerning both the auditor and audit techniques within the context of public accounting. It builds on the knowledge of the audit task derived in Auditing I - ACCT*3280 as well as the depth and breadth of knowledge gained in ACCT*3330 and ACCT*3340.",
                 "prereqs": {
-                    "reg_prereqs": [
-                        "ACCT*3280"
-                    ],
-                    "eq_prereqs": []
+                    "reg_prereqs": [],
+                    "eq_prereqs": [
+                        [
+                            "ACCT*3280"
+                        ]
+                    ]
                 }
             },
             {
@@ -181,10 +191,12 @@
                 "weight": 0.5,
                 "description": "This course introduces the student to the field of auditing within a computer based environment. Students will develop an enhanced understanding of information systems, information system risks, management controls, control evaluation, audit strategies, and computer assisted audit techniques. The course will also introduce data analytic techniques used to analyze structured and unstructured data.",
                 "prereqs": {
-                    "reg_prereqs": [
-                        "ACCT*3280"
-                    ],
-                    "eq_prereqs": []
+                    "reg_prereqs": [],
+                    "eq_prereqs": [
+                        [
+                            "ACCT*3280"
+                        ]
+                    ]
                 }
             },
             {
@@ -211,10 +223,12 @@
                 "weight": 0.5,
                 "description": "An intensive study of the Canadian Income Tax Act and related statutes, this course will focus on the application to the taxation of individuals, partnerships and corporations. A strong emphasis will be placed on compliance and tax planning.",
                 "prereqs": {
-                    "reg_prereqs": [
-                        "ACCT*3350"
-                    ],
-                    "eq_prereqs": []
+                    "reg_prereqs": [],
+                    "eq_prereqs": [
+                        [
+                            "ACCT*3350"
+                        ]
+                    ]
                 }
             },
             {
@@ -857,7 +871,9 @@
                 "description": "Students are guided to independently research and critically review a topic of emerging importance in animal biosciences. Students select a topic in consultation with the instructor.",
                 "prereqs": {
                     "reg_prereqs": [],
-                    "eq_prereqs": []
+                    "eq_prereqs": [
+                        []
+                    ]
                 }
             },
             {
@@ -1677,7 +1693,9 @@
                 "description": "The wide range of contemporary Canadian visual arts, from painting to new technological media, from 'high' culture to punk, will be examined in the context of specifically Canadian social and historical conditions during the modern and post-modern periods.",
                 "prereqs": {
                     "reg_prereqs": [],
-                    "eq_prereqs": []
+                    "eq_prereqs": [
+                        []
+                    ]
                 }
             },
             {
@@ -1690,7 +1708,9 @@
                 "description": "This course explores the ideas, designs and processes of artworks and projects conceptualized to be situated or staged in public spaces. The objective of this course is to identify and investigate the contexts surrounding selected works of public art, which may include media works, sculpture, and landscape installation, from a global perspective.",
                 "prereqs": {
                     "reg_prereqs": [],
-                    "eq_prereqs": []
+                    "eq_prereqs": [
+                        []
+                    ]
                 }
             },
             {
@@ -1716,7 +1736,9 @@
                 "description": "This course explores the role colour has played in the work of selected artists and periods.",
                 "prereqs": {
                     "reg_prereqs": [],
-                    "eq_prereqs": []
+                    "eq_prereqs": [
+                        []
+                    ]
                 }
             },
             {
@@ -1728,10 +1750,12 @@
                 "weight": 0.5,
                 "description": "This course will provide an in-depth examination of the critical issues driving contemporary art. Though the specific topic will vary, the goal of this course is to establish a facility with the fundamental terms by which to analyze the cultural, economic, technological and visual conditions that shape the artworks of our time.",
                 "prereqs": {
-                    "reg_prereqs": [
-                        "ARTH*2480"
-                    ],
-                    "eq_prereqs": []
+                    "reg_prereqs": [],
+                    "eq_prereqs": [
+                        [
+                            "ARTH*2480"
+                        ]
+                    ]
                 }
             },
             {
@@ -1744,7 +1768,9 @@
                 "description": "This course considers issues of identity formation and representation as they intersect with the agendas and interests of the nation state. The course looks at questions of power and exclusion, theories of representation and notions of centre/periphery, cultural hybridity and border-crossing in the age of globalization. It will examine the representation of identity in cultural institutions (including museums, and international art events) in cultural policy, and in cultural forms (fine art and popular culture, journals and periodicals).",
                 "prereqs": {
                     "reg_prereqs": [],
-                    "eq_prereqs": []
+                    "eq_prereqs": [
+                        []
+                    ]
                 }
             },
             {
@@ -1757,7 +1783,9 @@
                 "description": "This course examines how the theory and practice of art history has often been informed by biography and other constructions of stereotypes and social practices concerning the 'Artist', the artist's audiences, and the various contexts that inform artists' lives, real and imagined.",
                 "prereqs": {
                     "reg_prereqs": [],
-                    "eq_prereqs": []
+                    "eq_prereqs": [
+                        []
+                    ]
                 }
             },
             {
@@ -1770,7 +1798,9 @@
                 "description": "This course examines the role of images in sacred and secular contexts: manuscripts, reliquaries, architectural sculpture, tapestries, and liturgical display in Romanesque and Gothic Europe.",
                 "prereqs": {
                     "reg_prereqs": [],
-                    "eq_prereqs": []
+                    "eq_prereqs": [
+                        []
+                    ]
                 }
             },
             {
@@ -1783,7 +1813,9 @@
                 "description": "This course considers selected topics in the Renaissance and/or Baroque period(s), with emphasis on the political, social, economic, gendered, and aesthetic meanings of works of art.",
                 "prereqs": {
                     "reg_prereqs": [],
-                    "eq_prereqs": []
+                    "eq_prereqs": [
+                        []
+                    ]
                 }
             },
             {
@@ -1796,7 +1828,9 @@
                 "description": "This course provides an analysis of the visual arts of painting, sculpture, photographic media and non-traditional media World War II to the present. Selected artists of North America and Western Europe will be considered, as well as the institutions of the art world.",
                 "prereqs": {
                     "reg_prereqs": [],
-                    "eq_prereqs": []
+                    "eq_prereqs": [
+                        []
+                    ]
                 }
             },
             {
@@ -1809,7 +1843,9 @@
                 "description": "This course examines themes and issues in European art and visual culture of the long eighteenth century (1680s-1830s) through case-studies in select national, regional and/or global contexts that engage with artists' careers, institutions related to artistic practice, and relevant theoretical and critical discourses.",
                 "prereqs": {
                     "reg_prereqs": [],
-                    "eq_prereqs": []
+                    "eq_prereqs": [
+                        []
+                    ]
                 }
             },
             {
@@ -1822,7 +1858,9 @@
                 "description": "This seminar course will be offered in conjunction with the staff and facilities of the Gallery of Guelph and will deal with historical matters relating to the role of the art museum in western life and the critical day-to-day management of a contemporary one. Students will participate, when possible, in the preparation of a current or forthcoming exhibition in the Gallery.",
                 "prereqs": {
                     "reg_prereqs": [],
-                    "eq_prereqs": []
+                    "eq_prereqs": [
+                        []
+                    ]
                 }
             },
             {
@@ -1835,7 +1873,9 @@
                 "description": "This course considers how the practice and reception of the visual arts intersect with constructs of gender in contemporary and historical contexts.",
                 "prereqs": {
                     "reg_prereqs": [],
-                    "eq_prereqs": []
+                    "eq_prereqs": [
+                        []
+                    ]
                 }
             },
             {
@@ -1848,7 +1888,9 @@
                 "description": "This seminar course is designed to explore one or more issues in Art and Visual Culture depending on the expertise of the instructor. Students should consult the department for specific offerings.",
                 "prereqs": {
                     "reg_prereqs": [],
-                    "eq_prereqs": []
+                    "eq_prereqs": [
+                        []
+                    ]
                 }
             },
             {
@@ -1861,7 +1903,9 @@
                 "description": "This seminar course is designed to explore one or more issues in Art and Visual Culture depending on the expertise of the instructor. Students should consult the department for specific offerings.",
                 "prereqs": {
                     "reg_prereqs": [],
-                    "eq_prereqs": []
+                    "eq_prereqs": [
+                        []
+                    ]
                 }
             },
             {
@@ -1874,7 +1918,9 @@
                 "description": "This seminar course is designed to explore one or more issues in Art and Visual Culture depending on the expertise of the instructor. Students should consult the department for specific offerings.",
                 "prereqs": {
                     "reg_prereqs": [],
-                    "eq_prereqs": []
+                    "eq_prereqs": [
+                        []
+                    ]
                 }
             },
             {
@@ -1887,7 +1933,9 @@
                 "description": "This seminar course is designed to explore one or more issues in Art and Visual Culture depending on the expertise of the instructor. Students should consult the department for specific offerings.",
                 "prereqs": {
                     "reg_prereqs": [],
-                    "eq_prereqs": []
+                    "eq_prereqs": [
+                        []
+                    ]
                 }
             },
             {
@@ -1900,7 +1948,9 @@
                 "description": "This seminar course designed to explore one or more issues in Art and Visual Culture depending on the expertise of the instructor. Students should consult the department for specific offerings.",
                 "prereqs": {
                     "reg_prereqs": [],
-                    "eq_prereqs": []
+                    "eq_prereqs": [
+                        []
+                    ]
                 }
             },
             {
@@ -1915,7 +1965,9 @@
                 "description": "Each student establishes, in consultation with the faculty member who has agreed to supervise the course, the content of this special study within the area of expertise of that instructor. Students should plan their project and submit their proposal to the Director of the School (or designate) by the last day of classes in the semester prior to the one which they plan to enroll in ARTH*4600.",
                 "prereqs": {
                     "reg_prereqs": [],
-                    "eq_prereqs": []
+                    "eq_prereqs": [
+                        []
+                    ]
                 }
             },
             {
@@ -1929,7 +1981,9 @@
                 "description": "This course provides an opportunity for independent study based on Art History related voluntary or paid experience. Evaluation will be based on the student's performance on related work assignments at the host institution as well as any assignments determined by the relevant instructor. Written proposals/rationales, signed by the appropriate instructor, must be submitted to the Director of the School for approval by the last day of course selection in the Fall (for Winter) or Winter (for the following Fall semester).",
                 "prereqs": {
                     "reg_prereqs": [],
-                    "eq_prereqs": []
+                    "eq_prereqs": [
+                        []
+                    ]
                 }
             }
         ],
@@ -1986,10 +2040,12 @@
                 "weight": 0.5,
                 "description": "This course integrates the curricular, co-curricular and cross-disciplinary strands of the Arts and Sciences program through continued academic study and its application, modification, and critique in a community context. Students will conduct research and seminars on a selected topic while simultaneously completing a placement in a community agency appropriate to that topic. (See the B.A.S. program website for topics.)",
                 "prereqs": {
-                    "reg_prereqs": [
-                        "ASCI*2050"
-                    ],
-                    "eq_prereqs": []
+                    "reg_prereqs": [],
+                    "eq_prereqs": [
+                        [
+                            "ASCI*2050"
+                        ]
+                    ]
                 }
             },
             {
@@ -2001,10 +2057,12 @@
                 "weight": 0.5,
                 "description": "This variable-content course introduces students to case studies in the integration of academic knowledge and practices with social movements, investigating the ways in which cultural, social, and scientific endeavours meet to work on real-world problems. The course may contain both historical and current case studies.",
                 "prereqs": {
-                    "reg_prereqs": [
-                        "ASCI*2050"
-                    ],
-                    "eq_prereqs": []
+                    "reg_prereqs": [],
+                    "eq_prereqs": [
+                        [
+                            "ASCI*2050"
+                        ]
+                    ]
                 }
             },
             {
@@ -2032,7 +2090,9 @@
                 "description": "This course offers an opportunity for individual students to pursue unique curricular opportunities when they arise and are approved as appropriate to B.A.S. students (e.g., independent reading and/or research under a faculty member's supervision in a research lab or program; a course taken while studying on exchange or abroad; a course developed in conjunction with experiential learning situations, etc.). See the B.A.S. website for learning contracts and other requirements that must be completed well in advance to permit registration for independent studies.",
                 "prereqs": {
                     "reg_prereqs": [],
-                    "eq_prereqs": []
+                    "eq_prereqs": [
+                        []
+                    ]
                 }
             },
             {
@@ -2099,7 +2159,9 @@
                 "description": "This course offers an opportunity for individual students to pursue unique curricular opportunities when they arise and are approved as appropriate to B.A.S. students (e.g., independent reading and/or research under a faculty member's supervision in a research lab or program; a course taken while studying on exchange or abroad; a course developed in conjunction with experiential learning situations, etc.) See the B.A.S. website for learning contracts and other requirements that must be completed well in advance to permit registration for independent studies.",
                 "prereqs": {
                     "reg_prereqs": [],
-                    "eq_prereqs": []
+                    "eq_prereqs": [
+                        []
+                    ]
                 }
             },
             {
@@ -2531,7 +2593,9 @@
                 "description": "This course provides an opportunity for independent learning in the biological sciences within a work-related environment (volunteer or paid). Students will develop a project plan directly related to the work experience in consultation with an external organization. Using this experience, students will apply knowledge of scientific methodologies to develop a project that benefits the organization and society at large, apply disciplinary knowledge and project management skills to complete the project, and reflect on their own development and future career plans. Students interested in this course must submit a completed registration form, for approval by the course coordinator, as part of the registration process for this course.",
                 "prereqs": {
                     "reg_prereqs": [],
-                    "eq_prereqs": []
+                    "eq_prereqs": [
+                        []
+                    ]
                 }
             },
             {
@@ -2950,12 +3014,15 @@
                 "description": "The course is designed to provide a senior level introduction to the endocrine discipline, focusing largely on mammals, with some examples taken from other vertebrate taxa. The course will give an introduction to the historical developments in the discipline, explore the actions of hormones and other chemical signalling pathways, and examine processes of hormone synthesis and secretion. The focus of the course will be the integrative nature of hormone actions in the regulations of various physiological processes in animal systems, such as metabolic control, growth, and reproduction. The course will also explore aspects of \"non-classical\" endocrinology, endocrine dysfunctional states and emerging environmental concerns related to endocrine dysfunction.",
                 "prereqs": {
                     "reg_prereqs": [
-                        "BIOC*2580",
-                        "HK*3810",
-                        "ZOO*3600",
-                        "BIOM*3200"
+                        "BIOC*2580"
                     ],
-                    "eq_prereqs": []
+                    "eq_prereqs": [
+                        [
+                            "BIOM*3200",
+                            "HK*3810",
+                            "ZOO*3600"
+                        ]
+                    ]
                 }
             },
             {
@@ -4235,18 +4302,17 @@
                 "weight": 0.5,
                 "description": "This course is designed for students of Greek or Latin who are seeking an enriched learning opportunity, through directed reading and/or research in the original language (Greek or Latin). Consult the Classical Studies faculty advisor for information about this opportunity.",
                 "prereqs": {
-                    "reg_prereqs": [
-                        "LAT*2000",
-                        "GREK*2020"
-                    ],
+                    "reg_prereqs": [],
                     "eq_prereqs": [
                         [
+                            "LAT*2000",
                             "CLAS*2350",
                             "CLAS*3010",
                             "CLAS*3100",
                             "CLAS*4000"
                         ],
                         [
+                            "GREK*2020",
                             "CLAS*3000",
                             "CLAS*3020",
                             "CLAS*3030",
@@ -4374,10 +4440,12 @@
                 "weight": 0.5,
                 "description": "This is a semester long experience in a paid work setting. Co-op work semesters differ depending on the program and major. Location of the work term is varied. Refer to the schedule of studies for your degree program to determine which semester this course is scheduled. Students must obtain a passing work report evaluation and work performance evaluation grade in order to continue in the Co-op Program.",
                 "prereqs": {
-                    "reg_prereqs": [
-                        "COOP*1000"
-                    ],
-                    "eq_prereqs": []
+                    "reg_prereqs": [],
+                    "eq_prereqs": [
+                        [
+                            "COOP*1000"
+                        ]
+                    ]
                 }
             },
             {
@@ -4391,10 +4459,12 @@
                 "weight": 0.5,
                 "description": "This is a semester long experience in a paid work setting. Co-op work semesters differ depending on the program and major. Location of the work term is varied. Refer to the schedule of studies for your degree program to determine which semester this course is scheduled. Students must obtain a passing work report evaluation and work performance evaluation grade in order to continue in the Co-op Program.",
                 "prereqs": {
-                    "reg_prereqs": [
-                        "COOP*2000"
-                    ],
-                    "eq_prereqs": []
+                    "reg_prereqs": [],
+                    "eq_prereqs": [
+                        [
+                            "COOP*2000"
+                        ]
+                    ]
                 }
             },
             {
@@ -4408,10 +4478,12 @@
                 "weight": 0.5,
                 "description": "This is a semester long experience in a paid work setting. Co-op work semesters differ depending on the program and major. Location of the work term is varied. Refer to the schedule of studies for your degree program to determine which semester this course is scheduled. Students must obtain a passing work report evaluation and work performance evaluation grade in order to continue in the Co-op Program",
                 "prereqs": {
-                    "reg_prereqs": [
-                        "COOP*3000"
-                    ],
-                    "eq_prereqs": []
+                    "reg_prereqs": [],
+                    "eq_prereqs": [
+                        [
+                            "COOP*3000"
+                        ]
+                    ]
                 }
             },
             {
@@ -4425,10 +4497,12 @@
                 "weight": 0.5,
                 "description": "This is a semester long experience in a paid work setting. Co-op work semesters differ depending on the program and major. Location of the work term is varied. Refer to the schedule of studies for your degree program to determine which semester this course is scheduled. Students must obtain a passing work report evaluation and work performance evaluation grade in order to continue in the Co-op Program.",
                 "prereqs": {
-                    "reg_prereqs": [
-                        "COOP*4000"
-                    ],
-                    "eq_prereqs": []
+                    "reg_prereqs": [],
+                    "eq_prereqs": [
+                        [
+                            "COOP*4000"
+                        ]
+                    ]
                 }
             }
         ],
@@ -4785,10 +4859,12 @@
                 "weight": 0.5,
                 "description": "This course is an introduction to legacy software systems used in business, manufacturing, and engineering. Topics include COBOL programming, mainframe systems, and integration of legacy systems with contemporary computing systems.",
                 "prereqs": {
-                    "reg_prereqs": [
-                        "CIS*2500"
-                    ],
-                    "eq_prereqs": []
+                    "reg_prereqs": [],
+                    "eq_prereqs": [
+                        [
+                            "CIS*2500"
+                        ]
+                    ]
                 }
             },
             {
@@ -5757,10 +5833,12 @@
                 "weight": 0.5,
                 "description": "In this course, we examine the economics of personnel management in organizations. Using mainstream microeconomic and behavioural economic theory, we will consider such issues as recruitment, promotion, financial and non-financial incentives, compensation, job performance, performance evaluation, and investment in personnel. The interplay between theoretical models and empirical evidence will be emphasized in considering different approaches to the management of personnel.",
                 "prereqs": {
-                    "reg_prereqs": [
-                        "ECON*2310"
-                    ],
-                    "eq_prereqs": []
+                    "reg_prereqs": [],
+                    "eq_prereqs": [
+                        [
+                            "ECON*2310"
+                        ]
+                    ]
                 }
             },
             {
@@ -5985,10 +6063,12 @@
                 "weight": 0.5,
                 "description": "This course introduces students to the latest developments in the economic analysis of the inside workings of firms. The course is centered on the concept of organizational structure, which is made up of three variables: allocation of decision rights, performance evaluation and performance incentives. The course tries to explain the diversity of economic organizations, and more generally, why economic activity is sometimes carried out through firms and sometimes through markets.",
                 "prereqs": {
-                    "reg_prereqs": [
-                        "ECON*2310"
-                    ],
-                    "eq_prereqs": []
+                    "reg_prereqs": [],
+                    "eq_prereqs": [
+                        [
+                            "ECON*2310"
+                        ]
+                    ]
                 }
             },
             {
@@ -6094,11 +6174,14 @@
                 "prereqs": {
                     "reg_prereqs": [
                         "ECON*3740",
-                        "ECON*3710",
-                        "ECON*3810",
-                        "FIN*3500"
+                        "ECON*3810"
                     ],
-                    "eq_prereqs": []
+                    "eq_prereqs": [
+                        [
+                            "ECON*3710",
+                            "FIN*3500"
+                        ]
+                    ]
                 }
             },
             {
@@ -6201,12 +6284,13 @@
                 "weight": 0.5,
                 "description": "Selected topics involving the advanced analysis of the causes and effects of trade and financial flows and international factor movements are covered in this course.",
                 "prereqs": {
-                    "reg_prereqs": [
-                        "ECON*3810",
-                        "ECON*3610",
-                        "FIN*3400"
-                    ],
+                    "reg_prereqs": [],
                     "eq_prereqs": [
+                        [
+                            "ECON*3610",
+                            "ECON*3810",
+                            "FIN*3400"
+                        ],
                         [
                             "ECON*3710",
                             "ECON*3620"
@@ -6378,10 +6462,12 @@
                 "weight": 0.75,
                 "description": "This course is a progression in engineering design skills with particular emphasis on computer usage in design, oral communication of solutions and team skills. Computer usage in design will include advanced CAD/CAM/CAE tools; and database management software. An introduction to safety in engineering practice and design, and the concept of sustainable development are covered.",
                 "prereqs": {
-                    "reg_prereqs": [
-                        "ENGG*1100"
-                    ],
-                    "eq_prereqs": []
+                    "reg_prereqs": [],
+                    "eq_prereqs": [
+                        [
+                            "ENGG*1100"
+                        ]
+                    ]
                 }
             },
             {
@@ -6638,10 +6724,12 @@
                 "weight": 0.75,
                 "description": "This course combines the knowledge gained in the advanced engineering and basic science courses with the design skills taught in ENGG*1100 and ENGG*2100 in solving open-ended problems. These problems are related to the student's major. Additional design tools are presented, including model simulation, sensitivity analysis, linear programming, knowledge-based systems and computer programming. Complementing these tools are discussions on writing and public speaking techniques, codes, safety issues, environmental assessment and professional management. These topics are taught with the consideration of available resources and cost.",
                 "prereqs": {
-                    "reg_prereqs": [
-                        "ENGG*2100"
-                    ],
-                    "eq_prereqs": []
+                    "reg_prereqs": [],
+                    "eq_prereqs": [
+                        [
+                            "ENGG*2100"
+                        ]
+                    ]
                 }
             },
             {
@@ -7322,10 +7410,12 @@
                 "weight": 1.0,
                 "description": "This is the capstone design course for the Biological Engineering program. Teams normally of 3-4 students apply engineering analysis and design principles to a problem in a biological system or process. A completely specified solution at the level of preliminary or final design is required, including assessment of socio-economic and environmental impact. This is a small group design that requires reports and a poster presentation to a professional standard. Ethics and legal case studies relevant to professional engineering practice are presented during the lectures. Only students currently registered in ENGG*4000 will be permitted to select this course.",
                 "prereqs": {
-                    "reg_prereqs": [
-                        "ENGG*4000"
-                    ],
-                    "eq_prereqs": []
+                    "reg_prereqs": [],
+                    "eq_prereqs": [
+                        [
+                            "ENGG*4000"
+                        ]
+                    ]
                 }
             },
             {
@@ -7338,10 +7428,12 @@
                 "weight": 1.0,
                 "description": "This is the capstone design course for the Engineering Systems and Computing program. Teams normally of 3-4 students apply engineering analysis and design principles to a problem involving control system, computer hardware or computer software technology. A completely specified solution at the level of preliminary or final design is required, including assessment of socio-economic and environmental impact. This is a small group design that requires reports and a poster presentation to a professional standard. Ethics and legal case studies relevant to professional engineering practice are presented during the lectures. Only students currently registered in ENGG*4000 will be permitted to select this course.",
                 "prereqs": {
-                    "reg_prereqs": [
-                        "ENGG*4000"
-                    ],
-                    "eq_prereqs": []
+                    "reg_prereqs": [],
+                    "eq_prereqs": [
+                        [
+                            "ENGG*4000"
+                        ]
+                    ]
                 }
             },
             {
@@ -7354,10 +7446,12 @@
                 "weight": 1.0,
                 "description": "This is the capstone design course for the Environmental Engineering program. Teams normally of 3-4 students apply engineering analysis and design principles to an environmental engineering problem. A completely specified solution at the level of preliminary or final design is required, including assessment of socio-economic and environmental impact. This is a small group design that requires reports and a poster presentation to a professional standard. Ethics and legal case studies relevant to professional engineering practice are presented during the lectures. Only students currently registered in ENGG*4000 will be permitted to select this course.",
                 "prereqs": {
-                    "reg_prereqs": [
-                        "ENGG*4000"
-                    ],
-                    "eq_prereqs": []
+                    "reg_prereqs": [],
+                    "eq_prereqs": [
+                        [
+                            "ENGG*4000"
+                        ]
+                    ]
                 }
             },
             {
@@ -7370,10 +7464,12 @@
                 "weight": 1.0,
                 "description": "This is the capstone design course for the Water Resources Engineering program. Teams normally of 3-4 students apply engineering analysis and design principles to a problem involving water resources or wastewater engineering. A completely specified solution at the level of preliminary or final design is required, including assessment of socio-economic and environmental impact. This is a small group design that requires reports and a poster presentation to a professional standard. Ethics and legal case studies relevant to professional engineering practice are presented during the lectures. Only students currently registered in ENGG*4000 will be permitted to select this course.",
                 "prereqs": {
-                    "reg_prereqs": [
-                        "ENGG*4000"
-                    ],
-                    "eq_prereqs": []
+                    "reg_prereqs": [],
+                    "eq_prereqs": [
+                        [
+                            "ENGG*4000"
+                        ]
+                    ]
                 }
             },
             {
@@ -7386,10 +7482,12 @@
                 "weight": 1.0,
                 "description": "This is the capstone design course for the Mechanical Engineering program. Teams normally of 3-4 students apply engineering analysis and design principles to a mechanical engineering problem. A completely specified solution at the level of preliminary or final design is required, including assessment of socio-economic and environmental impact. This is a small group design that requires reports and a poster presentation to a professional standard. Ethics and legal case studies relevant to professional engineering practice are presented during the lectures. Only students currently registered in ENGG*4000 will be permitted to select this course.",
                 "prereqs": {
-                    "reg_prereqs": [
-                        "ENGG*4000"
-                    ],
-                    "eq_prereqs": []
+                    "reg_prereqs": [],
+                    "eq_prereqs": [
+                        [
+                            "ENGG*4000"
+                        ]
+                    ]
                 }
             },
             {
@@ -7402,10 +7500,12 @@
                 "weight": 1.0,
                 "description": "This is the capstone design course for the Computer Engineering program. Teams of normally 3-4 students apply engineering analysis and design principles to a computer engineering problem. A completely specified solution at the level of preliminary or final design is required, including assessment of socio-economic and environmental impact. This is a small group design that requires reports and a poster presentation to a professional standard. Ethics and legal case studies relevant to professional engineering practice are presented during the lectures. Only students currently registered in ENGG*4000 will be permitted to select this course.",
                 "prereqs": {
-                    "reg_prereqs": [
-                        "ENGG*4000"
-                    ],
-                    "eq_prereqs": []
+                    "reg_prereqs": [],
+                    "eq_prereqs": [
+                        [
+                            "ENGG*4000"
+                        ]
+                    ]
                 }
             },
             {
@@ -7418,10 +7518,12 @@
                 "weight": 1.0,
                 "description": "This is the capstone design course for the Biomedical Engineering program. Teams normally of 3-4 students apply engineering analysis and design principles to a biomedical engineering problem. A completely specified solution at the level of preliminary or final design is required, including assessment of socio-economic and environmental impact. This is a small group design that requires reports and a poster presentation to a professional standard. Ethics and legal case studies relevant to professional engineering practice are presented during the lectures. Only students currently registered in ENGG*4000 will be permitted to select this course.",
                 "prereqs": {
-                    "reg_prereqs": [
-                        "ENGG*4000"
-                    ],
-                    "eq_prereqs": []
+                    "reg_prereqs": [],
+                    "eq_prereqs": [
+                        [
+                            "ENGG*4000"
+                        ]
+                    ]
                 }
             },
             {
@@ -8385,9 +8487,7 @@
                 "weight": 0.5,
                 "description": "This course introduces students to the multiple, varied, and unstable understandings of the \"fairy tale,\" focusing on the history of the term in the English language; the various ways in which the genre's form, function, and meaning have been defined and debated over the past three centuries; and the range of forms (oral, written, theatrical, cinematic, etc.) that have been considered part of the genre's intertextual web.",
                 "prereqs": {
-                    "reg_prereqs": [
-                        "ENGL*1030"
-                    ],
+                    "reg_prereqs": [],
                     "eq_prereqs": []
                 }
             },
@@ -8400,9 +8500,7 @@
                 "weight": 0.5,
                 "description": "This course explores selected topics in the interrelation of literature and politics from the late seventeenth to the nineteenth century in Britain. Areas of focus may include: the literature of civil war, constitutionalism and revolution; satire and society; writings emerging from sufferage reform and agitation, the colonization of Ireland, the construction of political subjectivity, political paranoia, conspiracy and sedition. Reading-intensive course.",
                 "prereqs": {
-                    "reg_prereqs": [
-                        "ENGL*1030"
-                    ],
+                    "reg_prereqs": [],
                     "eq_prereqs": []
                 }
             },
@@ -8415,9 +8513,7 @@
                 "weight": 0.5,
                 "description": "This course examines various aspects of the literature and culture of early modern England. The course may examine, at the instructor's choice, some part of the fifteenth, sixteenth and seventeenth centuries and may focus on a variety of issues, including gender and sexuality, poetics and politics, religion and authority, nation and empire, and their relation to literary production. The genres and writers examined will vary.",
                 "prereqs": {
-                    "reg_prereqs": [
-                        "ENGL*1030"
-                    ],
+                    "reg_prereqs": [],
                     "eq_prereqs": []
                 }
             },
@@ -8430,9 +8526,7 @@
                 "weight": 0.5,
                 "description": "Drawing upon a range of literary texts from a variety of genres, this course will explore the politics of language and style in a series of cultural debates that shaped British national character from the late seventeenth to the late eighteenth centuries. Selected topics may include: literary representations of religious establishment and dissent; the division of power; the question of minority cultures; revolution and reaction; the problem of economic stability. Reading-intensive course.",
                 "prereqs": {
-                    "reg_prereqs": [
-                        "ENGL*1030"
-                    ],
+                    "reg_prereqs": [],
                     "eq_prereqs": []
                 }
             },
@@ -8445,9 +8539,7 @@
                 "weight": 0.5,
                 "description": "This course explores the key texts in various genres of British cultural debates of the late eighteenth to the late nineteenth century. Focal points may include: literary representations of family and society; science and narrative; Britain's \"others\"; class and conflict; protest and power; the roots of modernism; European influences. Reading-intensive course.",
                 "prereqs": {
-                    "reg_prereqs": [
-                        "ENGL*1030"
-                    ],
+                    "reg_prereqs": [],
                     "eq_prereqs": []
                 }
             },
@@ -8460,9 +8552,7 @@
                 "weight": 0.5,
                 "description": "This multi-genre course introduces students to the literature of British imperialism in the eighteenth and nineteenth centuries. The course will consider the changing relationship between nation, empire, and colony by examining literary representations of such topics as: orientalism; travel writing; the construction of race; the representation of trade; the popular literature of empire; children's literature; the question of the other. Reading-intensive course.",
                 "prereqs": {
-                    "reg_prereqs": [
-                        "ENGL*1030"
-                    ],
+                    "reg_prereqs": [],
                     "eq_prereqs": []
                 }
             },
@@ -8475,9 +8565,7 @@
                 "weight": 0.5,
                 "description": "This course will examine a range of issues arising from the materiality of book production and circulation. Topics may include serialization; mass production and circulation; patronage; reviewing; circulating libraries; licensing; censorship; children's literature; periodicals; gift books; letters; and other aspects of publishing and the public sphere. Reading-intensive course.",
                 "prereqs": {
-                    "reg_prereqs": [
-                        "ENGL*1030"
-                    ],
+                    "reg_prereqs": [],
                     "eq_prereqs": []
                 }
             },
@@ -8490,9 +8578,7 @@
                 "weight": 0.5,
                 "description": "This course offers a selective study of 20th- and/or 21st-century play-scripts written in English. Students are advised to consult the web-descriptions for the particular focus of the course's offering.",
                 "prereqs": {
-                    "reg_prereqs": [
-                        "ENGL*1030"
-                    ],
+                    "reg_prereqs": [],
                     "eq_prereqs": []
                 }
             },
@@ -8505,9 +8591,7 @@
                 "weight": 0.5,
                 "description": "This multigenre course explores aesthetic and socio-cultural movements in British literature from the twentieth century to the present. Reading-intensive course.",
                 "prereqs": {
-                    "reg_prereqs": [
-                        "ENGL*1030"
-                    ],
+                    "reg_prereqs": [],
                     "eq_prereqs": []
                 }
             },
@@ -8520,9 +8604,7 @@
                 "weight": 0.5,
                 "description": "This multigenre course explores the relationship between literary production and political power from the emergence of U.S. culture through the long nineteenth century. Areas of focus may include national fantasy; the literatures of war, imperial expansion, captivity, and genocide; narratives of race and immigration; the cult of domesticity; and the rise of mass culture. Reading-intensive course.",
                 "prereqs": {
-                    "reg_prereqs": [
-                        "ENGL*1030"
-                    ],
+                    "reg_prereqs": [],
                     "eq_prereqs": []
                 }
             },
@@ -8535,9 +8617,7 @@
                 "weight": 0.5,
                 "description": "This multigenre course explores powerful examples of modern United States literatures, from about the First World War to the present. The selection is wide, including both traditional and experimental forms; female and male writers from various ethnic and racial groups; and a range of cultural issues. Reading-intensive course.",
                 "prereqs": {
-                    "reg_prereqs": [
-                        "ENGL*1030"
-                    ],
+                    "reg_prereqs": [],
                     "eq_prereqs": []
                 }
             },
@@ -8550,9 +8630,7 @@
                 "weight": 0.5,
                 "description": "This course will introduce students to significant aspects of Chaucer's writing read in the context of works by Chaucer's precursors and near contemporaries. Reading-intensive course.",
                 "prereqs": {
-                    "reg_prereqs": [
-                        "ENGL*1030"
-                    ],
+                    "reg_prereqs": [],
                     "eq_prereqs": []
                 }
             },
@@ -8565,9 +8643,7 @@
                 "weight": 0.5,
                 "description": "This multigenre course focuses on Canadian literature to World War One, examining cultural contestation in the Canadian settler colony among the Canadian, U.S., British, and indigenous peoples. Topics may include the rise of nationalist discourse, race and nation, landscape and the sublime, gothic, sentimental, and historical fiction, children's literature, slavery and resistance narratives, travel and captivity narratives. Reading-intensive course.",
                 "prereqs": {
-                    "reg_prereqs": [
-                        "ENGL*1030"
-                    ],
+                    "reg_prereqs": [],
                     "eq_prereqs": []
                 }
             },
@@ -8580,9 +8656,7 @@
                 "weight": 0.5,
                 "description": "This course examines Canadian literature and criticism in English from the beginnings of the twentieth century to the present in relation to a variety of social, cultural, and historical contexts. Reading-intensive course.",
                 "prereqs": {
-                    "reg_prereqs": [
-                        "ENGL*1030"
-                    ],
+                    "reg_prereqs": [],
                     "eq_prereqs": []
                 }
             },
@@ -8595,9 +8669,7 @@
                 "weight": 0.5,
                 "description": "This course introduces students to the major critics and texts formative in the development of an English critical tradition. The study will begin with Plato and Aristotle, and proceed from the Renaissance through to modernist critical theory.",
                 "prereqs": {
-                    "reg_prereqs": [
-                        "ENGL*1030"
-                    ],
+                    "reg_prereqs": [],
                     "eq_prereqs": []
                 }
             },
@@ -8610,9 +8682,7 @@
                 "weight": 0.5,
                 "description": "This course is a concentrated study in a major sub-area of postcolonial literature. Specific topics will vary each year, but may involve focus on a particular genre or region such as Africa, Australia, Canada, the Caribbean, India, and the Pacific. Reading-intensive course.",
                 "prereqs": {
-                    "reg_prereqs": [
-                        "ENGL*1030"
-                    ],
+                    "reg_prereqs": [],
                     "eq_prereqs": []
                 }
             },
@@ -8625,9 +8695,7 @@
                 "weight": 0.5,
                 "description": "This is a variable content course aimed at considering the intercultural effects which emerge from transnational, colonial, imperial, and/or diasporic relations, through literatures in English addressing the Atlantic and contiguous lands. Texts will be selected from among the rich array of poetry, fiction, memoirs, letters, travel accounts, period histories and ethnographies, autobiographies and folkloric records that formed the literary culture of this period. Attention may be paid to diverse forms of oral and written expression, linguistic changes, the Creole continuum, representations of oceanic space, the erasure and fluidity at work in the metaphorics of the sea, the evolution of national and racial stereotypes, and religious syncretism. Reading-intensive course.",
                 "prereqs": {
-                    "reg_prereqs": [
-                        "ENGL*1030"
-                    ],
+                    "reg_prereqs": [],
                     "eq_prereqs": []
                 }
             },
@@ -9438,10 +9506,12 @@
                 "weight": 0.5,
                 "description": "This course provides students with direct training in the academic skills used in researching and communicating environmental science. Within the context of current problems in environmental science, students will develop skills in library research, statistical interpretation, oral and poster presentation and written communication to diverse audiences. Students will research and report on scientific issues within environmental issues being reported in the media.",
                 "prereqs": {
-                    "reg_prereqs": [
-                        "ENVS*1030"
-                    ],
-                    "eq_prereqs": []
+                    "reg_prereqs": [],
+                    "eq_prereqs": [
+                        [
+                            "ENVS*1030"
+                        ]
+                    ]
                 }
             },
             {
@@ -9490,7 +9560,9 @@
                 "description": "This course will provide students with an overview of recent research into what climate change means for Canada and Canadians. Students will learn about evidence for significant changes to the Boreal forests and about the potential impacts of climate change on human health through increasing heat waves and the heat stress on individuals. The course is intended to bridge the gap between abstract discussion of the climate and understand what these changes mean at both personal and societal levels.",
                 "prereqs": {
                     "reg_prereqs": [],
-                    "eq_prereqs": []
+                    "eq_prereqs": [
+                        []
+                    ]
                 }
             },
             {
@@ -9718,10 +9790,12 @@
                 "weight": 0.5,
                 "description": "This course examines the principles of sedimentology and stratigraphy as applied to various ancient and modern sedimentary systems. Students will learn to describe and interpret sedimentary deposits in terrestrial and marine systems as well as the larger forces that control the preservation and evolution of these sedimentary systems over geological time. The course includes several field trips.",
                 "prereqs": {
-                    "reg_prereqs": [
-                        "ENVS*2240"
-                    ],
-                    "eq_prereqs": []
+                    "reg_prereqs": [],
+                    "eq_prereqs": [
+                        [
+                            "ENVS*2240"
+                        ]
+                    ]
                 }
             },
             {
@@ -10107,7 +10181,9 @@
                 "description": "This course explores the diverse modes of action of botanical, microbial and synthetic insecticides. Detoxification mechanisms, selectivity, resistance management and the process of pesticide discovery and development are also considered. The course includes a review of insect physiological systems and discussion of the stability and distribution of pesticides in the environment.",
                 "prereqs": {
                     "reg_prereqs": [],
-                    "eq_prereqs": []
+                    "eq_prereqs": [
+                        []
+                    ]
                 }
             },
             {
@@ -10120,7 +10196,9 @@
                 "description": "This course explores the diverse modes of action of botanical, microbial and synthetic herbicides. Detoxification mechanisms, selectivity, resistance management and the process of herbicide discovery and development are also considered. The course includes a review of plant physiological systems and discussion of the stability and distribution of herbicides in the environment.",
                 "prereqs": {
                     "reg_prereqs": [],
-                    "eq_prereqs": []
+                    "eq_prereqs": [
+                        []
+                    ]
                 }
             },
             {
@@ -10150,10 +10228,12 @@
                 "weight": 0.5,
                 "description": "This course is a study of the adult and immature forms of aquatic insects. Students are required to present a collection of at least 200 insect specimens identified to genus.",
                 "prereqs": {
-                    "reg_prereqs": [
-                        "ENVS*3090"
-                    ],
-                    "eq_prereqs": []
+                    "reg_prereqs": [],
+                    "eq_prereqs": [
+                        [
+                            "ENVS*3090"
+                        ]
+                    ]
                 }
             },
             {
@@ -10181,10 +10261,12 @@
                 "weight": 1.0,
                 "description": "This course will use a hand-on approach to investigate concepts and develop skills needed for understanding key soil functions. Emphasis will be on the transformation of nutrients and contaminants in soils and groundwater by microorganisms. Approaches for analyzing microbial populations and activities in the environment, including molecular techniques will be covered.",
                 "prereqs": {
-                    "reg_prereqs": [
-                        "ENVS*3310"
-                    ],
-                    "eq_prereqs": []
+                    "reg_prereqs": [],
+                    "eq_prereqs": [
+                        [
+                            "ENVS*3310"
+                        ]
+                    ]
                 }
             },
             {
@@ -10214,10 +10296,12 @@
                 "weight": 0.5,
                 "description": "This course will explore modern to ancient glacial environments, focusing on the sedimentary record they leave behind and applications of glacial geology including reconstructing past environments, examining how glacial deposits affect the distribution of resources or groundwater contaminants, and discovering the response of glaciers to recent and past climate change. Students will develop skills in critically evaluating literature and geological data, description and identification of glacial deposits.",
                 "prereqs": {
-                    "reg_prereqs": [
-                        "ENVS*3180"
-                    ],
-                    "eq_prereqs": []
+                    "reg_prereqs": [],
+                    "eq_prereqs": [
+                        [
+                            "ENVS*3180"
+                        ]
+                    ]
                 }
             },
             {
@@ -10271,7 +10355,9 @@
                 "description": "In this course the student will undertake an independent research project of a practical or theoretical nature that relates to environmental sciences and is conducted under the supervision of a faculty member. This course is designed to provide senior undergraduate students with an introduction to independent research work. The course includes work with a faculty advisor to develop a research project, formulate hypotheses/objectives, design and conduct preliminary experiments to test the hypotheses. Students must make arrangements with both a faculty supervisor and the course coordinator at least one semester in advance. A school registration form must be obtained from the course coordinator and submitted no later than the second class day of the semester in which the course is taken.",
                 "prereqs": {
                     "reg_prereqs": [],
-                    "eq_prereqs": []
+                    "eq_prereqs": [
+                        []
+                    ]
                 }
             },
             {
@@ -10285,10 +10371,12 @@
                 "weight": 0.5,
                 "description": "In this course the student will undertake an independent research project of a practical or theoretical nature that relates to environmental sciences and is conducted under the supervision of a faculty member. This course is designed to provide a research intensive experience. This course is designed to be the completion of the research proposal developed in ENVS*4410. In this course the student will undertake an independent research project of a practical or theoretical nature that relates to environmental sciences and is conducted under the supervision of a faculty member. This course is designed to provide a research intensive experience. This course is designed to be the completion of the research proposal developed in which the course is taken.",
                 "prereqs": {
-                    "reg_prereqs": [
-                        "ENVS*4410"
-                    ],
-                    "eq_prereqs": []
+                    "reg_prereqs": [],
+                    "eq_prereqs": [
+                        [
+                            "ENVS*4410"
+                        ]
+                    ]
                 }
             },
             {
@@ -10302,10 +10390,12 @@
                 "weight": 1.0,
                 "description": "In this course the student will undertake an independent research project of a practical or theoretical nature that relates to environmental sciences and is conducted under the supervision of a faculty member. This course is designed to be the completion of the research proposal developed in ENVS*4410 by the student in consultation with a faculty advisory. This course can be selected in place of ENVS*4420 if the student and faculty advisor deem the project to be of sufficient scope to necessitate a 1.00 credit course. Students must arrangements with both a faculty supervisor and the course coordinator at least one semester in advance. A school registration form must be obtained from the course coordinator and submitted no later than the second class day of the semester in which the course is taken.",
                 "prereqs": {
-                    "reg_prereqs": [
-                        "ENVS*4410"
-                    ],
-                    "eq_prereqs": []
+                    "reg_prereqs": [],
+                    "eq_prereqs": [
+                        [
+                            "ENVS*4410"
+                        ]
+                    ]
                 }
             },
             {
@@ -10335,7 +10425,9 @@
                 "description": "This course provides an opportunity for students to engage in advanced independent research and study. Students will undertake a project based on research in the literature that relates to environmental sciences. Projects will be designed to be completed in a single semester. Students must make arrangements with both a faculty supervisor and the course coordinator at least one semester in advance. A School registration form must be obtained from the course coordinator and submitted no later than the second class day of the semester in which the course is taken.",
                 "prereqs": {
                     "reg_prereqs": [],
-                    "eq_prereqs": []
+                    "eq_prereqs": [
+                        []
+                    ]
                 }
             }
         ],
@@ -10450,10 +10542,12 @@
                 "weight": 0.5,
                 "description": "In this 10-day field course, students will tour a selected area, visiting premier equine educational and industry locations managed by elite professionals. Students are exposed to a broad, high caliber learning experience from a variety of industry operations, providing a catalyst for future courses in the BBRM degree program. An additional fee will be assessed per student to cover the cost of transportation and accommodation. This course must be recorded as part of your Fall course selection and tuition and compulsory fees will be calculated accordingly. Contact course instructor during the preceding March course selection period.",
                 "prereqs": {
-                    "reg_prereqs": [
-                        "EQN*2150"
-                    ],
-                    "eq_prereqs": []
+                    "reg_prereqs": [],
+                    "eq_prereqs": [
+                        [
+                            "EQN*2150"
+                        ]
+                    ]
                 }
             },
             {
@@ -11113,10 +11207,12 @@
                 "weight": 1.0,
                 "description": "Through seminar and supervised experience with youth, students will demonstrate the application of theory studied earlier in the program. This practicum course will also provide opportunities for working directly with youth in a community setting while examining the role of the professionals involved and the communication with youth and community members. Developing skills in programming planning, implementation, and evaluation is a primary objective. Students wishing to enrol in this course must consult with the instructor during course selection.",
                 "prereqs": {
-                    "reg_prereqs": [
-                        "FRHD*2400"
-                    ],
-                    "eq_prereqs": []
+                    "reg_prereqs": [],
+                    "eq_prereqs": [
+                        [
+                            "FRHD*2400"
+                        ]
+                    ]
                 }
             },
             {
@@ -11129,10 +11225,12 @@
                 "weight": 1.0,
                 "description": "This course offers students an opportunity to participate in seminar and supervised field placement in health and social service agencies. The practicum and seminar will develop students' helping roles in agencies and facilitate the integration and application of theoretical knowledge from previous course work with practice. It will also provide opportunities for students to work directly with individuals and/or groups and to participate in on-going programs or services. Students wishing to enrol in this course must consult with the instructor during the course selection period.",
                 "prereqs": {
-                    "reg_prereqs": [
-                        "FRHD*2400"
-                    ],
-                    "eq_prereqs": []
+                    "reg_prereqs": [],
+                    "eq_prereqs": [
+                        [
+                            "FRHD*2400"
+                        ]
+                    ]
                 }
             },
             {
@@ -11505,10 +11603,12 @@
                 "weight": 0.5,
                 "description": "This is a course on the theory and practice of corporate finance. The course provides a framework for analyzing the main financial decisions of a corporation. Emphasis is placed on the application of corporate finance theory to real-world cases. The topics covered in this course include firm valuation, capital budgeting, cost of capital, capital structure, dividend policy, initial public offerings, and may include mergers and acquisitions.",
                 "prereqs": {
-                    "reg_prereqs": [
-                        "FIN*2000"
-                    ],
-                    "eq_prereqs": []
+                    "reg_prereqs": [],
+                    "eq_prereqs": [
+                        [
+                            "FIN*2000"
+                        ]
+                    ]
                 }
             },
             {
@@ -12043,7 +12143,9 @@
                 "description": "Functions of packaging in food preservation systems will be examined using a review of current packaging materials, their properties, production methods and applications for specific products. Additional topics include regulatory, environmental and marketplace influences on food packaging choices.",
                 "prereqs": {
                     "reg_prereqs": [],
-                    "eq_prereqs": []
+                    "eq_prereqs": [
+                        []
+                    ]
                 }
             },
             {
@@ -12106,7 +12208,9 @@
                 "description": "Independent study of a selected topic in Food Science, involving a review and critical evaluation of the current literature. The course comprises independent library research and students are required to present a concise report in a written paper and in a seminar. Students must make arrangements with both faculty supervisor and the course co-ordinator in a prior course selection period.",
                 "prereqs": {
                     "reg_prereqs": [],
-                    "eq_prereqs": []
+                    "eq_prereqs": [
+                        []
+                    ]
                 }
             },
             {
@@ -12488,12 +12592,14 @@
                 "weight": 0.5,
                 "description": "This course is an introduction to the study of the theory and application of futures, options and other derivative instruments for marketing, hedging, investment and speculative purposes. Emphasis is placed on applications of agricultural and financial instruments to real business situations.",
                 "prereqs": {
-                    "reg_prereqs": [
-                        "FARE*2410",
-                        "MGMT*3320",
-                        "FIN*2000"
-                    ],
-                    "eq_prereqs": []
+                    "reg_prereqs": [],
+                    "eq_prereqs": [
+                        [
+                            "FIN*2000",
+                            "FARE*2410",
+                            "MGMT*3320"
+                        ]
+                    ]
                 }
             },
             {
@@ -12713,10 +12819,12 @@
                 "weight": 0.5,
                 "description": "A first year, university-level course for students graduating with a high-school background in core French. Students will practise written and oral French.",
                 "prereqs": {
-                    "reg_prereqs": [
-                        "FREN*1150"
-                    ],
-                    "eq_prereqs": []
+                    "reg_prereqs": [],
+                    "eq_prereqs": [
+                        [
+                            "FREN*1150"
+                        ]
+                    ]
                 }
             },
             {
@@ -12729,10 +12837,12 @@
                 "weight": 0.5,
                 "description": "This course develops the four language skills in French: reading, writing, listening and speaking through group tasks and activities, grammar exercises and individual writing assignments.",
                 "prereqs": {
-                    "reg_prereqs": [
-                        "FREN*1200"
-                    ],
-                    "eq_prereqs": []
+                    "reg_prereqs": [],
+                    "eq_prereqs": [
+                        [
+                            "FREN*1200"
+                        ]
+                    ]
                 }
             },
             {
@@ -12745,10 +12855,12 @@
                 "weight": 0.5,
                 "description": "This course provides an historical introduction to French life and thought as seen through literature and art.",
                 "prereqs": {
-                    "reg_prereqs": [
-                        "FREN*1300"
-                    ],
-                    "eq_prereqs": []
+                    "reg_prereqs": [],
+                    "eq_prereqs": [
+                        [
+                            "FREN*1300"
+                        ]
+                    ]
                 }
             },
             {
@@ -12761,10 +12873,12 @@
                 "weight": 0.5,
                 "description": "This course provides an historical introduction to Quebec life and thought from New France to the present as seen through literature, politics, history and art.",
                 "prereqs": {
-                    "reg_prereqs": [
-                        "FREN*1300"
-                    ],
-                    "eq_prereqs": []
+                    "reg_prereqs": [],
+                    "eq_prereqs": [
+                        [
+                            "FREN*1300"
+                        ]
+                    ]
                 }
             },
             {
@@ -12776,10 +12890,12 @@
                 "weight": 0.5,
                 "description": "This course provides an introduction to the art and techniques of French-English translation.",
                 "prereqs": {
-                    "reg_prereqs": [
-                        "FREN*1300"
-                    ],
-                    "eq_prereqs": []
+                    "reg_prereqs": [],
+                    "eq_prereqs": [
+                        [
+                            "FREN*1300"
+                        ]
+                    ]
                 }
             },
             {
@@ -12792,10 +12908,12 @@
                 "weight": 0.5,
                 "description": "This course provides students with opportunities to develop further their skills in textual analysis and in writing in French.",
                 "prereqs": {
-                    "reg_prereqs": [
-                        "FREN*1300"
-                    ],
-                    "eq_prereqs": []
+                    "reg_prereqs": [],
+                    "eq_prereqs": [
+                        [
+                            "FREN*1300"
+                        ]
+                    ]
                 }
             },
             {
@@ -12807,10 +12925,12 @@
                 "weight": 0.5,
                 "description": "This course examines contemporary French and/or Francophone culture, through a variety of media (music, film, internet, etc), recent history and political events. Emphasis on oral work in French (comprehension and expression).",
                 "prereqs": {
-                    "reg_prereqs": [
-                        "FREN*1300"
-                    ],
-                    "eq_prereqs": []
+                    "reg_prereqs": [],
+                    "eq_prereqs": [
+                        [
+                            "FREN*1300"
+                        ]
+                    ]
                 }
             },
             {
@@ -13743,10 +13863,12 @@
                 "weight": 0.5,
                 "description": "This course completes the introduction of grammatical concepts. It includes systematic oral and written practice and discussion of texts.",
                 "prereqs": {
-                    "reg_prereqs": [
-                        "GERM*1110"
-                    ],
-                    "eq_prereqs": []
+                    "reg_prereqs": [],
+                    "eq_prereqs": [
+                        [
+                            "GERM*1110"
+                        ]
+                    ]
                 }
             },
             {
@@ -13758,10 +13880,12 @@
                 "weight": 0.5,
                 "description": "This course provides a deeper focus and additional examples on the topic of HUMN*3000 as relating to German-speaking countries. It also involves further oral and written practice in the German language. Texts will be read in German.",
                 "prereqs": {
-                    "reg_prereqs": [
-                        "GERM*2010"
-                    ],
-                    "eq_prereqs": []
+                    "reg_prereqs": [],
+                    "eq_prereqs": [
+                        [
+                            "GERM*2010"
+                        ]
+                    ]
                 }
             },
             {
@@ -13773,10 +13897,12 @@
                 "weight": 0.5,
                 "description": "The course explores the role of mythology, fairy tales and legends in German literature and culture. Topics may include the formation of a national identity, the allegorical fairy tale and its role in Romanticism, women and the fairy tale, the fairy tale and the socialization of children (incl. Disney), adaptations of mythology in modern literature. Authors may include Goethe, Brothers Grimm, ETA Hoffmann. Lectures and texts are in English. Students registered in GERM*3020 will meet a fourth hour per week to discuss texts in German. This course is offered in conjunction with HUMN*3020.",
                 "prereqs": {
-                    "reg_prereqs": [
-                        "GERM*2010"
-                    ],
-                    "eq_prereqs": []
+                    "reg_prereqs": [],
+                    "eq_prereqs": [
+                        [
+                            "GERM*2010"
+                        ]
+                    ]
                 }
             },
             {
@@ -13788,10 +13914,12 @@
                 "weight": 0.5,
                 "description": "This course develops German language skills and cultural awareness. Discussions include such topics as Heimat, nation, migration, and study abroad. Students will engage with and reflect on different social and cultural perspectives through interviews, videos, and texts. Online interactions, including with people in and from Germany, form an integral part of the course.",
                 "prereqs": {
-                    "reg_prereqs": [
-                        "GERM*2010"
-                    ],
-                    "eq_prereqs": []
+                    "reg_prereqs": [],
+                    "eq_prereqs": [
+                        [
+                            "GERM*2010"
+                        ]
+                    ]
                 }
             },
             {
@@ -13803,10 +13931,12 @@
                 "weight": 0.5,
                 "description": "This course focuses on texts and films pertaining to World War II and the Holocaust, the development of the thoughts and the language of genocide, and the representation of the Holocaust in literature and films. The objective is to gain an understanding of the ideas and emotions underlying ethnocentrism and anti-Semitism, and to consider artistic responses to the experience of persecution and mass-murder. Lectures and discussions are in English. Students registered in GERM*3470 will meet a fourth hour per week to discuss texts in German. This course is offered in conjunction with HUMN*3470",
                 "prereqs": {
-                    "reg_prereqs": [
-                        "GERM*2010"
-                    ],
-                    "eq_prereqs": []
+                    "reg_prereqs": [],
+                    "eq_prereqs": [
+                        [
+                            "GERM*2010"
+                        ]
+                    ]
                 }
             },
             {
@@ -13870,10 +14000,12 @@
                 "weight": 0.5,
                 "description": "A continuation of GREK*1100.",
                 "prereqs": {
-                    "reg_prereqs": [
-                        "GREK*1100"
-                    ],
-                    "eq_prereqs": []
+                    "reg_prereqs": [],
+                    "eq_prereqs": [
+                        [
+                            "GREK*1100"
+                        ]
+                    ]
                 }
             },
             {
@@ -14209,7 +14341,9 @@
                 "description": "This course is designed to deepen students' understanding of diverse historical primary and secondary sources, advance their practices of historical research and writing, and explore critical interpretive problems surrounding the study of history.",
                 "prereqs": {
                     "reg_prereqs": [],
-                    "eq_prereqs": []
+                    "eq_prereqs": [
+                        []
+                    ]
                 }
             },
             {
@@ -14701,7 +14835,9 @@
                 "description": "An independent study course based on either History related voluntary or paid workplace experience. Evaluation will be based on assignments relating to work duties. These will usually be in the form of a weekly journal, and a major project relating to some specific aspect of the work experience. Students interested in this option must have their project approved by the department prior to the semester in which they plan to engage in their work experience. Students will then be assigned to a faculty supervisor who will oversee the project.",
                 "prereqs": {
                     "reg_prereqs": [],
-                    "eq_prereqs": []
+                    "eq_prereqs": [
+                        []
+                    ]
                 }
             },
             {
@@ -14943,7 +15079,9 @@
                 "description": "This course will examine how masculinity and femininity has been constructed in popular culture using newspapers, magazines, advertisements, films and novels. Careful attention will be paid to the intersections of gender, race and class. In addition to analyzing some outstanding texts in this field, students will have the opportunity to write an original essay on a topic of their choice. (H)",
                 "prereqs": {
                     "reg_prereqs": [],
-                    "eq_prereqs": []
+                    "eq_prereqs": [
+                        []
+                    ]
                 }
             },
             {
@@ -14956,7 +15094,9 @@
                 "description": "This advanced research seminar asks students to consider the role of the individual in history by reading theoretical works and examples drawn from the major schools of thought on this issue. Students will undertake to write a biography that will utilize primary sources and will include a detailed historiographical discussion of the works available on their chosen subject. (H)",
                 "prereqs": {
                     "reg_prereqs": [],
-                    "eq_prereqs": []
+                    "eq_prereqs": [
+                        []
+                    ]
                 }
             },
             {
@@ -14969,7 +15109,9 @@
                 "description": "This is a seminar course dealing with selected aspects of Scottish social, economic and political history. The seminars will be based upon an examination of primary sources from the University library's extensive Scottish Collections, as well as secondary literature. Topics chosen will vary with expertise of the instructor. For information on the topic of a specific section, consult the History department website. https://www.uoguelph.ca/. (H)",
                 "prereqs": {
                     "reg_prereqs": [],
-                    "eq_prereqs": []
+                    "eq_prereqs": [
+                        []
+                    ]
                 }
             },
             {
@@ -14984,7 +15126,9 @@
                 "description": "This course offers an opportunity for students to independently develop skills in the practice of historical research, such as working with archives, digitization, and database management. Students will work under the supervision of individual faculty members. Students must make arrangements with the faculty advisor well before course selection. (H)",
                 "prereqs": {
                     "reg_prereqs": [],
-                    "eq_prereqs": []
+                    "eq_prereqs": [
+                        []
+                    ]
                 }
             },
             {
@@ -14997,7 +15141,9 @@
                 "description": "This course explores both individual and collective acts of Indigenous resistance in settler-colonial societies. Diverse forms of resistance will be studied from text-based to action-based movements. Resistance may be examined through notable figures, delegations, marches, occupations, and literature. (H)",
                 "prereqs": {
                     "reg_prereqs": [],
-                    "eq_prereqs": []
+                    "eq_prereqs": [
+                        []
+                    ]
                 }
             },
             {
@@ -15028,7 +15174,9 @@
                 "description": "This course focuses on issues that emphasize the history of connections between different parts of the world. Topics may include the growth of the world economy; transformations of the global environment; trade and exchange; diasporas and migration. Topics chosen will vary with expertise of the instructor. For information on the topic of a specific section, consult the History department website. https://www.uoguelph.ca/history (H)",
                 "prereqs": {
                     "reg_prereqs": [],
-                    "eq_prereqs": []
+                    "eq_prereqs": [
+                        []
+                    ]
                 }
             },
             {
@@ -15106,7 +15254,9 @@
                 "description": "This is a seminar course which will explore the history of health, the body and the mind. Possible topics include: the history of athletics and physical fitness, the history of disability, the history of nutritional science and advice, the history of women's health, the history of disease, the history of mental illness, and the history of psychiatry. (H)",
                 "prereqs": {
                     "reg_prereqs": [],
-                    "eq_prereqs": []
+                    "eq_prereqs": [
+                        []
+                    ]
                 }
             },
             {
@@ -15175,10 +15325,12 @@
                 "weight": 1.0,
                 "description": "This seminar uses quantitative sources and methods to explore such themes as social inequality and demographic experience since 1800. It examines the value of such data for policy purposes, as well as the social and cultural contexts in which surveys are developed and undertaken. Students develop presentational and analytical skills through research projects. (H)",
                 "prereqs": {
-                    "reg_prereqs": [
-                        "HIST*2450"
-                    ],
-                    "eq_prereqs": []
+                    "reg_prereqs": [],
+                    "eq_prereqs": [
+                        [
+                            "HIST*2450"
+                        ]
+                    ]
                 }
             },
             {
@@ -15319,11 +15471,10 @@
                 "weight": 0.5,
                 "description": "The biology, ecology, adaptation, and uses of cool-season and warm-season turfgrass species and cultivars will be introduced. Topics will include the identification and life strategies of different turfgrass species, principles of reproduction and techniques for establishment of turfgrass by seeding, sprigging and sodding. The ecology of management including mowing, irrigation, cultivation, mineral nutrition, repair and renovation, and management of stresses (thatch, weeds, insects, disease) will be covered. The turfgrass industry will be introduced, including application of ecological principles to athletic field management, sod production, golf course management, and professional lawn care.",
                 "prereqs": {
-                    "reg_prereqs": [
-                        "BIOL*1090"
-                    ],
+                    "reg_prereqs": [],
                     "eq_prereqs": [
                         [
+                            "BIOL*1090",
                             "BIOL*1050",
                             "BIOL*1070",
                             "BIOL*1080"
@@ -15943,7 +16094,9 @@
                 "description": "An integration of the students' academic studies with their work experiences. Emphasis will be placed on applying and evaluating theoretical concepts in different working environments. Students will investigate the concept of workplace fit applying this to their prospective career path.",
                 "prereqs": {
                     "reg_prereqs": [],
-                    "eq_prereqs": []
+                    "eq_prereqs": [
+                        []
+                    ]
                 }
             },
             {
@@ -16434,10 +16587,12 @@
                 "weight": 0.5,
                 "description": "The central focus of this course is a comprehensive examination of the effects of a variety of work parameters on normal cardio-respiratory adjustments required to meet metabolic demands. Immediate adjustments to increase metabolic rate as well as long term cardio-respiratory adaptability will be discussed.",
                 "prereqs": {
-                    "reg_prereqs": [
-                        "HK*3810"
-                    ],
-                    "eq_prereqs": []
+                    "reg_prereqs": [],
+                    "eq_prereqs": [
+                        [
+                            "HK*3810"
+                        ]
+                    ]
                 }
             },
             {
@@ -16526,10 +16681,12 @@
                 "weight": 0.5,
                 "description": "This course examines the essential human resource function of planning, staffing, employee training and development, employee assistance programs, the legal environment and employee maintenance in a variety of organizational settings.",
                 "prereqs": {
-                    "reg_prereqs": [
-                        "HROB*2090"
-                    ],
-                    "eq_prereqs": []
+                    "reg_prereqs": [],
+                    "eq_prereqs": [
+                        [
+                            "HROB*2090"
+                        ]
+                    ]
                 }
             },
             {
@@ -16541,10 +16698,12 @@
                 "weight": 0.5,
                 "description": "This course focuses on how organizations attract, retain, and motivate employees through formal and informal reward mechanisms. Topics include: developing pay structures, job analysis, job evaluation, pay systems, pay system administration, equity issues, and benefits.",
                 "prereqs": {
-                    "reg_prereqs": [
-                        "HROB*2290"
-                    ],
-                    "eq_prereqs": []
+                    "reg_prereqs": [],
+                    "eq_prereqs": [
+                        [
+                            "HROB*2290"
+                        ]
+                    ]
                 }
             },
             {
@@ -16586,10 +16745,12 @@
                 "weight": 0.5,
                 "description": "This course will provide students with the appropriate tools needed to recruit and select employees, identify related competencies, identify performance appraisal methods, and evaluate the effectiveness of these programs within the context of our Canadian legal framework.",
                 "prereqs": {
-                    "reg_prereqs": [
-                        "HROB*2290"
-                    ],
-                    "eq_prereqs": []
+                    "reg_prereqs": [],
+                    "eq_prereqs": [
+                        [
+                            "HROB*2290"
+                        ]
+                    ]
                 }
             },
             {
@@ -16601,10 +16762,12 @@
                 "weight": 0.5,
                 "description": "This course focuses on how organizations develop employee skills through training and development programs. Topics will include: adult learning principles, training needs assessments, training program design, instructional methodologies, coaching and mentoring, individualized development and program evaluation.",
                 "prereqs": {
-                    "reg_prereqs": [
-                        "HROB*2290"
-                    ],
-                    "eq_prereqs": []
+                    "reg_prereqs": [],
+                    "eq_prereqs": [
+                        [
+                            "HROB*2290"
+                        ]
+                    ]
                 }
             },
             {
@@ -17163,7 +17326,21 @@
                 }
             }
         ],
-        "iaef": [],
+        "iaef": [
+            {
+                "code": "IAEF*3500",
+                "name": "Experiential Education",
+                "terms": [
+                    "F"
+                ],
+                "weight": 0.5,
+                "description": "Student initiated experiential learning opportunities can be developed as a credit course in consultation with the course instructor. Students who find suitable employment in their chosen industry related to food, agriculture and environment over a summer semester can receive credit while completing the requirements for this course. This course is designed to run from May until November, with registration in the Fall semester. Students must confirm participation in this course by May 1st, prior to starting their summer employment. The course is designed to meet the needs of B.Sc.(Agr.), BBRM and Agricultural Business students.",
+                "prereqs": {
+                    "reg_prereqs": [],
+                    "eq_prereqs": []
+                }
+            }
+        ],
         "ips": [
             {
                 "code": "IPS*1500",
@@ -17208,7 +17385,9 @@
                 "description": "This course focuses on developing the skills required to communicate science for non-specialist audiences. The principles and practices of public speaking and writing will be explored, employing a variety of media. Through multiple oral and written assignments, students will explore tailoring their message for various audience-types.",
                 "prereqs": {
                     "reg_prereqs": [],
-                    "eq_prereqs": []
+                    "eq_prereqs": [
+                        []
+                    ]
                 }
             }
         ],
@@ -17712,7 +17891,9 @@
                 "description": "In this course students will learn about a region that they intend to study further in an advanced work/study project (IDEV*4200). It may be offered as a reading course or as a seminar.",
                 "prereqs": {
                     "reg_prereqs": [],
-                    "eq_prereqs": []
+                    "eq_prereqs": [
+                        []
+                    ]
                 }
             },
             {
@@ -18349,10 +18530,12 @@
                 "weight": 0.5,
                 "description": "A continuation of LAT*1100.",
                 "prereqs": {
-                    "reg_prereqs": [
-                        "LAT*1100"
-                    ],
-                    "eq_prereqs": []
+                    "reg_prereqs": [],
+                    "eq_prereqs": [
+                        [
+                            "LAT*1100"
+                        ]
+                    ]
                 }
             },
             {
@@ -18364,10 +18547,12 @@
                 "weight": 0.5,
                 "description": "A course in Latin literature based on relevant texts.",
                 "prereqs": {
-                    "reg_prereqs": [
-                        "LAT*1110"
-                    ],
-                    "eq_prereqs": []
+                    "reg_prereqs": [],
+                    "eq_prereqs": [
+                        [
+                            "LAT*1110"
+                        ]
+                    ]
                 }
             },
             {
@@ -18657,10 +18842,12 @@
                 "weight": 0.5,
                 "description": "The viewpoint taken in the course is that of the senior financial officer of a business firm. The focus is on the management of cash, accounts receivable, inventory and short and intermediate term liabilities. Emphasis is placed on the analysis and forecasting of financial statements, and financial modeling for planning and controlling the growth of the business enterprise.",
                 "prereqs": {
-                    "reg_prereqs": [
-                        "ACCT*2230"
-                    ],
-                    "eq_prereqs": []
+                    "reg_prereqs": [],
+                    "eq_prereqs": [
+                        [
+                            "ACCT*2230"
+                        ]
+                    ]
                 }
             },
             {
@@ -18913,7 +19100,9 @@
                 "description": "This course builds on the Fundamentals of Entrepreneurship and Design Thinking courses by introducing advanced topics in entrepreneurship, business planning and new venture creation. At the end of this course, a successful student will be able to develop a financial assessment of a new venture, develop a business plan and prepare a comprehensive presentation and communication plan.",
                 "prereqs": {
                     "reg_prereqs": [],
-                    "eq_prereqs": []
+                    "eq_prereqs": [
+                        []
+                    ]
                 }
             },
             {
@@ -19374,7 +19563,9 @@
                 "description": "This course provides an introduction to the calculus of one variable with emphasis on mathematical modelling in the biological sciences. The topics covered include elementary functions, sequences and series, difference equations, differential calculus and integral calculus.",
                 "prereqs": {
                     "reg_prereqs": [],
-                    "eq_prereqs": []
+                    "eq_prereqs": [
+                        []
+                    ]
                 }
             },
             {
@@ -19407,7 +19598,9 @@
                 "description": "This course provides an introduction to linear algebra in Euclidean space. Topics covered include: N-dimensional vectors, dot product, matrices and matrix operations, systems of linear equations and Gaussian elimination, linear independence, subspaces, basis and dimension, matrix inverse, matrix rank and determinant, eigenvalues, eigenvectors and diagonalization, orthogonalization and projections, linear transformations. Some fundamental proofs and applications of these topics will be included.",
                 "prereqs": {
                     "reg_prereqs": [],
-                    "eq_prereqs": []
+                    "eq_prereqs": [
+                        []
+                    ]
                 }
             },
             {
@@ -19420,7 +19613,9 @@
                 "description": "This is a theoretical course intended primarily for students who expect to pursue further studies in mathematics and its applications. Topics include inequalities and absolute value; compound angle formulas for trigonometric functions; limits and continuity using rigorous definitions; the derivative and derivative formulas (including derivatives of trigonometric, exponential and logarithmic functions); Fermat's theorem; Rolle's theorem; the mean-value theorem; applications of the derivative; Riemann sums; the definite integral; the fundamental theorem of calculus; applications of the definite integral; the mean value theorem for integrals.",
                 "prereqs": {
                     "reg_prereqs": [],
-                    "eq_prereqs": []
+                    "eq_prereqs": [
+                        []
+                    ]
                 }
             },
             {
@@ -19773,7 +19968,9 @@
                 "description": "This capstone course for the Mathematical Science major provides students with an opportunity to synthesize knowledge and utilize problem-solving skills accumulated over the course of their studies. The course will focus on case studies drawn from engineering, computer science, biology, life and physical sciences, medicine, and/or economics.",
                 "prereqs": {
                     "reg_prereqs": [],
-                    "eq_prereqs": []
+                    "eq_prereqs": [
+                        []
+                    ]
                 }
             },
             {
@@ -19787,7 +19984,9 @@
                 "description": "Each student in this course will undertake an individual research project in some area of mathematics, under the supervision of a faculty member. A written report and a public presentation of the project will be required.",
                 "prereqs": {
                     "reg_prereqs": [],
-                    "eq_prereqs": []
+                    "eq_prereqs": [
+                        []
+                    ]
                 }
             }
         ],
@@ -20085,10 +20284,12 @@
                 "weight": 1.0,
                 "description": "This course involves independent research of a practical or theoretical nature on a specific topic in molecular and cellular biology. It is carried out under the supervision of an individual faculty member. Students should make arrangements with both a faculty advisor and the course coordinator at least one semester in advance of taking the course. The signature of the course coordinator will be required to select the course. A departmental registration form must be obtained from, and submitted to, the course coordinator no later than the 2nd class day of the semester in which the student is registered for the course.",
                 "prereqs": {
-                    "reg_prereqs": [
-                        "MBG*3350"
-                    ],
-                    "eq_prereqs": []
+                    "reg_prereqs": [],
+                    "eq_prereqs": [
+                        [
+                            "MBG*3350"
+                        ]
+                    ]
                 }
             },
             {
@@ -20102,10 +20303,12 @@
                 "weight": 1.0,
                 "description": "This course involves independent research of a practical or theoretical nature on a specific topic in molecular and cellular biology. It is carried out under the supervision of an individual faculty member. Students should make arrangements with both a faculty advisor and the course coordinator at least one semester in advance of taking the course. The signature of the course coordinator will be required to select the course. A departmental registration form must be obtained from, and submitted to, the course coordinator no later than the 2nd class day of the semester in which the student is registered for the course.",
                 "prereqs": {
-                    "reg_prereqs": [
-                        "MCB*4500"
-                    ],
-                    "eq_prereqs": []
+                    "reg_prereqs": [],
+                    "eq_prereqs": [
+                        [
+                            "MCB*4500"
+                        ]
+                    ]
                 }
             },
             {
@@ -20119,10 +20322,12 @@
                 "weight": 0.5,
                 "description": "This course involves the independent study of a current topic in Molecular and Cellular Biology, selected from the recent research literature and involving a review and critical appraisal of the area. The course comprises independent library research, participation in weekly meetings, and written and oral presentations. Students should make arrangements with both faculty advisor and the course coordinator in a prior course selection period.",
                 "prereqs": {
-                    "reg_prereqs": [
-                        "MBG*3350"
-                    ],
-                    "eq_prereqs": []
+                    "reg_prereqs": [],
+                    "eq_prereqs": [
+                        [
+                            "MBG*3350"
+                        ]
+                    ]
                 }
             }
         ],
@@ -20514,10 +20719,12 @@
                 "weight": 0.5,
                 "description": "This course is a continuation of MUSC*1500.",
                 "prereqs": {
-                    "reg_prereqs": [
-                        "MUSC*1500"
-                    ],
-                    "eq_prereqs": []
+                    "reg_prereqs": [],
+                    "eq_prereqs": [
+                        [
+                            "MUSC*1500"
+                        ]
+                    ]
                 }
             },
             {
@@ -20682,10 +20889,12 @@
                 "weight": 0.5,
                 "description": "This course is a continuation of MUSC*2410.",
                 "prereqs": {
-                    "reg_prereqs": [
-                        "MUSC*2410"
-                    ],
-                    "eq_prereqs": []
+                    "reg_prereqs": [],
+                    "eq_prereqs": [
+                        [
+                            "MUSC*2410"
+                        ]
+                    ]
                 }
             },
             {
@@ -20728,10 +20937,12 @@
                 "weight": 0.5,
                 "description": "A continuation of MUSC*2500.",
                 "prereqs": {
-                    "reg_prereqs": [
-                        "MUSC*2500"
-                    ],
-                    "eq_prereqs": []
+                    "reg_prereqs": [],
+                    "eq_prereqs": [
+                        [
+                            "MUSC*2500"
+                        ]
+                    ]
                 }
             },
             {
@@ -20953,10 +21164,12 @@
                 "weight": 0.5,
                 "description": "This course is a continuation of MUSC*3410.",
                 "prereqs": {
-                    "reg_prereqs": [
-                        "MUSC*3410"
-                    ],
-                    "eq_prereqs": []
+                    "reg_prereqs": [],
+                    "eq_prereqs": [
+                        [
+                            "MUSC*3410"
+                        ]
+                    ]
                 }
             },
             {
@@ -20970,10 +21183,12 @@
                 "weight": 0.5,
                 "description": "A continuation of MUSC*2510.",
                 "prereqs": {
-                    "reg_prereqs": [
-                        "MUSC*2510"
-                    ],
-                    "eq_prereqs": []
+                    "reg_prereqs": [],
+                    "eq_prereqs": [
+                        [
+                            "MUSC*2510"
+                        ]
+                    ]
                 }
             },
             {
@@ -20987,10 +21202,12 @@
                 "weight": 0.5,
                 "description": "A continuation of MUSC*3500 including preparation and performance of a juried recital; restricted to students in a Music program (honours major or minor or general, area of concentration).",
                 "prereqs": {
-                    "reg_prereqs": [
-                        "MUSC*3500"
-                    ],
-                    "eq_prereqs": []
+                    "reg_prereqs": [],
+                    "eq_prereqs": [
+                        [
+                            "MUSC*3500"
+                        ]
+                    ]
                 }
             },
             {
@@ -21185,7 +21402,9 @@
                 "description": "The Honours Seminar in Music teaches advanced research methods common to a range of musical investigations: musicology (including ethnomusicology, popular music and jazz), music theory, music pedagogy, and musical creation. In addition, the Honours Seminar in Music allows students to engage in individual research with concentrated energy through a one semester/one credit course in a supportive peer environment. Students will develop a research project proposal for approval by the instructor in the semester prior to enrolling in this course.",
                 "prereqs": {
                     "reg_prereqs": [],
-                    "eq_prereqs": []
+                    "eq_prereqs": [
+                        []
+                    ]
                 }
             },
             {
@@ -21199,10 +21418,12 @@
                 "weight": 0.5,
                 "description": "First part of a two-semester performance project culminating in a music recital at the end of the second semester. Students will present a preparatory performance at the end of the first semester. Qualified instrumentalists, vocalists, and composers who have completed the applied music or applied composition course sequences are eligible to present a full-length recital. In the case of composers it is the responsibility of the student to organize performers to present the music. Recital proposals must be submitted in advance for approval to the Music Faculty Committee. MUSC*4460 and MUSC*4470 are normally taken over consecutive semesters.",
                 "prereqs": {
-                    "reg_prereqs": [
-                        "MUSC*3510"
-                    ],
-                    "eq_prereqs": []
+                    "reg_prereqs": [],
+                    "eq_prereqs": [
+                        [
+                            "MUSC*3510"
+                        ]
+                    ]
                 }
             },
             {
@@ -21216,10 +21437,12 @@
                 "weight": 0.5,
                 "description": "Second part of a two-semester performance project culminating in a music recital at the end of the second semester. MUSC*4460 and MUSC*4470 are normally taken over consecutive semesters.",
                 "prereqs": {
-                    "reg_prereqs": [
-                        "MUSC*4460"
-                    ],
-                    "eq_prereqs": []
+                    "reg_prereqs": [],
+                    "eq_prereqs": [
+                        [
+                            "MUSC*4460"
+                        ]
+                    ]
                 }
             }
         ],
@@ -21234,7 +21457,9 @@
                 "description": "This course introduces students to the emerging field of nanoscience. Its representation in popular culture and journalism will be contrasted with the present and near future realities in the field. Current industrial and business applications will be discussed. Guest lectures will be given by faculty performing research in the field. The course also aims to help students in their transition to the academic life by emphasizing skills and values such as academic integrity and problem solving and by actively connecting their first-year science core courses to the field of nanoscience.",
                 "prereqs": {
                     "reg_prereqs": [],
-                    "eq_prereqs": []
+                    "eq_prereqs": [
+                        []
+                    ]
                 }
             },
             {
@@ -22468,7 +22693,9 @@
                 "description": "This course presents an in-depth treatment of one or more key concepts in political philosophy. Among the many possible concepts that the course may address are those of freedom, equality, power, community, identity, autonomy, justice, rights, political obligation, representation, authority, legitimacy, exploitation, emancipation, and development. These concepts may be explored historically or through contemporary political and/or philosophical debates.",
                 "prereqs": {
                     "reg_prereqs": [],
-                    "eq_prereqs": []
+                    "eq_prereqs": [
+                        []
+                    ]
                 }
             },
             {
@@ -22519,10 +22746,12 @@
                 "weight": 0.5,
                 "description": "This course is an introduction to the main topics in the philosophy of law. It aims to give students a philosophical grounding in such issues as the purpose and nature of law, the relationship between law and individual freedom and the question of international law. Thinkers studied may include St. Thomas Aquinas, John Stuart Mill and H.L.A. Hart. The course may also include an examination of the way in which controversial ethical and social issues are treated under the Canadian Charter of Rights and Freedoms.",
                 "prereqs": {
-                    "reg_prereqs": [
-                        "PHIL*2120"
-                    ],
-                    "eq_prereqs": []
+                    "reg_prereqs": [],
+                    "eq_prereqs": [
+                        [
+                            "PHIL*2120"
+                        ]
+                    ]
                 }
             },
             {
@@ -22535,7 +22764,9 @@
                 "description": "This course considers various philosophical questions concerning art such as the nature of a work of art, the nature of beauty, the relationship between the artist and the audience, the task of the art critic, the social function of art.",
                 "prereqs": {
                     "reg_prereqs": [],
-                    "eq_prereqs": []
+                    "eq_prereqs": [
+                        []
+                    ]
                 }
             },
             {
@@ -22548,7 +22779,9 @@
                 "description": "An overview of philosophical thought of the Middle Ages, that is, roughly of the period between 500 AD and 1500 AD. The course will focus on several themes from the Christian, Jewish and Islamic traditions to show that many of the philosophical concerns of the present day were also of concern to thinkers of the period. In particular, we will look at the relationship between knowledge and belief, the nature of human happiness, the question of whether God exists and, if so, whether his existence can be rationally demonstrated, and the problem of free will, among others. Thinkers to be discussed will generally include St. Augustine (354-430), St. Anselm (1033-1109), al-Farabi (ca. 850-ca. 950), Maimonides (1135-1204) and St. Thomas Aquinas (1224/25-1274).",
                 "prereqs": {
                     "reg_prereqs": [],
-                    "eq_prereqs": []
+                    "eq_prereqs": [
+                        []
+                    ]
                 }
             },
             {
@@ -22561,7 +22794,9 @@
                 "description": "This course offers an in-depth study of the philosophy of Immanuel Kant, one of the most influential figures in the history of philosophy. The course will include study of one or more of his major works. Kant's works may be studied on their own, or in conjunction with the study of works of later philosophers who were significantly influenced by Kant's philosophical ideas.",
                 "prereqs": {
                     "reg_prereqs": [],
-                    "eq_prereqs": []
+                    "eq_prereqs": [
+                        []
+                    ]
                 }
             },
             {
@@ -22574,7 +22809,9 @@
                 "description": "A common way of thinking of the world is that it consists of objects with properties that persist through time while changing in different ways. Yet there are deep puzzles about each of these basic, seemingly indispensable concepts. What does it take to be an object? How much can an object change without becoming a different object? Are some of an object's properties essential to it? Metaphysics is the business of proposing and debating answers to these questions and related questions. This course introduces students to these debates.",
                 "prereqs": {
                     "reg_prereqs": [],
-                    "eq_prereqs": []
+                    "eq_prereqs": [
+                        []
+                    ]
                 }
             },
             {
@@ -22602,7 +22839,9 @@
                 "description": "This course is a survey of central issues and positions in contemporary philosophy of mind. Topics may include: the nature of the mind and its relation with the brain; the puzzle of conscious experience; and the problem of mental content.",
                 "prereqs": {
                     "reg_prereqs": [],
-                    "eq_prereqs": []
+                    "eq_prereqs": [
+                        []
+                    ]
                 }
             },
             {
@@ -22615,7 +22854,9 @@
                 "description": "This course is an advanced introduction to the central issues in epistemology, such as the nature of knowledge and how it differs from mere true belief. Possible topics include skepticism, theories of justification and rationality, self-knowledge and the sources of belief.",
                 "prereqs": {
                     "reg_prereqs": [],
-                    "eq_prereqs": []
+                    "eq_prereqs": [
+                        []
+                    ]
                 }
             },
             {
@@ -22628,7 +22869,9 @@
                 "description": "This course focuses on 20th century French and German philosophy and the influences that shaped it. The course will be part historical, part contemporary. The historical part may survey touchstones of current Continental thought in ancient and modern philosophy. The contemporary part of this course may focus on any of the hundred or so key figures in 20th or 21st century Continental thought, or groupings thereof according to particular thematic.",
                 "prereqs": {
                     "reg_prereqs": [],
-                    "eq_prereqs": []
+                    "eq_prereqs": [
+                        []
+                    ]
                 }
             },
             {
@@ -22641,7 +22884,9 @@
                 "description": "This course will examine selected works of women philosophers and their contributions to the major philosophical debates of their day. The philosophers covered may be drawn from any period in the history of philosophy, up to, and including, the 20th century and topics covered have ranged across feminist issues, epistemology, metaphysics, and ethics. Because texts and topics will vary with the instructor, students are advised to consult the departmental website.",
                 "prereqs": {
                     "reg_prereqs": [],
-                    "eq_prereqs": []
+                    "eq_prereqs": [
+                        []
+                    ]
                 }
             },
             {
@@ -22654,7 +22899,9 @@
                 "description": "This is a course in social and political philosophy is the area of philosophy concerned with the morality of major social institutions such as the state, the economy, and the family. This course may engage in the detailed examination of one or more of the following questions: what justifies the state's claim to authority? What are the proper dimensions of individual liberty? What levels of material and social equality are required for a society to be just? These questions will be pursued through reading historical and/or contemporary philosophical texts.",
                 "prereqs": {
                     "reg_prereqs": [],
-                    "eq_prereqs": []
+                    "eq_prereqs": [
+                        []
+                    ]
                 }
             },
             {
@@ -22667,7 +22914,9 @@
                 "description": "This course will explore the relationship between human beings and language, and between language and the world. In particular, it may address such fundamental questions as: What is it about the way in which we use words that gives them the meanings they have? And what is the relationship between words and objects to which they refer? Authors studied may include representatives from the analytic and/or continental traditions in philosophy.",
                 "prereqs": {
                     "reg_prereqs": [],
-                    "eq_prereqs": []
+                    "eq_prereqs": [
+                        []
+                    ]
                 }
             },
             {
@@ -22693,7 +22942,9 @@
                 "description": "This course is an introduction to the most current philosophical texts and movements developed since the beginning of the 21st Century. Students will be taught to understand and work creatively with the most recent ideas in the discipline. Material covered will focus almost exclusively on the philosophical texts written in or after the year 2000.",
                 "prereqs": {
                     "reg_prereqs": [],
-                    "eq_prereqs": []
+                    "eq_prereqs": [
+                        []
+                    ]
                 }
             },
             {
@@ -22706,7 +22957,9 @@
                 "description": "This course focuses on the theoretical foundations of morality. Ethical theory comprises metaethics, which is primarily concerned with the objectivity of moral judgments; normative ethics, which is concerned with the principles of sound moral judgment, and moral psychology, which is concerned with moral motivation and moral reasoning.",
                 "prereqs": {
                     "reg_prereqs": [],
-                    "eq_prereqs": []
+                    "eq_prereqs": [
+                        []
+                    ]
                 }
             },
             {
@@ -22719,7 +22972,9 @@
                 "description": "This course will review classical and contemporary positions on the nature and value of democracy, including arguments for and against it from a variety of stances in political philosophy. It will also examine the merits of competing models of democracy, issues dealing with limitations on majority rule in pluralistic societies, and the applicability of democracy in international contexts.",
                 "prereqs": {
                     "reg_prereqs": [],
-                    "eq_prereqs": []
+                    "eq_prereqs": [
+                        []
+                    ]
                 }
             },
             {
@@ -22730,7 +22985,9 @@
                 "description": "The topics for this course will vary from one offering to the next, and will deal with material, such as Philosophy of History, Philosophy of Social Science and advanced Philosophy of Religion generally arising from the instructor's current research interests. This course gives students a chance to explore topics and texts not usually covered in other courses. Students are encouraged to consult the departmental website for course content and availability.",
                 "prereqs": {
                     "reg_prereqs": [],
-                    "eq_prereqs": []
+                    "eq_prereqs": [
+                        []
+                    ]
                 }
             },
             {
@@ -22743,7 +23000,9 @@
                 "description": "This course provides a survey of 19th century philosophy, a period of extreme change and upheaval, championed mainly by German thinkers. The course will engage with topics such as the nature of individual freedom; historical approaches to understanding concepts of reality and moral norms; proposed radical revisions to traditional moral and social order; and confronting the possible meaninglessness or absurdity of human life.",
                 "prereqs": {
                     "reg_prereqs": [],
-                    "eq_prereqs": []
+                    "eq_prereqs": [
+                        []
+                    ]
                 }
             },
             {
@@ -22769,7 +23028,9 @@
                 "description": "This course will consider central and continuing philosophical issues through an exploration of primary texts in the history of philosophy. The readings and periods stressed will vary from year to year, but could cover significant and enduring texts from the ancient period right up to the 21st century. Texts and topics will vary with the instructor; students are advised to consult the Philosophy department's website.",
                 "prereqs": {
                     "reg_prereqs": [],
-                    "eq_prereqs": []
+                    "eq_prereqs": [
+                        []
+                    ]
                 }
             },
             {
@@ -22801,7 +23062,9 @@
                 "description": "This course is intended as an intensive course of reading chosen by the student in consultation with the faculty member.",
                 "prereqs": {
                     "reg_prereqs": [],
-                    "eq_prereqs": []
+                    "eq_prereqs": [
+                        []
+                    ]
                 }
             },
             {
@@ -22814,7 +23077,9 @@
                 "description": "This course provides an analysis of selected primary sources of Indian philosophy in translation, from the Vedic Upanishads to the \"integral yoga\" of Sri Aurobindo. Emphasis will be on the basic inspirational works of Hinduism and Buddhism, and their respective views on the ultimate nature of reality, the self, suffering, freedom, ignorance and enlightenment.",
                 "prereqs": {
                     "reg_prereqs": [],
-                    "eq_prereqs": []
+                    "eq_prereqs": [
+                        []
+                    ]
                 }
             },
             {
@@ -22827,7 +23092,9 @@
                 "description": "This course analyzes selected primary sources of Chinese philosophy, in translation, from the I Ching to Mao Tse-tung. Emphasis will be on the foundational works of Confucianism, Taoism, Ch'an (or Zen) Buddhism, and Neo-Confucianism, concerning such issues as the ultimate nature of being, non-being and human destiny, proper government of the self, the family and society, and the principles and practice of enlightenment.",
                 "prereqs": {
                     "reg_prereqs": [],
-                    "eq_prereqs": []
+                    "eq_prereqs": [
+                        []
+                    ]
                 }
             },
             {
@@ -22855,10 +23122,12 @@
                 "weight": 0.5,
                 "description": "This course is an advanced study of problems in feminist philosophy. The course may cover specific topics or the work of one or more feminist philosophers. Topics may be drawn from feminist ethics, epistemology, and/or postmodernism. Texts and topics will vary with the instructor; students are advised to consult the Philosophy department's website.",
                 "prereqs": {
-                    "reg_prereqs": [
-                        "PHIL*2060"
-                    ],
-                    "eq_prereqs": []
+                    "reg_prereqs": [],
+                    "eq_prereqs": [
+                        [
+                            "PHIL*2060"
+                        ]
+                    ]
                 }
             },
             {
@@ -22869,7 +23138,9 @@
                 "description": "Each offering of this course will focus on a specific issue or set of related issues that are now being debated in Philosophy of mind and Philosophy of language. Readings will be contemporary works.",
                 "prereqs": {
                     "reg_prereqs": [],
-                    "eq_prereqs": []
+                    "eq_prereqs": [
+                        []
+                    ]
                 }
             },
             {
@@ -22880,7 +23151,9 @@
                 "description": "Each offering of this course will focus on close study of either one or two figures of contemporary relevance in discussions of Continental European philosophy, or a specific issue or set of related issues that are now being debated in that field.",
                 "prereqs": {
                     "reg_prereqs": [],
-                    "eq_prereqs": []
+                    "eq_prereqs": [
+                        []
+                    ]
                 }
             },
             {
@@ -22891,7 +23164,9 @@
                 "description": "Each offering of this course will focus on a specific issue or set of related issues that are now being debated in Philosophy of Science. Readings will be contemporary works.",
                 "prereqs": {
                     "reg_prereqs": [],
-                    "eq_prereqs": []
+                    "eq_prereqs": [
+                        []
+                    ]
                 }
             },
             {
@@ -22904,7 +23179,9 @@
                 "description": "This variable content course addresses an issue which is relevant to the contemporary world from a range of philosophical perspectives. The course is built on research into the issue, including material gathered during a 1-2 week field trip which is held in the summer immediately preceding the semester in which the student takes the course. The field trip is a mandatory component of the course, one for which the student assumes the costs of transportation, food and lodging.",
                 "prereqs": {
                     "reg_prereqs": [],
-                    "eq_prereqs": []
+                    "eq_prereqs": [
+                        []
+                    ]
                 }
             },
             {
@@ -22915,7 +23192,9 @@
                 "description": "This is an advanced level course that examines in detail selected historical or contemporary treatments of specific issues in social and political philosophy.",
                 "prereqs": {
                     "reg_prereqs": [],
-                    "eq_prereqs": []
+                    "eq_prereqs": [
+                        []
+                    ]
                 }
             },
             {
@@ -22937,7 +23216,9 @@
                 "description": "This course offers an advanced study of problems in ethical theory. This course will examine contemporary and perennial issues in ethics through recent or historical texts. Texts and topics will vary with the instructor; students are advised to consult the Philosophy department's website.",
                 "prereqs": {
                     "reg_prereqs": [],
-                    "eq_prereqs": []
+                    "eq_prereqs": [
+                        []
+                    ]
                 }
             },
             {
@@ -22961,7 +23242,9 @@
                 "description": "An advanced study of problems concerning the nature of reality.",
                 "prereqs": {
                     "reg_prereqs": [],
-                    "eq_prereqs": []
+                    "eq_prereqs": [
+                        []
+                    ]
                 }
             },
             {
@@ -23168,13 +23451,7 @@
                 "description": "An intermediate biophysics course with special emphasis on the physical properties of nerve cells and of biological transducers such as the ear and the eye.",
                 "prereqs": {
                     "reg_prereqs": [],
-                    "eq_prereqs": [
-                        [
-                            "PHYS*1020",
-                            "PHYS*1600",
-                            "PHYS*1810"
-                        ]
-                    ]
+                    "eq_prereqs": []
                 }
             },
             {
@@ -23247,9 +23524,7 @@
                     "eq_prereqs": [
                         [
                             "IPS*1510",
-                            "MATH*1210"
-                        ],
-                        [
+                            "MATH*1210",
                             "PHYS*1010",
                             "PHYS*1070",
                             "PHYS*1130"
@@ -23289,9 +23564,7 @@
                             "PHYS*1070",
                             "PHYS*1080",
                             "PHYS*1130",
-                            "PHYS*1300"
-                        ],
-                        [
+                            "PHYS*1300",
                             "MATH*1030",
                             "MATH*1080",
                             "MATH*1160",
@@ -23329,9 +23602,7 @@
                     "eq_prereqs": [
                         [
                             "IPS*1500",
-                            "PHYS*1080"
-                        ],
-                        [
+                            "PHYS*1080",
                             "MATH*1080",
                             "MATH*1200"
                         ],
@@ -24046,10 +24317,12 @@
                 "weight": 0.5,
                 "description": "This course provides an introduction to the electoral process in Canada. It will explore factors that explain citizens' vote choices and the strategies used by candidates and their campaigns to win these votes. The course integrates literature on the electoral system, campaign financing, political parties, political communication, and voting behaviour.",
                 "prereqs": {
-                    "reg_prereqs": [
-                        "POLS*2300"
-                    ],
-                    "eq_prereqs": []
+                    "reg_prereqs": [],
+                    "eq_prereqs": [
+                        [
+                            "POLS*2300"
+                        ]
+                    ]
                 }
             },
             {
@@ -24169,10 +24442,12 @@
                 "weight": 0.5,
                 "description": "This course explores the impact of modern science and technology, and its impact on the western tradition of justice from the seventeenth century to the twentieth century. It will explore this theme in writers such as Thomas Hobbes, Jonathan Swift, J-J Rousseau, Edmund Burke, Friedrich Nietzsche and George Grant. The exact selection of thinkers will vary from year to year and students are advised to check the course outline.",
                 "prereqs": {
-                    "reg_prereqs": [
-                        "POLS*2000"
-                    ],
-                    "eq_prereqs": []
+                    "reg_prereqs": [],
+                    "eq_prereqs": [
+                        [
+                            "POLS*2000"
+                        ]
+                    ]
                 }
             },
             {
@@ -24451,7 +24726,9 @@
                 "description": "This course allows students to reflect upon their involvement in some form of politically related activity, including simulations, volunteer programs, or internship work with government or non-government organizations. The student must find a faculty member from the Department of Political Science willing to act as a supervisor for the course. See the Political Science website for the learning contract and other requirements that must be completed in advance of registering for this course.",
                 "prereqs": {
                     "reg_prereqs": [],
-                    "eq_prereqs": []
+                    "eq_prereqs": [
+                        []
+                    ]
                 }
             },
             {
@@ -24502,7 +24779,9 @@
                 "description": "Readings and research in selected areas of the discipline not covered by regular course offerings. Students present a proposal and seek approval from a member of the department in the semester previous to enrolment in this course. The method of course presentation, emphasis, and evaluation are at the discretion of the instructor.",
                 "prereqs": {
                     "reg_prereqs": [],
-                    "eq_prereqs": []
+                    "eq_prereqs": [
+                        []
+                    ]
                 }
             },
             {
@@ -24531,10 +24810,12 @@
                 "weight": 0.5,
                 "description": "This course provides an analysis of selected theories and political issues discussed by prominent 20th-Century thinkers. These contemporary works will be examined as part of the long tradition of political discourse dating back to the classical period.",
                 "prereqs": {
-                    "reg_prereqs": [
-                        "POLS*2000"
-                    ],
-                    "eq_prereqs": []
+                    "reg_prereqs": [],
+                    "eq_prereqs": [
+                        [
+                            "POLS*2000"
+                        ]
+                    ]
                 }
             },
             {
@@ -24690,10 +24971,12 @@
                 "weight": 1.0,
                 "description": "This course will explore evolving conceptions of Canadian identity and nationalism through consideration of political culture, institutions and constitutional arrangements. Possible topics include: multiculturalism, Aboriginal identity and community, Quebec nationalism, social citizenship, rights and representation, as well as Canada's global role and significance.",
                 "prereqs": {
-                    "reg_prereqs": [
-                        "POLS*2300"
-                    ],
-                    "eq_prereqs": []
+                    "reg_prereqs": [],
+                    "eq_prereqs": [
+                        [
+                            "POLS*2300"
+                        ]
+                    ]
                 }
             },
             {
@@ -24726,10 +25009,12 @@
                 "weight": 1.0,
                 "description": "This course considers the evolving relationship among levels of government in Canada. The growth of cities, the growth of policy responsibilities of provinces, the influence of international organizations, and the development of First Nations government in Canada all challenge the conventional study of federal-provincial relations in Canada. From year to year, this course examines one or several of these contemporary dynamics.",
                 "prereqs": {
-                    "reg_prereqs": [
-                        "POLS*2300"
-                    ],
-                    "eq_prereqs": []
+                    "reg_prereqs": [],
+                    "eq_prereqs": [
+                        [
+                            "POLS*2300"
+                        ]
+                    ]
                 }
             },
             {
@@ -24772,10 +25057,12 @@
                 "weight": 1.0,
                 "description": "This course will examine various topics related to governance, such as public management reform, public sector leadership, third sector organizations or budgeting and human resources.",
                 "prereqs": {
-                    "reg_prereqs": [
-                        "POLS*2250"
-                    ],
-                    "eq_prereqs": []
+                    "reg_prereqs": [],
+                    "eq_prereqs": [
+                        [
+                            "POLS*2250"
+                        ]
+                    ]
                 }
             },
             {
@@ -24804,10 +25091,12 @@
                 "weight": 0.5,
                 "description": "This advanced lecture course examines various topics related to governance, such as public management reform, public sector leadership, third sector organizations, or budgeting and human resources.",
                 "prereqs": {
-                    "reg_prereqs": [
-                        "POLS*2250"
-                    ],
-                    "eq_prereqs": []
+                    "reg_prereqs": [],
+                    "eq_prereqs": [
+                        [
+                            "POLS*2250"
+                        ]
+                    ]
                 }
             },
             {
@@ -24931,10 +25220,12 @@
                 "weight": 1.0,
                 "description": "This course considers theories and problems in the field of International Relations. The theoretical and/or geographical focus of the course will reflect the interests of the instructor.",
                 "prereqs": {
-                    "reg_prereqs": [
-                        "POLS*2200"
-                    ],
-                    "eq_prereqs": []
+                    "reg_prereqs": [],
+                    "eq_prereqs": [
+                        [
+                            "POLS*2200"
+                        ]
+                    ]
                 }
             },
             {
@@ -24946,10 +25237,12 @@
                 "weight": 1.0,
                 "description": "This course is designed as an advanced introduction to the international relations of the Middle East. The course focuses on theories of international relations and their applicability to specific case studies of Middle Eastern politics. The course provides a critical examination of conflicts in the region, and contextualizes those conflicts within both realist and neo-realist theories of international relations. The course also provides a critical examination of the Arab-Israeli crisis, with a focus on peace negotiations. The course is offered as a seminar, with a heavy emphasis on class participation. Students participate in a simulation of an Arab-Israeli peace negotiation.",
                 "prereqs": {
-                    "reg_prereqs": [
-                        "POLS*2200"
-                    ],
-                    "eq_prereqs": []
+                    "reg_prereqs": [],
+                    "eq_prereqs": [
+                        [
+                            "POLS*2200"
+                        ]
+                    ]
                 }
             },
             {
@@ -25064,7 +25357,9 @@
                 "description": "This course provides for independent reading and research in selected areas of the discipline not covered by regular course offerings. Prior to enrollment in the course, approval must be obtained from a member of the department willing to supervise the research. Students should approach potential supervisors with a proposal for readings and research, which may include reflection and expansion on a subject matter addressed in previous course assignments.",
                 "prereqs": {
                     "reg_prereqs": [],
-                    "eq_prereqs": []
+                    "eq_prereqs": [
+                        []
+                    ]
                 }
             },
             {
@@ -25079,7 +25374,9 @@
                 "description": "This course provides for independent reading and research in selected areas of the discipline not covered by regular course offerings. Prior to enrollment in the course, approval must be obtained from a member of the department willing to supervise the research. Students should approach potential supervisors with a proposal for readings and research, which may include reflection and expansion on a subject matter addressed in previous course assignments.",
                 "prereqs": {
                     "reg_prereqs": [],
-                    "eq_prereqs": []
+                    "eq_prereqs": [
+                        []
+                    ]
                 }
             },
             {
@@ -25301,10 +25598,12 @@
                 "weight": 0.5,
                 "description": "The course will focus on the theory and practical application of Organizational Psychology with regard to leadership, teams, and professional behaviour. The course will provide students with opportunities to assess their leadership and teamwork skills, as well as active learning activities to practice these skills. Key topics will include work motivation, time management, personal organizational skills, goal setting, conflict management, social influence and stress management.",
                 "prereqs": {
-                    "reg_prereqs": [
-                        "PSYC*1500"
-                    ],
-                    "eq_prereqs": []
+                    "reg_prereqs": [],
+                    "eq_prereqs": [
+                        [
+                            "PSYC*1500"
+                        ]
+                    ]
                 }
             },
             {
@@ -25318,10 +25617,12 @@
                 "weight": 0.5,
                 "description": "This course introduces students to the field of social psychology. Major topics introduced will include: social influence, social cognition, attitude, stereotype and prejudice, the self, attraction and interpersonal relationships, group processes and intergroup relations. The course also aims for students to use the knowledge acquired to think critically about how their actions and those of others are influenced by social forces. In addition, the course aims to introduce students to the role of culture in shaping thoughts and behaviour and to provide them an opportunity to appreciate diverse perspectives.",
                 "prereqs": {
-                    "reg_prereqs": [
-                        "PSYC*1000"
-                    ],
-                    "eq_prereqs": []
+                    "reg_prereqs": [],
+                    "eq_prereqs": [
+                        [
+                            "PSYC*1000"
+                        ]
+                    ]
                 }
             },
             {
@@ -25369,10 +25670,12 @@
                 "weight": 0.5,
                 "description": "The course objective is to consider the processes of sensory inputs and perception. Approaches ranging from psychophysiology and cognitive psychology to physiology and anatomy will be used. In considering the psychology of sensation and perception, some of the anatomical and physiological aspects of selected senses will be covered in detail and the roles of experience, organization of inputs, and theories of perception are discussed. Topics to be emphasized will vary with the instructor, but may include ontogenetic development, learning, and modification of inputs and their perception. Students will participate in on-line laboratory demonstrations and experiments. (C)",
                 "prereqs": {
-                    "reg_prereqs": [
-                        "PSYC*1000"
-                    ],
-                    "eq_prereqs": []
+                    "reg_prereqs": [],
+                    "eq_prereqs": [
+                        [
+                            "PSYC*1000"
+                        ]
+                    ]
                 }
             },
             {
@@ -25385,10 +25688,12 @@
                 "weight": 0.5,
                 "description": "This course is a general introduction to the structure and function of the nervous system. The physiological basis of sensory (input) systems and the motor (output) system are examined as are central physiological bases of processes such as learning and memory.",
                 "prereqs": {
-                    "reg_prereqs": [
-                        "PSYC*1000"
-                    ],
-                    "eq_prereqs": []
+                    "reg_prereqs": [],
+                    "eq_prereqs": [
+                        [
+                            "PSYC*1000"
+                        ]
+                    ]
                 }
             },
             {
@@ -25400,10 +25705,12 @@
                 "weight": 0.5,
                 "description": "This course is an introduction to and an analysis of the major theories of developmental psychology. Emphasis will be placed on the processes of development in the child including physical growth, perception, cognition, personality and interactions with the social environment. The application of developmental psychology to educational and social issues will be discussed.",
                 "prereqs": {
-                    "reg_prereqs": [
-                        "PSYC*1000"
-                    ],
-                    "eq_prereqs": []
+                    "reg_prereqs": [],
+                    "eq_prereqs": [
+                        [
+                            "PSYC*1000"
+                        ]
+                    ]
                 }
             },
             {
@@ -25415,10 +25722,12 @@
                 "weight": 0.5,
                 "description": "This course is an introduction to cognitive processes, including topics in the areas of attention, memory, language and reasoning. Students will be exposed to and participate in on-line laboratory demonstrations and experiments.",
                 "prereqs": {
-                    "reg_prereqs": [
-                        "PSYC*1000"
-                    ],
-                    "eq_prereqs": []
+                    "reg_prereqs": [],
+                    "eq_prereqs": [
+                        [
+                            "PSYC*1000"
+                        ]
+                    ]
                 }
             },
             {
@@ -25430,10 +25739,12 @@
                 "weight": 0.5,
                 "description": "This course is a review of the theory, assessment procedures and research findings pertinent to major personality constructs. Personality research, methodology and design will also be covered.",
                 "prereqs": {
-                    "reg_prereqs": [
-                        "PSYC*1000"
-                    ],
-                    "eq_prereqs": []
+                    "reg_prereqs": [],
+                    "eq_prereqs": [
+                        [
+                            "PSYC*1000"
+                        ]
+                    ]
                 }
             },
             {
@@ -25471,10 +25782,12 @@
                 "weight": 0.5,
                 "description": "An examination of psychological methods, findings and theories in the study of law. Topics will include the fallibility of the eyewitness; juror decisional processes; credibility of witnesses and attorneys; socialization into legal systems, police behaviour, etc.",
                 "prereqs": {
-                    "reg_prereqs": [
-                        "PSYC*2310"
-                    ],
-                    "eq_prereqs": []
+                    "reg_prereqs": [],
+                    "eq_prereqs": [
+                        [
+                            "PSYC*2310"
+                        ]
+                    ]
                 }
             },
             {
@@ -25518,10 +25831,12 @@
                 "weight": 0.5,
                 "description": "This course covers research in health psychology. Possible topics include the interplay of psychosocial factors, behaviour, and physical health; pediatric health psychology; health interventions at the individual, family, group or community levels.",
                 "prereqs": {
-                    "reg_prereqs": [
-                        "NEUR*2000"
-                    ],
-                    "eq_prereqs": []
+                    "reg_prereqs": [],
+                    "eq_prereqs": [
+                        [
+                            "NEUR*2000"
+                        ]
+                    ]
                 }
             },
             {
@@ -25585,7 +25900,9 @@
                 "description": "This course will introduce the student to basic issues in cognitive science from philosophical and psychological perspectives. Connectionism, Turing Machines, artificial intelligence, and alternative naturalistic models of the mind will be among the topics explored.",
                 "prereqs": {
                     "reg_prereqs": [],
-                    "eq_prereqs": []
+                    "eq_prereqs": [
+                        []
+                    ]
                 }
             },
             {
@@ -25853,12 +26170,14 @@
                 "weight": 0.5,
                 "description": "This is an in-depth examination of specific advances in social psychological research, theory, and/or applications. Selected topic areas may include the psychology of social groups, women's health and well-being, and community interventions. Specific topics, to be announced prior to course selection, will vary according to the interests of the instructor of the course.",
                 "prereqs": {
-                    "reg_prereqs": [
-                        "PSYC*3250",
-                        "PSYC*2310",
-                        "PSYC*3290"
-                    ],
-                    "eq_prereqs": []
+                    "reg_prereqs": [],
+                    "eq_prereqs": [
+                        [
+                            "PSYC*2310",
+                            "PSYC*3250",
+                            "PSYC*3290"
+                        ]
+                    ]
                 }
             },
             {
@@ -25870,14 +26189,13 @@
                 "weight": 0.5,
                 "description": "Students will examine theoretical and methodological issues in selected topic areas of industrial/organizational psychology. Selected topic areas may include diversity issues, trust and justice, job performance, employment selection, and stress and well-being. Specific topics, to be announced prior to course selection, will vary according to the interests of the instructor of the course.",
                 "prereqs": {
-                    "reg_prereqs": [
-                        "PSYC*3250",
-                        "PSYC*3290"
-                    ],
+                    "reg_prereqs": [],
                     "eq_prereqs": [
                         [
+                            "PSYC*3250",
                             "PSYC*2070",
-                            "PSYC*3490"
+                            "PSYC*3490",
+                            "PSYC*3290"
                         ]
                     ]
                 }
@@ -25891,15 +26209,14 @@
                 "weight": 0.5,
                 "description": "This course covers issues and theories in clinical or applied developmental psychology. Topics may include pediatric (child health) psychology, attachment relationships, non-suicidal self-injury, and aggression. The selected topic, to be announced prior to course selection, will vary on the basis of the expertise of the instructor.",
                 "prereqs": {
-                    "reg_prereqs": [
-                        "PSYC*3250",
-                        "PSYC*2020",
-                        "PSYC*3290"
-                    ],
+                    "reg_prereqs": [],
                     "eq_prereqs": [
                         [
+                            "PSYC*3250",
+                            "PSYC*2020",
                             "PSYC*2450",
-                            "PSYC*2740"
+                            "PSYC*2740",
+                            "PSYC*3290"
                         ]
                     ]
                 }
@@ -25934,12 +26251,14 @@
                 "weight": 1.0,
                 "description": "This is a required capstone course for students in Psychology's BA and BSC Honours major programs, excepting those who are taking the Honours Thesis courses (PSYC*4780, 4880). The course adopts a problem-based learning approach in which students will be presented with problems resembling those that they will face in their professional and personal lives. Students will apply their psychological knowledge and skills to analyze the problem, consider solutions, and communicate recommendations to hypothetical stakeholders.",
                 "prereqs": {
-                    "reg_prereqs": [
-                        "PSYC*3250",
-                        "PSYC*3000",
-                        "PSYC*3290"
-                    ],
-                    "eq_prereqs": []
+                    "reg_prereqs": [],
+                    "eq_prereqs": [
+                        [
+                            "PSYC*3250",
+                            "PSYC*3000",
+                            "PSYC*3290"
+                        ]
+                    ]
                 }
             },
             {
@@ -25949,11 +26268,13 @@
                 "weight": 0.5,
                 "description": "This is an in-depth examination of specific advances in the application of psychology theory and methods. Specific topics will vary according to the expertise of the instructor.",
                 "prereqs": {
-                    "reg_prereqs": [
-                        "PSYC*3250",
-                        "PSYC*3290"
-                    ],
-                    "eq_prereqs": []
+                    "reg_prereqs": [],
+                    "eq_prereqs": [
+                        [
+                            "PSYC*3250",
+                            "PSYC*3290"
+                        ]
+                    ]
                 }
             },
             {
@@ -27707,10 +28028,12 @@
                 "weight": 0.5,
                 "description": "This course is an examination of the historical and cultural events that provided the background for the development of modern Spain, as well as a visual survey of Spanish culture.",
                 "prereqs": {
-                    "reg_prereqs": [
-                        "SPAN*1110"
-                    ],
-                    "eq_prereqs": []
+                    "reg_prereqs": [],
+                    "eq_prereqs": [
+                        [
+                            "SPAN*1110"
+                        ]
+                    ]
                 }
             },
             {
@@ -27722,10 +28045,12 @@
                 "weight": 0.5,
                 "description": "This course is an introduction to literary studies in Spanish. The course focuses on critical terminology and methods through a selection of prose, poetry and drama from Spain and Spanish America.",
                 "prereqs": {
-                    "reg_prereqs": [
-                        "SPAN*1110"
-                    ],
-                    "eq_prereqs": []
+                    "reg_prereqs": [],
+                    "eq_prereqs": [
+                        [
+                            "SPAN*1110"
+                        ]
+                    ]
                 }
             },
             {
@@ -27737,10 +28062,12 @@
                 "weight": 0.5,
                 "description": "This course is a survey through selected readings, class discussion and audio-visual materials of the Spanish American countries, their histories, society, institutions and culture.",
                 "prereqs": {
-                    "reg_prereqs": [
-                        "SPAN*2000"
-                    ],
-                    "eq_prereqs": []
+                    "reg_prereqs": [],
+                    "eq_prereqs": [
+                        [
+                            "SPAN*2000"
+                        ]
+                    ]
                 }
             },
             {
@@ -27772,10 +28099,12 @@
                 "weight": 0.5,
                 "description": "This course will be taught in Spanish, with texts studied in the original language, and provides a detailed examination of a theme, period or movement in the literature and/or arts of Spain.",
                 "prereqs": {
-                    "reg_prereqs": [
-                        "SPAN*2990"
-                    ],
-                    "eq_prereqs": []
+                    "reg_prereqs": [],
+                    "eq_prereqs": [
+                        [
+                            "SPAN*2990"
+                        ]
+                    ]
                 }
             },
             {
@@ -27787,10 +28116,12 @@
                 "weight": 0.5,
                 "description": "This course will be taught in Spanish, with texts studied in the original language, and provides a detailed examination of a theme, period or movement in the literature and/or arts of Latin America.",
                 "prereqs": {
-                    "reg_prereqs": [
-                        "SPAN*2990"
-                    ],
-                    "eq_prereqs": []
+                    "reg_prereqs": [],
+                    "eq_prereqs": [
+                        [
+                            "SPAN*2990"
+                        ]
+                    ]
                 }
             },
             {
@@ -27802,10 +28133,12 @@
                 "weight": 0.5,
                 "description": "This course offers an introduction to linguistic topics including history of the Spanish language, language variation and change, and Spanish phonetics, which may vary from year to year.",
                 "prereqs": {
-                    "reg_prereqs": [
-                        "SPAN*1110"
-                    ],
-                    "eq_prereqs": []
+                    "reg_prereqs": [],
+                    "eq_prereqs": [
+                        [
+                            "SPAN*1110"
+                        ]
+                    ]
                 }
             },
             {
@@ -27817,10 +28150,12 @@
                 "weight": 0.5,
                 "description": "This is an advanced language course that focuses on the refinement of students' written and verbal communication skills in Spanish.",
                 "prereqs": {
-                    "reg_prereqs": [
-                        "SPAN*2010"
-                    ],
-                    "eq_prereqs": []
+                    "reg_prereqs": [],
+                    "eq_prereqs": [
+                        [
+                            "SPAN*2010"
+                        ]
+                    ]
                 }
             },
             {
@@ -27894,10 +28229,12 @@
                 "weight": 1.0,
                 "description": "This capstone seminar is taught in Spanish, with texts studied in the original language, and will explore in detail a major movement, period or theme in Latin American literature or culture. Students who have completed this course previously should register in SPAN*4100.",
                 "prereqs": {
-                    "reg_prereqs": [
-                        "SPAN*2990"
-                    ],
-                    "eq_prereqs": []
+                    "reg_prereqs": [],
+                    "eq_prereqs": [
+                        [
+                            "SPAN*2990"
+                        ]
+                    ]
                 }
             },
             {
@@ -27909,10 +28246,12 @@
                 "weight": 1.0,
                 "description": "This seminar is taught in Spanish, with readings from texts in the original language. It addresses a major issue, movement, theme or period in the literature and culture of Spain, or, in some years, of the Spanish-speaking regions of Africa.",
                 "prereqs": {
-                    "reg_prereqs": [
-                        "SPAN*2990"
-                    ],
-                    "eq_prereqs": []
+                    "reg_prereqs": [],
+                    "eq_prereqs": [
+                        [
+                            "SPAN*2990"
+                        ]
+                    ]
                 }
             },
             {
@@ -27924,10 +28263,12 @@
                 "weight": 1.0,
                 "description": "This course introduces students to the theory and practice of translation by applying current theoretical principles and linguistic precision to the process of translation from Spanish to English and English to Spanish. Students work with a variety of texts from multiple fields, including journalism, business, science and literature.",
                 "prereqs": {
-                    "reg_prereqs": [
-                        "SPAN*3500"
-                    ],
-                    "eq_prereqs": []
+                    "reg_prereqs": [],
+                    "eq_prereqs": [
+                        [
+                            "SPAN*3500"
+                        ]
+                    ]
                 }
             },
             {
@@ -27964,10 +28305,12 @@
                 "weight": 0.5,
                 "description": "This course focuses on the practical methods of Statistics and the topics include: descriptive statistics; univariate models such as binomial, Poisson, uniform and normal; the central limit theorem; expected value; the t, F and chi-square models; point and interval estimation; hypothesis testing methods up to two-sample data; simple regression and correlation; introduction to analysis of variance. Assignments will deal with real data from the natural sciences and involve the use of statistical software for computing and visualization.",
                 "prereqs": {
-                    "reg_prereqs": [
-                        "MATH*1080"
-                    ],
-                    "eq_prereqs": []
+                    "reg_prereqs": [],
+                    "eq_prereqs": [
+                        [
+                            "MATH*1080"
+                        ]
+                    ]
                 }
             },
             {
@@ -28304,7 +28647,9 @@
                 "description": "Each student in this course will undertake an individual research project in some area of statistics, under the supervision of a faculty member. A written report and a public presentation of the project will be required.",
                 "prereqs": {
                     "reg_prereqs": [],
-                    "eq_prereqs": []
+                    "eq_prereqs": [
+                        []
+                    ]
                 }
             }
         ],
@@ -28928,7 +29273,9 @@
                 "description": "This is an advanced and specialized course in individual studio work, which affords students opportunities for interdisciplinary and collaborative approaches and oversees the development of independent study strategies. Students will research and complete a major self-directed project. This course is not intended for all Honours students. This course is intended to assist in the preparation for graduate school and professional activities in the Arts.",
                 "prereqs": {
                     "reg_prereqs": [],
-                    "eq_prereqs": []
+                    "eq_prereqs": [
+                        []
+                    ]
                 }
             },
             {
@@ -29277,10 +29624,12 @@
                 "weight": 0.5,
                 "description": "The course offers an analysis of a selection of plays by William Shakespeare. In addition to textual analysis, the students will be introduced to the stage history of the plays being considered, with attention to conditions of production. The course normally will include consideration of plays by Shakespeare which are currently in production at the Stratford Festival; students will have the opportunity to see the plays in performance for which an additional fee may be charged. The course is taught as an intensive seminar in conjunction with the Stratford Festival and is offered in Stratford, Ontario.",
                 "prereqs": {
-                    "reg_prereqs": [
-                        "THST*3140"
-                    ],
-                    "eq_prereqs": []
+                    "reg_prereqs": [],
+                    "eq_prereqs": [
+                        [
+                            "THST*3140"
+                        ]
+                    ]
                 }
             },
             {
@@ -29353,10 +29702,12 @@
                 "weight": 0.5,
                 "description": "The course provides an intensive exploration of one aspect of studio practice: playwriting, acting, design or technical theatre.",
                 "prereqs": {
-                    "reg_prereqs": [
-                        "THST*2120"
-                    ],
-                    "eq_prereqs": []
+                    "reg_prereqs": [],
+                    "eq_prereqs": [
+                        [
+                            "THST*2120"
+                        ]
+                    ]
                 }
             },
             {
@@ -29589,10 +29940,12 @@
                 "weight": 1.0,
                 "description": "This research project in toxicology is designed to provide senior undergraduate students with an opportunity to conduct research in an area of toxicology. Students should note that most projects are of two semesters' duration, and should plan their studies with the expectation that they will also register in TOX*4910 in a subsequent semester. Students must make arrangements with both the faculty supervisor and the course coordinator at least one semester in advance. The project supervisor should normally be a faculty member from the Toxicology Program.",
                 "prereqs": {
-                    "reg_prereqs": [
-                        "CHEM*3430"
-                    ],
-                    "eq_prereqs": []
+                    "reg_prereqs": [],
+                    "eq_prereqs": [
+                        [
+                            "CHEM*3430"
+                        ]
+                    ]
                 }
             },
             {
