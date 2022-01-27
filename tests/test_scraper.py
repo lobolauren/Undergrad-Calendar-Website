@@ -42,6 +42,33 @@ class TestScraper(unittest.TestCase):
         # convert to dictionary
         jsonObject = json.loads(contents)
         self.assertEqual(jsonObject, test_constants.TEST_DICT)
+
+    def test_requisites(self):
+        course_info = scraper.get_course_info(test_constants.TEST_COURSE)
+        self.assertIsNotNone(course_info)
+        courses = course_info[test_constants.COURSES_CONSTANT]
+        accountingCourses = courses[test_constants.TEST_COURSE_CODE]
+
+        #Check reg_prereqs and eq_prereqs empty
+        self.assertEqual(accountingCourses[0]["prereqs"]["reg_prereqs"], [])
+        self.assertEqual(accountingCourses[0]["prereqs"]["eq_prereqs"], [])
+
+        # Check reg_prereqs
+        self.assertEqual(accountingCourses[1]["prereqs"]["reg_prereqs"][0], "ACCT*1220")
+
+        # Check eq_prereqs
+        courses = course_info[test_constants.COURSES_CONSTANT]
+        agrCourses = courses[test_constants.TEST_COURSE_CODE_AGR]
+
+        self.assertEqual(agrCourses[1]["prereqs"]["eq_prereqs"][0][0], "AGR*1110")
+        self.assertEqual(agrCourses[1]["prereqs"]["eq_prereqs"][0][1], "AGR*2150")
+        self.assertEqual(agrCourses[1]["prereqs"]["eq_prereqs"][1][0], "BIOL*1050")
+        self.assertEqual(agrCourses[1]["prereqs"]["eq_prereqs"][1][1], "BIOL*1070")
+
+        
+        
+
+
         
 
 if __name__ == '__main__':
