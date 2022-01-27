@@ -55,11 +55,13 @@ class TestScraper(unittest.TestCase):
 
         # Check reg_prereqs
         self.assertEqual(accountingCourses[1]["prereqs"]["reg_prereqs"][0], "ACCT*1220")
+        self.assertEqual(accountingCourses[1]["prereqs"]["eq_prereqs"], [])
 
         # Check eq_prereqs
         courses = course_info[test_constants.COURSES_CONSTANT]
         agrCourses = courses[test_constants.TEST_COURSE_CODE_AGR]
 
+        self.assertEqual(agrCourses[1]["prereqs"]["reg_prereqs"], [])
         self.assertEqual(agrCourses[1]["prereqs"]["eq_prereqs"][0][0], "AGR*1110")
         self.assertEqual(agrCourses[1]["prereqs"]["eq_prereqs"][0][1], "AGR*2150")
         self.assertEqual(agrCourses[1]["prereqs"]["eq_prereqs"][1][0], "BIOL*1050")
