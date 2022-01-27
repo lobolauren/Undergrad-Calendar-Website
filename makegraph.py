@@ -49,7 +49,7 @@ def addRegularCourse(graph, course):
     graph.node(course)
 
 def showRequiredPrerequisiteCourse(graph, requiredCourse, childCourse):
-    graph.edge(requiredCourse, childCourse, color='green')
+    graph.edge(requiredCourse, childCourse, color="green")
 
 # For pre-requsities where you just need either one
 def showOptionalPrerequisiteCourse1(graph, requiredCourse, childCourse):
@@ -60,14 +60,6 @@ def showOptionalPrerequisiteCourse3(graph, requiredCourse, childCourse):
     graph.edge(requiredCourse, childCourse, color="red")
 def showOptionalPrerequisiteCourse4(graph, requiredCourse, childCourse):
     graph.edge(requiredCourse, childCourse, color="purple")
-
-def addEqPrereqs(graph, eq_prereqs, course):
-    colors = ['blue', 'yellow', 'red', 'purple', 'orange']
-    for i, group in enumerate(eq_prereqs):
-        for prereq in group:
-            showRequiredPrerequisiteCourse(graph, prereq, course, color=colors[i%len(colors)])
-
-
 
 # Test code
 # courseGraph = createCourseGraph("CourseGraph")
