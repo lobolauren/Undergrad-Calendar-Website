@@ -19,7 +19,7 @@ def makegraph(course_data):
 # Makegraph helper functions
 def saveGraphToPDF(graph):
     graph.format = 'pdf'
-    graph.render(directory="doctest-output").replace('\\', '/')
+    graph.render(directory="graph-output").replace('\\', '/')
     # opens graph in PDF viewer
     # graph.view()
 
