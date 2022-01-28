@@ -1,5 +1,4 @@
 import json
-from turtle import color
 import graphviz
 
 COLORS = ['blue', 'yellow', 'red', 'purple', 'orange']
