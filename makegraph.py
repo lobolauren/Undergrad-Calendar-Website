@@ -3,7 +3,7 @@ from posixpath import split
 from tkinter.tix import Tree
 import graphviz
 
-COLORS = ['blue', 'yellow', 'red', 'purple', 'orange']
+COLORS = ['blue', 'orange', 'red', 'purple', 'yellow']
 
 # Makegraph helper functions
 def saveGraphToPDF(graph):
@@ -29,7 +29,7 @@ def makeLegend(graph):
         addRegularCourse(node, "Normal Prerequisite Course")
         node.edge("Course Outside of Department", "Normal Prerequisite Course")
         show_prereq(node, "Mandatory Prerequisite Course", "Course")
-        show_prereq(node, "One of - Prerequisite Course", "Course")
+        show_prereq(node, "One of - Prerequisite Course", "Course", color=COLORS[3])
         show_prereq(node, "One of - Prerequisite Course", "Course", color=COLORS[0])
         show_prereq(node, "One of - Prerequisite Course", "Course", color=COLORS[1])
         show_prereq(node, "One of - Prerequisite Course", "Course", color=COLORS[2])
@@ -49,12 +49,22 @@ def show_prereq(graph, required_course, child_course, color='green'):
 
 
 def add_eq_prereqs(graph, eq_prereqs, course):
+
+    course_attr = course[:course.index('*')].lower()
+
     for i, group in enumerate(eq_prereqs):
         for prereq in group:
-            show_prereq(graph, prereq, course, color=COLORS[i%len(COLORS)])
+            
+            dep = prereq[:prereq.index('*')].lower()
 
+            # if course not in department, make red
+            if dep != course_attr:
+                addOutsideDepartmentCourse(graph, prereq)
 
-def parsingPrereq(code,data,filename):
+            show_prereq(graph, prereq, course, color=COLORS[i % len(COLORS)])
+            
+
+def parsingPrereq(graph, code, data):
 
     course_attr = code[:code.index('*')].lower()
     prereq_list = []
@@ -65,50 +75,58 @@ def parsingPrereq(code,data,filename):
             for prereq_value in course_value["prereqs"]["reg_prereqs"]:
                     prereq_list.append(prereq_value)
 
-    for prereqs in prereq_list:
+            add_eq_prereqs(graph, course_value['prereqs']['eq_prereqs'], course_value['code'])
 
-        dep = prereqs[:prereqs.index('*')].lower()
+    for prereq in prereq_list:
+
+        dep = prereq[:prereq.index('*')].lower()
 
         # if course not in department, make red
-        if dep == course_attr:
-            show_prereq(filename, prereqs, code.upper())
-        else:
-            addOutsideDepartmentCourse(filename, prereqs)
-            show_prereq(filename, prereqs, code.upper())
+        if dep != course_attr:
+            addOutsideDepartmentCourse(graph, prereq)
+        
+        show_prereq(graph, prereq, course_value["code"])
 
-        parsingPrereq(prereqs,data,filename)
+        parsingPrereq(graph, prereq,data)
 
 
-def parsingDepartment(code,data,filename):
+def parsingDepartment(graph, code,data):
     for course_value in data["courses"][code]:
-        addRegularCourse(filename,course_value["code"])
+        addRegularCourse(graph,course_value["code"])
+        
+        add_eq_prereqs(graph, course_value['prereqs']['eq_prereqs'], course_value['code'])
+
         for prereq in course_value["prereqs"]["reg_prereqs"]:
 
             dep = prereq[:prereq.index('*')].lower()
 
             # if course not in department, make red
-            if dep == code:
-                show_prereq(filename,prereq,course_value["code"])
-            else:
-                addOutsideDepartmentCourse(filename, prereq)
-                show_prereq(filename, prereq, course_value["code"])
-
-   
+            if dep != code:
+                addOutsideDepartmentCourse(graph, prereq)
+            show_prereq(graph,prereq,course_value["code"])
 
 
 def makegraph(course_data):
+
     name = input("Course name or department: ").strip().lower()
+
     courseGraph = createCourseGraph("graph1")
+
     if len(name) > 4:
-        parsingPrereq(name,course_data,courseGraph)
+        parsingPrereq(courseGraph, name, course_data)
     else:
-        parsingDepartment(name,course_data,courseGraph)
+        parsingDepartment(courseGraph, name,course_data)
+        
     saveGraphToPDF(courseGraph)
+
     # Course code (ex. CIS*1300 or CIS or 1300)
     inputFlag = True
     while inputFlag:
+
         print("making graph...")
+
         continueSearch = input("\n Graph another course? [y/n] ")
+
         if continueSearch.lower() == "n" or continueSearch.lower() == "no":
             return False
         return True
