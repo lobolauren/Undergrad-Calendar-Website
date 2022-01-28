@@ -89,21 +89,3 @@ def makegraph(course_data):
         if continueSearch.lower() == "n" or continueSearch.lower() == "no":
             return False
         return True
-
-# Test code
-# courseGraph = createCourseGraph("CourseGraph")
-# # EX. 1300
-# showRequiredPrerequisiteCourse(courseGraph, "CIS*1300", "CIS*2500")
-# # EX. 1300
-# showRequiredPrerequisiteCourse(courseGraph, "CIS*1300", "CIS*2170")
-# # EX. (2500 or 2170), (1 of 1900, 2110, 2750)
-# showOptionalPrerequisiteCourse1(courseGraph, "CIS*2500", "CIS*3760")
-# showOptionalPrerequisiteCourse1(courseGraph, "CIS*2170", "CIS*3760")
-# showOptionalPrerequisiteCourse2(courseGraph, "CIS*1900", "CIS*3760")
-# showOptionalPrerequisiteCourse2(courseGraph, "CIS*2110", "CIS*3760")
-# showOptionalPrerequisiteCourse2(courseGraph, "CIS*2750", "CIS*3760")
-# # EX. 3760
-# showRequiredPrerequisiteCourse(courseGraph, "CIS*3760", "CIS*4250")
-
-# saveGraphToPDF(courseGraph)
-
