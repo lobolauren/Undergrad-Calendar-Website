@@ -1,8 +1,7 @@
 import json
 import time
 
-from posixpath import split
-from typing import List, final
+from typing import List
 from playwright.sync_api import sync_playwright
 
 
