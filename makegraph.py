@@ -1,5 +1,8 @@
 import json
+from turtle import color
 import graphviz
+
+COLORS = ['blue', 'yellow', 'red', 'purple', 'orange']
 
 def makegraph(course_data):
     name = input("Course name or department: ").strip().lower()
@@ -30,36 +33,37 @@ def createCourseGraph(filename):
 # Make the Legend for the grapgh
 def makeLegend(graph):
     with graph.subgraph(name='clusterLegend') as c:
-        c.attr(color = "black")
+        c.attr(color="black")
         c.attr(label="Legend")
+
         addOutsideDepartmentCourse(c, "Course Outside of Department")
         addRegularCourse(c, "Normal Prerequisite Course")
         c.edge("Course Outside of Department", "Normal Prerequisite Course")
-        showRequiredPrerequisiteCourse(c, "Mandatory Prerequisite Course", "Course")
-        showOptionalPrerequisiteCourse1(c, "One of these Prerequisite Course", "Course")
-        showOptionalPrerequisiteCourse2(c, "One of these Prerequisite Course", "Course")
-        showOptionalPrerequisiteCourse3(c, "One of these Prerequisite Course", "Course")
-        showOptionalPrerequisiteCourse4(c, "One of these Prerequisite Course", "Course")
+        show_prereq(c, "Mandatory Prerequisite Course", "Course")
+        show_prereq(c, "One of these Prerequisite Course", "Course")
+        show_prereq(c, "One of these Prerequisite Course", "Course", color=COLORS[0])
+        show_prereq(c, "One of these Prerequisite Course", "Course", color=COLORS[1])
+        show_prereq(c, "One of these Prerequisite Course", "Course", color=COLORS[2])
+
 
 # Change colour of node when course is outside requested department
 def addOutsideDepartmentCourse(graph, outsideCourse):
     graph.node(outsideCourse, color="red")
 
+
 def addRegularCourse(graph, course):
     graph.node(course)
 
-def showRequiredPrerequisiteCourse(graph, requiredCourse, childCourse):
-    graph.edge(requiredCourse, childCourse, color="green")
 
-# For pre-requsities where you just need either one
-def showOptionalPrerequisiteCourse1(graph, requiredCourse, childCourse):
-    graph.edge(requiredCourse, childCourse, color="blue")
-def showOptionalPrerequisiteCourse2(graph, requiredCourse, childCourse):
-    graph.edge(requiredCourse, childCourse, color="yellow")
-def showOptionalPrerequisiteCourse3(graph, requiredCourse, childCourse):
-    graph.edge(requiredCourse, childCourse, color="red")
-def showOptionalPrerequisiteCourse4(graph, requiredCourse, childCourse):
-    graph.edge(requiredCourse, childCourse, color="purple")
+def show_prereq(graph, required_course, child_course, color='green'):
+    graph.edge(required_course, child_course, color=color)
+
+
+def add_eq_prereqs(graph, eq_prereqs, course):
+    for i, group in enumerate(eq_prereqs):
+        for prereq in group:
+            show_prereq(graph, prereq, course, color=COLORS[i%len(COLORS)])
+
 
 # Test code
 # courseGraph = createCourseGraph("CourseGraph")
