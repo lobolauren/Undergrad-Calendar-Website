@@ -4,18 +4,6 @@ import graphviz
 
 COLORS = ['blue', 'yellow', 'red', 'purple', 'orange']
 
-def makegraph(course_data):
-    name = input("Course name or department: ").strip().lower()
-
-    # Course code (ex. CIS*1300 or CIS or 1300)
-    inputFlag = True
-    while inputFlag:
-        print("testing function")
-        continueSearch = input("\n Graph another course? [y/n] ")
-        if continueSearch.lower() == "n" or continueSearch.lower() == "no":
-            return False
-        return True
-
 # Makegraph helper functions
 def saveGraphToPDF(graph):
     graph.format = 'pdf'
@@ -32,18 +20,18 @@ def createCourseGraph(filename):
 
 # Make the Legend for the grapgh
 def makeLegend(graph):
-    with graph.subgraph(name='clusterLegend') as c:
-        c.attr(color="black")
-        c.attr(label="Legend")
+    with graph.subgraph(name='clusterLegend') as node:
+        node.attr(color="black")
+        node.attr(label="Legend")
 
-        addOutsideDepartmentCourse(c, "Course Outside of Department")
-        addRegularCourse(c, "Normal Prerequisite Course")
-        c.edge("Course Outside of Department", "Normal Prerequisite Course")
-        show_prereq(c, "Mandatory Prerequisite Course", "Course")
-        show_prereq(c, "One of these Prerequisite Course", "Course")
-        show_prereq(c, "One of these Prerequisite Course", "Course", color=COLORS[0])
-        show_prereq(c, "One of these Prerequisite Course", "Course", color=COLORS[1])
-        show_prereq(c, "One of these Prerequisite Course", "Course", color=COLORS[2])
+        addOutsideDepartmentCourse(node, "Course Outside of Department")
+        addRegularCourse(node, "Normal Prerequisite Course")
+        node.edge("Course Outside of Department", "Normal Prerequisite Course")
+        show_prereq(node, "Mandatory Prerequisite Course", "Course")
+        show_prereq(node, "One of these Prerequisite Course", "Course")
+        show_prereq(node, "One of these Prerequisite Course", "Course", color=COLORS[0])
+        show_prereq(node, "One of these Prerequisite Course", "Course", color=COLORS[1])
+        show_prereq(node, "One of these Prerequisite Course", "Course", color=COLORS[2])
 
 
 # Change colour of node when course is outside requested department
@@ -65,6 +53,44 @@ def add_eq_prereqs(graph, eq_prereqs, course):
             show_prereq(graph, prereq, course, color=COLORS[i%len(COLORS)])
 
 
+def parsingPrereq(code,data,filename):
+    course_attr = code[:code.index('*')].lower()
+    prereq_list = []
+    for course_value in data["courses"][course_attr]:
+        if course_value["code"] == code.upper():
+            for prereq_value in course_value["prereqs"]["reg_prereqs"]:
+                    prereq_list.append(prereq_value)
+  #  print("list: "+ str(prereq_list))
+    for prereqs in prereq_list:
+        show_prereq(filename, prereqs, code.upper())
+        parsingPrereq(prereqs,data,filename)
+
+
+def parsingDepartment(code,data,filename):
+    for course_value in data["courses"][code]:
+        addRegularCourse(filename,course_value["code"])
+        for prereq in course_value["prereqs"]["reg_prereqs"]:
+            show_prereq(filename,prereq,course_value["code"])
+   
+
+
+def makegraph(course_data):
+    name = input("Course name or department: ").strip().lower()
+    courseGraph = createCourseGraph("graph1")
+    if len(name) > 4:
+        parsingPrereq(name,course_data,courseGraph)
+    else:
+        parsingDepartment(name,course_data,courseGraph)
+    saveGraphToPDF(courseGraph)
+    # Course code (ex. CIS*1300 or CIS or 1300)
+    inputFlag = True
+    while inputFlag:
+        print("testing function")
+        continueSearch = input("\n Graph another course? [y/n] ")
+        if continueSearch.lower() == "n" or continueSearch.lower() == "no":
+            return False
+        return True
+
 # Test code
 # courseGraph = createCourseGraph("CourseGraph")
 # # EX. 1300
@@ -81,3 +107,4 @@ def add_eq_prereqs(graph, eq_prereqs, course):
 # showRequiredPrerequisiteCourse(courseGraph, "CIS*3760", "CIS*4250")
 
 # saveGraphToPDF(courseGraph)
+
