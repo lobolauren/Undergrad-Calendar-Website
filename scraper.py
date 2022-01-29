@@ -51,7 +51,7 @@ def remove_commas_between_brackets(s):
     return new_str
 
 
-def get_prereqs(prereqs_el, prereqs_list):
+def get_prereqs(prereqs_el, prereqs_list, course_code):
 
     prereqs = {
         'reg_prereqs': [],
@@ -78,7 +78,9 @@ def get_prereqs(prereqs_el, prereqs_list):
             for t in filtered_tokens:
                 eq_prereqs = []
                 for course in prereqs_list:
-                    if 'excluding' in t and course in t[t.index('excluding'):]:
+                    if course == course_code:
+                        prereqs_list_copy.remove(course)
+                    elif 'excluding' in t and course in t[t.index('excluding'):]:
                         prereqs_list_copy.remove(course)
                     elif course in t:
                         eq_prereqs.append(course)
@@ -119,7 +121,7 @@ def get_course_details(course):
     course_prereqs_a = course_prereqs_el.query_selector_all('a') if course_prereqs_el else []
 
     prereqs_a_text = [req.inner_text() for req in course_prereqs_a]
-    prereqs = get_prereqs(course_prereqs_el, prereqs_a_text)
+    prereqs = get_prereqs(course_prereqs_el, prereqs_a_text, course_code)
     
     course_weight_el = course.query_selector('.detail-hours_html')
     course_weight = float(course_weight_el.inner_text()[1:-1])
