@@ -1,4 +1,6 @@
 __pycache__
 docttest-output
+graph-output
 *.gv
 *.pdf
+course_info.json

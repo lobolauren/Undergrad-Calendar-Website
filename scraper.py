@@ -1,12 +1,11 @@
 import json
 import time
 
-from posixpath import split
-from typing import List, final
+from typing import List
 from playwright.sync_api import sync_playwright
 
 
-# scrapes page for all coruse codes (ex. CIS, MATH, AGGR)
+# scrapes page for all course codes (ex. CIS, MATH, AGGR)
 def get_course_codes():
 
     codes_list = []
