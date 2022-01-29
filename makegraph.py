@@ -136,9 +136,6 @@ def makegraph(course_data):
 
     # file naming
     # remove special characters for filename
-    if '*' in name:
-        name = name.replace('*', '')
-
     file_name = name+"-graph"
     file_name_query = input("Name graph file? [y/n]: ")
     
@@ -146,15 +143,15 @@ def makegraph(course_data):
         file_name = input("Enter graph name: ")
 
     # characters not allowed in file names  (windows,linux,mac)
-    file_name.replace('*', '')
-    file_name.replace('/', '')
-    file_name.replace('\\', '')
-    file_name.replace(':', '')
-    file_name.replace('\"', '')
-    file_name.replace('<', '')
-    file_name.replace('>', '')
-    file_name.replace('|', '')
-    file_name.replace('?', '')
+    file_name = file_name.replace('*', '')
+    file_name = file_name.replace('/', '')
+    file_name = file_name.replace('\\', '')
+    file_name = file_name.replace(':', '')
+    file_name = file_name.replace('\"', '')
+    file_name = file_name.replace('<', '')
+    file_name = file_name.replace('>', '')
+    file_name = file_name.replace('|', '')
+    file_name = file_name.replace('?', '')
 
     save_graph_to_pdf(courseGraph, file_name)
 
