@@ -68,7 +68,10 @@ def get_prereqs(prereqs_el, prereqs_list):
         filtered_tokens = list(filter(ftr, tokens))
 
         if not filtered_tokens and ('or' in prereq_text or 'of' in prereq_text):
-            prereqs['eq_prereqs'] = [prereqs_list]
+            if len(prereqs_list) < 2:
+                prereqs['reg_prereqs'].extend(prereqs_list)
+            else:
+                prereqs['eq_prereqs'] = [prereqs_list]
 
         else: # for each 'block' of prerequisits, check if any codes from the full list are contained in it, if so, add to the eq_prereqs list
             prereqs_list_copy = prereqs_list[:]
@@ -101,15 +104,15 @@ def get_course_details(course):
     course_title_el = course.query_selector('.detail-title')
     course_title = course_title_el.inner_text()
 
-    course_offerings_el = course.query_selector('.detail-typically_offered')
-    course_offerings = course_offerings_el.inner_text() if course_offerings_el else ''
+    course_availability_el = course.query_selector('.detail-typically_offered')
+    course_availability = course_availability_el.inner_text() if course_availability_el else ''
     
     course_terms = []
-    if 'fall' in course_offerings.lower():
+    if 'fall' in course_availability.lower():
         course_terms.append('F')
-    if 'winter' in course_offerings.lower():
+    if 'winter' in course_availability.lower():
         course_terms.append('W')
-    if 'summer' in course_offerings.lower():
+    if 'summer' in course_availability.lower():
         course_terms.append('S')
 
     course_prereqs_el = course.query_selector('.detail-prerequisite_s_ span') 
@@ -124,13 +127,33 @@ def get_course_details(course):
     course_desc_el = course.query_selector('.courseblockextra')
     course_desc = course_desc_el.inner_text() if course_desc_el else ''
 
+    course_offering_el = course.query_selector('.detail-offering span')
+    course_offering = course_offering_el.inner_text() if course_offering_el else ''
+
+    course_restrictions_el = course.query_selector('.detail-restriction_s_ span')
+    course_restrictions = course_restrictions_el.inner_text() if course_restrictions_el else ''
+
+    course_department_el = course.query_selector('.detail-department_s_ span')
+    course_department = course_department_el.inner_text() if course_department_el else ''
+
+    course_location_el = course.query_selector('.detail-location_s_ span')
+    course_location = course_location_el.inner_text() if course_location_el else ''
+
+    course_corequisites_el = course.query_selector('.detail-co_requisite_s_ span')
+    course_corequisites = course_corequisites_el.inner_text() if course_corequisites_el else ''
+
     return {
         'code': course_code.upper(),
         'name': course_title,
         'terms': course_terms,
         'weight': course_weight,
         'description': course_desc,
-        'prereqs': prereqs
+        'prereqs': prereqs,
+        'offerings': course_offering,
+        'restrictions': course_restrictions,
+        'department': course_department,
+        'location': course_location,
+        'coreqs': course_corequisites
     }
 
 
@@ -151,11 +174,13 @@ def get_course_info(course_codes: List[str]):
             else:
                 page.goto(f'https://calendar.uoguelph.ca/undergraduate-calendar/course-descriptions/{code}/')
 
-            print("Scraping \'"+code+"\' courses...")
+            print("  Scraping \'"+code+"\' courses...", end='', flush=True)
 
             courses = page.query_selector_all('.courseblock')
             for course in courses:
                 course_info[code].append(get_course_details(course))
+
+            print(" Done")
 
         browser.close()
 
@@ -173,10 +198,11 @@ def main():
     debug = True
     start = time.time()
 
-    print("Scraping department codes...")
+    print("Scraping department codes...", end='', flush=True)
     codes = get_course_codes()
+    print(" Done")
 
-    print("Getting course info... (this may take a minute)")
+    print("Scraping course info (this may take a minute)")
     course_info = get_course_info(codes)
 
     print("Saving file...")
