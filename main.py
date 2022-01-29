@@ -4,7 +4,7 @@ from makegraph import makegraph
 # function to open JSON file
 def get_course_info(filename):
     try:
-        with open(filename, "r") as file:
+        with open(filename, 'r') as file:
             data = file.read()
             coursedata = json.loads(data)
             
@@ -16,30 +16,33 @@ def get_course_info(filename):
 
 def main():
      # if the get_course_info function failed, don't run
-    course_info = get_course_info("course_info.json")
+    course_info = get_course_info('course_info.json')
 
     if not course_info:
-        print("\nFile not found, run scraper.py")
+        print('\nFile not found, run scraper.py')
         return
 
-    print("Welcome to UoG Course Catalog")
+    print('Welcome to UoG Course Catalog')
     while True:
-        graph_cli = input("[makegraph/coursesearch] >")
-        if graph_cli == 'coursesearch':
-            print("\nCourse Search")
+        graph_cli = input('[makegraph/coursesearch/quit] >')
+        if graph_cli == 'coursesearch' or 'c' == graph_cli:
+            print('\nCourse Search')
 
             while True:
                 keep_going = coursesearch(course_info)
                 if not keep_going:
                     break
-        if graph_cli == 'makegraph':
-            print("\n Prerequisite Graph")
+        if graph_cli == 'makegraph' or graph_cli == 'm':
+            print('\n Prerequisite Graph')
 
             while True:
                 keep_going = makegraph(course_info)
                 if not keep_going:
                     break
-        if graph_cli == 'quit':
+        if graph_cli == 'quit' or graph_cli == 'q':
             break
+
+        print("Please enter <makegraph/m>, <coursesearch/c>, or <quit/q>")
+
 if __name__ == '__main__':
     main()
