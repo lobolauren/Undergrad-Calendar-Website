@@ -67,9 +67,12 @@ def coursesearch(data):
     while inputFlag:
         code = input(
             "Course code/number (hit enter to skip field): ").strip().lower()
+
+        # check formatting of input for course code
         if code == "":
             inputFlag = False
         elif "*" in code:
+            # check formatting of full course code (IE: CIS*1300)
             dept, num = code.split('*')
             if dept not in data['courses'].keys() or len(num) != 4 or not num.isnumeric():
                 print(
