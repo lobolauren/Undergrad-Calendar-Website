@@ -63,65 +63,53 @@ def coursesearch(data):
     name = input("Course name (hit enter to skip field): ").strip().lower()
 
     # Course code (ex. CIS*1300 or CIS or 1300)
-    inputFlag = True
-    while inputFlag:
+    input_flag = True
+    error_msg = "Not a valid course code. Format: [code]/[number]/[code]*[number] (ex. cis or 1000 or cis*1000)"
+    while input_flag:
         code = input(
             "Course code/number (hit enter to skip field): ").strip().lower()
-
         # check formatting of input for course code
         if code == "":
-            inputFlag = False
+            input_flag = False
         elif "*" in code:
             # check formatting of full course code (IE: CIS*1300)
             dept, num = code.split('*')
             if dept not in data['courses'].keys() or len(num) != 4 or not num.isnumeric():
-                print(
-                    "Not a valid course code. Format: [code]/[number]/[code]*[number] (ex. cis or 1000 or cis*1000)")
+                print(error_msg)
             else:
-                inputFlag = False
+                input_flag = False
         elif len(code) > 4:
-            
-            print("Not a valid course code. Format: [code]/[number]/[code]*[number] (ex. cis or 1000 or cis*1000)")
-
+            print(error_msg)
         elif len(code) < 5 and not code.isnumeric() and code not in data['courses'].keys():
-
-            print("Not a valid course code. Format: [code]/[number]/[code]*[number] (ex. cis or 1000 or cis*1000)")
-
+            print(error_msg)
         elif code.isnumeric() and len(code) != 4:
-
-            print("Not a valid course code. Format: [code]/[number]/[code]*[number] (ex. cis or 1000 or cis*1000)")
-            
+            print(error_msg)
         else:
-            inputFlag = False
+            input_flag = False
 
     # Term (either S, F, or W)
-    inputFlag = True
-    while inputFlag:
-
+    input_flag = True
+    while input_flag:
         term = input(
             "Course season/term (hit enter to skip field): ").strip().upper()
-
         if term == 'S' or term == 'F' or term == 'W' or term == "":
-            inputFlag = False
+            input_flag = False
         else:
             print("Valid seasons: S, W, or F")
 
     # Course Weight (must be a decimal value)
-    inputFlag = True
-    while inputFlag:
-
+    input_flag = True
+    while input_flag:
         weight = input("Course weight (hit enter to skip field): ").strip()
         if len(weight) != 0:
-
             try:
                 float(weight)
-                inputFlag = False
+                input_flag = False
             except ValueError:
                 print("Valid course weight: 0.25, 0.5, 0.75, 1.0 etc")
                 continue
-
         else:
-            inputFlag = False
+            input_flag = False
 
     #ask user whether or not to show course descriptions
     print_desc = False
@@ -146,13 +134,9 @@ def coursesearch(data):
         print("\nNo Courses Found.")
     else:
         print("\nCourses Found:")
-
         for course in final_course_list:
 
-            # print course info
             print(f"{course['code']} - {course['name']} ( {' '.join(course['terms'])} ) [{course['weight']}]")
-            
-            # print description
             if print_desc:
                 print(f"   {course['description']}\n")
 
