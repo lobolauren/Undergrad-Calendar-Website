@@ -1,51 +1,71 @@
-README for 3760 Project - Team 2, W22
+README for 3760 Project - Team 2, UoGuelph W22
 
-# Sprint 1
+# Sprint 2
 
-NOTE: Requires python version 3+, Playwright and Chromium must be installed and updated prior to running this python program.
-- Playwright install: 
+Requirements:
+ - Python version 3.x + pip
+ - Playwright 
+ - Chromium
+ - Graphviz
+
+NOTE: If python 2 is installed on the system, the user may have to use `python3`/`pip3` instead of `python`/`pip`
+
+
+#### Install Playwright
 ``` 
-pip install playwright (or pip3 install playwright)
+pip install playwright
 playwright install
 ```
-- Chromium install (for debian-based systems)
+#### Chromium install (apt: debian-based systems)
 ``` 
 sudo apt-get install chromium
 ```
+#### Install Graphviz (apt: debian-based systems)
+```
+sudo apt install graphviz
+pip install graphviz
+```
 
 ## Running the scraper:
+ - First, run the scraper program to get information about UoGuelph courses 
 ``` 
 python scraper.py
 ```
-Or (if python 2 is installed or 'python' does not work)
-``` 
-python3 scraper.py
-```
+
 - Generates a JSON file called ```course_info.json``` containing all the course data from https://calendar.uoguelph.ca/undergraduate-calendar/course-descriptions/.
 
 ## Running the CLI:
-
-NOTE: Must be ran after the scraper program!
+ - Run this after running scraper.py, or if the course_info.json file already exists.
 ```
-python cli.py
+python main.py
 ```
-Or (if python 2 is installed or 'python' does not work)
-``` 
-python3 cli.py
-```
-
-#### current commands:
+ - The user can then follow command prompts from the program
+#### Commands:
 
 - `coursesearch` search for courses at UoG
   - includes search parameters such as course title, code, term, weight
+    - code: [dept]\*[code] or [dept] or [code]
+    - ex. 'CIS\*3090', 'cis', '1000'
+  - Will display a list of all courses found that fit the search criteria
 - `makegraph` create prerequsite graph for UoG courses
+  - The user can enter a course name 
+    - (format: [dept]*[code] ex. 'CIS\*3090')
+  - Or a department code (ex. 'cis')
+  - The program then generates a graphic representation of the prerequisite tree for the given course/department, & saves it in a pdf file in the *graph-output* folder
+- `quit` quits the program
 
-## Running the unit tests:
+### Running the unit tests:
 ```
 cd tests
 python test_scraper.py
+python test_constants.py
+python test_makegraph.py
 ```
-- Tests for the web scraper functions
+- Tests for the web scraper/graph functions
 
-# Sprint 2
- NOTE: Ignoring '2+ of' cases
+## Graphing Limitations
+  - The program does not have indicators for 'pick 2+ of ...' prerequisite options
+  - Does not indicate '[course or (course or course)]' cases
+  - A graph edge may indicate a '1 of...' case when there is only one prerequisite for that colour
+    - This is because the other option(s) either no longer exist, or aren't a course 
+    - (ex. '[course] or experience in field')
