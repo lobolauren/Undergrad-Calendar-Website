@@ -113,8 +113,8 @@ def coursesearch(data):
 
     #ask user whether or not to show course descriptions
     print_desc = False
-    print_desc_query = input("Show Course Descriptions? [y/n] ")
-    if print_desc_query.lower() == "y" or print_desc_query.lower() == "yes":
+    print_desc_query = input("Show Course Descriptions? [y/n] ").lower()
+    if print_desc_query == "y" or print_desc_query == "yes":
         print_desc = True
 
     # check for length of code name and if inputted for example cis*1300, cis1300, cis, 1300, or null
@@ -140,8 +140,8 @@ def coursesearch(data):
             if print_desc:
                 print(f"   {course['description']}\n")
 
-    continueSearch = input("\nSearch again? [y/n] ")
-    if continueSearch.lower() == "n" or continueSearch.lower() == "no":
+    continue_search = input("\nSearch again? [y/n] ").strip().lower()
+    if continue_search == "n" or continue_search == "no":
         return False
     return True
 
