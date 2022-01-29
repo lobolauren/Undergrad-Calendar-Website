@@ -58,7 +58,6 @@ python main.py
 ```
 cd tests
 python test_scraper.py
-python test_constants.py
 python test_makegraph.py
 ```
 - Tests for the web scraper/graph functions

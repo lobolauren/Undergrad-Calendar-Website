@@ -151,6 +151,8 @@ def get_course_info(course_codes: List[str]):
             else:
                 page.goto(f'https://calendar.uoguelph.ca/undergraduate-calendar/course-descriptions/{code}/')
 
+            print("Scraping \'"+code+"\' courses...")
+
             courses = page.query_selector_all('.courseblock')
             for course in courses:
                 course_info[code].append(get_course_details(course))
@@ -171,7 +173,7 @@ def main():
     debug = True
     start = time.time()
 
-    print("Scraping...")
+    print("Scraping department codes...")
     codes = get_course_codes()
 
     print("Getting course info... (this may take a minute)")
