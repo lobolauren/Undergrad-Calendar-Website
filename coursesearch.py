@@ -1,5 +1,7 @@
 import json
 
+from helpers import get_course_attr
+
 # function if course code (ex. CIS*1300) is not entered
 def get_courses_without_code(data, weight, name, term):
     course_list = []
@@ -39,7 +41,7 @@ def get_courses_with_partial_code(data, code, weight, name, term):
 # function if code name (ex. CIS*1300) is entered in full
 def get_courses_with_code(data, code, weight, name, term):
     course_list = []
-    course_attr = code[:code.index('*')].lower()
+    course_attr = get_course_attr(code)
     for course_value in data["courses"][course_attr]:
 
         if weight and course_value["weight"] != float(weight):

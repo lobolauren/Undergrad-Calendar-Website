@@ -37,7 +37,7 @@ def main():
                     break
 
         if graph_cli == 'makegraph' or graph_cli == 'm':
-            print('\n Prerequisite Graph')
+            print('\nPrerequisite Graph')
             while True:
                 keep_going = makegraph(course_info)
                 if not keep_going:

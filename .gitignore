@@ -1,6 +1,13 @@
-__pycache__
-docttest-output
-graph-output
+# directories
+__pycache__/
+docttest-output/
+graph-output/
+env/
+other/
+
+# files
+course_info.json
+
+# file types
 *.gv
 *.pdf
-course_info.json

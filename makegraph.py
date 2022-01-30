@@ -1,5 +1,7 @@
-from ast import parse
 import graphviz
+
+from helpers import get_course_attr 
+
 
 COLORS = ['blue', 'orange', 'red', 'purple', 'yellow']
 
@@ -33,7 +35,7 @@ def add_prereq(graph:graphviz.Digraph, required_course, child_course, color='gre
 
 def add_eq_prereqs(graph:graphviz.Digraph, eq_prereqs, course, org_name):
 
-    course_attr = course[:course.index('*')].lower()
+    course_attr = get_course_attr(course)
     for i, group in enumerate(eq_prereqs):
         for prereq in group:
             if org_name not in prereq.lower():
@@ -68,13 +70,13 @@ def parse_prereqs(graph, code, data, org_name):
     while q:
         for _ in range(len(q)):
             course = q.pop(0)
-            course_attr = course[:course.index('*')].lower()
+            course_attr = get_course_attr(course)
 
             for course_value in data['courses'][course_attr]:
                 if course_value['code'] == course:
 
                     for prereq in course_value['prereqs']['reg_prereqs']:
-                        dep = prereq[:prereq.index('*')].lower()
+                        dep = get_course_attr(prereq)
                         if dep != org_name:  # make red
                             add_outside_department_course(graph, prereq)
                         add_prereq(graph, prereq, course_value['code'])
@@ -99,10 +101,10 @@ def parse_department(graph: graphviz.Digraph, code, data, org_name):
         add_eq_prereqs(graph, course_value['prereqs']['eq_prereqs'], course_value['code'], org_name)
 
         for prereq in course_value["prereqs"]["reg_prereqs"]:
-            dep = prereq[:prereq.index('*')].lower()
+            dep = get_course_attr(prereq)
             if dep != code: # make red
                 add_outside_department_course(graph, prereq)
-            add_prereq(graph,prereq,course_value["code"])
+            add_prereq(graph, prereq, course_value["code"])
 
 
 # remove characters that aren't allowed in a filename
@@ -135,7 +137,7 @@ def makegraph(course_data):
     
     course_attr = name
     if '*' in name:
-        course_attr = name[:name.index('*')]
+        course_attr = get_course_attr(name)
 
     # check for vaid department
     if course_attr not in course_data['courses'].keys():
@@ -146,13 +148,12 @@ def makegraph(course_data):
     course_graph = create_course_graph("graph1")
     
     if len(name) > 4:
-        org_name = name[:name.index('*')].lower()
         course_graph.attr(
             label=f'Prerequisite Graph for {name.upper()}',
             labelloc='t',
             fontsize='30'
         )
-        parse_prereqs(course_graph, name, course_data, org_name)
+        parse_prereqs(course_graph, name, course_data, org_name=course_attr)
     else:
         org_name = name
         course_graph.attr(
