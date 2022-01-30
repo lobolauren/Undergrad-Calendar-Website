@@ -132,6 +132,11 @@ def get_course_details(course):
     course_offering_el = course.query_selector('.detail-offering span')
     course_offering = course_offering_el.inner_text() if course_offering_el else ''
 
+    if 'Distance Education' in course_offering:
+        de_offering = True
+    else:
+        de_offering = False
+
     course_restrictions_el = course.query_selector('.detail-restriction_s_ span')
     course_restrictions = course_restrictions_el.inner_text() if course_restrictions_el else ''
 
@@ -151,7 +156,7 @@ def get_course_details(course):
         'weight': course_weight,
         'description': course_desc,
         'prereqs': prereqs,
-        'offerings': course_offering,
+        'offerings': de_offering,
         'restrictions': course_restrictions,
         'department': course_department,
         'location': course_location,
