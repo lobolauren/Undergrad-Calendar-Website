@@ -31,7 +31,7 @@ def add_prereq(graph:graphviz.Digraph, required_course, child_course, color='gre
     graph.edge(required_course, child_course, color=color)
 
 
-def add_eq_prereqs(graph:graphviz.Digraph, eq_prereqs, course,org_name):
+def add_eq_prereqs(graph:graphviz.Digraph, eq_prereqs, course, org_name):
 
     course_attr = course[:course.index('*')].lower()
     for i, group in enumerate(eq_prereqs):
@@ -58,7 +58,8 @@ def make_legend(graph: graphviz.Digraph):
         add_prereq(legend, "One of Prerequisite", "Course", color=COLORS[1])
         add_prereq(legend, "One of Prerequisite", "Course", color=COLORS[2])
 
-def parse_prereqs(graph, code, data,org_name):
+
+def parse_prereqs(graph, code, data, org_name):
 
     print("checking prerequisites...")
 
@@ -81,7 +82,7 @@ def parse_prereqs(graph, code, data,org_name):
                             visited.add(prereq)
                             q.append(prereq)
 
-                    add_eq_prereqs(graph, course_value['prereqs']['eq_prereqs'], course,org_name)
+                    add_eq_prereqs(graph, course_value['prereqs']['eq_prereqs'], course, org_name)
                     for group in course_value['prereqs']['eq_prereqs']:
                         for prereq in group:
                             if prereq not in visited:
@@ -90,12 +91,12 @@ def parse_prereqs(graph, code, data,org_name):
 
 
 
-def parse_department(graph: graphviz.Digraph, code, data,org_name):
+def parse_department(graph: graphviz.Digraph, code, data, org_name):
     print("checking department...")
     for course_value in data["courses"][code]:
 
         add_regular_course(graph, course_value["code"])
-        add_eq_prereqs(graph, course_value['prereqs']['eq_prereqs'], course_value['code'],org_name)
+        add_eq_prereqs(graph, course_value['prereqs']['eq_prereqs'], course_value['code'], org_name)
 
         for prereq in course_value["prereqs"]["reg_prereqs"]:
             dep = prereq[:prereq.index('*')].lower()
@@ -120,7 +121,7 @@ def get_filename(name):
         filename = input("Enter graph name: ").strip()
 
     filename = fix_filename(filename)
-    print("File: "+ filename + " has been created.\n" )
+    print("File: "+ filename + " has been created." )
     return filename
 
 
@@ -146,10 +147,20 @@ def makegraph(course_data):
     
     if len(name) > 4:
         org_name = name[:name.index('*')].lower()
-        parse_prereqs(course_graph, name, course_data,org_name)
+        course_graph.attr(
+            label=f'Prerequisite Graph for {name.upper()}',
+            labelloc='t',
+            fontsize='30'
+        )
+        parse_prereqs(course_graph, name, course_data, org_name)
     else:
         org_name = name
-        parse_department(course_graph, name, course_data,org_name)
+        course_graph.attr(
+            label=f'Prerequisite Graph for all {name.upper()} Courses',
+            labelloc='t',
+            fontsize='30'
+        )
+        parse_department(course_graph, name, course_data, org_name)
 
     save_graph_to_pdf(course_graph, get_filename(name))
 
