@@ -108,10 +108,16 @@ def get_filename(name):
     filename = name+"-graph"
     filename_query = input("Name graph file? [y/n]: ").strip().lower()
 
+    hasCustomName = False
     if filename_query == "y" or filename_query == "yes":
         filename = input("Enter graph name: ").strip()
+        hasCustomName = True
 
     filename = fix_filename(filename)
+    # only print filename if they didn't input a filename
+    if not hasCustomName:
+        print(f"Generated filename for graph = {filename}")
+
     return filename
 
 
