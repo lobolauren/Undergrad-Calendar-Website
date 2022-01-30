@@ -11,10 +11,9 @@ Requirements:
 NOTE: If python 2 is installed on the system, the user may have to use `python3`/`pip3` instead of `python`/`pip`
 
 
-#### Install Playwright
+#### Install Python Libraries
 ``` 
-pip install playwright
-playwright install
+pip install -r requirements.txt
 ```
 #### Chromium install (apt: debian-based systems)
 ``` 
@@ -23,7 +22,6 @@ sudo apt-get install chromium
 #### Install Graphviz (apt: debian-based systems)
 ```
 sudo apt install graphviz
-pip install graphviz
 ```
 
 ## Running the scraper:
