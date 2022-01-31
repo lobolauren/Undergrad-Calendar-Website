@@ -1,5 +1,5 @@
 import graphviz
-from helpers import get_course_attr
+from helpers import bool_query_loop, get_course_attr
 
 COLORS = ['blue', 'orange', 'red', 'purple', 'yellow'] # to help visually organize the graph
 
@@ -172,8 +172,5 @@ def makegraph(course_data):
         parse_department(course_graph, name, course_data, org_name)
 
     save_graph_to_pdf(course_graph, get_filename(name))
-
-    continue_search = input("\nGraph another course? [y/n] ").strip().lower()
-    if continue_search == "n" or continue_search == "no":
-        return False
-    return True
+    
+    return bool_query_loop("\nGraph another course? [y/n] ", "[y/n]", ["yes", "y"], ["no", "n"])

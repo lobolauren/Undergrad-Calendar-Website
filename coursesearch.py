@@ -1,5 +1,5 @@
 import json
-from helpers import get_course_attr
+from helpers import *
 
 # function if course code (ex. CIS*1300) is not entered
 def get_courses_without_code(data, weight, name, term):
@@ -88,35 +88,17 @@ def coursesearch(data):
             input_flag = False
 
     # Term (either S, F, or W)
-    input_flag = True
-    while input_flag:
-        term = input(
-            "Course season/term (hit enter to skip field): ").strip().upper()
-        if term == 'S' or term == 'F' or term == 'W' or term == "":
-            input_flag = False
-        else:
-            print("Valid seasons: S, W, or F")
+    valid_term = lambda s: True if s.lower() in ["s", "f", "w", ""] else False
+    term = query_loop("Course season/term (hit enter to skip field): ", "Valid seasons: S, W, or F", valid_term).upper()
 
     # Course Weight (must be a decimal value)
-    input_flag = True
-    while input_flag:
-        weight = input("Course weight (hit enter to skip field): ").strip()
-        if len(weight) != 0:
-            try:
-                float(weight)
-                input_flag = False
-            except ValueError:
-                print("Valid course weight: 0.25, 0.5, 0.75, 1.0 etc")
-                continue
-        else:
-            input_flag = False
-
+    is_float = lambda s: True if s.replace('.','').isdigit() or s == "" else False
+    weight = query_loop("Course weight (hit enter to skip field): ",
+                        "Valid course weight: 0.25, 0.5, 0.75, 1.0 etc", is_float)
+    
     #ask user whether or not to show course descriptions
-    print_desc = False
-    print_desc_query = input("Show Course Descriptions? [y/n] ").lower()
-    if print_desc_query == "y" or print_desc_query == "yes":
-        print_desc = True
-
+    print_desc = bool_query_loop("Show Course Descriptions? [y/n] ", "[y/n]", ["yes", "y"], ["no", "n"])
+    
     # check for length of code name and if inputted for example cis*1300, cis1300, cis, 1300, or null
     # get course list depending on user input
     if code and len(code) > 4:
@@ -137,7 +119,4 @@ def coursesearch(data):
             if print_desc:
                 print(f"   {course['description']}\n")
 
-    continue_search = input("\nSearch again? [y/n] ").strip().lower()
-    if continue_search == "n" or continue_search == "no":
-        return False
-    return True
+    return bool_query_loop("\nSearch again? [y/n] ", "[y/n]", ["yes", "y"], ["no", "n"])
