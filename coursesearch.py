@@ -1,13 +1,12 @@
 import json
-
 from helpers import get_course_attr
 
 # function if course code (ex. CIS*1300) is not entered
 def get_courses_without_code(data, weight, name, term):
     course_list = []
-    for course_attr in data["courses"]:
+    for course_attr in data["courses"]: # Going through all courses in JSON file, reading/storing courses that match user input
         for course_value in data["courses"][course_attr]:
-
+            
             if weight and course_value["weight"] != float(weight):
                 continue
             if name and name.lower() not in (course_value["name"]).lower():
@@ -22,7 +21,7 @@ def get_courses_without_code(data, weight, name, term):
 # function if course code (ex. CIS*1300) is entered as the course level or section (ex. 1300 or cis)
 def get_courses_with_partial_code(data, code, weight, name, term):
     course_list = []
-    for course_attr in data["courses"]:
+    for course_attr in data["courses"]: # Going through all courses in JSON file, reading/storing courses that match user input
         for course_value in data["courses"][course_attr]:
 
             if weight and course_value["weight"] != float(weight):
@@ -68,8 +67,7 @@ def coursesearch(data):
     input_flag = True
     error_msg = "Not a valid course code. Format: [code]/[number]/[code]*[number] (ex. cis or 1000 or cis*1000)"
     while input_flag:
-        code = input(
-            "Course code/number (hit enter to skip field): ").strip().lower()
+        code = input("Course code/number (hit enter to skip field): ").strip().lower()
         # check formatting of input for course code
         if code == "":
             input_flag = False
@@ -122,14 +120,11 @@ def coursesearch(data):
     # check for length of code name and if inputted for example cis*1300, cis1300, cis, 1300, or null
     # get course list depending on user input
     if code and len(code) > 4:
-        final_course_list = get_courses_with_code(
-            data, code, weight, name, term)
+        final_course_list = get_courses_with_code(data, code, weight, name, term)
     elif code and len(code) < 5:
-        final_course_list = get_courses_with_partial_code(
-            data, code, weight, name, term)
+        final_course_list = get_courses_with_partial_code(data, code, weight, name, term)
     else:
-        final_course_list = get_courses_without_code(
-            data, weight, name, term)
+        final_course_list = get_courses_without_code(data, weight, name, term)
 
     # check length of list of found courses and print to user
     if len(final_course_list) == 0:
@@ -146,5 +141,3 @@ def coursesearch(data):
     if continue_search == "n" or continue_search == "no":
         return False
     return True
-
-

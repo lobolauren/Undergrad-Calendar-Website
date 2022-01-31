@@ -2,7 +2,6 @@ import json
 from coursesearch import coursesearch
 from makegraph import makegraph
 
-
 # function to open JSON file
 def get_course_info(filename):
     try:
@@ -17,8 +16,7 @@ def get_course_info(filename):
 
 
 def main():
-    
-     # if the get_course_info function failed, don't run
+    # if the get_course_info function failed, don't run
     course_info = get_course_info('course_info.json')
     if not course_info:
         print('\nFile not found, run scraper.py')
@@ -27,6 +25,7 @@ def main():
     print('Welcome to UoG Course Catalog')
     while True:
 
+        # Menu prompt
         graph_cli = input('[makegraph/coursesearch/quit] > ')
 
         if graph_cli == 'coursesearch' or 'c' == graph_cli:
