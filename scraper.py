@@ -194,6 +194,25 @@ def get_course_info(course_codes: List[str]):
     return {'courses': course_info}
 
 
+# https://calendar.uoguelph.ca/undergraduate-calendar/degree-programs/
+def get_degree_program_links():
+    pass
+
+
+# ex: https://calendar.uoguelph.ca/undergraduate-calendar/programs-majors-minors/applied-human-nutrition-ahn/#requirementstext
+def get_major_requirements():
+    pass
+
+
+# ex: https://calendar.uoguelph.ca/undergraduate-calendar/degree-programs/bachelor-applied-science-basc/#programstext
+def get_program_majors():
+    pass
+
+
+def get_program_info():
+    pass
+
+
 # save dictionary object to a JSON file
 def save_dict_as_json(dict, filename):
     with open(filename, 'w') as fp:
@@ -209,8 +228,11 @@ def main():
     codes = get_course_codes()
     print(" Done")
 
-    print("Scraping course info (this may take a minute)")
+    print("Scraping course info")
     course_info = get_course_info(codes)
+
+    print("Scraping program info")
+    program_info = get_program_info()
 
     print("Saving file...")
     save_dict_as_json(course_info, filename='course_info.json')
