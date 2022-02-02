@@ -7,10 +7,14 @@ pip install -r requirements.txt
 if ! command -v chromium >/dev/null 
 then
     sudo apt-get install chromium
+else
+    echo "chromium already installed"
 fi
 
 #install Graphviz
 if ! command -v graphviz >/dev/null 
 then
     sudo apt install graphviz
+else
+    echo "graphciz already installed"
 fi
