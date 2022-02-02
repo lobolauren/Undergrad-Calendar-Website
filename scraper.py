@@ -2,7 +2,7 @@ import json
 import time
 
 from typing import List
-from playwright.sync_api import sync_playwright
+from playwright.sync_api import sync_playwright, Page
 
 
 # scrapes page for all course codes (ex. CIS, MATH, AGGR)
@@ -195,7 +195,7 @@ def get_course_info(course_codes: List[str]):
 
 
 # https://calendar.uoguelph.ca/undergraduate-calendar/degree-programs/
-def get_degree_program_links(page):
+def get_degree_program_links(page: Page):
     
     page.goto('https://calendar.uoguelph.ca/undergraduate-calendar/degree-programs/')
 
@@ -209,8 +209,10 @@ def get_degree_program_links(page):
 
 
 # ex: https://calendar.uoguelph.ca/undergraduate-calendar/degree-programs/bachelor-applied-science-basc/#programstext
-def get_program_majors(page, degree_links): # Bachelor degree programs of Arts and Science
+def get_program_majors(page: Page, degree_links): # Bachelor degree programs of Arts and Science
+
     degree_programs_links = []
+
     for degree_link in degree_links:
         degree_link += '#programstext'
         page.goto(degree_link)
@@ -223,26 +225,37 @@ def get_program_majors(page, degree_links): # Bachelor degree programs of Arts a
     return(degree_programs_links)
 
 # ex: https://calendar.uoguelph.ca/undergraduate-calendar/programs-majors-minors/applied-human-nutrition-ahn/#requirementstext
-def get_major_requirements(page, degree_programs_links): # Specific major program
+def get_major_requirements(page: Page, links): # Specific major program
+
     programs_reqirements = {}
-    for degree_programs_link in degree_programs_links:
+
+    for degree_programs_link in links:
         degree_programs_link += '#requirementstext'
         page.goto(degree_programs_link)
         
         title_el = page.query_selector('.page-title')
         title = title_el.inner_text()
-        print(title)
-        code = title[title.index('(')+1:-1] # finds index of first bracket, grabs string between that index & the last character
-        programs_reqirements[code.lower()] = []
+        code = title[title.index('(')+1:-1].lower() # finds index of first bracket, grabs string between that index & the last character
 
-        table = page.query_selector('.sc_courselist')
-        rows = table.query_selector_all('tr:not(areaheader)')
-        for row in rows:
-            course_el = row.query_selector('a')
-            if course_el:
-                course_code = course_el.inner_text()
-                programs_reqirements[code.lower()].append(course_code)
-    print(programs_reqirements)
+        if code in programs_reqirements.keys():
+            print(f'{code} is duplicate')
+            continue
+
+        programs_reqirements[code] = []
+
+        print("  Scraping \'"+code+"\' requirements...", end='', flush=True)
+
+        table = page.query_selector('h2:text("Major") ~ .sc_courselist')
+        if table:
+            rows = table.query_selector_all('tr:not(areaheader)')
+            for row in rows:
+                course_el = row.query_selector('a')
+                if course_el:
+                    course_code = course_el.inner_text()
+                    programs_reqirements[code].append(course_code)
+
+        print('Done')
+
     return programs_reqirements
 
 
@@ -252,14 +265,17 @@ def get_program_info():
         browser = pw.chromium.launch(headless=True)
         page = browser.new_page()
 
+        print('Getting degree programs')
         degree_links = get_degree_program_links(page)
         program_links = get_program_majors(page, degree_links)
-        major_requirement_links = get_major_requirements(page, program_links)
+
+        print('Getting program requirements')
+        program_info = get_major_requirements(page, program_links)
 
 
         browser.close()
 
-    return major_requirement_links
+    return program_info
 
 
 # save dictionary object to a JSON file
@@ -273,18 +289,18 @@ def main():
     debug = True
     start = time.time()
 
-    # print("Scraping department codes...", end='', flush=True)
-    # codes = get_course_codes()
-    # print(" Done")
+    print("Scraping department codes...", end='', flush=True)
+    codes = get_course_codes()
+    print(" Done")
 
-    # print("Scraping course info")
-    # course_info = get_course_info(codes)
+    print("Scraping course info")
+    course_info = get_course_info(codes)
 
     print("Scraping program info")
     program_info = get_program_info()
     data = {
         "programs": program_info,
-        # "courses": course_info
+        "courses": course_info
     }
 
     print("Saving file...")
