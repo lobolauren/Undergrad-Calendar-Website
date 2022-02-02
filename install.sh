@@ -4,17 +4,15 @@
 pip install -r requirements.txt
 
 #install chromium
-if ! command -v chromium >/dev/90.0.4430
-then
-    sudo apt-get install chromium
-else
+if [ -x "$(command -v chromium)" ]; then
     echo "chromium already installed"
+else
+    sudo apt-get install chromium
 fi
 
 #install Graphviz
-if ! command -v graphviz >/dev/2.40.1 
-then
-    sudo apt install graphviz
-else
+if [ -x "$(command -v graphviz)" ]; then
     echo "graphciz already installed"
+else
+    sudo apt install graphviz 
 fi
