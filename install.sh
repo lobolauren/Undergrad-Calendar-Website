@@ -4,13 +4,19 @@
 pip install -r requirements.txt
 
 #install chromium
-if ! command sudo -v chromium &>/dev/null 
+if ! command sudo -v chromium /dev/null 
+then
+    sudo apt-get install chromium
+fi
+
+#install chromium
+if ! command sudo -v apt-get chromium &>/dev/null 
 then
     sudo apt-get install chromium
 fi
 
 #install Graphviz
-if ! command sudo -v graphviz &>/dev/null 
+if ! command sudo apt -v graphviz &>/dev/null 
 then
     sudo apt install graphviz
 fi
