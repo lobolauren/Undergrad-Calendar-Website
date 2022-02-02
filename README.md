@@ -10,7 +10,10 @@ Requirements:
 
 NOTE: If python 2 is installed on the system, the user may have to use `python3`/`pip3` instead of `python`/`pip`
 
-
+#### Install sh
+``` 
+pip install sh
+``` 
 #### Install Python Libraries
 ``` 
 pip install -r requirements.txt
