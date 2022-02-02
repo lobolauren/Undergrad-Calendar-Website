@@ -4,7 +4,7 @@
 pip install -r requirements.txt
 
 #install chromium
-if ! command -v chromium >/dev/null 
+if ! command -v chromium >/dev/90.0.4430
 then
     sudo apt-get install chromium
 else
@@ -12,7 +12,7 @@ else
 fi
 
 #install Graphviz
-if ! command -v graphviz >/dev/null 
+if ! command -v graphviz >/dev/2.40.1 
 then
     sudo apt install graphviz
 else
