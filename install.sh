@@ -12,7 +12,7 @@ else
 fi
 
 #install Graphviz
-if ! command -v graphviz >/dev/null 
+if ! command -v graphviz 2>/dev/null 
 then
     sudo apt install graphviz
 else
