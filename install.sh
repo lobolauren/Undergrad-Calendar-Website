@@ -4,13 +4,13 @@
 pip install -r requirements.txt
 
 #install chromium
-if ! command sudo -v chromium /dev/null 
+if ! command -v chromium >/dev/null 
 then
     sudo apt-get install chromium
 fi
 
 #install chromium
-if ! command sudo -v apt-get chromium &>/dev/null 
+if ! command -v apt-get chromium &>/dev/null 
 then
     sudo apt-get install chromium
 fi
