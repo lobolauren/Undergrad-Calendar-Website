@@ -1,14 +1,7 @@
 # Installs all required python libraries
 # Run with: 'sh install.sh'
 
-#pip install -r requirements.txt
-
-#install requirments
-if [ -x "$(command -v -r requirements.txt)" ]; then
-    echo -r requirements.txt+" already installed"
-else
-    pip install -r requirements.txt
-fi
+pip install -U -r requirements.txt
 
 #install chromium
 if [ -x "$(command -v chromium)" ]; then
