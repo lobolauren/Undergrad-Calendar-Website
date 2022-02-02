@@ -191,7 +191,7 @@ def get_course_info(course_codes: List[str]):
 
         browser.close()
 
-    return {'courses': course_info}
+    return course_info
 
 
 # https://calendar.uoguelph.ca/undergraduate-calendar/degree-programs/
@@ -205,33 +205,61 @@ def get_degree_program_links(page):
     for list_el in list_els:
         relative_link = list_el.get_attribute("href")
         links.append(f'https://calendar.uoguelph.ca{relative_link}')
-    
     return links
 
 
-# ex: https://calendar.uoguelph.ca/undergraduate-calendar/programs-majors-minors/applied-human-nutrition-ahn/#requirementstext
-def get_major_requirements():
-    pass
-
-
 # ex: https://calendar.uoguelph.ca/undergraduate-calendar/degree-programs/bachelor-applied-science-basc/#programstext
-def get_program_majors():
-    pass
+def get_program_majors(page, degree_links): # Bachelor degree programs of Arts and Science
+    degree_programs_links = []
+    for degree_link in degree_links:
+        degree_link += '#programstext'
+        page.goto(degree_link)
+        
+        list_els = page.query_selector_all('.sitemap li a')
+        # degree_programs_links = []
+        for list_el in list_els:
+            relative_link = list_el.get_attribute("href")
+            degree_programs_links.append(f'https://calendar.uoguelph.ca{relative_link}')
+    return(degree_programs_links)
+
+# ex: https://calendar.uoguelph.ca/undergraduate-calendar/programs-majors-minors/applied-human-nutrition-ahn/#requirementstext
+def get_major_requirements(page, degree_programs_links): # Specific major program
+    programs_reqirements = {}
+    for degree_programs_link in degree_programs_links:
+        degree_programs_link += '#requirementstext'
+        page.goto(degree_programs_link)
+        
+        title_el = page.query_selector('.page-title')
+        title = title_el.inner_text()
+        print(title)
+        code = title[title.index('(')+1:-1] # finds index of first bracket, grabs string between that index & the last character
+        programs_reqirements[code.lower()] = []
+
+        table = page.query_selector('.sc_courselist')
+        rows = table.query_selector_all('tr:not(areaheader)')
+        for row in rows:
+            course_el = row.query_selector('a')
+            if course_el:
+                course_code = course_el.inner_text()
+                programs_reqirements[code.lower()].append(course_code)
+    print(programs_reqirements)
+    return programs_reqirements
 
 
 def get_program_info():
-    course_info = {}
-
     with sync_playwright() as pw: 
 
         browser = pw.chromium.launch(headless=True)
         page = browser.new_page()
 
-        program_links = get_degree_program_links(page)
+        degree_links = get_degree_program_links(page)
+        program_links = get_program_majors(page, degree_links)
+        major_requirement_links = get_major_requirements(page, program_links)
+
 
         browser.close()
 
-    return {'courses': course_info}
+    return major_requirement_links
 
 
 # save dictionary object to a JSON file
@@ -254,13 +282,17 @@ def main():
 
     print("Scraping program info")
     program_info = get_program_info()
+    data = {
+        "programs": program_info,
+        # "courses": course_info
+    }
 
-    # print("Saving file...")
-    # save_dict_as_json(course_info, filename='course_info.json')
+    print("Saving file...")
+    save_dict_as_json(data, filename='course_info.json')
 
-    # end = time.time()
-    # if debug:
-    #     print(f"Done in {int(end - start)}s.")
+    end = time.time()
+    if debug:
+        print(f"Done in {int(end - start)}s.")
 
 
 if __name__ == '__main__':
