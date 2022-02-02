@@ -9,14 +9,8 @@ then
     sudo apt-get install chromium
 fi
 
-#install chromium
-if ! command -v apt-get chromium &>/dev/null 
-then
-    sudo apt-get install chromium
-fi
-
 #install Graphviz
-if ! command sudo apt -v graphviz &>/dev/null 
+if ! command -v graphviz >/dev/null 
 then
     sudo apt install graphviz
 fi
