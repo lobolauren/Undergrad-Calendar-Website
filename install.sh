@@ -4,14 +4,14 @@
 pip install -r requirements.txt
 
 #install chromium
-if [ -x "$(command -v chromium)" ]; then
+if [ -x "$(command -V chromium)" ]; then
     echo "chromium already installed"
 else
     sudo apt-get install chromium
 fi
 
 #install Graphviz
-if [ -x "$(command -v graphviz)" ]; then
+if [ -x "$(command -V dot)" ]; then
     echo "graphciz already installed"
 else
     sudo apt install graphviz 
