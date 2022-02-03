@@ -1,3 +1,4 @@
+from math import degrees
 import unittest
 import os
 import json
@@ -20,10 +21,8 @@ class TestScraper(unittest.TestCase):
         # test scrapper with one course only
         course_info = scraper.get_course_info(test_constants.TEST_COURSE)
         self.assertIsNotNone(course_info)
-
-        courses = course_info[test_constants.COURSES_CONSTANT]
-        accountingCourses = courses[test_constants.TEST_COURSE_CODE]
-        self.assertIsNotNone(courses)
+        accountingCourses = course_info[test_constants.TEST_COURSE_CODE]
+        self.assertIsNotNone(course_info)
 
         # first accounting course must be AACT*1220
         introAccounting = accountingCourses[0]
@@ -51,8 +50,8 @@ class TestScraper(unittest.TestCase):
         # get test course info
         course_info = scraper.get_course_info(test_constants.TEST_COURSE)
         self.assertIsNotNone(course_info)
-        courses = course_info[test_constants.COURSES_CONSTANT]
-        accountingCourses = courses[test_constants.TEST_COURSE_CODE]
+        #courses = course_info[test_constants.COURSES_CONSTANT]
+        accountingCourses = course_info[test_constants.TEST_COURSE_CODE]
 
         #Check reg_prereqs and eq_prereqs empty
         acct1220Index = 0
@@ -63,12 +62,12 @@ class TestScraper(unittest.TestCase):
 
         # Check reg_prereqs
         self.assertEqual(accountingCourses[acct1240Index]["code"], "ACCT*1240")
-        self.assertEqual(accountingCourses[acct1240Index]["prereqs"]["reg_prereqs"], [])
-        self.assertEqual(accountingCourses[acct1240Index]["prereqs"]["eq_prereqs"][0], ["ACCT*1220"])
+        self.assertEqual(accountingCourses[acct1240Index]["prereqs"]["reg_prereqs"][0], "ACCT*1220")
+        self.assertEqual(accountingCourses[acct1240Index]["prereqs"]["eq_prereqs"], [])
 
         # Check eq_prereqs lists
-        courses = course_info[test_constants.COURSES_CONSTANT]
-        agrCourses = courses[test_constants.TEST_COURSE_CODE_AGR]
+        #courses = course_info[test_constants.COURSES_CONSTANT]
+        agrCourses = course_info[test_constants.TEST_COURSE_CODE_AGR]
 
         agr2050Index = 1
         firstEqList = ["AGR*1110","AGR*2150"]
@@ -81,6 +80,17 @@ class TestScraper(unittest.TestCase):
         self.assertEqual(agrCourses[agr2050Index]["prereqs"]["eq_prereqs"][1][0], "BIOL*1050")
         self.assertEqual(agrCourses[agr2050Index]["prereqs"]["eq_prereqs"][1][1], "BIOL*1070")
         self.assertEqual(agrCourses[agr2050Index]["prereqs"]["eq_prereqs"][1], secondEqList)
+
+    def test_get_program_info(self):
+        # gets list of all major requirements and compares with expected amount
+        program_info = scraper.get_program_info()
+        self.assertIsNotNone(program_info)
+        self.assertEqual(len(program_info), test_constants.NUM_PROGRAMS_MAJORS)
+        self.assertEqual(program_info["ahn"]["title"], test_constants.TEST_MAJOR_NAME)
+        self.assertEqual(program_info["ahn"]["major_reqs"][0], test_constants.TEST_MAJOR_REQ)
+
+
+
 
 if __name__ == '__main__':
     unittest.main() # allows you to run by doing python3 test_scraper.py
