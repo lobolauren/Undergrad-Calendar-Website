@@ -209,6 +209,28 @@ def get_degree_program_links(page: Page):
 
     return links
 
+# Takes degree links returned from get_degree_program_links() and builds a dict of bachelors and their corresponding programs
+def get_bachelor_programs(page: Page, degree_links):
+    bachelor_programs = {}
+
+    for degree_link in degree_links:
+        degree_link += '#programstext'
+        page.goto(degree_link)
+
+        # Getting Bachelor degree title
+        title_el = page.query_selector('.page-title')
+        bachelor = title_el.inner_text()
+
+        bachelor_programs[bachelor] = []
+        
+        list_els = page.query_selector_all('.sitemap li a')
+        for list_el in list_els:            
+            bach_prog = list_el.inner_text()
+            bach_prog = bach_prog[:bach_prog.index('(')].rstrip()
+            bachelor_programs[bachelor].append(bach_prog)
+
+    return(bachelor_programs)
+
 
 # ex: https://calendar.uoguelph.ca/undergraduate-calendar/degree-programs/bachelor-applied-science-basc/#programstext
 def get_program_majors(page: Page, degree_links): # Bachelor degree programs of Arts and Science
@@ -224,11 +246,12 @@ def get_program_majors(page: Page, degree_links): # Bachelor degree programs of 
         for list_el in list_els:
             relative_link = list_el.get_attribute("href")
             degree_programs_links.append(f'https://calendar.uoguelph.ca{relative_link}')
+
     return(degree_programs_links)
 
 # ex: https://calendar.uoguelph.ca/undergraduate-calendar/programs-majors-minors/applied-human-nutrition-ahn/#requirementstext
-def get_major_requirements(page: Page, links): # Specific major program
-
+def get_major_requirements(page: Page, links, bach_programs): # Specific major program
+    
     programs_reqirements = {}
 
     for degree_programs_link in links:
@@ -239,13 +262,22 @@ def get_major_requirements(page: Page, links): # Specific major program
         title_el = page.query_selector('.page-title')
         title = title_el.inner_text()
         code = title[title.index('(')+1:-1].lower() # finds index of first bracket, grabs string between that index & the last character
+        title = title[:title.index('(')].rstrip()
 
         if code in programs_reqirements.keys():
             print(f'{code} is duplicate')
             continue
 
+        # Finding Bachelor that belongs to program
+        bachelor_title = None
+        for bach, progs in bach_programs.items():
+            for prog in progs:
+                if prog == title:
+                    bachelor_title = bach
+
         programs_reqirements[code] = {
-            'title' : title[:title.index('(')].rstrip(),
+            'title' : title,
+            'bachelor': bachelor_title,
             'major_reqs':[],
             'minor_reqs':[]
         }
@@ -286,10 +318,11 @@ def get_program_info():
 
         print('Getting degree programs')
         degree_links = get_degree_program_links(page)
+        bach_programs = get_bachelor_programs(page, degree_links)
         program_links = get_program_majors(page, degree_links)
 
         print('Getting program requirements')
-        program_info = get_major_requirements(page, program_links)
+        program_info = get_major_requirements(page, program_links, bach_programs)
 
         browser.close()
 
