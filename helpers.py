@@ -1,3 +1,5 @@
+from typing import List
+
 # Given a full course code (i.e. CIS*3760), return course attr (i.e. cis)
 def get_course_attr(course_str: str, upper=False):
 
@@ -37,3 +39,55 @@ def query_loop(message_str: str, err_str: str, valid_func):
             return res
 
         print(err_str)
+
+
+# Functions to easily access course info 
+
+# get all prereqs from a course
+def get_prereqs(course: dict) -> dict:
+    try:
+        return course['prereqs']
+    except KeyError:
+        return None
+
+# get reg_prereqs for a course
+def get_reg_prereqs(course: dict) -> dict:
+    try:
+        return course['prereqs']['reg_prereqs']
+    except KeyError:
+        return None
+
+# get all eq_prereq groups for a course
+def get_eq_prereqs(course: dict) -> dict:
+    try:
+        return course['prereqs']['eq_prereqs']
+    except KeyError:
+        return None
+
+# get all courses in a specified department
+def get_dept_courses(data: dict, dept: str) -> dict:
+    try:
+        return data['courses'][dept]
+    except KeyError:
+        return None
+
+# get a specific course given the code
+def get_course(data: dict, code: str) -> dict:
+    try:
+        dept = get_course_attr(code)
+        for course in data['courses'][dept]:
+            if course['code'] == code.upper():
+                return course
+    except KeyError:
+        return None
+    return None
+
+# get a list of all courses
+def get_all_courses(data: dict) -> List[dict]:
+    courses = []
+    try:
+        for dept in data['courses']:
+            courses.extend(get_dept_courses(data, dept))
+    except KeyError:
+        return []
+    return courses
