@@ -65,7 +65,9 @@ def make_legend(graph: graphviz.Digraph):
     
         add_outside_department_course(legend, "Course Outside of Department")
         add_regular_course(legend, "Course in Department")
+        add_outside_required_courses(legend, "Course Outside of Department but Required")
         add_prereq(legend, "Course Outside of Department", "Course in Department", color='black')
+        add_prereq(legend, "Course Outside of Department but Required", "Course in Department", color='black')
 
         add_prereq(legend, "Required Prerequisite", "Course")
         add_prereq(legend, "One of Prerequisite", "Course", color=COLORS[3])
