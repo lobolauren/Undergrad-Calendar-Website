@@ -1,6 +1,6 @@
 README for 3760 Project - Team 2, UoGuelph W22
 
-# Sprint 2
+# Sprint 3
 
 Requirements:
  - Python version 3.x + pip
@@ -52,6 +52,7 @@ python main.py
   - The user can enter a course name 
     - (format: [dept]*[code] ex. 'CIS\*3090')
   - Or a department code (ex. 'cis')
+  - Or minor/major code (ex. 'CS' or 'ANTH')
   - The program then generates a graphic representation of the prerequisite tree for the given course/department, & saves it in a pdf file in the *graph-output* folder
 - `quit` quits the program
 
