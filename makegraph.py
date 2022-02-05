@@ -1,12 +1,6 @@
 from calendar import c
-from pickle import FALSE
 import graphviz
-from helpers import bool_query_loop, get_course_attr
-
-# testing
-import sys
-sys.path.insert(0, "./tests/")
-from tests.test_constants import PROGRAMS
+from helpers import bool_query_loop, get_course_attr, get_reg_prereqs, get_eq_prereqs
 
 COLORS = ['blue', 'orange', 'red', 'purple', 'yellow'] # to help visually organize the graph
 
@@ -83,7 +77,7 @@ def parse_prereqs(graph, code, data, org_name):
     q = [code.upper()]
     visited = set() # courses already added to the graph
     
-    navigate_course_queue(graph, data, org_name, q, visited)
+    navigate_course_queue(graph, data, q, visited, org_name)
 
 
 # Building a graph for an entire department
@@ -92,9 +86,9 @@ def parse_department(graph: graphviz.Digraph, code, data, org_name):
     for course_value in data["courses"][code]:
 
         add_regular_course(graph, course_value["code"])
-        add_eq_prereqs(graph, course_value['prereqs']['eq_prereqs'], course_value['code'], org_name)
+        add_eq_prereqs(graph, get_eq_prereqs(course_value), course_value['code'], org_name)
 
-        for prereq in course_value["prereqs"]["reg_prereqs"]:
+        for prereq in get_reg_prereqs(course_value):
             dep = get_course_attr(prereq)
             if dep != code: # make red - outside course
                 add_outside_department_course(graph, prereq)
@@ -185,7 +179,6 @@ def makegraph(course_data):
 # The list of all degree programs is under "programs" in course_info
 # Similar to parse_prereqs
 def graph_degree_program(graph: graphviz.Digraph, degree_program, course_info):
-
     print("Graphing Degree Program...")
 
     # add graph title
@@ -230,61 +223,45 @@ def graph_degree_program(graph: graphviz.Digraph, degree_program, course_info):
     for required_course in required_courses:
         visited.add(required_course)
 
+    # adds all the required courses, pre-reqs, and equivalent prereqs into the graph
+    navigate_course_queue(graph, course_info, course_queue, visited, graph_degree_program=True, required_courses=required_courses)
 
+# Department is specified when working with parse_preqs (which graphs for a single course + its prerequsites)
+# When graphing a degree program, department is skipped and graph_degree_program + required_courses are passed in
+def navigate_course_queue(graph, course_info, course_queue, visited, department="", graph_degree_program=False, required_courses=[]):
     while course_queue:
         for _ in range(len(course_queue)):
-
             course = course_queue.pop(0)
-
             course_attr = get_course_attr(course)
 
             for course_value in course_info['courses'][course_attr]:
                 if course_value['code'] == course:
 
-                    # show as brown if not a required course
-                    if course in required_courses:
-                        add_regular_course(graph, course)
+                    # Handles graphing degree program
+                    if course not in required_courses and graph_degree_program:
+                        add_outside_required_courses(graph, course) # Colours outside courses brown
                     else:
-                        add_outside_required_courses(graph, course)
-                    
-                    # Adding prereqs to graph
-                    for prereq in course_value['prereqs']['reg_prereqs']:
-                        add_prereq(graph, prereq, course_value['code'])
-                        if prereq not in visited: # only add courses that haven't been visted/added to avoid multiple arrows to the same course
-                            visited.add(prereq)
-                            course_queue.append(prereq)
-
-                    # Adding equivalent prereqs to graph
-                    add_eq_prereqs(graph, course_value['prereqs']['eq_prereqs'], course, degree_program=True)
-                    for group in course_value['prereqs']['eq_prereqs']:
-                        for prereq in group:
-                            if prereq not in visited: # only add courses that haven't been visted/added to avoid multiple arrows to the same course
-                                visited.add(prereq)
-                                course_queue.append(prereq)
-
-def navigate_course_queue(graph, course_info, department, course_queue, visited):
-    while course_queue:
-        for _ in range(len(course_queue)):
-            course = course_queue.pop(0)
-            course_attr = get_course_attr(course)
-
-            for course_value in course_info['courses'][course_attr]:
-                if course_value['code'] == course:
-                    add_regular_course(graph, course)
+                        add_regular_course(graph, course) # Coloured as black
 
                     # Adding prereqs to graph
-                    for prereq in course_value['prereqs']['reg_prereqs']:
+                    for prereq in get_reg_prereqs(course_value):
                         dep = get_course_attr(prereq)
-                        if dep != department:  # make red - outside course
-                            add_outside_department_course(graph, prereq)
+
+                        if not graph_degree_program: # only done for graphing single course
+                            if dep != department:  # make red - outside course
+                                add_outside_department_course(graph, prereq)
+
                         add_prereq(graph, prereq, course_value['code'])
                         if prereq not in visited: # only add courses that haven't been visted/added to avoid multiple arrows to the same course
                             visited.add(prereq)
                             course_queue.append(prereq)
 
                     # Adding equivalent prereqs to graph
-                    add_eq_prereqs(graph, course_value['prereqs']['eq_prereqs'], course, department)
-                    for group in course_value['prereqs']['eq_prereqs']:
+                    if graph_degree_program:
+                        add_eq_prereqs(graph, get_eq_prereqs(course_value), course, degree_program=True)
+                    else:
+                        add_eq_prereqs(graph, get_eq_prereqs(course_value), course, department)
+                    for group in get_eq_prereqs(course_value):
                         for prereq in group:
                             if prereq not in visited: # only add courses that haven't been visted/added to avoid multiple arrows to the same course
                                 visited.add(prereq)
