@@ -61,6 +61,7 @@ python main.py
 cd tests
 python test_scraper.py
 python test_makegraph.py
+python test_suite.py (runs both)
 ```
 - Tests for the web scraper/graph functions
 

@@ -9,13 +9,15 @@ import makegraph
 import scraper
 
 class TestMakeGraph(unittest.TestCase):
+
     def test_graph_creation(self):
         # create graph and check for filename
         fileName = "MyGraph"
         myGraph = makegraph.create_course_graph(fileName)
         self.assertIsNotNone(myGraph)
         self.assertEqual(myGraph.filename, fileName + ".gv")
-        
+
+
     def test_save_graph_to_PDF(self):
         fileName = "MyGraph"
         try:
@@ -39,6 +41,56 @@ class TestMakeGraph(unittest.TestCase):
             # delete files after
             os.remove("./graph-output/" + fileName + ".pdf") 
             os.remove("./graph-output/" + fileName)
+
+
+    # tests graphing a single course (CIS*4010) and its pre-reqs (done with parse_prereqs)
+    def test_graph_course(self):
+        file_name = "MyGraph"
+        test_graph = makegraph.create_course_graph(file_name)
+
+        # get all CIS courses and their pre-reqs
+        course_info = scraper.get_course_info(["cis", "math", "engg", "ips", "phys"])
+        data = {
+            "programs": test_constants.PROGRAMS, # adds CS program as test
+            "courses": course_info
+        }
+        makegraph.parse_prereqs(test_graph, "CIS*4010", data, "CIS")
+        makegraph.save_graph_to_pdf(test_graph, file_name)
+
+        # ensure graph contains correct data
+        sys.path.insert(0, "./graph-output/")
+        with open("./graph-output/" + file_name, 'r') as testFile:
+            contents = testFile.read()
+            self.assertIsNotNone(contents)
+            self.assertTrue("\"CIS*4010\"" in contents)
+            self.assertTrue("\"PHYS*1130\" [color=red]" in contents)
+            self.assertTrue("\"CIS*2500\" -> \"CIS*2030\" [color=green]" in contents)
+            self.assertTrue("\"CIS*1910\" -> \"CIS*2030\" [color=green]" in contents)
+            self.assertTrue("\"CIS*2030\" -> \"CIS*3110\" [color=blue]" in contents)
+
+    # tests graphing a department (done with parse_department)
+    def test_graph_department(self):
+        file_name = "MyGraph"
+        test_graph = makegraph.create_course_graph(file_name)
+
+        course_info = scraper.get_course_info(["cis"])
+        data = {
+            "programs": test_constants.PROGRAMS, # adds CS program as test
+            "courses": course_info
+        }
+        makegraph.parse_department(test_graph, "cis", data, "cis")
+        makegraph.save_graph_to_pdf(test_graph, file_name)
+
+        # ensure graph contains correct data
+        sys.path.insert(0, "./graph-output/")
+        with open("./graph-output/" + file_name, 'r') as testFile:
+            contents = testFile.read()
+            self.assertIsNotNone(contents)
+            self.assertTrue("\"CIS*1910\" -> \"CIS*2030\" [color=green]" in contents)
+            self.assertTrue("\"ENGG*1500\" [color=red]" in contents)
+            self.assertTrue("\"CIS*2520\" -> \"CIS*2750\" [color=green]" in contents)
+            self.assertTrue("\"CIS*4900\" -> \"CIS*4910\" [color=green]" in contents)
+            self.assertTrue("\"CIS*2030\" -> \"CIS*3110\" [color=blue]" in contents)
 
     def test_graph_degree_program(self):
         file_name = "MyGraph"
@@ -66,6 +118,7 @@ class TestMakeGraph(unittest.TestCase):
             self.assertTrue("\"CIS*3750\" -> \"CIS*3760\" [color=green]" in contents)
             self.assertTrue("\"CIS*1300\"" in contents)
             self.assertTrue("\"CIS*1500\" [color=chocolate4]" in contents)
+
 
 if __name__ == '__main__':
     unittest.main() # allows you to run by doing python3 test_makegraph.py

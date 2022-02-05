@@ -17,6 +17,7 @@ class TestScraper(unittest.TestCase):
         self.assertEqual(len(courseCodes), test_constants.NUM_COURSE_CODES)
         self.assertEqual(courseCodes[0], test_constants.TEST_COURSE_CODE)
 
+
     def test_get_course_info(self):
         # test scrapper with one course only
         course_info = scraper.get_course_info(test_constants.TEST_COURSE)
@@ -32,6 +33,7 @@ class TestScraper(unittest.TestCase):
         self.assertEqual(introAccounting["terms"], ["F", "W"])
         self.assertEqual(introAccounting["weight"], 0.5)
 
+
     def test_save_dict_as_JSON(self):
         # save a test dictionary object using the functcion
         try:
@@ -45,6 +47,7 @@ class TestScraper(unittest.TestCase):
         self.assertIsNotNone(contents)
         jsonObject = json.loads(contents)
         self.assertEqual(jsonObject, test_constants.TEST_DICT)
+
 
     def test_requisites(self):
         # get test course info
@@ -81,6 +84,7 @@ class TestScraper(unittest.TestCase):
         self.assertEqual(agrCourses[agr2050Index]["prereqs"]["eq_prereqs"][1][1], "BIOL*1070")
         self.assertEqual(agrCourses[agr2050Index]["prereqs"]["eq_prereqs"][1], secondEqList)
 
+
     def test_get_program_info(self):
         # gets list of all major requirements and compares with expected amount
         program_info = scraper.get_program_info()
@@ -88,8 +92,6 @@ class TestScraper(unittest.TestCase):
         self.assertEqual(len(program_info), test_constants.NUM_PROGRAMS_MAJORS)
         self.assertEqual(program_info["ahn"]["title"], test_constants.TEST_MAJOR_NAME)
         self.assertEqual(program_info["ahn"]["major_reqs"][0], test_constants.TEST_MAJOR_REQ)
-
-
 
 
 if __name__ == '__main__':
