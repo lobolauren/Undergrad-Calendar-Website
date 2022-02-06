@@ -9,7 +9,7 @@ from playwright.sync_api import sync_playwright, Page
 def get_course_codes():
 
     codes_list = []
-
+    # start playwright
     with sync_playwright() as pw:
 
         browser = pw.chromium.launch(headless=True)
@@ -21,6 +21,7 @@ def get_course_codes():
         codes_region = page.query_selector('.az_sitemap')
         codes = codes_region.query_selector_all('li')[27:] # ignore first 27 because they are just letters of the alphabet for navigation
 
+        # codes are formatted as such: ex. Chemistry (CHEM), we want just CHEM
         for code in codes: 
             code_str = code.inner_text()
             # finds index of first bracket, grabs string between that index and the last character
@@ -117,12 +118,14 @@ def get_prereqs(prereqs_el, prereqs_list, course_code):
 # finds an element and returns its inner text
 def get_element_text(parent_el, query):
     child_el = parent_el.query_selector(query)
+    # if there is no text, return an empty string
     return child_el.inner_text() if child_el else ''
 
 
 # get individual course details from course object
 def get_course_details(course):
 
+    # get text for each element
     course_code = get_element_text(course, '.detail-code')
     course_title = get_element_text(course, '.detail-title')
     course_availability = get_element_text(course, '.detail-typically_offered')
@@ -168,7 +171,7 @@ def get_course_details(course):
 def get_course_info(course_codes: List[str]):
 
     course_info = {}
-
+    # playwright startup
     with sync_playwright() as pw: 
 
         browser = pw.chromium.launch(headless=True)
@@ -183,7 +186,7 @@ def get_course_info(course_codes: List[str]):
                 page.goto(f'https://calendar.uoguelph.ca/undergraduate-calendar/course-descriptions/{code}/')
 
             print("  Scraping \'"+code+"\' courses...", end='', flush=True)
-
+            # select every course on the page, loop through and get details
             courses = page.query_selector_all('.courseblock')
             for course in courses:
                 course_info[code].append(get_course_details(course))
@@ -201,9 +204,10 @@ def get_degree_program_links(page: Page):
     page.goto('https://calendar.uoguelph.ca/undergraduate-calendar/degree-programs/')
 
     list_els = page.query_selector_all('.sitemap li a')
-
+    # get the link for each degree program page from the main page
     links = []
     for list_el in list_els:
+        # get the href for each program
         relative_link = list_el.get_attribute("href")
         links.append(f'https://calendar.uoguelph.ca{relative_link}')
 
@@ -212,7 +216,7 @@ def get_degree_program_links(page: Page):
 # Takes degree links returned from get_degree_program_links() and builds a dict of bachelors and their corresponding programs
 def get_bachelor_programs(page: Page, degree_links):
     bachelor_programs = {}
-
+    # navigate the page for each degree
     for degree_link in degree_links:
         degree_link += '#programstext'
         page.goto(degree_link)
@@ -220,13 +224,16 @@ def get_bachelor_programs(page: Page, degree_links):
         # Getting Bachelor degree title
         title_el = page.query_selector('.page-title')
         bachelor = title_el.inner_text()
-
+        # the object at the location of the bachelor (ex. BCOMP)
         bachelor_programs[bachelor] = []
         
+        # every list with a hyperlink in sitemap
         list_els = page.query_selector_all('.sitemap li a')
+        # make a list of each degree
         for list_el in list_els:            
             bach_prog = list_el.inner_text()
-            bach_prog = bach_prog[:bach_prog.index('(')].rstrip()
+            # get the code for each degree
+            bach_prog = bach_prog[:bach_prog.index('(')].rstrip() # get everything between the brackets
             bachelor_programs[bachelor].append(bach_prog)
 
     return(bachelor_programs)
@@ -236,15 +243,16 @@ def get_bachelor_programs(page: Page, degree_links):
 def get_program_majors(page: Page, degree_links): # Bachelor degree programs of Arts and Science
 
     degree_programs_links = []
-
+    # each program on the page for each degree
     for degree_link in degree_links:
         degree_link += '#programstext'
         page.goto(degree_link)
         
+        # navigate through each hyperlink and get the link to all the programs in the degree
         list_els = page.query_selector_all('.sitemap li a')
         # degree_programs_links = []
         for list_el in list_els:
-            relative_link = list_el.get_attribute("href")
+            relative_link = list_el.get_attribute("href") # getting the link
             degree_programs_links.append(f'https://calendar.uoguelph.ca{relative_link}')
 
     return(degree_programs_links)
@@ -253,17 +261,19 @@ def get_program_majors(page: Page, degree_links): # Bachelor degree programs of 
 def get_major_requirements(page: Page, links, bach_programs): # Specific major program
     
     programs_reqirements = {}
-
+    # for every degree link
     for degree_programs_link in links:
-
+        # navigate to list of courses
         degree_programs_link += '#requirementstext'
         page.goto(degree_programs_link)
         
+        # getting info
         title_el = page.query_selector('.page-title')
         title = title_el.inner_text()
         code = title[title.index('(')+1:-1].lower() # finds index of first bracket, grabs string between that index & the last character
         title = title[:title.index('(')].rstrip()
 
+        # Sometimes there are programs in different degrees that have the same code and same courses, avoid duplicates
         if code in programs_reqirements.keys():
             print(f'{code} is duplicate')
             continue
@@ -275,6 +285,7 @@ def get_major_requirements(page: Page, links, bach_programs): # Specific major p
                 if prog == title:
                     bachelor_title = bach
 
+        # final object
         programs_reqirements[code] = {
             'title' : title,
             'bachelor': bachelor_title,
@@ -286,10 +297,12 @@ def get_major_requirements(page: Page, links, bach_programs): # Specific major p
 
         # selects table of Major requirement on each degree page
         table = page.query_selector('h2:text("Major") ~ .sc_courselist') 
-        if table:
+        if table: # only if the table exists
             rows = table.query_selector_all('tr:not(areaheader)') #parse first column of table for course codes
+            # parse every row in the column for hyperlinks (courses that exist)
             for row in rows:
                 course_el = row.query_selector('a')
+                # if the course exists, add it to the major reqs list
                 if course_el:
                     course_code = course_el.inner_text()
                     if len(course_code) < 10: #skip course requirments that are not courses
@@ -297,10 +310,12 @@ def get_major_requirements(page: Page, links, bach_programs): # Specific major p
         
         # selects table of minor requirement on each degree page
         table = page.query_selector('h2:text("Minor") ~ .sc_courselist') 
-        if table:
+        if table:  # only if the table exists
             rows = table.query_selector_all('tr:not(areaheader)')
+            # parse every row in the column for hyperlinks (courses that exist)
             for row in rows:
                 course_el = row.query_selector('a')
+                # if the course exists, add it to the minor reqs list
                 if course_el:
                     course_code = course_el.inner_text()
                     if len(course_code) < 10:
@@ -310,7 +325,7 @@ def get_major_requirements(page: Page, links, bach_programs): # Specific major p
     return programs_reqirements
 
 def get_program_info():
-
+    # start playwright
     with sync_playwright() as pw: 
 
         browser = pw.chromium.launch(headless=True)
@@ -336,7 +351,7 @@ def save_dict_as_json(dict, filename):
 
 
 def main():
-
+    # set variables to measure time
     debug = True
     start = time.time()
 
@@ -349,6 +364,7 @@ def main():
 
     print("Scraping program info")
     program_info = get_program_info()
+    # object contains two lists
     data = {
         "programs": program_info,
         "courses": course_info
