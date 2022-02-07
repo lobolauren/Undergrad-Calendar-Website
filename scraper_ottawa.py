@@ -126,39 +126,91 @@ def get_element_text(parent_el, query):
     # if there is no text, return an empty string
     return child_el.inner_text() if child_el else ''
 
+# takes a substring and finds the first number in it (assumed to be the course weight)
+# NOTE: does not account for when '(' is in the name
+def extract_weight(weight_str=""):
+    weight = "0"
+    # get rid of brackets then split
+    s_str = weight_str.replace('(', '').replace(')', '').split(" ")
+    # find numeric digit
+    for s in s_str:
+        if s.replace('.', '').isdigit():
+            weight = s
+
+    return weight
+
+def extract_title_info(title_str=""):
+
+    obj = {
+        'code': '',
+        'title': '',
+        'weight': ''
+    }
+
+    # getting the code \xa0 appears everywhere for some reason
+    li_str = title_str.split(" ")
+    obj['code'] = li_str[0].replace("\xa0", '*')
+    
+    idx = len(li_str)
+
+    obj['weight'] = "0"
+
+    # getting the weight
+    if '(' in title_str:
+        idx = title_str.rindex('(')
+        obj['weight'] = extract_weight(title_str[idx:-1])
+
+    # getting the title (add each work and a space until '('
+    # NOTE: does not account for when '(' is in the name
+    i = 1
+    while i < len(li_str) and i < idx:
+        obj['title'] += li_str[i]
+        obj['title'] += " "
+        i += 1
+
+
+
+    return obj
+    
 
 # get individual course details from course object
 def get_course_details(course):
 
     # get text for each element
-    course_code = get_element_text(course, '.detail-code')
-    course_title = get_element_text(course, '.detail-title')
-    course_availability = get_element_text(course, '.detail-typically_offered')
-    course_desc = get_element_text(course, '.courseblockextra')
-    course_restrictions = get_element_text(
-        course, '.detail-restriction_s_ span')
-    course_department = get_element_text(course, '.detail-department_s_ span')
-    course_location = get_element_text(course, '.detail-location_s_ span')
-    course_corequisites = get_element_text(
-        course, '.detail-co_requisite_s_ span')
-    course_offering = get_element_text(course, '.detail-offering span')
-    de_offering = True if 'distance education' in course_offering.lower() else False
-    course_weight = float(get_element_text(course, '.detail-hours_html')[1:-1])
+    course_title_text = get_element_text(course, '.courseblocktitle ')
+    
+    # NOTE: Strange hex numbers all over the place
+
+    course_title_all = extract_title_info(course_title_text)
+    course_code = course_title_all['code']
+    course_title = course_title_all['title']
+    course_weight = float(course_title_all['weight'])
+
+    course_desc = get_element_text(course, '.courseblockdesc')
+
+    # for formatting, still have these but empty
+    course_availability = ''
+    course_restrictions = ''
+    course_department = ''
+    course_location = ''
+    course_corequisites = ''
+    course_offering = ''
+    de_offering = False
 
     course_terms = []
-    if 'fall' in course_availability.lower():
-        course_terms.append('F')
-    if 'winter' in course_availability.lower():
-        course_terms.append('W')
-    if 'summer' in course_availability.lower():
-        course_terms.append('S')
+    # if 'fall' in course_availability.lower():
+    #     course_terms.append('F')
+    # if 'winter' in course_availability.lower():
+    #     course_terms.append('W')
+    # if 'summer' in course_availability.lower():
+    #     course_terms.append('S')
 
-    course_prereqs_el = course.query_selector('.detail-prerequisite_s_ span')
-    # get all prerequisite links and add their text to a list
-    course_prereqs_a = course_prereqs_el.query_selector_all(
-        'a') if course_prereqs_el else []
-    prereqs_a_text = [req.inner_text() for req in course_prereqs_a]
-    prereqs = get_prereqs(course_prereqs_el, prereqs_a_text, course_code)
+    # course_prereqs_el = course.query_selector('.detail-prerequisite_s_ span')
+    # # get all prerequisite links and add their text to a list
+    # course_prereqs_a = course_prereqs_el.query_selector_all(
+    #     'a') if course_prereqs_el else []
+    # prereqs_a_text = [req.inner_text() for req in course_prereqs_a]
+    # prereqs = get_prereqs(course_prereqs_el, prereqs_a_text, course_code)
 
     return {
         'code': course_code.upper(),
@@ -166,7 +218,7 @@ def get_course_details(course):
         'terms': course_terms,
         'weight': course_weight,
         'description': course_desc,
-        'prereqs': prereqs,
+        'prereqs': [],
         'de': de_offering,
         'restrictions': course_restrictions,
         'department': course_department,
@@ -190,10 +242,10 @@ def get_course_info(course_codes: List[str]):
             course_info[code] = []
             if code == 'iaef':  # edge case since the url for the course descriptions is wrong
                 page.goto(
-                    f'https://calendar.uoguelph.ca/undergraduate-calendar/course-descriptions/ieaf/')
+                    f'https://catalogue.uottawa.ca/en/courses/pbh/')
             else:
                 page.goto(
-                    f'https://calendar.uoguelph.ca/undergraduate-calendar/course-descriptions/{code}/')
+                    f'https://catalogue.uottawa.ca/en/courses/{code}/')
 
             print("  Scraping \'"+code+"\' courses...", end='', flush=True)
             # select every course on the page, loop through and get details
@@ -225,8 +277,7 @@ def main():
     print(" Done")
 
     print("Scraping course info")
-   # course_info = get_course_info(codes)
-    course_info = "pool"
+    course_info = get_course_info(codes)
 
     data = {
         "programs": [],
