@@ -15,8 +15,7 @@ def get_course_codes():
         browser = pw.chromium.launch(headless=True)
         page = browser.new_page()
 
-        page.goto(
-            'https://calendar.uoguelph.ca/undergraduate-calendar/course-descriptions/')
+        page.goto('https://catalogue.uottawa.ca/en/courses/')
 
         # select part of page containing links to course codes
         codes_region = page.query_selector('.az_sitemap')
@@ -26,9 +25,11 @@ def get_course_codes():
         # codes are formatted as such: ex. Chemistry (CHEM), we want just CHEM
         for code in codes:
             code_str = code.inner_text()
+
             # finds index of first bracket, grabs string between that index and the last character
-            code_str_final = code_str[code_str.index('(')+1:-1]
-            codes_list.append(code_str_final.lower())
+            if '(' in code_str:
+                code_str_final = code_str[code_str.rindex('(')+1:-1] # had to use rindex because sometimes there are more brackets
+                codes_list.append(code_str_final.lower())
 
         browser.close()
 
@@ -207,22 +208,6 @@ def get_course_info(course_codes: List[str]):
     return course_info
 
 
-# https://calendar.uoguelph.ca/undergraduate-calendar/degree-programs/
-def get_degree_program_links(page: Page):
-
-    page.goto('https://calendar.uoguelph.ca/undergraduate-calendar/degree-programs/')
-
-    list_els = page.query_selector_all('.sitemap li a')
-    # get the link for each degree program page from the main page
-    links = []
-    for list_el in list_els:
-        # get the href for each program
-        relative_link = list_el.get_attribute("href")
-        links.append(f'https://calendar.uoguelph.ca{relative_link}')
-
-    return links
-
-
 # save dictionary object to a JSON file
 def save_dict_as_json(dict, filename):
     with open(filename, 'w') as fp:
@@ -236,10 +221,12 @@ def main():
 
     print("Scraping department codes...", end='', flush=True)
     codes = get_course_codes()
+    
     print(" Done")
 
     print("Scraping course info")
-    course_info = get_course_info(codes)
+   # course_info = get_course_info(codes)
+    course_info = "pool"
 
     data = {
         "programs": [],
