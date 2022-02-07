@@ -223,24 +223,6 @@ def get_degree_program_links(page: Page):
     return links
 
 
-
-def get_program_info():
-    # start playwright
-    with sync_playwright() as pw:
-
-        browser = pw.chromium.launch(headless=True)
-        page = browser.new_page()
-
-        print('Getting department courses')
-        degree_links = get_degree_program_links(page)
-        bach_programs = get_bachelor_programs(page, degree_links)
-        program_links = get_program_majors(page, degree_links)
-
-        browser.close()
-
-    return program_info
-
-
 # save dictionary object to a JSON file
 def save_dict_as_json(dict, filename):
     with open(filename, 'w') as fp:
@@ -259,11 +241,8 @@ def main():
     print("Scraping course info")
     course_info = get_course_info(codes)
 
-    print("Scraping program info")
-    program_info = get_program_info()
-    # object contains two lists
     data = {
-        "programs": program_info,
+        "programs": [],
         "courses": course_info
     }
 
