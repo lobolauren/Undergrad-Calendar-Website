@@ -14,6 +14,11 @@ NOTE: If python 2 is installed on the system, the user may have to use `python3`
 ``` 
 pip install sh
 ``` 
+#### Install Requirements
+```
+sh install.sh
+```
+### If above does not work:
 #### Install Python Libraries
 ``` 
 pip install -r requirements.txt
@@ -71,3 +76,4 @@ python test_suite.py (runs both)
   - A graph edge may indicate a '1 of...' case when there is only one prerequisite for that colour
     - This is because the other option(s) either no longer exist, or aren't a course 
     - (ex. '[course] or experience in field')
+  - Graphs of degree programs do not include elective credits, or indicate when there is more than one option of courses to take
