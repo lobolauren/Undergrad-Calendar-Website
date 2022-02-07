@@ -77,3 +77,5 @@ python test_suite.py (runs both)
     - This is because the other option(s) either no longer exist, or aren't a course 
     - (ex. '[course] or experience in field')
   - Graphs of degree programs do not include elective credits, or indicate when there is more than one option of courses to take
+  - In cases where a prerequisite is either a high school course or a university course, the graph may show the university course as a sole prerequisite when it is not (because high school courses are not parsed as they dont exist)
+    - ex. STAT*2040, for the cs degree, stat*2040 appears to have a prerequisite that is not required by the degree, which is impossible
