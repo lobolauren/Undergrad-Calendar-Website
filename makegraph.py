@@ -1,5 +1,4 @@
 from calendar import c
-from turtle import fillcolor
 import graphviz
 from helpers import bool_query_loop, get_course_attr, get_reg_prereqs, get_eq_prereqs
 
