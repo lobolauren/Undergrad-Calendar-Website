@@ -19,6 +19,17 @@ def get_course_info(filename):
     return coursedata
 
 
+def help(args):
+    if len(args) > 1:
+        try:
+            with open(f'help/{args[1]}.txt') as f:
+                print(f.read())
+        except FileNotFoundError as e:
+            print('not a valid command, enter `help` for a list of valid commands')
+    else:
+        with open('help/default.txt') as f:
+            print(f.read())
+
 def main():
 
     # add command line argument to use custom json file
@@ -57,15 +68,7 @@ def main():
                     break
 
         elif graph_cli[0] == 'help' or graph_cli[0] == 'h':
-            if len(graph_cli) > 1:
-                try:
-                    with open(f'help/{graph_cli[1]}.txt') as f:
-                        print(f.read())
-                except FileNotFoundError as e:
-                    print('not a valid command, enter `help` for a list of valid commands')
-            else:
-                with open('help/default.txt') as f:
-                    print(f.read())
+            help(graph_cli)
 
         elif is_quit(graph_cli[0]):
             break
