@@ -63,7 +63,7 @@ class TestMakeGraph(unittest.TestCase):
             contents = testFile.read()
             self.assertIsNotNone(contents)
             self.assertTrue("\"CIS*4010\"" in contents)
-            self.assertTrue("\"PHYS*1130\" [color=red]" in contents)
+            self.assertTrue("\"PHYS*1130\" -> \"ENGG*2410\" [color=green]" in contents)
             self.assertTrue("\"CIS*2500\" -> \"CIS*2030\" [color=green]" in contents)
             self.assertTrue("\"CIS*1910\" -> \"CIS*2030\" [color=green]" in contents)
             self.assertTrue("\"CIS*2030\" -> \"CIS*3110\" [color=blue]" in contents)
@@ -85,9 +85,10 @@ class TestMakeGraph(unittest.TestCase):
         sys.path.insert(0, "./graph-output/")
         with open("./graph-output/" + file_name, 'r') as testFile:
             contents = testFile.read()
+            print(contents)
             self.assertIsNotNone(contents)
             self.assertTrue("\"CIS*1910\" -> \"CIS*2030\" [color=green]" in contents)
-            self.assertTrue("\"ENGG*1500\" [color=red]" in contents)
+            self.assertTrue("\"ENGG*1500\" -> \"CIS*2910\" [color=orange]" in contents)
             self.assertTrue("\"CIS*2520\" -> \"CIS*2750\" [color=green]" in contents)
             self.assertTrue("\"CIS*4900\" -> \"CIS*4910\" [color=green]" in contents)
             self.assertTrue("\"CIS*2030\" -> \"CIS*3110\" [color=blue]" in contents)
@@ -112,12 +113,11 @@ class TestMakeGraph(unittest.TestCase):
         with open("./graph-output/" + file_name, 'r') as testFile:
             contents = testFile.read()
             self.assertIsNotNone(contents)
-            self.assertTrue(f"Graph for |{degree_program}| degree program" in contents)
-            self.assertTrue("\"ENGG*1410\" [color=chocolate4]" in contents)
+            self.assertTrue("\"ENGG*1410\" [color=chocolate4 fillcolor=lightgray shape=rect style=filled]" in contents)
             self.assertTrue("\"CIS*2750\" -> \"CIS*3760\" [color=green]" in contents)
             self.assertTrue("\"CIS*3750\" -> \"CIS*3760\" [color=green]" in contents)
             self.assertTrue("\"CIS*1300\"" in contents)
-            self.assertTrue("\"CIS*1500\" [color=chocolate4]" in contents)
+            self.assertTrue("\"CIS*1500\" -> \"ENGG*2410\" [color=blue]" in contents)
 
 
 if __name__ == '__main__':
