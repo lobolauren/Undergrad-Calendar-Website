@@ -29,11 +29,16 @@ before_script:
   - virtualenv venv
   - source venv/bin/activate
   - pip install -U -r requirements.txt
+  - playwright install
+  - playwright install-deps
+  - apt-get -y install graphviz
+  
 
 test:
+  image: mcr.microsoft.com/playwright:focal
   script:
-    - cd .\tests\
-    - python test_suite.py
+    - cd tests
+    - pytest
 
 # run:
   # script:
