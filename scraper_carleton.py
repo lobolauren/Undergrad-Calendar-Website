@@ -1,4 +1,5 @@
 import json
+from lib2to3.pgen2 import token
 import time
 import re
 
@@ -100,7 +101,7 @@ def extract_title_info(title_str=""):
 
 
 def get_prereqs(prereqs_el, prereqs_list, course_code):
-
+    print("rgiht away "+ str(prereqs_list))
     prereqs = {
         'reg_prereqs': [],
         'eq_prereqs': []  # list of lists each sublist represents related prerequisites
@@ -116,34 +117,55 @@ def get_prereqs(prereqs_el, prereqs_list, course_code):
         
         if "Prerequisite(s):" in prereq_text:
             prereq_text = prereq_text.split("Prerequisite(s):",1)[1]
+            prereq_text[prereq_text.index('.')+1:]
         else:
             prereq_text =" "
 
         prereq_t = prereq_text.replace('Prerequisite(s):','')
         tokens = prereq_t.split('and')
-
-        for ele in prereqs_list:
-                if ele not in tokens:
-                    prereqs_list.remove(ele)
-
+        
         for i, n in enumerate(tokens):
             tokens[i]=n.replace('\xa0',' ')
+        reqlist = []
+        for ele in prereqs_list:
+            for tolk in tokens:
+                if ele in tolk:
+                    reqlist.append(ele)
+        print ("grrrr "  + str(reqlist))
 
         individual_and_prereqs = []
         for elements in tokens:
+            new_preqs_list  = []
            # print("Token: " + elements)
             if "of" in elements:
                 individual_and_prereqs = re.split(',|or',elements)
                # print("indiv_courses " + str(individual_and_prereqs))
-                new_preqs_list = [i for e in individual_and_prereqs for i in prereqs_list if e in i]
-                prereqs['eq_prereqs'].append()
-            if "or" in elements:
+                for ele in individual_and_prereqs:
+                    for tolk in reqlist:
+                        #print("ele " +ele+ " tolk " +tolk)
+                        if tolk in ele:
+                            new_preqs_list.append(tolk)
+               # this_list = []
+               # print ("new or " + str(new_preqs_list))
+                prereqs['eq_prereqs'].append(new_preqs_list)
+            elif "or" in elements:
                 individual_and_prereqs = re.split('or',elements)
-                prereqs['eq_prereqs'].append([[i for e in individual_and_prereqs for i in prereqs_list if e in i]])
+                
+                for ele in individual_and_prereqs:
+                    for tolk in reqlist:
+                        #print("ele " +ele+ " tolk " +tolk)
+                        if tolk in ele:
+                            new_preqs_list.append(tolk)
+               # this_list = []
+               # print ("new or " + str(new_preqs_list))
+                prereqs['eq_prereqs'].append(new_preqs_list)
+               
             else:
-                individual_and_prereqs = re.split(',',elements)
+                individual_and_prereqs = re.split(',.',elements)
+                print("in reg else " + str(individual_and_prereqs))
                 for course in individual_and_prereqs:
-                    prereqs['reg_prereqs'].append( [i for e in course for i in prereqs_list if e in i]) 
+                    if course in reqlist:
+                        prereqs['reg_prereqs'].append(course)   
         print("code" + course_code + " " + str(prereqs))
         #tokens = prereq_t.split('and')
         # ["math100" , "(math200 or math 300)"]
@@ -215,8 +237,8 @@ def get_course_details(course):
     course_title = course_title_all['title']
     course_weight = float(course_title_all['weight'])
 
-    li_str = course.inner_text().split("\n")
-    course_desc = li_str[2]
+    # NOTE: still need to get this
+    course_desc = ''
 
     # for formatting, still have these but empty
     course_restrictions = ''
