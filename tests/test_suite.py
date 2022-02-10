@@ -2,11 +2,13 @@ import unittest
 
 # individual test classes
 import test_scraper
+import test_carleton_scraper
 import test_makegraph
 import test_constants
 
 suite_list = []
 suite_list.append(unittest.TestLoader().loadTestsFromTestCase(test_scraper.TestScraper))
+suite_list.append(unittest.TestLoader().loadTestsFromTestCase(test_carleton_scraper.TestCarletonScraper))
 suite_list.append(unittest.TestLoader().loadTestsFromTestCase(test_makegraph.TestMakeGraph))
 
 if __name__ == '__main__':

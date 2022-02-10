@@ -1,4 +1,4 @@
-# Scraper test constants
+# Guelph Scraper test constants
 NUM_COURSE_CODES = 86
 NUM_PROGRAMS_MAJORS = 159
 TEST_DICT = {
@@ -23,6 +23,7 @@ TEST_PROGRAM = [TEST_PROGRAM_NAME, TEST_MAJOR_NAME, TEST_MAJOR_REQ]
 PROGRAMS = {
   "cs": {
             "title": "Computer Science",
+            "bachelor": "Bachelor of Computing (B. Comp.)",
             "major_reqs": [
                 "CIS*1300",
                 "CIS*1910",
@@ -45,3 +46,6 @@ PROGRAMS = {
             "minor_reqs": []
         }
 }
+
+# Carleton Scraper constants
+CARLETON_COURSE_CODES = 111

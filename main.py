@@ -1,6 +1,10 @@
 import json
+import sys
+
 from coursesearch import coursesearch
 from makegraph import makegraph
+
+from helpers import *
 
 # function to open JSON file
 def get_course_info(filename):
@@ -15,37 +19,62 @@ def get_course_info(filename):
     return coursedata
 
 
+def help(args):
+    if len(args) > 1:
+        try:
+            with open(f'help/{args[1]}.txt') as f:
+                print(f.read())
+        except FileNotFoundError as e:
+            print('not a valid command, enter `help` for a list of valid commands')
+    else:
+        with open('help/default.txt') as f:
+            print(f.read())
+
 def main():
+
+    # add command line argument to use custom json file
+    json_file = 'course_info.json'
+    if len(sys.argv) > 2:
+        print('Too many arguments.')
+    elif len(sys.argv) > 1:
+        json_file = sys.argv[1]
+
     # if the get_course_info function failed, don't run
-    course_info = get_course_info('course_info.json')
+    course_info = get_course_info(json_file)
     if not course_info:
-        print('\nFile not found, run scraper.py')
+        print('File not found, run scraper.py')
         return
 
     print('Welcome to UoG Course Catalog')
+    print('you can enter `help` to see a list of commands and their usage')
+
     while True:
 
         # Menu prompt
-        graph_cli = input('[makegraph/coursesearch/quit] > ')
+        graph_cli = input('> ').split()
 
-        if graph_cli == 'coursesearch' or 'c' == graph_cli:
+        if graph_cli[0] == 'coursesearch' or 'c' == graph_cli[0]:
             print('\nCourse Search')
             while True:
                 keep_going = coursesearch(course_info)
                 if not keep_going:
                     break
 
-        if graph_cli == 'makegraph' or graph_cli == 'm':
+        elif graph_cli[0] == 'makegraph' or graph_cli[0] == 'm':
             print('\nPrerequisite Graph')
             while True:
                 keep_going = makegraph(course_info)
                 if not keep_going:
                     break
 
-        if graph_cli == 'quit' or graph_cli == 'q':
+        elif graph_cli[0] == 'help' or graph_cli[0] == 'h':
+            help(graph_cli)
+
+        elif is_quit(graph_cli[0]):
             break
 
-        print("Please enter <makegraph/m>, <coursesearch/c>, or <quit/q>")
+        else:
+            print('not a valid command, enter `help` for a list of valid commands')
 
 
 if __name__ == '__main__':
