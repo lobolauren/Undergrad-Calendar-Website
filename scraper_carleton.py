@@ -177,8 +177,8 @@ def get_course_details(course):
     course_title = course_title_all['title']
     course_weight = float(course_title_all['weight'])
 
-    # NOTE: still need to get this
-    course_desc = ''
+    li_str = course.inner_text().split("\n")
+    course_desc = li_str[2]
 
     # for formatting, still have these but empty
     course_restrictions = ''
