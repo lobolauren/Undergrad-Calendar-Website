@@ -101,7 +101,7 @@ def extract_title_info(title_str=""):
 
 
 def get_prereqs(prereqs_el, prereqs_list, course_code):
-    print("rgiht away "+ str(prereqs_list))
+    
     prereqs = {
         'reg_prereqs': [],
         'eq_prereqs': []  # list of lists each sublist represents related prerequisites
@@ -115,111 +115,81 @@ def get_prereqs(prereqs_el, prereqs_list, course_code):
         # each block of related prerequisites by splitting on the comma character
         prereq_text = remove_commas_between_brackets(prereq_text)
         
+        # this is done because the extra information for each course which contained the prerequisite list
+        # was one massive string we sliced it that it was only the section that had the prerequisite list
         if "Prerequisite(s):" in prereq_text:
             prereq_text = prereq_text.split("Prerequisite(s):",1)[1]
-            prereq_text[prereq_text.index('.')+1:]
+            prereq_text = prereq_text.split(".",1)[0]
         else:
             prereq_text =" "
 
         prereq_t = prereq_text.replace('Prerequisite(s):','')
+
+        # split the prerequisite string by and since most courses used this method to sparate their list (see read me for special cases)
         tokens = prereq_t.split('and')
         
         for i, n in enumerate(tokens):
             tokens[i]=n.replace('\xa0',' ')
+
+        #A new list is made because the extra description of each course contained hyperlinks that were not actually prerequisites, but rather
+        # graduate course equivalents    
         reqlist = []
         for ele in prereqs_list:
             for tolk in tokens:
                 if ele in tolk:
                     reqlist.append(ele)
-        print ("grrrr "  + str(reqlist))
 
+        #list to hold each section of prerequisites separated by AND
         individual_and_prereqs = []
+
         for elements in tokens:
+            #list to hold the individual special cases of or,one of etc
             new_preqs_list  = []
-           # print("Token: " + elements)
+
+            # courses that contains prereqs with one of...
             if "of" in elements:
-                individual_and_prereqs = re.split(',|or',elements)
-               # print("indiv_courses " + str(individual_and_prereqs))
+                individual_and_prereqs = re.split(',|or|/',elements)
+
+                # check for the course in the reqlist to ensure they are not graduate courses
                 for ele in individual_and_prereqs:
                     for tolk in reqlist:
-                        #print("ele " +ele+ " tolk " +tolk)
                         if tolk in ele:
                             new_preqs_list.append(tolk)
-               # this_list = []
-               # print ("new or " + str(new_preqs_list))
-                prereqs['eq_prereqs'].append(new_preqs_list)
-            elif "or" in elements:
-                individual_and_prereqs = re.split('or',elements)
-                
-                for ele in individual_and_prereqs:
-                    for tolk in reqlist:
-                        #print("ele " +ele+ " tolk " +tolk)
-                        if tolk in ele:
-                            new_preqs_list.append(tolk)
-               # this_list = []
-               # print ("new or " + str(new_preqs_list))
-                prereqs['eq_prereqs'].append(new_preqs_list)
-               
-            else:
-                individual_and_prereqs = re.split(',.',elements)
-                print("in reg else " + str(individual_and_prereqs))
-                for course in individual_and_prereqs:
-                    if course in reqlist:
-                        prereqs['reg_prereqs'].append(course)   
-        print("code" + course_code + " " + str(prereqs))
-        #tokens = prereq_t.split('and')
-        # ["math100" , "(math200 or math 300)"]
-        # we now only want to look at courses that are in a block of related prerequisites so we get all the blocks that
-        # contain the bracket characters
-    '''
-        def ftr(s): return True if '(' in s or ')' in s else False
-        filtered_tokens = list(filter(ftr, tokens))
-        # ["(math200 or math 300)"]
-       
-        for ele in prereqs_list:
-                if ele not in tokens:
-                    prereqs_list.remove(ele)
-
-        for i, n in enumerate(filtered_tokens):
-            filtered_tokens[i]=n.replace('\xa0',' ')
-        # there there aren't any blocks that in the filtered list then check if the prerequisite text contains the words
-        # 'or' or 'of' and if there is add them
-        if not filtered_tokens and ('or' in prereq_text or 'of' in prereq_text):
-            # if there is only one prerequisite add it to regular prerequisites otherwise add them as related prerequisites
-            if len(prereqs_list) < 2:
-                prereqs['reg_prereqs'].extend(prereqs_list)
-            else:
-                prereqs['eq_prereqs'] = [prereqs_list]
-        else:
-            # copy list because we are going to be removing elements from it while looping through it
-            prereqs_list_copy = prereqs_list[:]
-
-            # for each block of related prerequisites, go through and remove any course from the that exists in the block 
-            # from the original prerequisites list
-            for t in filtered_tokens:
-                eq_prereqs = []
-                for course in prereqs_list:
-                    # if the course itself exists in its prerequisties string, remove it and do nothing
-                    if course == course_code:
-                        prereqs_list_copy.remove(course)
-                    # if a course is in the string but appears after the word 'excluding', remove it and do nothing
-                    elif 'excluding' in t and course in t[t.index('excluding'):]:
-                        prereqs_list_copy.remove(course)
-                    # if it finds a course remove it and add it to the temporary list of related prerequisites
-                    elif course in t:
-                        eq_prereqs.append(course)
-                        if course in prereqs_list_copy:
-                            prereqs_list_copy.remove(course)
-
-                # if the block only had one prerequisite, make it a regular prerequisite, otherwise add the related prerequisites
-                if len(eq_prereqs) > 1:
-                    prereqs['eq_prereqs'].append(eq_prereqs)
+               # if the length of the list has more than one element add it to eq_prereqs otherwise reg_prereqs
+               # this is because some words in the prereq course requirment description contains of or or so the
+               # program thinks it is a special case when it is a regular course
+                if len(new_preqs_list) > 1: 
+                    prereqs['eq_prereqs'].append(new_preqs_list)
                 else:
-                    prereqs_list_copy.extend(eq_prereqs)
+                    for ele in new_preqs_list:
+                        prereqs['reg_prereqs'].append(ele)     
+            elif "or" in elements:
+                individual_and_prereqs = re.split('or|/',elements)
 
-            # at this point any prerequisites left in the list are not related and must be required
-            prereqs['reg_prereqs'] = prereqs_list_copy
-    '''
+                # check for the course in the reqlist to ensure they are not graduate courses
+                for ele in individual_and_prereqs:
+                    for tolk in reqlist:
+                        if tolk in ele:
+                            new_preqs_list.append(tolk)
+
+                # if the length of the list has more than one element add it to eq_prereqs otherwise reg_prereqs
+                # this is because some words in the prereq course requirment description contains of or or so the
+                # program thinks it is a special case when it is a regular course
+                if len(new_preqs_list) > 1: 
+                    prereqs['eq_prereqs'].append(new_preqs_list)
+                else:
+                    for ele in new_preqs_list:
+                        prereqs['reg_prereqs'].append(ele)   
+               
+            else: #for individual regular course requirments
+                individual_and_prereqs = re.split(',.',elements)
+
+                #to check once again that the courses are only those in prereqs and not graduate courses
+                for course in individual_and_prereqs:
+                    for tolk in reqlist:
+                        if tolk in course:
+                            prereqs['reg_prereqs'].append(tolk)   
+   
     return prereqs
     
 
