@@ -12,9 +12,9 @@ DEFAULT_GRAPH_ATTRS = {
 }
 
 # Makegraph helper functions
-def save_graph_to_pdf(graph: Digraph, filename, log=False):
+def save_graph_to_pdf(graph: Digraph, filename, log=False, cleanup=True):
     graph.format = 'pdf'
-    f = graph.render(filename=filename, directory="graph-output", cleanup=True).replace('\\', '/')
+    f = graph.render(filename=filename, directory="graph-output", cleanup=cleanup).replace('\\', '/')
     print(f'file saved to: {f}')
 
 
