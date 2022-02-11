@@ -50,6 +50,31 @@ def remove_commas_between_brackets(s):
             inside_brackets = True
     return new_str
 
+# given a string containg '4U', will return a list of high school course names
+def get_hs_course(prereq_text=""):
+    course_li = prereq_text.split(" ")
+
+    hs_courses = []
+    # for every word
+    for i, el in enumerate(course_li):
+        if "4U" in el:
+            j = i
+            temp_str = ''
+            # go through the list and build the course string until it is over
+            while j < len(course_li) and course_li[j] != "or":
+                
+                temp_str += course_li[j] + ' '
+                # if there is a comma, the course string is done, but still include that word
+                if ',' in course_li[j]:
+                    break
+                
+                j += 1
+            # get rid of unwanted characters
+            temp_str = ((temp_str.replace('(', '')).replace(')','')).replace(',', '')
+            hs_courses.append(temp_str)
+    
+    return hs_courses
+
 
 def get_prereqs(prereqs_el, prereqs_list, course_code):
 
@@ -60,6 +85,15 @@ def get_prereqs(prereqs_el, prereqs_list, course_code):
 
     if prereqs_el:
         prereq_text = prereqs_el.inner_text()
+        
+        # if there are highschool courses
+        if "4U" in prereq_text:
+            hs_courses = get_hs_course(prereq_text)
+            
+            # add highschool courses to the list of prerequisites
+            for hs_course in hs_courses:
+                prereqs_list.append(hs_course)
+
 
         # the reason we do this is because we noticed that every block of related prerequisites is contained within 
         # brackets that are seperated by commas. We then remove the commas from between the brackets so we can seperate
@@ -364,6 +398,7 @@ def main():
 
     print("Scraping program info")
     program_info = get_program_info()
+    
     # object contains two lists
     data = {
         "programs": program_info,

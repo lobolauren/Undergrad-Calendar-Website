@@ -1,5 +1,6 @@
 from fileinput import filename
 import unittest
+import pytest
 import test_constants
 import os
 # imports the scraper directory in the directory above the tests
@@ -14,8 +15,8 @@ class TestMakeGraph(unittest.TestCase):
         # create graph and check for filename
         fileName = "MyGraph"
         myGraph = makegraph.create_course_graph(fileName)
-        self.assertIsNotNone(myGraph)
-        self.assertEqual(myGraph.filename, fileName + ".gv")
+        assert myGraph != None
+        assert myGraph.filename == fileName + ".gv"
 
 
     def test_save_graph_to_PDF(self):
@@ -26,16 +27,16 @@ class TestMakeGraph(unittest.TestCase):
             myGraph.edge("nodeTest1", "nodeTest2")
             makegraph.save_graph_to_pdf(myGraph, fileName)
             sys.path.insert(0, "./graph-output/")
-            self.assertTrue(os.path.isdir("./graph-output/"))
-            self.assertTrue(os.path.isfile("./graph-output/" + fileName))
-            self.assertTrue(os.path.isfile("./graph-output/" + fileName + ".pdf"))
+            assert os.path.isdir("./graph-output/")
+            assert os.path.isfile("./graph-output/" + fileName)
+            assert os.path.isfile("./graph-output/" + fileName + ".pdf") 
 
             # make sure graph file isn't empty (.gv)
             sys.path.insert(0, "./graph-output/")
             with open("./graph-output/" + fileName, 'r') as testFile:
                 contents = testFile.read()
-                self.assertIsNotNone(contents)
-                self.assertTrue("nodeTest1 -> nodeTest2" in contents)
+                assert contents != None
+                assert "nodeTest1 -> nodeTest2" in contents
 
         finally:
             # delete files after
@@ -61,14 +62,14 @@ class TestMakeGraph(unittest.TestCase):
         sys.path.insert(0, "./graph-output/")
         with open("./graph-output/" + file_name, 'r') as testFile:
             contents = testFile.read()
-            self.assertIsNotNone(contents)
-            self.assertTrue("\"CIS*4010\"" in contents)
-            self.assertTrue("\"PHYS*1130\" [color=red]" in contents)
-            self.assertTrue("\"CIS*2500\" -> \"CIS*2030\" [color=green]" in contents)
-            self.assertTrue("\"CIS*1910\" -> \"CIS*2030\" [color=green]" in contents)
-            self.assertTrue("\"CIS*2030\" -> \"CIS*3110\" [color=blue]" in contents)
+            assert contents != None
+            assert "\"CIS*4010\"" in contents
+            assert "\"PHYS*1130\" -> \"ENGG*2410\" [color=green]" in contents
+            assert "\"CIS*2500\" -> \"CIS*2030\" [color=green]" in contents
+            assert "\"CIS*1910\" -> \"CIS*2030\" [color=green]" in contents
+            assert "\"CIS*2030\" -> \"CIS*3110\" [color=blue]" in contents
 
-    # tests graphing a department (done with parse_department)
+    # # tests graphing a department (done with parse_department)
     def test_graph_department(self):
         file_name = "MyGraph"
         test_graph = makegraph.create_course_graph(file_name)
@@ -85,12 +86,13 @@ class TestMakeGraph(unittest.TestCase):
         sys.path.insert(0, "./graph-output/")
         with open("./graph-output/" + file_name, 'r') as testFile:
             contents = testFile.read()
-            self.assertIsNotNone(contents)
-            self.assertTrue("\"CIS*1910\" -> \"CIS*2030\" [color=green]" in contents)
-            self.assertTrue("\"ENGG*1500\" [color=red]" in contents)
-            self.assertTrue("\"CIS*2520\" -> \"CIS*2750\" [color=green]" in contents)
-            self.assertTrue("\"CIS*4900\" -> \"CIS*4910\" [color=green]" in contents)
-            self.assertTrue("\"CIS*2030\" -> \"CIS*3110\" [color=blue]" in contents)
+            print(contents)
+            assert contents != None
+            assert "\"CIS*1910\" -> \"CIS*2030\" [color=green]" in contents
+            assert "\"ENGG*1500\" -> \"CIS*2910\" [color=orange]" in contents
+            assert "\"CIS*2520\" -> \"CIS*2750\" [color=green]" in contents
+            assert "\"CIS*4900\" -> \"CIS*4910\" [color=green]" in contents
+            assert "\"CIS*2030\" -> \"CIS*3110\" [color=blue]" in contents
 
     def test_graph_degree_program(self):
         file_name = "MyGraph"
@@ -112,12 +114,11 @@ class TestMakeGraph(unittest.TestCase):
         with open("./graph-output/" + file_name, 'r') as testFile:
             contents = testFile.read()
             self.assertIsNotNone(contents)
-            self.assertTrue(f"Graph for |{degree_program}| degree program" in contents)
-            self.assertTrue("\"ENGG*1410\" [color=chocolate4]" in contents)
+            self.assertTrue("\"ENGG*1410\" [color=chocolate4 fillcolor=lightgray shape=rect style=filled]" in contents)
             self.assertTrue("\"CIS*2750\" -> \"CIS*3760\" [color=green]" in contents)
             self.assertTrue("\"CIS*3750\" -> \"CIS*3760\" [color=green]" in contents)
             self.assertTrue("\"CIS*1300\"" in contents)
-            self.assertTrue("\"CIS*1500\" [color=chocolate4]" in contents)
+            self.assertTrue("\"CIS*1500\" -> \"ENGG*2410\" [color=blue]" in contents)
 
 
 if __name__ == '__main__':

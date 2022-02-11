@@ -1,5 +1,7 @@
 import json
+from lib2to3.pgen2 import token
 import time
+import re
 
 from typing import List
 from playwright.sync_api import sync_playwright, Page
@@ -59,68 +61,6 @@ def remove_commas_between_brackets(s):
     return new_str
 
 
-def get_prereqs(prereqs_el, prereqs_list, course_code):
-
-    prereqs = {
-        'reg_prereqs': [],
-        'eq_prereqs': []  # list of lists each sublist represents related prerequisites
-    }
-
-    if prereqs_el:
-        prereq_text = prereqs_el.inner_text()
-
-        # the reason we do this is because we noticed that every block of related prerequisites is contained within
-        # brackets that are seperated by commas. We then remove the commas from between the brackets so we can seperate
-        # each block of related prerequisites by splitting on the comma character
-        prereq_text = remove_commas_between_brackets(prereq_text)
-        tokens = prereq_text.split(',')
-
-        # we now only want to look at courses that are in a block of related prerequisites so we get all the blocks that
-        # contain the bracket characters
-        def ftr(s): return True if '(' in s or '[' in s else False
-        filtered_tokens = list(filter(ftr, tokens))
-
-        # there there aren't any blocks that in the filtered list then check if the prerequisite text contains the words
-        # 'or' or 'of' and if there is add them
-        if not filtered_tokens and ('or' in prereq_text or 'of' in prereq_text):
-            # if there is only one prerequisite add it to regular prerequisites otherwise add them as related prerequisites
-            if len(prereqs_list) < 2:
-                prereqs['reg_prereqs'].extend(prereqs_list)
-            else:
-                prereqs['eq_prereqs'] = [prereqs_list]
-
-        else:
-            # copy list because we are going to be removing elements from it while looping through it
-            prereqs_list_copy = prereqs_list[:]
-
-            # for each block of related prerequisites, go through and remove any course from the that exists in the block
-            # from the original prerequisites list
-            for t in filtered_tokens:
-
-                eq_prereqs = []
-                for course in prereqs_list:
-                    # if the course itself exists in its prerequisties string, remove it and do nothing
-                    if course == course_code:
-                        prereqs_list_copy.remove(course)
-                    # if a course is in the string but appears after the word 'excluding', remove it and do nothing
-                    elif 'excluding' in t and course in t[t.index('excluding'):]:
-                        prereqs_list_copy.remove(course)
-                    # if it finds a course remove it and add it to the temporary list of related prerequisites
-                    elif course in t:
-                        eq_prereqs.append(course)
-                        if course in prereqs_list_copy:
-                            prereqs_list_copy.remove(course)
-
-                # if the block only had one prerequisite, make it a regular prerequisite, otherwise add the related prerequisites
-                if len(eq_prereqs) > 1:
-                    prereqs['eq_prereqs'].append(eq_prereqs)
-                else:
-                    prereqs_list_copy.extend(eq_prereqs)
-
-            # at this point any prerequisites left in the list are not related and must be required
-            prereqs['reg_prereqs'] = prereqs_list_copy
-
-    return prereqs
 
 
 # finds an element and returns its inner text
@@ -157,6 +97,100 @@ def extract_title_info(title_str=""):
     obj['weight'] = extract_weight(li_str[0])
 
     return obj
+
+
+
+def get_prereqs(prereqs_el, prereqs_list, course_code):
+    
+    prereqs = {
+        'reg_prereqs': [],
+        'eq_prereqs': []  # list of lists each sublist represents related prerequisites
+    }
+    if prereqs_el:
+        prereq_text = prereqs_el.inner_text()
+        prereq_text.split("\n")
+      
+        # the reason we do this is because we noticed that every block of related prerequisites is contained within
+        # brackets that are seperated by commas. We then remove the commas from between the brackets so we can seperate
+        # each block of related prerequisites by splitting on the comma character
+        prereq_text = remove_commas_between_brackets(prereq_text)
+        
+        # this is done because the extra information for each course which contained the prerequisite list
+        # was one massive string we sliced it that it was only the section that had the prerequisite list
+        if "Prerequisite(s):" in prereq_text:
+            prereq_text = prereq_text.split("Prerequisite(s):",1)[1]
+            prereq_text = prereq_text.split(".",1)[0]
+        else:
+            prereq_text =" "
+
+        prereq_t = prereq_text.replace('Prerequisite(s):','')
+
+        # split the prerequisite string by and since most courses used this method to sparate their list (see read me for special cases)
+        tokens = prereq_t.split('and')
+        
+        for i, n in enumerate(tokens):
+            tokens[i]=n.replace('\xa0',' ')
+
+        #A new list is made because the extra description of each course contained hyperlinks that were not actually prerequisites, but rather
+        # graduate course equivalents    
+        reqlist = []
+        for ele in prereqs_list:
+            for tolk in tokens:
+                if ele in tolk:
+                    reqlist.append(ele)
+
+        #list to hold each section of prerequisites separated by AND
+        individual_and_prereqs = []
+
+        for elements in tokens:
+            #list to hold the individual special cases of or,one of etc
+            new_preqs_list  = []
+
+            # courses that contains prereqs with one of...
+            if "of" in elements:
+                individual_and_prereqs = re.split(',|or|/',elements)
+
+                # check for the course in the reqlist to ensure they are not graduate courses
+                for ele in individual_and_prereqs:
+                    for tolk in reqlist:
+                        if tolk in ele:
+                            new_preqs_list.append(tolk)
+               # if the length of the list has more than one element add it to eq_prereqs otherwise reg_prereqs
+               # this is because some words in the prereq course requirment description contains of or or so the
+               # program thinks it is a special case when it is a regular course
+                if len(new_preqs_list) > 1: 
+                    prereqs['eq_prereqs'].append(new_preqs_list)
+                else:
+                    for ele in new_preqs_list:
+                        prereqs['reg_prereqs'].append(ele)     
+            elif "or" in elements:
+                individual_and_prereqs = re.split('or|/',elements)
+
+                # check for the course in the reqlist to ensure they are not graduate courses
+                for ele in individual_and_prereqs:
+                    for tolk in reqlist:
+                        if tolk in ele:
+                            new_preqs_list.append(tolk)
+
+                # if the length of the list has more than one element add it to eq_prereqs otherwise reg_prereqs
+                # this is because some words in the prereq course requirment description contains of or or so the
+                # program thinks it is a special case when it is a regular course
+                if len(new_preqs_list) > 1: 
+                    prereqs['eq_prereqs'].append(new_preqs_list)
+                else:
+                    for ele in new_preqs_list:
+                        prereqs['reg_prereqs'].append(ele)   
+               
+            else: #for individual regular course requirments
+                individual_and_prereqs = re.split(',.',elements)
+
+                #to check once again that the courses are only those in prereqs and not graduate courses
+                for course in individual_and_prereqs:
+                    for tolk in reqlist:
+                        if tolk in course:
+                            prereqs['reg_prereqs'].append(tolk)   
+   
+    return prereqs
     
 
 # get individual course details from course object
@@ -173,8 +207,8 @@ def get_course_details(course):
     course_title = course_title_all['title']
     course_weight = float(course_title_all['weight'])
 
-    # NOTE: still need to get this
-    course_desc = ''
+    li_str = course.inner_text().split("\n")
+    course_desc = li_str[2]
 
     # for formatting, still have these but empty
     course_restrictions = ''
@@ -186,14 +220,18 @@ def get_course_details(course):
     course_terms = []
 
     # NOTE: need to get prereqs
-    # course_prereqs_el = course.query_selector('.detail-prerequisite_s_ span')
+    course_prereqs_el = course.query_selector('.coursedescadditional')
     # # get all prerequisite links and add their text to a list
-    # course_prereqs_a = course_prereqs_el.query_selector_all(
-    #     'a') if course_prereqs_el else []
-    # prereqs_a_text = [req.inner_text() for req in course_prereqs_a]
-    # prereqs = get_prereqs(course_prereqs_el, prereqs_a_text, course_code)
-
+    course_prereqs_a = course_prereqs_el.query_selector_all(
+         'a') if course_prereqs_el else []
+   # if not("Precludes") in course_prereqs_el.inner_text(): 
+    prereqs_a_text = [req.inner_text() for req in course_prereqs_a]
+    prereqs_a_text = [req.inner_text().replace('\xa0', ' ') for req in course_prereqs_a]
+   # print("code "+course_code)
     prereqs = []
+    prereqs = get_prereqs(course_prereqs_el, prereqs_a_text, course_code)
+
+   
 
     return {
         'code': course_code.upper(),
