@@ -1,5 +1,6 @@
 import json
 import sys
+import getopt
 
 from coursesearch import coursesearch
 from makegraph import makegraph
@@ -20,15 +21,24 @@ def get_course_info(filename):
 
 
 def help(args):
-    if len(args) > 1:
+    if args:
         try:
-            with open(f'help/{args[1]}.txt') as f:
+            with open(f'help/{args[0]}.txt') as f:
                 print(f.read())
         except FileNotFoundError as e:
             print('not a valid command, enter `help` for a list of valid commands')
     else:
         with open('help/default.txt') as f:
             print(f.read())
+
+
+def valid_options(options, only_one_of) -> bool:
+    sum_bools = 0
+    for opt, _ in options:
+        if opt in only_one_of:
+            sum_bools += 1
+    return sum_bools < 2
+
 
 def main():
 
@@ -52,25 +62,53 @@ def main():
 
         # Menu prompt
         graph_cli = input('> ').split()
+        command = graph_cli[0]
+        arguments = graph_cli[1:]
 
-        if graph_cli[0] == 'coursesearch' or 'c' == graph_cli[0]:
+        if command == 'coursesearch' or 'c' == command:
             print('\nCourse Search')
             while True:
                 keep_going = coursesearch(course_info)
                 if not keep_going:
                     break
 
-        elif graph_cli[0] == 'makegraph' or graph_cli[0] == 'm':
-            print('\nPrerequisite Graph')
-            while True:
-                keep_going = makegraph(course_info)
-                if not keep_going:
-                    break
+        elif command == 'makegraph' or command == 'm':
 
-        elif graph_cli[0] == 'help' or graph_cli[0] == 'h':
-            help(graph_cli)
+            try:
+                options = 'dpcCo:'
+                optlist, _ = getopt.getopt(arguments, options)
+                if not valid_options(optlist, ['-d', '-p', '-c', '-C']):
+                    print('only one of [-d, -p, -c, -C]')
+                    continue
 
-        elif is_quit(graph_cli[0]):
+                print('\nPrerequisite Graph')
+                while True:
+
+                    args = {}
+                    for opt, val in optlist:
+                        if opt == '-d':
+                            args['department'] = True
+                        if opt == '-p':
+                            args['program'] = True
+                        if opt == '-c':
+                            args['course'] = True
+                        if opt == '-C':
+                            args['make_catalog'] = True
+                        if opt == '-o':
+                            args['output_file'] = val
+
+                    keep_going = makegraph(course_info, **args)
+
+                    if not keep_going:
+                        break
+
+            except getopt.error as err:
+                print(str(err))
+
+        elif command == 'help' or command == 'h':
+            help(arguments)
+
+        elif is_quit(command):
             break
 
         else:
