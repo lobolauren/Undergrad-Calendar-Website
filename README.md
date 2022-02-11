@@ -1,6 +1,6 @@
 README for 3760 Project - Team 2, UoGuelph W22
 
-# Sprint 3
+# Sprint 4
 
 Requirements:
  - Python version 3.x + pip
@@ -31,21 +31,39 @@ sudo apt-get install chromium
 ```
 sudo apt install graphviz
 ```
+#### Install Graphviz (apt: debian-based systems)
+```
+sudo apt install graphviz
+```
 
 ## Running the scraper:
- - First, run the scraper program to get information about UoGuelph courses 
+### Scraping Guelph courses
+- Run scraper.py program to get information about UoGuelph courses 
 ``` 
 python scraper.py
 ```
 
 - Generates a JSON file called ```course_info.json``` containing all the course data from https://calendar.uoguelph.ca/undergraduate-calendar/course-descriptions/.
 
+### Scrapping Carleton courses
+- Run scraper.py program to get information about Carleton courses 
+``` 
+python scraper_carleton.py
+```
+
+- Generates a JSON file called ```course_info_carleton.json``` containing all the course data from https://calendar.carleton.ca/undergrad/courses/.
+
 ## Running the CLI:
- - Run this after running scraper.py, or if the course_info.json file already exists.
+ - Run this after running scraper.py, or if the course_info.json or the course_info_carleton.json file already exists.
 ```
 python main.py
 ```
  - The user can then follow command prompts from the program
+ - By default, the CLI runs with the Guelph course data.
+ - Running the CLI with Carleton courses:
+```
+python main.py course_info_carleton.json
+```
 #### Commands:
 
 - `coursesearch` search for courses at UoG
@@ -53,7 +71,13 @@ python main.py
     - code: [dept]\*[code] or [dept] or [code]
     - ex. 'CIS\*3090', 'cis', '1000'
   - Will display a list of all courses found that fit the search criteria
-- `makegraph` create prerequsite graph for UoG courses
+- `makegraph` create prerequsite graph for UoG or Carleton
+  - The makegraph command can be launched with any of these command line options:
+    - '-d' allows graphing a department
+    - '-p' allows graphing a program
+    - '-c' allows graphing a course
+    - '-C' allows creating a catalogue of all the courses or subjects
+    - '-o' allows naming the output for the output file
   - The user can enter a course name 
     - (format: [dept]*[code] ex. 'CIS\*3090')
   - Or a department code (ex. 'cis')
@@ -64,9 +88,7 @@ python main.py
 ### Running the unit tests:
 ```
 cd tests
-python test_scraper.py
-python test_makegraph.py
-python test_suite.py (runs both)
+pytest # Runs all the pytest unit tests
 ```
 - Tests for the web scraper/graph functions
 
