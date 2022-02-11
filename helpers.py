@@ -3,7 +3,8 @@ from typing import List
 # Given a full course code (i.e. CIS*3760), return course attr (i.e. cis)
 def get_course_attr(course_str: str, upper=False):
 
-    if not "*" in course_str: return course_str
+    if not "*" in course_str: 
+        return course_str
 
     if upper:
         return course_str[:course_str.index('*')].upper().strip()
@@ -16,7 +17,7 @@ def get_course_number(course_str: str):
 
 
 # general function that returns true or false based on user input
-def bool_query_loop(message_str: str, err_str: str, true_res, false_res):
+def bool_query_loop(message_str: str, err_str: str="[y/n]", true_res=['yes', 'y'], false_res=['no', 'n']):
     while True:
 
         # strip user input and lowercase it
@@ -40,6 +41,47 @@ def query_loop(message_str: str, err_str: str, valid_func):
 
         print(err_str)
 
+
+def valid_code(code: str, valid_codes: List[str]=[]) -> bool:
+    if valid_codes:
+        return code in valid_codes
+    else:
+        if '*' not in code:
+            return False
+        if len(code) > 9 or len(code) < 8:
+            return False
+        if not code[-4:].isnumeric():
+            return False
+        if not code[:code.index('*')].isalpha():
+            return False
+    return True
+
+def valid_dept(dept: str, valid_depts: List[str]=[]) -> bool:
+    if valid_depts:
+        return dept in valid_depts
+    else:
+        if not dept.isalpha():
+            return False
+        if len(dept) > 4 and len(dept) < 3:
+            return False
+    return True
+
+
+def valid_program(program: str, valid_programs: List[str]=[]) -> bool:
+    if valid_programs:
+        return program in valid_programs
+    else:
+        if not program.isalpha():
+            return False
+    return True
+
+def is_quit(input_str):
+    if input_str.lower() == 'q' or input_str.lower() == 'quit':
+        return True
+    return False
+
+def given_true_arg(kwargs, arg):
+    return arg in kwargs and kwargs[arg]
 
 # Functions to easily access course info 
 
@@ -91,3 +133,15 @@ def get_all_courses(data: dict) -> List[dict]:
     except KeyError:
         return []
     return courses
+
+def get_all_depts(data: dict) -> List[str]:
+    try:
+        return data['courses'].keys()
+    except KeyError:
+        return []
+
+def get_all_programs(data: dict) -> List[str]:
+    try:
+        return data['programs'].keys()
+    except KeyError:
+        return []
