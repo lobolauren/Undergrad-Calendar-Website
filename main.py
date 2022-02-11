@@ -84,7 +84,13 @@ def main():
                 print('\nPrerequisite Graph')
                 while True:
 
-                    args = {}
+                    args = {
+                        'department': False,
+                        'program': False,
+                        'course': False,
+                        'make_catalog': False,
+                        'output_file': '',
+                    }
                     for opt, val in optlist:
                         if opt == '-d':
                             args['department'] = True
