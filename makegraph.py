@@ -12,9 +12,10 @@ DEFAULT_GRAPH_ATTRS = {
 }
 
 # Makegraph helper functions
-def save_graph_to_pdf(graph: Digraph, filename):
+def save_graph_to_pdf(graph: Digraph, filename, log=False, cleanup=True):
     graph.format = 'pdf'
-    graph.render(filename=filename, directory="graph-output", cleanup=True).replace('\\', '/')
+    f = graph.render(filename=filename, directory="graph-output", cleanup=cleanup).replace('\\', '/')
+    print(f'file saved to: {f}')
 
 
 # add necessary elements to legend
@@ -263,9 +264,7 @@ def get_filename(name: str):
     if bool_query_loop('Name graph file? [y/n] '):
         filename = input("Enter graph name: ").strip()
 
-    filename = fix_filename(filename)
-    print("File: "+ filename + " has been created." )
-    return filename
+    return fix_filename(filename)
 
 
 # make a multi-page pdf file with each department on a different page
@@ -283,7 +282,9 @@ def make_dept_catalog(course_data, filename):
         dept_graph_pdf = PyPDF2.PdfFileReader(io.BytesIO(dept_graph.pipe()))
         merger.append(dept_graph_pdf)
 
-    merger.write('graph-output/'+filename if filename else get_filename('department-catalog')+'.pdf')
+    filename = filename if filename else get_filename('department-catalog')+'.pdf'  
+    merger.write(f'graph-output/{filename}')
+    print(f'file saved as: {filename}')
 
 
 def make_course_catalog(course_data, filename):
@@ -300,7 +301,9 @@ def make_course_catalog(course_data, filename):
         course_graph_pdf = PyPDF2.PdfFileReader(io.BytesIO(course_graph.pipe()))
         merger.append(course_graph_pdf)
 
-    merger.write('graph-output/'+filename if filename else get_filename('course-catalog')+'.pdf')
+    filename = filename if filename else get_filename('course-catalog')+'.pdf'  
+    merger.write(f'graph-output/{filename}')
+    print(f'file saved as: {filename}')
 
 
 # Makes graph given JSON file data
@@ -308,14 +311,45 @@ def makegraph(course_data, department, program, course, make_catalog, output_fil
 
     # if -C argument is given
     if make_catalog:
+        print('Making Department Catalog...')
         if output_file and not output_file.endswith('.pdf'):
             output_file += '.pdf'
         make_dept_catalog(course_data, output_file)
         return False
 
     output_file.replace('.pdf', '')
-
     course_graph = create_course_graph("graph1")
+
+    if department:
+        print('Making Prerequisite Graph...')
+        if valid_dept(department, get_all_depts(course_data)):
+            graph_department(course_graph, department, course_data, org_name=department)
+            save_graph_to_pdf(course_graph, output_file if output_file else get_filename(department))
+        else:
+            print(f'{department} not found.')
+        return False
+
+    if program:
+        print('Making Prerequisite Graph...')
+        if valid_program(program, get_all_programs(course_data)):
+            graph_degree_program(course_graph, program, course_data)
+            save_graph_to_pdf(course_graph, output_file if output_file else get_filename(program))
+        else:
+            print(f'{program} not found.')
+        return False
+
+    if course:
+        print('Making Prerequisite Graph...')
+        if get_course(course_data, course):
+            dept = get_course_attr(course)
+            graph_course(course_graph, course, course_data, org_name=dept)
+            save_graph_to_pdf(course_graph, output_file if output_file else get_filename(course))
+        else:
+            print(f'{course} not found.')
+        return False
+
+    print('\nPrerequisite Graph Maker')
+    print('------------------------')
 
     input_ = input("Course code or department [q to quit]: ").strip().lower()
     if is_quit(input_):
