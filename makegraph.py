@@ -123,6 +123,11 @@ def navigate_course_queue(graph: Digraph, course_info, initial_queue, dept="", g
             course = course_queue.pop(0)
             course_attr = get_course_attr(course)
 
+            # skips the current course if not in the list of courses
+            # this applies to all the high school courses that are scrapped
+            if (course_attr not in course_info['courses']):
+                continue
+
             # find the course in the list of courses for the department
             for course_value in course_info['courses'][course_attr]:
                 if course_value['code'] == course:
