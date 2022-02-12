@@ -99,12 +99,13 @@ def extract_title_info(title_str=""):
     return obj
 
 
-def split_course_prereqs(prereq_text):
+def split_course_prereqs(prereq_text,course_code):
     # this is done because the extra information for each course which contained the prerequisite list
     # was one massive string we sliced it that it was only the section that had the prerequisite list
     if "Prerequisite(s):" in prereq_text:
         prereq_text = prereq_text.split("Prerequisite(s):",1)[1]
-        prereq_text = prereq_text.split(".",1)[0]
+        if "LAWS" not in course_code:
+            prereq_text = prereq_text.split(".",1)[0]
     else:
         prereq_text =" "   
     return prereq_text 
@@ -136,12 +137,12 @@ def get_prereqs(prereqs_el, prereqs_list, course_code):
         prereq_text = remove_commas_between_brackets(prereq_text)
         
         
-        prereq_text = split_course_prereqs(prereq_text)
+        prereq_text = split_course_prereqs(prereq_text,course_code)
         prereq_t = prereq_text.replace('Prerequisite(s):','')
 
         # split the prerequisite string by and since most courses used this method to sparate their list (see read me for special cases)
         tokens = prereq_t.split('and')
-        
+                    
         for i, n in enumerate(tokens):
             tokens[i]=n.replace('\xa0',' ')
 
@@ -159,28 +160,12 @@ def get_prereqs(prereqs_el, prereqs_list, course_code):
         for elements in tokens:
             #list to hold the individual special cases of or,one of etc
             new_preqs_list  = []
-
-            # courses that contains prereqs with one of...
-            if "of" in elements:
-                individual_and_prereqs = re.split(',|or|/|and',elements)
-
-                new_preqs_list = check_equivalent_courses(new_preqs_list,individual_and_prereqs,reqlist)
-
-                # if the length of the list has more than one element add it to eq_prereqs otherwise reg_prereqs
-                # this is because some words in the prereq course requirment description contains of or or so the
-                # program thinks it is a special case when it is a regular course
-                if len(new_preqs_list) > 1: 
-                    prereqs['eq_prereqs'].append(new_preqs_list)
-                else:
-                    for ele in new_preqs_list:
-                        prereqs['reg_prereqs'].append(ele)   
-
             # courses that contain prerequisties with course1 or course 2 or course3...    
-            elif "or" in elements:
+            # courses that contains prereqs with one of...
+            if "of" in elements or "or" in elements:
                 individual_and_prereqs = re.split(',|or|/|and',elements)
 
                 new_preqs_list = check_equivalent_courses(new_preqs_list,individual_and_prereqs,reqlist)
-
                 # if the length of the list has more than one element add it to eq_prereqs otherwise reg_prereqs
                 # this is because some words in the prereq course requirment description contains of or or so the
                 # program thinks it is a special case when it is a regular course
@@ -189,7 +174,7 @@ def get_prereqs(prereqs_el, prereqs_list, course_code):
                 else:
                     for ele in new_preqs_list:
                         prereqs['reg_prereqs'].append(ele)   
-               
+ 
             else: #for individual regular course requirments
                 individual_and_prereqs = re.split(',.',elements)
                 
@@ -198,9 +183,8 @@ def get_prereqs(prereqs_el, prereqs_list, course_code):
                     for tolk in reqlist:
                         if tolk in course:
                             tolk = tolk.replace(" ","*")
-                            #print("tolk " + tolk)
                             prereqs['reg_prereqs'].append(tolk)   
-   
+    
     return prereqs
     
 
