@@ -22,7 +22,7 @@ class TestCarletonScraper(unittest.TestCase):
         assert course_info != None
 
         # ARAB*3020
-        eq_list = ["ARAB 3010", "ARAB 3015"]
+        eq_list = ["ARAB*3010", "ARAB*3015"]
         arab_courses = course_info["ARAB"]
         arab_3020_index = 4
         arab_3020 = arab_courses[arab_3020_index]
@@ -31,7 +31,7 @@ class TestCarletonScraper(unittest.TestCase):
         assert arab_3020["prereqs"]["eq_prereqs"][0] == eq_list
 
         # AERO*3101
-        req_prereqs = ["MAAE 3202"]
+        req_prereqs = ["MAAE*3202"]
         aerospace_courses = course_info["AERO"]
         aero_3101_index = 2
         aero_3101 = aerospace_courses[aero_3101_index]
