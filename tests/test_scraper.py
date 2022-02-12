@@ -12,10 +12,10 @@ class TestScraper(unittest.TestCase):
 
     def test_get_course_code_function(self):
         # gets list of all course codes and compares with expected amount
-        courseCodes = scraper.get_course_codes()
-        assert courseCodes != None
-        self.assertEqual(len(courseCodes), test_constants.NUM_COURSE_CODES)
-        self.assertEqual(courseCodes[0], test_constants.TEST_COURSE_CODE)
+        course_codes = scraper.get_course_codes()
+        assert course_codes != None
+        self.assertEqual(len(course_codes), test_constants.NUM_COURSE_CODES)
+        self.assertEqual(course_codes[0], test_constants.TEST_COURSE_CODE)
 
 
     def test_get_course_info(self):
@@ -54,35 +54,36 @@ class TestScraper(unittest.TestCase):
         course_info = scraper.get_course_info(test_constants.TEST_COURSE)
         assert course_info != None
         #courses = course_info[test_constants.COURSES_CONSTANT]
-        accountingCourses = course_info[test_constants.TEST_COURSE_CODE]
+        accounting_courses = course_info[test_constants.TEST_COURSE_CODE]
 
         #Check reg_prereqs and eq_prereqs empty
-        acct1220Index = 0
-        acct1240Index = 1
-        assert accountingCourses[acct1220Index]["code"] == "ACCT*1220"
-        assert accountingCourses[acct1220Index]["prereqs"]["reg_prereqs"] == []
-        assert accountingCourses[acct1220Index]["prereqs"]["eq_prereqs"] == []
+        acct1220_index = 0
+        acct1240_index = 1
+        assert accounting_courses[acct1220_index]["code"] == "ACCT*1220"
+        assert accounting_courses[acct1220_index]["prereqs"]["reg_prereqs"] == []
+        assert accounting_courses[acct1220_index]["prereqs"]["eq_prereqs"] == []
 
         # Check reg_prereqs
-        assert accountingCourses[acct1240Index]["code"] == "ACCT*1240"
-        assert accountingCourses[acct1240Index]["prereqs"]["reg_prereqs"][0] == "ACCT*1220"
-        assert accountingCourses[acct1240Index]["prereqs"]["eq_prereqs"] == []
+        assert accounting_courses[acct1240_index]["code"] == "ACCT*1240"
+        assert accounting_courses[acct1240_index]["prereqs"]["reg_prereqs"][0] == "ACCT*1220"
+        assert accounting_courses[acct1240_index]["prereqs"]["eq_prereqs"] == []
 
         # Check eq_prereqs lists
         #courses = course_info[test_constants.COURSES_CONSTANT]
-        agrCourses = course_info[test_constants.TEST_COURSE_CODE_AGR]
+        agr_courses = course_info[test_constants.TEST_COURSE_CODE_AGR]
 
-        agr2050Index = 1
-        firstEqList = ["AGR*1110","AGR*2150"]
-        secondEqList = ["BIOL*1050","BIOL*1070"]
-        assert agrCourses[agr2050Index]["code"] == "AGR*2050"
-        assert agrCourses[agr2050Index]["prereqs"]["reg_prereqs"] == []
-        assert agrCourses[agr2050Index]["prereqs"]["eq_prereqs"][0][0] == "AGR*1110"
-        assert agrCourses[agr2050Index]["prereqs"]["eq_prereqs"][0][1] == "AGR*2150"
-        assert agrCourses[agr2050Index]["prereqs"]["eq_prereqs"][0] == firstEqList
-        assert agrCourses[agr2050Index]["prereqs"]["eq_prereqs"][1][0] == "BIOL*1050"
-        assert agrCourses[agr2050Index]["prereqs"]["eq_prereqs"][1][1] == "BIOL*1070"
-        assert agrCourses[agr2050Index]["prereqs"]["eq_prereqs"][1] == secondEqList
+        agr_2050_index = 1
+        first_eq_list = ["AGR*1110","AGR*2150"]
+        second_eq_list = ["BIOL*1050","BIOL*1070"]
+        agr_2050 = agr_courses[agr_2050_index]
+        assert agr_2050["code"] == "AGR*2050"
+        assert agr_2050["prereqs"]["reg_prereqs"] == []
+        assert agr_2050["prereqs"]["eq_prereqs"][0][0] == "AGR*1110"
+        assert agr_2050["prereqs"]["eq_prereqs"][0][1] == "AGR*2150"
+        assert agr_2050["prereqs"]["eq_prereqs"][0] == first_eq_list
+        assert agr_2050["prereqs"]["eq_prereqs"][1][0] == "BIOL*1050"
+        assert agr_2050["prereqs"]["eq_prereqs"][1][1] == "BIOL*1070"
+        assert agr_2050["prereqs"]["eq_prereqs"][1] == second_eq_list
 
 
     def test_get_program_info(self):
