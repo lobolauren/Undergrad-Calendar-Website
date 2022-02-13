@@ -99,8 +99,7 @@ pytest # Runs all the pytest unit tests
     - This is because the other option(s) either no longer exist, or aren't a course 
     - (ex. '[course] or experience in field')
   - Graphs of degree programs do not include elective credits, or indicate when there is more than one option of courses to take
-  - In cases where a prerequisite is either a high school course or a university course, the graph may show the university course as a sole prerequisite when it is not (because high school courses are not parsed as they dont exist)
     - ex. STAT*2040, for the cs degree, stat*2040 appears to have a prerequisite that is not required by the degree, which is impossible
   - For Carleton graphing cases with "and" in brackets do not show equal prerequisites properly 
     - ex. COMP 1805 with a minimum grade of C-, and either COMP 2402 or (SYSC 2004 and SYSC 2100).
-  - Carleton prerequisites also do not show non-course name related prerequisites such as ("or permission of department", etc) 
+  - Carleton prerequisites also do not show non-course name related prerequisites such as ("or permission of department", etc). They have not been parsed and therefore do not exist.
