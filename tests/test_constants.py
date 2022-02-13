@@ -43,7 +43,8 @@ PROGRAMS = {
                 "CIS*3760",
                 "CIS*4650"
             ],
-            "minor_reqs": []
+            "minor_reqs": [],
+            "major_extras": []
         }
 }
 
