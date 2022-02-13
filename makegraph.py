@@ -300,11 +300,15 @@ def make_dept_catalog(course_data, filename):
     merger.append(legend_pdf)
 
     for dept in get_all_depts(course_data):
-        dept_graph = Digraph()
-        graph_department(dept_graph, dept, course_data, org_name=dept, log=False)
+        try:
+            dept_graph = Digraph()
+            graph_department(dept_graph, dept, course_data, org_name=dept, log=False)
 
-        dept_graph_pdf = PyPDF2.PdfFileReader(io.BytesIO(dept_graph.pipe()))
-        merger.append(dept_graph_pdf)
+            dept_graph_pdf = PyPDF2.PdfFileReader(io.BytesIO(dept_graph.pipe()))
+            merger.append(dept_graph_pdf)
+            
+        except PdfReadError as e:
+            continue
 
     filename = filename if filename else get_filename('department-catalog')+'.pdf'  
     merger.write(f'graph-output/{filename}')
@@ -325,7 +329,7 @@ def make_course_catalog(course_data, filename):
 
             course_graph_pdf = PyPDF2.PdfFileReader(io.BytesIO(course_graph.pipe()))
             merger.append(course_graph_pdf)
-            
+
         except PdfReadError as e:
             continue
 
