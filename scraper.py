@@ -324,7 +324,9 @@ def get_major_requirements(page: Page, links, bach_programs): # Specific major p
             'title' : title,
             'bachelor': bachelor_title,
             'major_reqs':[],
-            'minor_reqs':[]
+            'major_extras': [],
+            'minor_reqs': [],
+            'minor_extras': []
         }
 
         print("  Scraping \'"+code+"\' requirements...", end='', flush=True)
@@ -333,6 +335,7 @@ def get_major_requirements(page: Page, links, bach_programs): # Specific major p
         table = page.query_selector('h2:text("Major") ~ .sc_courselist') 
         if table: # only if the table exists
             rows = table.query_selector_all('tr:not(areaheader)') #parse first column of table for course codes
+
             # parse every row in the column for hyperlinks (courses that exist)
             for row in rows:
                 course_el = row.query_selector('a')
@@ -341,10 +344,34 @@ def get_major_requirements(page: Page, links, bach_programs): # Specific major p
                     course_code = course_el.inner_text()
                     if len(course_code) < 10: #skip course requirments that are not courses
                         programs_reqirements[code]['major_reqs'].append(course_code)
+                else:
+                    course_li_cmt = row.query_selector(".courselistcomment")
+                    course_hours = row.query_selector(".hourscol")
+
+                    cmt = course_li_cmt.inner_text() if course_li_cmt else ''
+                    credits = course_hours.inner_text() if course_hours else ''
+
+                    # add_str = (row.inner_text()).lower()
+                    elec_dict = get_elective_str(cmt, credits)
+
+                    # adding to the list of 'extra' courses
+                    if elec_dict:
+                        duplicate = False
+                        # if the same comment is already in the list
+                        # find the duplicate elective type in the list and increment the credits needed
+                        for elec in programs_reqirements[code]['major_extras']:
+                            if elec["cmt"].lower() == elec_dict["cmt"].lower():
+                                elec["credits"] += elec_dict["credits"]
+                                duplicate = True
+                                break
+                        # when there is no duplicate, just add it
+                        if not duplicate:
+                            programs_reqirements[code]['major_extras'].append(elec_dict)
         
         # selects table of minor requirement on each degree page
         table = page.query_selector('h2:text("Minor") ~ .sc_courselist') 
         if table:  # only if the table exists
+
             rows = table.query_selector_all('tr:not(areaheader)')
             # parse every row in the column for hyperlinks (courses that exist)
             for row in rows:
@@ -354,9 +381,59 @@ def get_major_requirements(page: Page, links, bach_programs): # Specific major p
                     course_code = course_el.inner_text()
                     if len(course_code) < 10:
                         programs_reqirements[code]['minor_reqs'].append(course_code)
+                else:
+                    course_li_cmt = row.query_selector(".courselistcomment")
+                    course_hours = row.query_selector(".hourscol")
+
+                    cmt = course_li_cmt.inner_text() if course_li_cmt else ''
+                    credits = course_hours.inner_text() if course_hours else ''
+                    
+                    # add_str = (row.inner_text()).lower()
+                    elec_dict = get_elective_str(cmt, credits)
+                    
+                    # adding to the list of 'extra' courses
+                    if elec_dict:
+
+                        duplicate = False
+                        # if the same comment is already in the list
+                        # find the duplicate elective type in the list and increment the credits needed
+                        for elec in programs_reqirements[code]['minor_extras']:
+                            if elec["cmt"].lower() == elec_dict["cmt"].lower():
+                                elec["credits"] += elec_dict["credits"]
+                                duplicate = True
+                                break
+                        # when there is no duplicate, just add it
+                        if not duplicate:
+                            programs_reqirements[code]['minor_extras'].append(elec_dict)
+
         print('Done')
 
     return programs_reqirements
+
+def get_elective_str(elec_str, credits):
+    str_li = elec_str.split(' ')
+
+    # check if the first part of the string is a number (exclude cases where the line is introducing a list of courses, or a max electives per semester case)
+    if (not elec_str or not credits) or not ((str_li[0].replace('.', '')).replace('-','')).isdigit():
+        return ''
+
+    # special cases in the credits (always get the last element)
+    credits = ((credits.split(' '))[-1].split('-'))[-1]
+
+    # get the flaot value for the credits
+    cred_num = 0.0
+    if credits.replace('.','').isdigit():
+        cred_num = float(credits)
+
+    space_char = " "
+
+    ret_dict = {
+        # join the list minus the first element (a float)
+        "cmt": space_char.join(str_li[1:]),
+        "credits": cred_num
+    }
+
+    return ret_dict
 
 def get_program_info():
     # start playwright

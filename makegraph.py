@@ -203,6 +203,18 @@ def graph_department(graph: Digraph, code, data, org_name, log=True):
                 add_outside_department_course(graph, prereq)
             add_prereq(graph, prereq, course_value["code"])
 
+# adds a rectangular node to the graph for every extra requirement
+def add_extras(graph, extras):
+    # if there are extras
+    if extras:
+        ex_str = 'Extra Requirements: \n'
+        # build string
+        for extra in extras:
+            ex_str += f"\n{extra['credits']} {extra['cmt']}\n"
+        
+        # graph it
+        graph.node(ex_str, style="filled", fillcolor="aliceblue", shape="rect", fontsize="14", rank="max")
+
 
 # Graphs all the required pre-requsites and required courses for a desired degree program
 # The list of all degree programs is under "programs" in course_info.json
@@ -252,6 +264,12 @@ def graph_degree_program(graph: Digraph, degree_program, course_info, log=True):
 
     # adds all the required courses, pre-reqs, and equivalent prereqs into the graph
     navigate_course_queue(graph, course_info, initial_queue=required_courses[:], graph_degree_program=True, required_courses=required_courses)
+
+    # add extra requirments
+    if minor_search:
+        add_extras(graph, all_courses["minor_extras"])
+    else:
+        add_extras(graph, all_courses["major_extras"])
 
 
 # Remove characters that aren't allowed in a filename
