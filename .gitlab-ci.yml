@@ -23,6 +23,13 @@ cache:
     - .cache/pip
     - venv/
 
+
+stages:
+  - before_script
+  - test
+  - code_quality
+  - code_quality_tests
+
 before_script:
   - python --version  # For debugging
   - pip install virtualenv
@@ -40,23 +47,19 @@ test:
     - cd tests
     - pytest
 
-# run:
-  # script:
-  #   - python setup.py bdist_wheel
-  #   # an alternative approach is to install and run:
-  #   - pip install dist/*
-  #   # run the command here
-  # artifacts:
-  #   paths:
-  #     - dist/*.whl
+code_quality:
+  allow_failure: true
+  script:
+    - echo "Linting all the source files"
+    - cd .. 
+    - pylint ./3760-project/
 
-# pages:
-  # script:
-  #   - pip install sphinx sphinx-rtd-theme
-  #   - cd doc ; make html
-  #   - mv build/html/ ../public/
-  # artifacts:
-  #   paths:
-  #     - public
-  # rules:
-  #   - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+code_quality_tests:
+  allow_failure: true
+  script:
+    - echo "Linting all the unit tests"
+    - cd ./tests/ # navigate to tests folder
+    - pylint test_carleton_scraper.py
+    - pylint test_scraper.py
+    - pylint test_makegraph.py
+    - pylint test_suite.py
