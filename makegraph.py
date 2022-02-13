@@ -1,4 +1,5 @@
 import PyPDF2
+from PyPDF2.utils import PdfReadError
 import io
 
 from graphviz import Digraph
@@ -318,11 +319,15 @@ def make_course_catalog(course_data, filename):
     merger.append(legend_pdf)
 
     for course in get_all_courses(course_data):
-        course_graph = Digraph()
-        graph_course(course_graph, course['code'], course_data, org_name=get_course_attr(course['code']), log=False)
+        try:
+            course_graph = Digraph()
+            graph_course(course_graph, course['code'], course_data, org_name=get_course_attr(course['code']), log=False)
 
-        course_graph_pdf = PyPDF2.PdfFileReader(io.BytesIO(course_graph.pipe()))
-        merger.append(course_graph_pdf)
+            course_graph_pdf = PyPDF2.PdfFileReader(io.BytesIO(course_graph.pipe()))
+            merger.append(course_graph_pdf)
+            
+        except PdfReadError as e:
+            continue
 
     filename = filename if filename else get_filename('course-catalog')+'.pdf'  
     merger.write(f'graph-output/{filename}')

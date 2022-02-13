@@ -63,7 +63,7 @@ def command_makegraph(arguments, course_info):
                 'department': '',
                 'program': '',
                 'course': '',
-                'make_catalog': '',
+                'make_catalog': False,
                 'output_file': '',
             }
             for opt, val in optlist:
