@@ -1,6 +1,6 @@
 README for 3760 Project - Team 2, UoGuelph W22
 
-# Sprint 4
+# Sprint 5
 
 Requirements:
  - Python version 3.x + pip
