@@ -8,7 +8,9 @@ Start: `npm start`
 
 
 To install bootstrap ...
-Install: npm install bootstrap
+
+Install: `npm install bootstrap`
 
 To install jquery ...
-Install: npm install jquery
+
+Install: `npm install jquery`
