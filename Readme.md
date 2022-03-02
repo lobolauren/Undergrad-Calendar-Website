@@ -6,7 +6,11 @@ To install/start react app...
 Install: `npm install`
 Start: `npm start`
 
-Install: 'sudo apt update'
+Install: `sudo apt update`
+
+To install NGINX ...
+
+Install: `sudo apt install nginx`
 
 
 To install bootstrap ...
