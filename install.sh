@@ -56,6 +56,8 @@ else
 fi
 
 # installing npm packages
-apt install bootstrap
+npm install bootstrap
 
-apt install jquery
+npm install popper.js
+
+npm install jquery
