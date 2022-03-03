@@ -4,20 +4,13 @@ To install/start react app...
 
 
 Install: `npm install`
-Start: `npm start`
+Start Dev: `npm start`
 
-Install: `sudo apt update`
+Run Install Script (using apt): `sudo sh install.sh`
 
-To install NGINX ...
-
-Install: `sudo apt install nginx`
-
-
-To install bootstrap ...
-
-Install: `npm install bootstrap`
-
-To install jquery ...
-
-Install: `npm install jquery`
+Requirements (for non-apt installs):
+    - NGINX
+    - npm/node.js
+    - bootstrap
+    - jquery
 
