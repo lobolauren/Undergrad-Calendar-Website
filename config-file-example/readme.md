@@ -9,6 +9,9 @@ it will autamatically also be added to /etc/nginx/sites-enabled
 you can find the access log at /var/log/nginx/access.log
 you can find the error log at /var/log/nginx/error.log
 
+In order to read them, you will have to use the following command:
+`sudo vi` followed by which log you would like to read.
+
 # add the ssl certificate and key
 go to your /etc/ssl director
 
