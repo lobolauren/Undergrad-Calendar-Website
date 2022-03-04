@@ -1,0 +1,27 @@
+server 	{
+	
+	listen 80;
+
+	server_name 131.104.49.102 www.131.104.49.102;
+
+	return 301 https://131.104.49.102$request_uri;
+
+}
+
+
+server {
+
+        # SSL Configuration
+        listen 443 ssl default_server;
+	ssl_certificate 	/etc/ssl/131.104.49.102.crt;
+	ssl_certificate_key 	/etc/ssl/131.104.49.102.key;	
+
+	root /home/sysadmin/3760-project/course-utility/build;
+        index index.html index.htm index.nginx-debian.html;
+
+        server_name 131.104.49.102 www.131.104.49.102;
+
+        location / {
+                try_files $uri $uri/ =404;
+        }
+}
