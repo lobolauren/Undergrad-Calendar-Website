@@ -14,5 +14,7 @@ To install/start react app...
 
 Install: `npm install`
 Start Dev: `npm start`
+Build React Project: `npm run build`
+
 
 Run Install Script (using apt): `sudo sh install.sh`
