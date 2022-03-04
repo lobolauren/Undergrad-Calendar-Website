@@ -1,4 +1,5 @@
 # config README
+currently the site shows as "Not Secure" due to the ssl certificate being self signed
 
 # config file
 add the config file to /etc/nginx/sites-available
