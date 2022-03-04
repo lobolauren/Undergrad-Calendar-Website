@@ -26,3 +26,13 @@ openssl x509 -text -noout -in 131.104.49.102.crt
 
 View private key:
 openssl rsa -check -in 131.104.49.102.key
+
+
+
+
+
+
+# Resources Used
+https://www.digitalocean.com/community/tutorials/how-to-install-nginx-on-debian-10
+https://www.nginx.com/resources/wiki/start/?_bt=541137080527&_bk=&_bm=&_bn=g&_bg=125748574545&gclid=CjwKCAiApfeQBhAUEiwA7K_UH2p_JFq-szDxAg5ma1UbNCMZDzoNDd5DFah1Y4L4QZFOgcE2yQSL8RoCYxUQAvD_BwE
+https://www.digitalocean.com/community/tutorials/openssl-essentials-working-with-ssl-certificates-private-keys-and-csrs
