@@ -13,5 +13,23 @@ body {
 }
 
 .pageContainer {
-  margin: 5%
+  margin-top: 5%;
+  margin-left: 20%;
+  margin-right: 20%;
+}
+
+.courseblock {
+  padding: 5px;
+  background-color: rgb(234, 245, 255);
+  border-radius: 10px;
+  margin-bottom: 2%;
+}
+
+.courseblock:hover {
+  background-color: #def;
+}
+
+.courseblock span {
+  font-weight: 600;
+  font-size: large;
 }
