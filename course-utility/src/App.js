@@ -6,41 +6,27 @@ import CourseSearch from './pages/CourseSearch';
 import MakeGraph from './pages/MakeGraph';
 import NoPage from './pages/NoPage';
 import Home from './pages/Home';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 function App() {
 
   const [links] = useState([
-
-    {
-      text: 'home',
-      linkTo: '/'
-    },
-    {
-      text: 'Make Graph',
-      linkTo: '/makegraph'
-    },
-    {
-      text: 'Course Search',
-      linkTo: '/coursesearch'
-    }
+    {text: 'Home', linkTo: '/'},
+    {text: 'Make Graph', linkTo: '/makegraph'},
+    {text: 'Course Search', linkTo: '/coursesearch'}
   ])
 
   return (
     <div className="App">
       <Navbar links={links} />
-
       <Router>
-
         <Routes>
-
           <Route path="/" element={<Home />} />
           <Route path="/*" element={<NoPage />} />
           <Route path="/makegraph" element={<MakeGraph />} />
           <Route path="/coursesearch" element={<CourseSearch />} />
-
         </Routes>
-
       </Router>
     </div>
   );

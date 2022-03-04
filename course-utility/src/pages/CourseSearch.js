@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { Container } from 'react-bootstrap'
 import SearchForm from '../components/SearchForm'
 import ResultsTable from '../components/ResultsTable'
 
@@ -24,14 +25,14 @@ const CourseSearch = () => {
     ]);
 
     return (
-        <div className='pageContainer'>
+        <Container className="mt-40">
             <h3>Course Search</h3>
             <SearchForm/>
 
             <br/>
 
             <ResultsTable courses={courses}/>
-        </div>
+        </Container>
     )
 }
 
