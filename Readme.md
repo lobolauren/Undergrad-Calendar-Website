@@ -13,7 +13,9 @@ To install/start react app...
 `cd course-utility`
 
 Install: `npm install`
+
 Start Dev: `npm start`
+
 Build React Project: `npm run build`
 - Nginx points to the build folder, so this must be run if build directory is empty.
 
