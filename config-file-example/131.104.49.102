@@ -22,6 +22,7 @@ server {
         server_name 131.104.49.102 www.131.104.49.102;
 
         location / {
-                try_files $uri $uri/ =404;
+                # this change allows React router to work properly with nginx.
+                try_files $uri $uri/ /index.html;
         }
 }
