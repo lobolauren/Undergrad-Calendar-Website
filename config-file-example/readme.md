@@ -5,6 +5,8 @@ currently the site shows as "Not Secure" due to the ssl certificate being self s
 add the config file to /etc/nginx/sites-available
 it will autamatically also be added to /etc/nginx/sites-enabled
 
+NOTE: When making changes to the config files for nginx, remember to reload nginx for the changes to take effect using this command: `sudo systemctl restart nginx`
+
 # logs
 you can find the access log at /var/log/nginx/access.log
 you can find the error log at /var/log/nginx/error.log
