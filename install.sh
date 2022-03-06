@@ -55,12 +55,5 @@ else
     apt install npm
 fi
 
-# installing npm packages
-npm install bootstrap
-
-npm install popper.js
-
-npm install jquery
-
 cd course-utility
 npm install
