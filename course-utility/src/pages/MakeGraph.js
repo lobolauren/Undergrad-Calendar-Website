@@ -1,7 +1,7 @@
 import React from 'react'
 import { Container } from 'react-bootstrap'
 import InfoModal from '../components/makegraph/InfoModal'
-import MakegraphOption from '../components/makegraph/MakegraphOption'
+import MakegraphOption from '../components/makegraph/makegraphOption'
 import { Form, Button, Row, Col } from 'react-bootstrap'
 
 const MakeGraph = () => {
