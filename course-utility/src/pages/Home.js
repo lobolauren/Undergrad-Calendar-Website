@@ -4,7 +4,7 @@ const Home = () => {
     return (
         <div className='pageContainer'>
 
-            Home
+            <h1>Welcome to University of Guelph Course Utility!</h1>
             
         </div>
     )
