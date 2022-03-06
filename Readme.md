@@ -8,16 +8,26 @@ Requirements (for non-apt installs):
 - bootstrap
 - jquery
 
-To install/start react app...
+## Run Install Script (using apt)
+```
+`sudo sh install.sh`
+```
 
+## Install/start React App
+
+Install: 
+```
 `cd course-utility`
+`npm install`
+```
 
-Install: `npm install`
+Start Dev:
+```
+`npm start`
+```
 
-Start Dev: `npm start`
-
-Build React Project: `npm run build`
-- Nginx points to the build folder, so this must be run if build directory is empty.
-
-
-Run Install Script (using apt): `sudo sh install.sh`
+Build React Project:
+- Nginx points to the build folder, so the following must be run if build directory is empty.
+```
+`npm run build`
+```
