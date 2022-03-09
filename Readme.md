@@ -31,3 +31,12 @@ Build React Project:
 ```
 `npm run build`
 ```
+
+
+## Nginx
+
+Start:
+`systemctl start nginx`
+
+Stop:
+`systemctl stop nginx`
