@@ -21,7 +21,7 @@ const MakegraphOption=()=>{
                             </label>
 
                             <ReactTooltip id="departmentTip" place="right" effect="solid">
-                                Tooltip for the department graph style
+                                Graphes the desired deparment (Ex: CIS)
                             </ReactTooltip>
                         </div>
                         <div class="checkbox  checkbox-circle">
@@ -31,7 +31,7 @@ const MakegraphOption=()=>{
                             </label>
 
                             <ReactTooltip id="programTip" place="right" effect="solid">
-                                Tooltip for the program graph style
+                                Graphs the desired program (Ex: Computer Science)
                             </ReactTooltip>
                         </div>
                         <div class="checkbox  checkbox-circle">
@@ -41,7 +41,7 @@ const MakegraphOption=()=>{
                             </label>
 
                             <ReactTooltip id="courseTip" place="right" effect="solid">
-                                Tooltip for the course graph style
+                                Graphs the desired course with all its pre-requsites (Ex: CIS 3760)
                             </ReactTooltip>
                         </div>
                         <div class="checkbox  checkbox-circle">
@@ -51,7 +51,7 @@ const MakegraphOption=()=>{
                             </label>
 
                             <ReactTooltip id="catalogueTip" place="right" effect="solid">
-                                Tooltip for the catalogue graph style
+                                Graphs all the courses/subjects
                             </ReactTooltip>
                         </div>
                     </div>
