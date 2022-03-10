@@ -25,3 +25,4 @@ def get_course_info(filename):
 @app.route("/get_course_data")
 def get_course_data_json():
     return get_course_info("course_info.json")
+
