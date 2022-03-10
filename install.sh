@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # Installs all required python libraries
 # Run with: 'sh install.sh'
 
@@ -58,4 +60,4 @@ else
     apt install npm
 fi
 
-(cd course-utility && npm install)
+echo "Make sure to run 'npm install' inside the course-utility directory"
