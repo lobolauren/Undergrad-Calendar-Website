@@ -21,3 +21,4 @@ Run uWSGI..
 
 Run uWSGI server as daemon..
 `sudo systemclt start api_start.service`
+file on VM is `sudo systemclt start siteapi.service`
