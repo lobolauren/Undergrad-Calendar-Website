@@ -11,11 +11,13 @@ Requirements (for non-apt installs):
 ## Run Install Script (using apt)
 ```
 `sudo sh install.sh`
+`cd course-utility`
+`npm install`
 ```
 
 ## Install/start React App
 
-Install: 
+Install:
 ```
 `cd course-utility`
 `npm install`
