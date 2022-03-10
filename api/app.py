@@ -25,6 +25,3 @@ def get_course_info(filename):
 @app.route("/get_course_data")
 def get_course_data_json():
     return get_course_info("course_info.json")
-
-if __name__ == "__main__":
-    app.run(host='0.0.0.0')

@@ -27,6 +27,6 @@ server {
                 
                 # eWSGI connection
                 include uwsgi_params;
-                uwsgi_pass unix:/home/sammy/myproject/myproject.sock;
+                uwsgi_pass unix:/home/sysadmin/3760-project/api/myproject.sock;
         }
 }
