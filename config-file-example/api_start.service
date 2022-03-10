@@ -1,0 +1,13 @@
+[Unit]
+Description=uWSGI instance to serve app
+After=network.target
+
+[Service]
+User=sysadmin
+Group=www-data
+WorkingDirectory=/home/sysadmin/3760-project
+Environment="PATH=/home/sysadmin/3760-project/api/apiVENV/bin"
+ExecStart=/home/sysadmin/3760-project/api/apiVENV/bin/uwsgi --ini app.ini
+
+[Install]
+WantedBy=multi-user.target
