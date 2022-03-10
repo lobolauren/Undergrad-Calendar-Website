@@ -22,6 +22,6 @@ def get_course_info(filename):
     return coursedata
 
 
-@app.route("/get_course_data")
+@app.route("/get_course_data", methods=['GET'])
 def get_course_data_json():
     return get_course_info("course_info.json")
