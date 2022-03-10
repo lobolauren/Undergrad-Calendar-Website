@@ -11,9 +11,9 @@ if [ -x "$(command -v python)" ]; then
 
     # if python 2 installed
     if [ $PYV==$INT3 ]; then
-        
+
         echo "python2 already installed"
-        
+
         # check for python3 install
         if [ -x "$(command -v python3)" ]; then
             echo "python3 already installed"
@@ -33,16 +33,19 @@ if [ $VER==$INT3 ]; then
 
     # install the things with python3
     echo "installing python3 requirements"
+    pip3 install --upgrade pip
+    pip3 install -r requirements.txt
 
-else 
+else
 
     # install the things with python
     echo "installing python requirements"
+    pip install --upgrade pip
+    pip install -r requirements.txt
 
 fi
 
 # other things
-
 apt update
 
 # install nginx
@@ -55,5 +58,4 @@ else
     apt install npm
 fi
 
-cd course-utility
-npm install
+(cd course-utility && npm install)

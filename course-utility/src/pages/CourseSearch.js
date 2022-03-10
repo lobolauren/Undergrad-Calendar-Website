@@ -9,7 +9,7 @@ const CourseSearch = () => {
 
         {
             code: 'CIS*3760',
-            name: 'Gregory',
+            name: 'This Course',
             weight: '1.0',
             term: 'W',
             desc: 'String parsing mostly...'
