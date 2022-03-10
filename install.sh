@@ -33,16 +33,19 @@ if [ $VER==$INT3 ]; then
 
     # install the things with python3
     echo "installing python3 requirements"
+    pip3 install --upgrade pip
+    pip3 install -r requirements.txt
 
 else 
 
     # install the things with python
     echo "installing python requirements"
+    pip install --upgrade pip
+    pip install -r requirements.txt
 
 fi
 
 # other things
-
 apt update
 
 # install nginx
