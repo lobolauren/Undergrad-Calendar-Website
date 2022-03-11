@@ -1,13 +1,16 @@
 import os
 import json
-from flask import Flask
+from flask import Flask, send_from_directory
 
 app = Flask(__name__)
 
 @app.route("/")
 def hello_world():
     return "<p>Hello, World!</p>"
-
+    #try:
+    #    return send_from_directory()
+    #except FileNotFoundError:
+    #    abort(404)
 
 # function to open JSON file
 def get_course_info(filename):
