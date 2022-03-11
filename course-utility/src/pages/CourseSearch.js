@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
 import { Container } from 'react-bootstrap'
-import SearchForm from '../components/SearchForm'
-import ResultsTable from '../components/ResultsTable'
+import SearchForm from '../components/coursesearch/SearchForm'
+import ResultsTable from '../components/coursesearch/ResultsTable'
+import InfoModal from '../components/coursesearch/InfoModal'
 
 const CourseSearch = () => {
 
@@ -26,7 +27,7 @@ const CourseSearch = () => {
 
     return (
         <Container className="mt-40">
-            <h3>Course Search</h3>
+            <h3>Course Search <InfoModal/></h3>
             <SearchForm/>
 
             <br/>
