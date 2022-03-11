@@ -14,9 +14,9 @@ const MakegraphOption=()=>{
                     <link rel="stylesheet" type="text/css" href="bootstrap/dist/css/bootstrap.min.css" />
                     <link rel="stylesheet" type="text/css" href="https://netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" />
                     <link rel="stylesheet" type="text/css" href="https://flatlogic.github.io/awesome-bootstrap-checkbox/demo/build.css" />
-                        <div class="checkbox  checkbox-circle">
-                            <input id="chkDefault" type="checkbox" data-tip data-for="departmentTip"/>
-                            <label for="chkDefault" data-tip data-for="departmentTip">
+                        <div class="form-check">
+                            <input id="departmentInput" type="radio" name="flexRadioDefault" data-for="departmentTip" class="form-check-input"/>
+                            <label for="departmentInput" data-tip data-for="departmentTip">
                                 Department Graph
                             </label>
 
@@ -24,9 +24,9 @@ const MakegraphOption=()=>{
                                 Graphes the desired deparment (Ex: CIS)
                             </ReactTooltip>
                         </div>
-                        <div class="checkbox  checkbox-circle">
-                            <input id="chkDefault" type="checkbox" data-tip data-for="programTip"/>
-                            <label for="chkDefault" data-tip data-for="programTip">
+                        <div class="form-check">
+                            <input id="programInput" type="radio" name="flexRadioDefault" data-for="programTip" class="form-check-input"/>
+                            <label for="programInput" name="form-check-label" data-tip data-for="programTip">
                                 Program Graph
                             </label>
 
@@ -34,9 +34,9 @@ const MakegraphOption=()=>{
                                 Graphs the desired program (Ex: Computer Science)
                             </ReactTooltip>
                         </div>
-                        <div class="checkbox  checkbox-circle">
-                            <input id="chkDefault" type="checkbox" data-tip data-for="courseTip"/>
-                            <label for="chkDefault" data-tip data-for="courseTip">
+                        <div class="form-check">
+                            <input id="courseInput" type="radio" name="flexRadioDefault" data-for="courseTip" class="form-check-input"/>
+                            <label for="courseInput" name="form-check-label" data-tip data-for="courseTip">
                                 Course Graph
                             </label>
 
@@ -44,9 +44,9 @@ const MakegraphOption=()=>{
                                 Graphs the desired course with all its pre-requsites (Ex: CIS 3760)
                             </ReactTooltip>
                         </div>
-                        <div class="checkbox  checkbox-circle">
-                            <input id="chkDefault" type="checkbox" data-tip data-for="catalogueTip"/>
-                            <label for="chkDefault" data-tip data-for="catalogueTip">
+                        <div class="form-check">
+                            <input id="catalogueInput" type="radio" name="flexRadioDefault" data-for="catalogueTip" class="form-check-input"/>
+                            <label for="catalogueInput" name="form-check-label" data-tip data-for="catalogueTip">
                                 Catalogue Graph
                             </label>
 
