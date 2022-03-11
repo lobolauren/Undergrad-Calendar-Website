@@ -4,7 +4,7 @@ from flask import Flask
 
 app = Flask(__name__)
 
-@app.route("/api")
+@app.route("/")
 def hello_world():
     return "<p>Hello, World!</p>"
 
@@ -22,6 +22,6 @@ def get_course_info(filename):
     return coursedata
 
 
-@app.route("/api/get_course_data", methods=['GET'])
+@app.route("/get_course_data", methods=['GET'])
 def get_course_data_json():
     return get_course_info("course_info.json")
