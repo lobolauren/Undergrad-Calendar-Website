@@ -42,3 +42,5 @@ Start:
 
 Stop:
 `systemctl stop nginx`
+
+flask-cors-3.0.10
