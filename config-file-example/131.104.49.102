@@ -21,16 +21,11 @@ server {
 
         server_name 131.104.49.102 www.131.104.49.102;
 
-        location / {
+        # RegEx match allows any Flask endpoint to work with this block:
+        location ^~ / {
                 # this change allows React router to work properly with nginx.
                 try_files $uri $uri/ /index.html;
                 
-                # eWSGI connection
-                include uwsgi_params;
-                uwsgi_pass unix:/home/sysadmin/3760-project/api/myproject.sock;
-        }
-
-        location /get_course_data {
                 # eWSGI connection
                 include uwsgi_params;
                 uwsgi_pass unix:/home/sysadmin/3760-project/api/myproject.sock;
