@@ -8,6 +8,7 @@ NOTE: When making changes to the config files for nginx, reload nginx for the ch
 ```
 `sudo systemctl restart nginx`
 ```
+Add api_start.service from the config folder to the 'etc/systemd/system/' folder
 
 # Logs
 - Find the access log at /var/log/nginx/access.log

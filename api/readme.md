@@ -8,7 +8,7 @@ Commands:
 `pip install wheel`
 `pip install uwsgi flask`
 
-Add api_start.service to the 'etc/systemd/system/' folder
+Add api_start.service from the config folder to the 'etc/systemd/system/' folder
 
 # Config
 in the api folder..
