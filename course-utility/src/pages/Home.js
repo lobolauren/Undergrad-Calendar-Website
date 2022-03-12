@@ -10,7 +10,7 @@ const Home = () => {
     useEffect( () => {
 
         const fetchData = async () => {
-          axios.get("http://localhost:5000/").then( (res) => {
+          axios.get("https://131.104.49.102:5000/").then( (res) => {
             setData(res.data);
           });
 
