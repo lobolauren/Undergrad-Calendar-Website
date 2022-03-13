@@ -10,7 +10,7 @@ const Home = () => {
     useEffect( () => {
 
         const fetchData = async () => {
-          axios.get("http://localhost:5000/").then( (res) => {
+          axios.get("https://131.104.49.102/api/").then( (res) => {
             setData(res.data);
           });
 
@@ -19,12 +19,20 @@ const Home = () => {
         fetchData();
 
     },[]);
+
     console.log(data);
+    
+    function buttonClick() {
+	alert(data);
+    }
+
     return (
         <div className="pageContainer text-center">
             <img src={logo} alt="logo" className="img-fluid" />
 
             <h1>Welcome to University of Guelph Course Utility! {data}</h1>
+	    
+	    <button onclick="buttonClick()">API CALL</button>
 
         </div>
     )
