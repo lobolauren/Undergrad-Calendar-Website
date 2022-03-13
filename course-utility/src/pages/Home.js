@@ -1,7 +1,9 @@
 import React from 'react'
 import logo from './uogLogo.png'
-import { useEffect, useState } from "react";
 import axios from 'axios';
+
+import { useEffect, useState } from "react";
+import { Button } from 'react-bootstrap'
 
 const Home = () => {
 
@@ -23,7 +25,7 @@ const Home = () => {
     console.log(data);
     
     function buttonClick() {
-	alert(data);
+        alert(data)
     }
 
     return (
@@ -32,7 +34,7 @@ const Home = () => {
 
             <h1>Welcome to University of Guelph Course Utility! {data}</h1>
 	    
-	    <button onClick={buttonClick}>API CALL</button>
+            <Button as="input" type="button" variant="success" value="API Call" onClick={buttonClick}/>
 
         </div>
     )
