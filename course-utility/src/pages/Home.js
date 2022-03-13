@@ -32,7 +32,7 @@ const Home = () => {
 
             <h1>Welcome to University of Guelph Course Utility! {data}</h1>
 	    
-	    <button onclick="buttonClick()">API CALL</button>
+	    <button onClick={buttonClick}>API CALL</button>
 
         </div>
     )
