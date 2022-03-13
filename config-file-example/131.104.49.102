@@ -10,7 +10,7 @@ server 	{
 
 
 server {
-        
+
         # SSL Configuration
         listen 443 ssl default_server;
 	ssl_certificate 	/etc/ssl/131.104.49.102.crt;
@@ -26,6 +26,31 @@ server {
                 # this change allows React router to work properly with nginx.
                 try_files $uri $uri/ /index.html;
                 
+                # eWSGI connection
+                include uwsgi_params;
+                uwsgi_pass unix:/home/sysadmin/3760-project/api/myproject.sock;
+        }
+
+        
+}
+
+server {
+
+        ssl_certificate 	/etc/ssl/131.104.49.102.crt;
+	ssl_certificate_key 	/etc/ssl/131.104.49.102.key;	
+
+	root /home/sysadmin/3760-project/course-utility/build;
+        index index.html index.htm index.nginx-debian.html;
+
+        server_name 131.104.49.102 www.131.104.49.102;
+
+        location / {
+                # eWSGI connection
+                include uwsgi_params;
+                uwsgi_pass unix:/home/sysadmin/3760-project/api/myproject.sock;
+        }
+
+        location /get_course_data {
                 # eWSGI connection
                 include uwsgi_params;
                 uwsgi_pass unix:/home/sysadmin/3760-project/api/myproject.sock;
