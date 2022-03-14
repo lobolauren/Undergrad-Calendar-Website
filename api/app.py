@@ -1,27 +1,21 @@
 from flask import Flask
+from flask_cors import CORS
 import json
 
-app = Flask(__name__)
+from course_search import get_course_info
 
-@app.route('/api/')
+BASE_PATH = '/api'
+
+app = Flask(__name__)
+CORS(app)
+
+@app.route(f'{BASE_PATH}/')
 def hello():
     return 'Hello world!'
 
-# function to open JSON file
-def get_course_info(filename):
-    try:
-        with open(filename, 'r') as file:
-            data = file.read()
-            coursedata = json.loads(data)
-    # if the file isnt found, return nothing
-    except FileNotFoundError as e:
-        return {}
-    return coursedata
-
-@app.route("/api/get_course_data/", methods=['GET'])
+@app.route(f'{BASE_PATH}/get_course_data/', methods=['GET'])
 def get_course_data_json():
     return get_course_info("course_info.json")
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0')
-

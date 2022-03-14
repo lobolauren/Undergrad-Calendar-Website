@@ -1,46 +1,35 @@
 README for 3760 Project - Team 2, UoGuelph W22
 
-# Sprint 5
+# Sprint 7
 
-Requirements (for non-apt installs):
-- NGINX
-- npm/node.js
-- bootstrap
-- jquery
+## Installation
 
-## Run Install Script (using apt)
-```
-`sudo sh install.sh`
-`cd course-utility`
-`npm install`
+```bash
+sudo sh install.sh
+cd course-utility
+npm install
 ```
 
-## Install/start React App
+## Running Dev Server
 
-Install:
-```
-`cd course-utility`
-`npm install`
-```
+```bash
+cd course-utility
+npm start
 
-Start Dev:
-```
-`npm start`
+# in a seperate terminal:
+cd api
+flask run
 ```
 
-Build React Project:
-- Nginx points to the build folder, so the following must be run if build directory is empty.
+## Create Production Build
+
+> nginx points to the build folder, so the following must be run to show up on web page.
+
+```bash
+cd course-utility
+npm run build
 ```
-`npm run build`
-```
 
+### Run Production Build
 
-## Nginx
-
-Start:
-`systemctl start nginx`
-
-Stop:
-`systemctl stop nginx`
-
-flask-cors-3.0.10
+Follow the steps included in `config-file-example`.

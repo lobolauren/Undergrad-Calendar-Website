@@ -12,15 +12,12 @@ const Home = () => {
     useEffect( () => {
 
         const fetchData = async () => {
-          axios.get("https://131.104.49.102/api/").then( (res) => {
+          axios.get(global.config.base_url + '/').then((res) => {
             setData(res.data);
           });
-
         }
-
         fetchData();
-
-    },[]);
+    }, []);
 
     console.log(data);
     
@@ -32,7 +29,7 @@ const Home = () => {
         <div className="pageContainer text-center">
             <img src={logo} alt="logo" className="img-fluid" />
 
-            <h1>Welcome to University of Guelph Course Utility! {data}</h1>
+            <h1>Welcome to University of Guelph Course Utility!</h1>
 	    
             <Button as="input" type="button" variant="success" value="API Call" onClick={buttonClick}/>
 
