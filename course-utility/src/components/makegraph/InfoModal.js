@@ -37,7 +37,7 @@ function InfoModal() {
           </ul>
         </Modal.Body>
         <Modal.Footer>
-          <Button onClick={() => {}}>Close</Button>
+          <Button onClick={handleClose}>Close</Button>
         </Modal.Footer>
       </Modal>
     </>

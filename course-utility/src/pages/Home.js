@@ -1,5 +1,5 @@
 import React from 'react'
-import logo from './uogLogo.png'
+import logo from '../assets/uogLogo.png'
 import axios from 'axios';
 
 import { useEffect, useState } from "react";

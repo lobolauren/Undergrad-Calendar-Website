@@ -25,13 +25,12 @@ function InfoModal() {
               Courses are from the 2021-2022 Academic calendar year which is accessed <a href="https://calendar.uoguelph.ca/undergraduate-calendar/course-descriptions/">here</a>.
             </li>
             <li>
-            When searching course weights, you can either search for all course weights, or you can search for one specific
-                course weight.
+            When searching course weights, you can either search for all course weights, or you can search for one specific course weight.
             </li>
           </ul>
         </Modal.Body>
         <Modal.Footer>
-          <Button onClick={() => {}}>Close</Button>
+          <Button onClick={handleClose}>Close</Button>
         </Modal.Footer>
       </Modal>
     </>
