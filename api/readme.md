@@ -1,27 +1,22 @@
 # Flask and uWSGI readme
 
-# Instalation
-Commands:
-`python3 -m venv apiVENV`
-`source apiVENV/bin/activate`
-`apt-get install python3-all-dev`
-`pip install wheel`
-`pip install uwsgi flask`
+## Installation
+```bash
+python3 -m venv env
+source env/bin/activate
+apt-get install python3-all-dev
+pip install -r requirements.txt
+```
 
-Add api_start.service from the config folder to the 'etc/systemd/system/' folder
+See readme in `../config-file-example/` for further instructions
 
-# Config
-in the api folder..
-the app.ini is the config file for uWSGI
+## Config
+the `app.ini` is the config file for uWSGI
 
-# Running
+## Running
 
-Run Flask..
-`flask run`
+Run Flask: `flask run`
 
-Run uWSGI..
-`uwsgi --ini app.ini`
+Run uWSGI: `uwsgi --ini app.ini`
 
-Run uWSGI server as daemon..
-`sudo systemctl start api_start.service`
-file on VM is `sudo systemctl start siteapi.service`
+Run uWSGI server as daemon: `sudo systemctl start api_start.service` (file on our VM is `sudo systemctl start siteapi.service`)
