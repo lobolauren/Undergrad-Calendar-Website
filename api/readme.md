@@ -1,6 +1,6 @@
 # Flask and uWSGI readme
 
-# Instilation
+# Instalation
 Commands:
 `python3 -m venv apiVENV`
 `source apiVENV/bin/activate`

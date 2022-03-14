@@ -1,6 +1,6 @@
 README for 3760 Project - Team 2, UoGuelph W22
 
-# Sprint 5
+# Sprint 6
 
 Requirements (for non-apt installs):
 - NGINX
@@ -44,3 +44,26 @@ Stop:
 `systemctl stop nginx`
 
 flask-cors-3.0.10
+
+
+## uWSGI/Flask
+Install..
+`sudo sh install.sh`
+for more details check the api folder readme
+
+Config..
+in the api folder..
+the app.ini is the config file for uWSGI
+in the config-file-example folder..
+Add api_start.service from the config folder to the 'etc/systemd/system/' folder
+
+To Test..
+Run Flask..
+`flask run`
+Run uWSGI..
+`uwsgi --ini app.ini`
+
+For Production..
+Run uWSGI server as daemon..
+`sudo systemctl start api_start.service`
+file on VM is `sudo systemctl start siteapi.service`

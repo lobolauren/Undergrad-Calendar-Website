@@ -2,13 +2,13 @@
 ### Currently, the site shows as "Not Secure" due to the SSL Certificate being self signed
 
 # Config File
+- Add api_start.service from the config folder to the 'etc/systemd/system/' folder
 - Add the config file to /etc/nginx/sites-available. It will automatically be added to /etc/nginx/sites-enabled
 
 NOTE: When making changes to the config files for nginx, reload nginx for the changes to take effect using this following command:
 ```
 `sudo systemctl restart nginx`
 ```
-Add api_start.service from the config folder to the 'etc/systemd/system/' folder
 
 # Logs
 - Find the access log at /var/log/nginx/access.log
