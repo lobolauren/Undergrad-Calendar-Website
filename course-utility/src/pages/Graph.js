@@ -267,7 +267,7 @@ const Graph = () => {
 
   useEffect(() => {
     const getGraph = () => {
-      axios.get(global.config.base_url + '/graph/' + params.code).then((res) => {
+      axios.get(global.config.base_url + '/graph/course/' + params.code).then((res) => {
         setNodes(res.data.nodes);
         setEdges(res.data.edges);
       })

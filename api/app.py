@@ -54,11 +54,11 @@ def get_courses_list():
     )
 
 
-@app.route(f'{BASE_URL}/graph/<code>')
+@app.route(f'{BASE_URL}/graph/course/<code>')
 def get_course_graph(code):
     if '*' in code:
         # in order to keep urls clean we'll remove the * from the course codes
-        new_url = f'{BASE_URL}/course/{code.replace("*", "")}'
+        new_url = f'{BASE_URL}/graph/course/{code.replace("*", "")}'
         return redirect(new_url, code=308)
     else:
         code = make_code_valid(code)
