@@ -1,11 +1,13 @@
-import Navbar from './components/global/Navbar'
-import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
 import { useState } from "react";
+import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
 
+import Navbar from './components/global/Navbar'
 import CourseSearch from './pages/CourseSearch';
 import MakeGraph from './pages/MakeGraph';
 import NoPage from './pages/NoPage';
+import Graph from './pages/Graph';
 import Home from './pages/Home';
+
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 
@@ -26,6 +28,7 @@ function App() {
           <Route path="/*" element={<NoPage />} />
           <Route path="/makegraph" element={<MakeGraph />} />
           <Route path="/coursesearch" element={<CourseSearch />} />
+          <Route path="/graph/course/:code" element={<Graph />} />
         </Routes>
       </Router>
     </div>
