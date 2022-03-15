@@ -1,4 +1,5 @@
 from unicodedata import name
+from cv2 import log
 from flask import Flask, redirect, request
 from flask_cors import CORS
 
@@ -74,6 +75,11 @@ def test():
 
     ])
 
+
+@app.route(f'{BASE_URL}/courses_recieve', methods=['GET', 'POST'])
+def log_data():
+    print(request.args)
+    return 'success'
 
 
 if __name__ == '__main__':

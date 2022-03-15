@@ -8,9 +8,27 @@ import InfoModal from '../components/coursesearch/InfoModal'
 
 const CourseSearch = () => {
 
-    const [courses, setCourses] = useState();
+    const testSubmitData = {
+        name: 'test',
+        code: '3760',
+        weight: '0.5',
+        term: 'W'
+    }
 
+    
+    const [courses, setCourses] = useState();
+    
     useEffect(() => {
+        
+        const sendData = async () => {
+            axios.post(global.config.base_url + '/courses_recieve', testSubmitData).then((res) => {
+                console.log(res);
+            }, (err) => {
+                console.log(err);
+            });
+        }
+        
+        sendData();
 
         const fetchData = async () => {
             axios.get(global.config.base_url + '/coursestest').then((res) => {
