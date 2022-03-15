@@ -1,4 +1,6 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
+import axios from 'axios';
+
 import { Container } from 'react-bootstrap'
 import SearchForm from '../components/coursesearch/SearchForm'
 import ResultsTable from '../components/coursesearch/ResultsTable'
@@ -6,24 +8,17 @@ import InfoModal from '../components/coursesearch/InfoModal'
 
 const CourseSearch = () => {
 
-    const [courses, setCourses] = useState([
+    const [courses, setCourses] = useState();
 
-        {
-            code: 'CIS*3760',
-            name: 'This Course',
-            weight: '1.0',
-            term: 'W',
-            desc: 'String parsing mostly...'
-        },
-        {
-            code: 'CIS*1000',
-            name: 'Intro to Bees',
-            weight: '1000000.0',
-            term: 'P',
-            desc: 'According to all known laws of aviation, there is no way that a bee should be able to fly. Its wings are too small to get its fat little body off the ground. The bee, of course, flies anyway because bees don\'t care what humans think is impossible.'
+    useEffect(() => {
+
+        const fetchData = async () => {
+            axios.get(global.config.base_url + '/coursestest').then((res) => {
+                setCourses(res.data);
+            });
         }
-
-    ]);
+        fetchData();
+    }, []);
 
     return (
         <Container className="mt-40">

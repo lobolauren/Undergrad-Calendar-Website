@@ -5,6 +5,8 @@ from flask_cors import CORS
 from course_search import get_course_data, get_course_info, get_courses
 from helpers import make_code_valid
 
+import json
+
 BASE_URL = '/api'
 
 app = Flask(__name__)
@@ -50,6 +52,29 @@ def get_courses_list():
         weight=get_arg(args, 'weight'),
         term=get_arg(args, 'term')
     )
+
+
+@app.route(f'{BASE_URL}/coursestest')
+def test():
+    return json.dumps([
+        {
+            "code": 'CIS*3760',
+            "name": 'This Course',
+            "weight": '1.0',
+            "term": 'W',
+            "desc": 'String parsing mostly...'
+        },
+        {
+            "code": 'CIS*1000',
+            "name": 'Intro to Bees',
+            "weight": '1000000.0',
+            "term": 'P',
+            "desc": 'According to all known laws of aviation, there is no way that a bee should be able to fly. Its wings are too small to get its fat little body off the ground. The bee, of course, flies anyway because bees don\'t care what humans think is impossible.'
+        }
+
+    ])
+
+
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0')

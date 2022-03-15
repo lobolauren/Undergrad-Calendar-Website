@@ -1,3 +1,3 @@
 module.exports = global.config = {
-    base_url: 'https://131.104.49.102/api/'
+    base_url: 'http://localhost:5000/api'
 };

@@ -18,8 +18,6 @@ const Home = () => {
         }
         fetchData();
     }, []);
-
-    console.log(data);
     
     function buttonClick() {
         alert(data)
