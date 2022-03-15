@@ -8,19 +8,41 @@ class SearchForm extends React.Component {
     handleSubmit = (event) => {
         event.preventDefault();
 
-        // TODO: get the course details and call setState
         var courseName = event.target.courseName.value;
         var courseCode = event.target.courseCode.value;
         var courseWeight = event.target.courseWeights.value;
         var isFallSelected = event.target.fallCheckbox.checked;
         var isWinterSelected = event.target.winterCheckbox.checked;
         var isSummerSelected = event.target.summerCheckbox.checked;
+        
+        // get terms selected
+        var terms = this.buildTermsArray(isFallSelected, isWinterSelected, isSummerSelected);
+
+        var courseSearchQuery = {
+            "courseName": courseName,
+            "courseCode": courseCode,
+            "courseWeight": courseWeight,
+            "terms": terms
+        }
+
+        console.log(courseSearchQuery);
         console.log("Course name = " + courseName);
         console.log("Course code = " + courseCode);
         console.log("Course weight = " + courseWeight);
         console.log("Fall selected = " + isFallSelected);
         console.log("Winter selected = " + isWinterSelected);
         console.log("Summer selected = " + isSummerSelected);
+    }
+
+    buildTermsArray(isFallSelected, isWinterSelected, isSummerSelected) {
+        var terms = [];
+        if (isFallSelected)
+            terms.push("F");
+        if (isWinterSelected)
+            terms.push("W");
+        if (isSummerSelected)
+            terms.push("S");
+        return terms;
     }
 
     render() {
