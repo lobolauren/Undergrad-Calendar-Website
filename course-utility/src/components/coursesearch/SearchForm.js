@@ -19,9 +19,9 @@ class SearchForm extends React.Component {
         let terms = this.buildTermsArray(isFallSelected, isWinterSelected, isSummerSelected);
 
         let courseSearchQuery = {
-            "courseName": courseName,
-            "courseCode": courseCode,
-            "courseWeight": courseWeight,
+            "name": courseName,
+            "code": courseCode,
+            "weight": courseWeight,
             "terms": terms
         }
 
