@@ -8,34 +8,28 @@ class SearchForm extends React.Component {
     handleSubmit = (event) => {
         event.preventDefault();
 
-        var courseName = event.target.courseName.value;
-        var courseCode = event.target.courseCode.value;
-        var courseWeight = event.target.courseWeights.value;
-        var isFallSelected = event.target.fallCheckbox.checked;
-        var isWinterSelected = event.target.winterCheckbox.checked;
-        var isSummerSelected = event.target.summerCheckbox.checked;
+        let courseName = event.target.courseName.value;
+        let courseCode = event.target.courseCode.value;
+        let courseWeight = event.target.courseWeights.value;
+        let isFallSelected = event.target.fallCheckbox.checked;
+        let isWinterSelected = event.target.winterCheckbox.checked;
+        let isSummerSelected = event.target.summerCheckbox.checked;
         
         // get terms selected
-        var terms = this.buildTermsArray(isFallSelected, isWinterSelected, isSummerSelected);
+        let terms = this.buildTermsArray(isFallSelected, isWinterSelected, isSummerSelected);
 
-        var courseSearchQuery = {
-            "courseName": courseName,
-            "courseCode": courseCode,
-            "courseWeight": courseWeight,
+        let courseSearchQuery = {
+            "name": courseName,
+            "code": courseCode,
+            "weight": courseWeight,
             "terms": terms
         }
 
         console.log(courseSearchQuery);
-        console.log("Course name = " + courseName);
-        console.log("Course code = " + courseCode);
-        console.log("Course weight = " + courseWeight);
-        console.log("Fall selected = " + isFallSelected);
-        console.log("Winter selected = " + isWinterSelected);
-        console.log("Summer selected = " + isSummerSelected);
     }
 
     buildTermsArray(isFallSelected, isWinterSelected, isSummerSelected) {
-        var terms = [];
+        let terms = [];
         if (isFallSelected)
             terms.push("F");
         if (isWinterSelected)
@@ -48,7 +42,7 @@ class SearchForm extends React.Component {
     render() {
         return (
             <div className='courseSearch'>
-                <Form onSubmit={this.handleSubmit} bg="dark" expand="lg" variant="dark">
+                <Form onSubmit={this.handleSubmit} bg="dark" expand="lg" letiant="dark">
                     
                     <Row>
                         <Form.Group as={Col}>
