@@ -1,49 +1,72 @@
 import React from 'react'
 import { Form, Button, Row, Col } from 'react-bootstrap'
 
-const SearchForm = () => {
-    return (
-        <div className='courseSearch'>
-            <Form bg="dark" expand="lg" variant="dark">
-                
-                <Row>
-                    <Form.Group as={Col}>
-                        <Form.Label>Course Name</Form.Label>
-                        <Form.Control type='name' placeholder='Course Name' />
-                    </Form.Group>
-                </Row>
+
+class SearchForm extends React.Component {
+
+
+    handleSubmit = (event) => {
+        event.preventDefault();
+
+        // TODO: get the course details and call setState
+        var courseName = event.target.courseName.value;
+        var courseCode = event.target.courseCode.value;
+        var courseWeight = event.target.courseWeights.value;
+        var isFallSelected = event.target.fallCheckbox.checked;
+        var isWinterSelected = event.target.winterCheckbox.checked;
+        var isSummerSelected = event.target.summerCheckbox.checked;
+        console.log("Course name = " + courseName);
+        console.log("Course code = " + courseCode);
+        console.log("Course weight = " + courseWeight);
+        console.log("Fall selected = " + isFallSelected);
+        console.log("Winter selected = " + isWinterSelected);
+        console.log("Summer selected = " + isSummerSelected);
+    }
+
+    render() {
+        return (
+            <div className='courseSearch'>
+                <Form onSubmit={this.handleSubmit} bg="dark" expand="lg" variant="dark">
                     
                     <Row>
                         <Form.Group as={Col}>
-                            <Form.Label>Course Code</Form.Label>
-                            <Form.Control type='code' placeholder='Course Code/Number'/>
-                        </Form.Group>    
-    
-                        <Form.Group as={Col}>
-                            <Form.Label>Select Weights</Form.Label>
-                            <Form.Select defaultValue='all'>
-                                <option>all</option>
-                                <option>0.25</option>
-                                <option>0.5</option>
-                                <option>0.75</option>
-                                <option>1.0</option>
-                            </Form.Select>
-                        </Form.Group>    
-
+                            <Form.Label>Course Name</Form.Label>
+                            <Form.Control type='name' placeholder='Course Name' id="courseName"/>
+                        </Form.Group>
                     </Row>
+                        
+                        <Row>
+                            <Form.Group as={Col}>
+                                <Form.Label>Course Code</Form.Label>
+                                <Form.Control type='code' placeholder='Course Code/Number' id="courseCode"/>
+                            </Form.Group>    
+        
+                            <Form.Group as={Col}>
+                                <Form.Label>Select Weights</Form.Label>
+                                <Form.Select defaultValue='all' id="courseWeights">
+                                    <option>all</option>
+                                    <option>0.25</option>
+                                    <option>0.5</option>
+                                    <option>0.75</option>
+                                    <option>1.0</option>
+                                </Form.Select>
+                            </Form.Group>    
 
-                    <Row>
-                        <div className='termBox'>
-                            <Form.Check type='checkbox' label='F' inline='true'/>
-                            <Form.Check type='checkbox' label='W' inline='true'/>
-                            <Form.Check type='checkbox' label='S' inline='true'/>
-                        </div>
-                    </Row>
-                    
-                <Button type='submit'>Search</Button>
-            </Form>
-        </div>
-    )
+                        </Row>
+
+                        <Row>
+                            <div className='termBox'>
+                                <Form.Check type='checkbox' label='F' inline='true' id="fallCheckbox"/>
+                                <Form.Check type='checkbox' label='W' inline='true' id="winterCheckbox"/>
+                                <Form.Check type='checkbox' label='S' inline='true' id="summerCheckbox"/>
+                            </div>
+                        </Row>
+                        
+                    <Button type='submit'>Search</Button>
+                </Form>
+            </div>
+        )
+    }
 }
 
 export default SearchForm
