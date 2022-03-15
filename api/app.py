@@ -52,33 +52,5 @@ def get_courses_list():
         term=get_arg(args, 'term')
     )
 
-
-@app.route(f'{BASE_URL}/coursestest')
-def test():
-    return json.dumps([
-        {
-            "code": 'CIS*3760',
-            "name": 'This Course',
-            "weight": '1.0',
-            "term": 'W',
-            "desc": 'String parsing mostly...'
-        },
-        {
-            "code": 'CIS*1000',
-            "name": 'Intro to Bees',
-            "weight": '1000000.0',
-            "term": 'P',
-            "desc": 'According to all known laws of aviation, there is no way that a bee should be able to fly. Its wings are too small to get its fat little body off the ground. The bee, of course, flies anyway because bees don\'t care what humans think is impossible.'
-        }
-
-    ])
-
-
-@app.route(f'{BASE_URL}/courses_recieve', methods=['GET', 'POST'])
-def log_data():
-    print(request.args)
-    return 'success'
-
-
 if __name__ == '__main__':
     app.run(host='0.0.0.0')

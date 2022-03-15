@@ -19,23 +19,17 @@ const CourseSearch = () => {
     const [courses, setCourses] = useState();
     
     useEffect(() => {
-        
-        const sendData = async () => {
-            axios.post(global.config.base_url + '/courses_recieve', testSubmitData).then((res) => {
-                console.log(res);
-            }, (err) => {
+        // get the data with the given search params
+        const fetchData = async () => {
+            axios.get(global.config.base_url + '/courses', { params: testSubmitData }).then((res) => {
+                console.log(res.data);
+                setCourses([res.data]);
+            }, (err) => { // and error occured
                 console.log(err);
             });
         }
-        
-        sendData();
-
-        const fetchData = async () => {
-            axios.get(global.config.base_url + '/coursestest').then((res) => {
-                setCourses(res.data);
-            });
-        }
         fetchData();
+
     }, []);
 
     return (
