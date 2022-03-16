@@ -6,6 +6,7 @@ import { Container } from 'react-bootstrap'
 import SearchForm from '../components/coursesearch/SearchForm'
 import ResultsTable from '../components/coursesearch/ResultsTable'
 import InfoModal from '../components/coursesearch/InfoModal'
+import SortOptions from '../components/coursesearch/SortOptions'
 
 const CourseSearch = () => {
 
@@ -62,7 +63,7 @@ const CourseSearch = () => {
         <Container className="mt-5">
             <h2>Course Search <InfoModal/></h2>
             <SearchForm handler={handleSubmit}/>
-
+            <SortOptions />
             <br/>
 
             <ResultsTable courses={courses}/>
