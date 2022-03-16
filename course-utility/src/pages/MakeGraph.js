@@ -14,15 +14,25 @@ const MakeGraph=()=>{
   const handleSubmit = (event) => {
     event.preventDefault();
 
+    let minorValue=false;
     let graphType = event.target.graphType.value;
     let courseCode = event.target.courseCode.value;
-    let minorValue = event.target.minorId.checked;
+    let graphWanted = {}
     
-    let graphWanted = {
+    if (graphType == "program"){
+      minorValue = event.target.minorId.checked;
+      graphWanted = {
         "type": graphType,
         "code": courseCode,
         "minor":minorValue
+      }
+    }else{
+      graphWanted = {
+        "type": graphType,
+        "code": courseCode
+      }
     }
+
 
     if (graphWanted["type"] == "course" || graphWanted["type"] == "department"){
       navigate('/graph/' + graphWanted["type"] + '/' + graphWanted["code"]);
