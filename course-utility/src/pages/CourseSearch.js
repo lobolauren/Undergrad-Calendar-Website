@@ -12,8 +12,7 @@ const CourseSearch = () => {
     // get the data with the given search params
     const fetchData = async (param) => {
         axios.get(global.config.base_url + '/courses', { params: param }).then((res) => {
-            console.log(res.data);
-            setCourses([res.data]);
+            setCourses(res.data);
         }, (err) => { // and error occured
             console.log(err);
         });
