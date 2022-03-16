@@ -38,7 +38,7 @@ const MakeGraphForm = ({ handler }) => {
         ? <Form.Group className="mb-3">
             <Form.Label>Major or Minor</Form.Label>
             <Form.Check type="radio" name="major-minor" label="Major" value="major" required />
-            <Form.Check type="radio" name="major-minor" label="Minor" value="minor" />
+            <Form.Check type="radio" name="major-minor" label="Minor" value="minor" id="minorId"/>
           </Form.Group>
         : null}
 
