@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios';
 
+import { Form, Button, Row, Col } from 'react-bootstrap'
 import { Container } from 'react-bootstrap'
 import SearchForm from '../components/coursesearch/SearchForm'
 import ResultsTable from '../components/coursesearch/ResultsTable'
@@ -8,34 +9,61 @@ import InfoModal from '../components/coursesearch/InfoModal'
 
 const CourseSearch = () => {
 
-    const testSubmitData = {
-        name: 'test',
-        code: '3760',
-        weight: '0.5',
-        term: 'W'
+
+    // get the data with the given search params
+    const fetchData = async (param) => {
+        axios.get(global.config.base_url + '/courses', { params: param }).then((res) => {
+            console.log(res.data);
+            setCourses([res.data]);
+        }, (err) => { // and error occured
+            console.log(err);
+        });
     }
 
-    
-    const [courses, setCourses] = useState();
-    
-    useEffect(() => {
-        // get the data with the given search params
-        const fetchData = async () => {
-            axios.get(global.config.base_url + '/courses', { params: testSubmitData }).then((res) => {
-                console.log(res.data);
-                setCourses([res.data]);
-            }, (err) => { // and error occured
-                console.log(err);
-            });
-        }
-        fetchData();
+    const handleSubmit = (event) => {
+        event.preventDefault();
 
-    }, []);
+        let courseName = event.target.courseName.value;
+        let courseCode = event.target.courseCode.value;
+        let courseWeight = event.target.courseWeights.value;
+        let isFallSelected = event.target.fallCheckbox.checked;
+        let isWinterSelected = event.target.winterCheckbox.checked;
+        let isSummerSelected = event.target.summerCheckbox.checked;
+
+        // get terms selected
+        let terms = buildTermsList(isFallSelected, isWinterSelected, isSummerSelected);
+
+        let courseSearchQuery = {
+            "name": courseName,
+            "code": courseCode,
+            "weight": courseWeight,
+            "terms": terms
+        }
+
+        // get the input data from the server
+        fetchData(courseSearchQuery);
+
+    }
+
+    // builds a list out of the check boxes for term NOTE: MUST UPDATE API TO WORK WITH THIS
+    function buildTermsList(isFallSelected, isWinterSelected, isSummerSelected) {
+        let terms = [];
+        if (isFallSelected)
+            terms.push("F");
+        if (isWinterSelected)
+            terms.push("W");
+        if (isSummerSelected)
+            terms.push("S");
+        return terms;
+    }
+    
+    // hook containing courses
+    const [courses, setCourses] = useState();
 
     return (
         <Container className="mt-40">
             <h3>Course Search <InfoModal/></h3>
-            <SearchForm/>
+            <SearchForm handler={handleSubmit}/>
 
             <br/>
 
