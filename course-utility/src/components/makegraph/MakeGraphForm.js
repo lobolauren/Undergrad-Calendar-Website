@@ -2,8 +2,6 @@ import React from "react";
 import { useEffect, useState } from 'react';
 import { Form, Button, Row, Col } from "react-bootstrap";
 
-import '../../styles/graph.css'
-
 const MakeGraphForm = () => {
 
   const [selectOption, setSelectOption] = useState('course');

@@ -5,6 +5,8 @@ import axios from 'axios'
 
 import NoPage from './NoPage';
 
+import '../styles/graph.css'
+
 const Graph = () => {
 
   const params = useParams();
