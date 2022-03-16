@@ -57,7 +57,6 @@ const CourseSearch = () => {
     
     // hook containing courses
     const [courses, setCourses] = useState();
-    console.log("Courses = ", courses);
 
     return (
         <Container className="mt-5">
