@@ -2,7 +2,7 @@ import React from "react";
 import { useEffect, useState } from 'react';
 import { Form, Button, Row, Col } from "react-bootstrap";
 
-const MakeGraphForm = () => {
+const MakeGraphForm = ({ handler }) => {
 
   const [selectOption, setSelectOption] = useState('course');
 
@@ -12,11 +12,11 @@ const MakeGraphForm = () => {
 
   return (
     <div className="graph-form">
-      <Form>
+        <Form onSubmit={handler} bg="dark" expand="lg" letiant="dark">
         <Form.Group className="mb-3">
           <Form.Label>Graph Type</Form.Label>
           <Form.Select 
-            id="graph-type"
+            id="graphType"
             defaultValue="course" 
             onChange={(e) => setSelectOption(e.target.value)}
           >
@@ -30,7 +30,7 @@ const MakeGraphForm = () => {
         {selectOption != 'catalog'
         ? <Form.Group className="mb-3">
             <Form.Label>{toTitleCase(selectOption)} Code</Form.Label>
-            <Form.Control type="text" required />
+            <Form.Control type="text" id="courseCode" required />
           </Form.Group>
         : null}
 
@@ -38,7 +38,7 @@ const MakeGraphForm = () => {
         ? <Form.Group className="mb-3">
             <Form.Label>Major or Minor</Form.Label>
             <Form.Check type="radio" name="major-minor" label="Major" value="major" required />
-            <Form.Check type="radio" name="major-minor" label="Minor" value="minor" />
+            <Form.Check type="radio" name="major-minor" label="Minor" value="minor" id="minorId"/>
           </Form.Group>
         : null}
 
