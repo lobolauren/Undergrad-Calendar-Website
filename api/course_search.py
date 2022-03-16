@@ -22,7 +22,7 @@ def get_course_info(code: str):
     else:
         return get_course(get_course_data(COURSE_INFO_JSON), code)
 
-
+#returns dict of courses with the given paraemeters(which can have no data in the call)
 def get_courses(name, code, weight, term):
     #get all courses
     coursedata = get_course_data(COURSE_INFO_JSON)
