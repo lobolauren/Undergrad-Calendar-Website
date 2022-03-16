@@ -26,7 +26,7 @@ def get_course_info(code: str):
 def get_courses(name, code, weight, term):
     #get all courses
     coursedata = get_course_data(COURSE_INFO_JSON)
-    courseList = courses = []
+    courseList = []
 
     attr = get_course_attr(code)
     num = get_course_number(code)
@@ -35,16 +35,58 @@ def get_courses(name, code, weight, term):
         for dept in coursedata['courses']:
             for course in coursedata['courses'][dept]:
                 check = True
-                print(course['code'])
+
+                #name
+                if name:
+                    if name.lower() not in course['name'].lower():
+                        check = False
+
+                #code
                 if attr:
                     if get_course_attr(course['code']) not in attr:
                         check = False
-                #if num:
+                if num:
+                    if get_course_number(course['code']) not in num:
+                        check = False
+                
+                #weight
+                if weight in "0.25":
+                    if course['weight'] != 0.25:
+                        check = False
+                elif weight in "0.5":
+                    if course['weight'] != 0.5:
+                        check = False
+                elif weight in "0.75":
+                    if course['weight'] != 0.75:
+                        check = False
+                elif weight in "1.0":
+                    if course['weight'] != 1.0:
+                        check = False
 
+                #term
+                termcheck = False
+                if len(term) == 2:
+                    for t in course['terms']:
+                        if t.upper() in term[0].upper() or t.upper() in term[1].upper():
+                            print(t.upper())
+                            termcheck = True
+                elif len(term) == 1:
+                    for t in course['terms']:
+                        if t.upper() in term[0].upper():
+                            print("1")
+                            termcheck = True
+                else:
+                    print(len(term))
+                    termcheck = True
+                
+                if not termcheck:
+                    check = False
+                    
                 
                 #if satisfies all searches add
                 if check:
-                    courseList.extend(course)
+                    print(course['code'])
+                    courseList.append(course)
     except KeyError:
         return []
 
