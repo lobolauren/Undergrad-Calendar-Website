@@ -16,13 +16,21 @@ const MakeGraph=()=>{
 
     let graphType = event.target.graphType.value;
     let courseCode = event.target.courseCode.value;
-
+    let minorValue = event.target.minorId.checked;
+    
     let graphWanted = {
         "type": graphType,
-        "code": courseCode
+        "code": courseCode,
+        "minor":minorValue
     }
 
-    navigate('/graph/' + graphWanted["type"] + '/' + graphWanted["code"]);
+    if (graphWanted["type"] == "course" || graphWanted["type"] == "department"){
+      navigate('/graph/' + graphWanted["type"] + '/' + graphWanted["code"]);
+    }else if (graphWanted["type"] == "program" && graphWanted["minor"]==true){
+      navigate('/graph/' + graphWanted["type"] + '/' + "minor");
+    }else if (graphWanted["type"]=="catalog" || (graphWanted["type"] == "program" && graphWanted["minor"]==false)){
+      navigate('/graph/' + graphWanted["type"]);
+    }
   }
     
   return (
