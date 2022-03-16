@@ -28,7 +28,7 @@ def get_courses(name, code, weight, term):
     coursedata = get_course_data(COURSE_INFO_JSON)
     courseList = []
     
-    print(name + " " + code + " " + weight + " " + term + ":")
+    # print(name + " " + code + " " + weight + " " + term + ":")
 
     try:
         attr = get_course_attr(code)
@@ -92,7 +92,7 @@ def get_courses(name, code, weight, term):
                 
                 #if satisfies all searches add
                 if check:
-                    print(course['code'])
+                    # print(course['code'])
                     courseList.append(course)
     except KeyError:
         return []

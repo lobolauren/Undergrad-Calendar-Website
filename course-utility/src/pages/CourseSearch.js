@@ -35,12 +35,11 @@ const CourseSearch = () => {
             "name": courseName,
             "code": courseCode,
             "weight": courseWeight,
-            "terms": terms
+            "terms": terms.toString() // convert to string because array causes issues with axios params
         }
 
         // get the input data from the server
         fetchData(courseSearchQuery);
-
     }
 
     // builds a list out of the check boxes for term NOTE: MUST UPDATE API TO WORK WITH THIS
@@ -52,7 +51,8 @@ const CourseSearch = () => {
             terms.push("W");
         if (isSummerSelected)
             terms.push("S");
-        return terms;
+        
+        return terms.length === 0 ? ["F", "W", "S"] : terms;
     }
     
     // hook containing courses
