@@ -9,19 +9,19 @@ const SearchForm = ({ handler }) => {
           <Form onSubmit={handler} bg="dark" expand="lg" letiant="dark">
 
               <Row>
-                  <Form.Group as={Col}>
+                  <Form.Group as={Col} className="mb-3">
                       <Form.Label>Course Name</Form.Label>
                       <Form.Control type='name' placeholder='Course Name' id="courseName" />
                   </Form.Group>
               </Row>
 
               <Row>
-                  <Form.Group as={Col}>
+                  <Form.Group as={Col} className="mb-3">
                       <Form.Label>Course Code</Form.Label>
                       <Form.Control type='code' placeholder='Course Code/Number' id="courseCode" />
                   </Form.Group>
 
-                  <Form.Group as={Col}>
+                  <Form.Group as={Col} className="mb-3">
                       <Form.Label>Select Weights</Form.Label>
                       <Form.Select defaultValue='all' id="courseWeights">
                           <option>all</option>
@@ -35,11 +35,11 @@ const SearchForm = ({ handler }) => {
               </Row>
 
               <Row>
-                  <div className='termBox'>
+                  <Form.Group className='mb-3'>
                       <Form.Check type='checkbox' label='F' inline='true' id="fallCheckbox" />
                       <Form.Check type='checkbox' label='W' inline='true' id="winterCheckbox" />
                       <Form.Check type='checkbox' label='S' inline='true' id="summerCheckbox" />
-                  </div>
+                  </Form.Group>
               </Row>
 
               <Button type='submit'>Search</Button>

@@ -8,9 +8,7 @@ const MakeGraph=()=>{
     
   return (
     <Container className="mt-5">
-      <span>
-        <h2>Make Graph <InfoModal/></h2>
-      </span>
+      <h2>Make Graph <InfoModal/></h2>
       <MakeGraphForm/>
     </Container>
   )

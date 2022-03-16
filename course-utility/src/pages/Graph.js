@@ -35,7 +35,7 @@ const Graph = () => {
         fitView 
       >
         <Background color="#aaa" gap={15} size={0.6} />
-      </ReactFlow>;
+      </ReactFlow>
     </div>
     : <NoPage />}
   </div>

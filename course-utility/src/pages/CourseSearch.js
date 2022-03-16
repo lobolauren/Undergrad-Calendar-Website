@@ -9,7 +9,6 @@ import InfoModal from '../components/coursesearch/InfoModal'
 
 const CourseSearch = () => {
 
-
     // get the data with the given search params
     const fetchData = async (param) => {
         axios.get(global.config.base_url + '/courses', { params: param }).then((res) => {
@@ -61,8 +60,8 @@ const CourseSearch = () => {
     const [courses, setCourses] = useState();
 
     return (
-        <Container className="mt-40">
-            <h3>Course Search <InfoModal/></h3>
+        <Container className="mt-5">
+            <h2>Course Search <InfoModal/></h2>
             <SearchForm handler={handleSubmit}/>
 
             <br/>
