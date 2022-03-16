@@ -1,33 +1,27 @@
 import React from 'react'
-import { Dropdown } from 'react-bootstrap'
+import { Form, Dropdown, Row, Col } from 'react-bootstrap'
 
-const SortOptions = () => {
-    function updateDropdown(event) {
-        console.log(event);
-        if (event == "courseCodeOption") {
-            // Course Code
-
-        }
-        else {
-            // Set to Course Name
-        }
-    }
+const SortOptions = ({sortTypeHandler, sortOrderHandler}) => {
 
     return (
-        <div className='sortOptions'>
-            <p>Sort by</p>
+        <div class="container">
+            <div className='sortOptions mt-5 row'>
+                <Row>
+                    <div className="align-items-center col-2">
+                        <p className="col-2">Sort by</p>
+                    </div>
 
-            <Dropdown onSelect={updateDropdown}>
-            <Dropdown.Toggle id="sortByOptions">
-                Course Code
-            </Dropdown.Toggle>
+                    <Form.Select id="typeOption" className="col-6" onChange={sortTypeHandler}>
+                        <option value="courseCodeOption">Course Code</option>
+                        <option value="courseNameOption">Course Name</option>
+                    </Form.Select>
 
-            <Dropdown.Menu>
-                <Dropdown.Item eventKey="courseCodeOption">Course Code</Dropdown.Item>
-                <Dropdown.Item eventKey="courseNameOption">Course Name</Dropdown.Item>
-            </Dropdown.Menu>
-            </Dropdown>
-            
+                    <Form.Select id="sortOrder" className="col-6" onChange={sortOrderHandler}>
+                        <option value="ascending">Ascending</option>
+                        <option value="descending">Descending</option>
+                    </Form.Select>
+                </Row>
+            </div>
         </div>
     )
 }
