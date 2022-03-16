@@ -1,6 +1,6 @@
 import json
 
-from helpers import get_course, valid_code
+from helpers import get_course, valid_code, get_course_attr, get_course_number, get_dept_courses, get_all_depts
 
 COURSE_INFO_JSON = 'course_info.json';
 
@@ -24,9 +24,74 @@ def get_course_info(code: str):
 
 
 def get_courses(name, code, weight, term):
-    return {
-        'name': name,
-        'code': code,
-        'weight': weight,
-        'term': term,
-    }
+    #get all courses
+    coursedata = get_course_data(COURSE_INFO_JSON)
+    courseList = []
+
+    attr = get_course_attr(code)
+    num = get_course_number(code)
+
+    try:
+        for dept in coursedata['courses']:
+            for course in coursedata['courses'][dept]:
+                check = True
+
+                #name
+                if name:
+                    if name.lower() not in course['name'].lower():
+                        check = False
+
+                #code
+                if attr:
+                    if get_course_attr(course['code']) not in attr:
+                        check = False
+                if num:
+                    if get_course_number(course['code']) not in num:
+                        check = False
+                
+                #weight
+                if weight in "0.25":
+                    if course['weight'] != 0.25:
+                        check = False
+                elif weight in "0.5":
+                    if course['weight'] != 0.5:
+                        check = False
+                elif weight in "0.75":
+                    if course['weight'] != 0.75:
+                        check = False
+                elif weight in "1.0":
+                    if course['weight'] != 1.0:
+                        check = False
+
+                #term
+                termcheck = False
+                if len(term) == 2:
+                    for t in course['terms']:
+                        if t.upper() in term[0].upper() or t.upper() in term[1].upper():
+                            print(t.upper())
+                            termcheck = True
+                elif len(term) == 1:
+                    for t in course['terms']:
+                        if t.upper() in term[0].upper():
+                            print("1")
+                            termcheck = True
+                else:
+                    print(len(term))
+                    termcheck = True
+                
+                if not termcheck:
+                    check = False
+                    
+                
+                #if satisfies all searches add
+                if check:
+                    print(course['code'])
+                    courseList.append(course)
+    except KeyError:
+        return []
+
+
+    #for course in courseList:
+    #    print(course['code'])
+
+    return json.dumps(courseList)

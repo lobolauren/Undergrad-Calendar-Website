@@ -4,7 +4,10 @@ from typing import List
 def get_course_attr(course_str: str, upper=False):
 
     if not "*" in course_str: 
-        return course_str
+        if course_str.isnumeric():
+            return ""
+        else:
+            return course_str
 
     if upper:
         return course_str[:course_str.index('*')].upper().strip()
@@ -13,7 +16,13 @@ def get_course_attr(course_str: str, upper=False):
 
 
 def get_course_number(course_str: str):
-    return course_str[course_str.index('*')+1:]
+    if not "*" in course_str: 
+        if course_str.isnumeric():
+            return course_str
+        else:
+            return ""
+    else:
+        return course_str[course_str.index('*')+1:]
 
 
 def valid_code(code: str, valid_codes: List[str]=[]) -> bool:
