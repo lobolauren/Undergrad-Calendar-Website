@@ -13,7 +13,9 @@ const CourseSearch = () => {
     const fetchData = async (param) => {
         axios.get(global.config.base_url + '/courses', { params: param }).then((res) => {
             console.log(res.data);
-            setCourses([res.data]);
+            console.log("Param = ", param)
+            setCourses(res.data);
+            console.log(courses);
         }, (err) => { // and error occured
             console.log(err);
         });
@@ -58,6 +60,7 @@ const CourseSearch = () => {
     
     // hook containing courses
     const [courses, setCourses] = useState();
+    console.log("Courses = ", courses);
 
     return (
         <Container className="mt-5">
