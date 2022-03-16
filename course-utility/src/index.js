@@ -10,6 +10,11 @@ import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
   <React.StrictMode>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="bootstrap/dist/css/bootstrap.min.css"
+    />
     <App />
   </React.StrictMode>,
   document.getElementById('root')

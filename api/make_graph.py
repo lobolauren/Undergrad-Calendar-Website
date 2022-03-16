@@ -4,15 +4,27 @@ import json
 
 DEBUG = False
 
-def add_node(nodes: list, course_code: str, x, y):
+NODE_COLORS = {
+    'searched_course': '#ffc107',
+    'same_dept': '#0d6efd',
+    'diff_dept': '#6c757d'
+}
+
+def add_node(nodes: list, course_code: str, x, y, color):
     course_code = course_code.lower()
     nodes.append({
         'id': course_code.replace('*', ''),
-        'type': 'default',
         'data': {
-            'label': course_code.upper().replace('*', ' ')
+            'label': make_code_valid(course_code).upper().replace('*', ' ')
         },
         'position': {'x': x, 'y': y},
+        'targetPosition': 'left',
+        'sourcePosition': 'right',
+        'connectable': False,
+        'draggable': False,
+        'style': {
+            'background': color,
+        },
     })
 
 def update_nodes(nodes_data, course, depth):
@@ -26,8 +38,19 @@ def add_edge(edges: list, course: str, prereq: str, animated: bool=False):
         'id': f'{course}-{prereq}',
         'source': course,
         'target': prereq,
-        'animated': animated
+        'animated': animated,
+        'markerEnd': {
+            'type': 'arrowclosed'
+        }
     })
+
+def get_node_color(code, og_dept, og_code):
+    if make_code_valid(code) == og_code:
+        return NODE_COLORS['searched_course']
+    elif get_course_attr(make_code_valid(code)) == og_dept:
+        return NODE_COLORS['same_dept']
+    else:
+        return NODE_COLORS['diff_dept']
 
 def make_course_graph(code):
 
@@ -37,7 +60,7 @@ def make_course_graph(code):
     nodes_data = {}
     edges = []
 
-    if not valid_code(code):
+    if not get_course(data, code):
         return {
             'nodes': nodes,
             'edges': edges
@@ -47,7 +70,7 @@ def make_course_graph(code):
 
     visited = set()
     q = [code.upper()]
-    
+
     depth = 0
     while q:
         depth += 1
@@ -93,8 +116,10 @@ def make_course_graph(code):
 
     nodes = []
     for i, row in enumerate(temp):
-        for j, value in enumerate(row):
-            add_node(nodes, value, j*200 - ((len(row)-1)*200*0.5), i*200)
+        for j, course in enumerate(row):
+            color = get_node_color(course, dept, code)
+            y, x = j*100-((len(row)-1)*100*0.5), i*300
+            add_node(nodes, course, x, y, color)
 
     return {
         'nodes': nodes,
