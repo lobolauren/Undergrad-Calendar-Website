@@ -64,7 +64,7 @@ const CourseSearch = () => {
         fetchData(courseSearchQuery);
     }
 
-    // builds a list out of the check boxes for term NOTE: MUST UPDATE API TO WORK WITH THIS
+    // builds a list out of the check boxes for term
     function buildTermsList(isFallSelected, isWinterSelected, isSummerSelected) {
         let terms = [];
         if (isFallSelected)
