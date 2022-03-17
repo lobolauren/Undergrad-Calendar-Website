@@ -16,6 +16,14 @@ const CourseSearch = () => {
     // get the data with the given search params
     const fetchData = async (param) => {
         axios.get(global.config.base_url + '/courses', { params: param }).then((res) => {
+
+            // no courses were found
+            if (res.data.length == 0) {
+                // Reset courses to initial state, so it shows no courses found
+                setCourses(null);
+                return;
+            }
+
             // leave as is if courseCodeOption is picked. Otherwise, sort by name
             let correctSortedOrder = (sortType == "courseCodeOption" ? res.data : sortResultsByCustomType(res.data, "name"));
 
