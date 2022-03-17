@@ -1,24 +1,26 @@
-import React from 'react'
-import CourseBlock from './CourseBlock'
+import React from "react";
+import CourseBlock from "./CourseBlock";
 
-const ResultsTable = ({courses}) => {
+const ResultsTable = ({ courses }) => {
+  return (
+    <div className="resultsTable">
+      {courses ? (
+        React.Children.toArray(
+          courses.map((course) => (
+            <CourseBlock
+              code={course.code}
+              name={course.name}
+              weight={course.weight}
+              term={course.terms}
+              description={course.description}
+            />
+          ))
+        )
+      ) : (
+        <span>No Courses to Display...</span>
+      )}
+    </div>
+  );
+};
 
-    return (
-        <div className='resultsTable'>
-            {
-                courses ? 
-                    React.Children.toArray(
-                        courses.map(
-                            (course) => (
-                                <CourseBlock code={course.code} name={course.name} weight={course.weight} term={course.terms.toString()} description={course.description} />
-                            )
-                        )
-                    )
-                :
-                <span>No Courses to Display...</span>
-            }
-        </div>
-    )
-}
-
-export default ResultsTable
+export default ResultsTable;
