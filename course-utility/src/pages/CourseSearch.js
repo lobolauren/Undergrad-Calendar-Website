@@ -20,7 +20,7 @@ const CourseSearch = () => {
             // no courses were found
             if (res.data.length == 0) {
                 // Reset courses to initial state, so it shows no courses found
-                setCourses(undefined);
+                setCourses(null);
                 return;
             }
 
