@@ -10,7 +10,7 @@ const ResultsTable = ({courses}) => {
                     React.Children.toArray(
                         courses.map(
                             (course) => (
-                                <CourseBlock code={course.code} name={course.name} weight={course.weight} term={course.term} description={course.description} />
+                                <CourseBlock code={course.code} name={course.name} weight={course.weight} term={course.terms.toString()} description={course.description} />
                             )
                         )
                     )
