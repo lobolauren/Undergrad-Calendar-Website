@@ -45,12 +45,17 @@ def get_arg(args, arg, default=''):
 @app.route(f'{BASE_URL}/courses')
 def get_courses_list():
     args = request.args
+    
+    # Convert terms string back into list
+    terms = get_arg(args, 'terms')
+    terms_array = terms.split(",")
+
     # args ex. /api/courses?name=programming&code=cis*2500&weight=0.25&term=W
     return get_courses(
         name=get_arg(args, 'name'),
         code=get_arg(args, 'code'),
         weight=get_arg(args, 'weight'),
-        term=get_arg(args, 'term')
+        term=terms_array
     )
 
 

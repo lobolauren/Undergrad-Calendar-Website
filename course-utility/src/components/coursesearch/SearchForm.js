@@ -43,6 +43,8 @@ const SearchForm = ({ handler }) => {
               </Row>
 
               <Button type='submit'>Search</Button>
+
+              
           </Form>
       </div>
   )
