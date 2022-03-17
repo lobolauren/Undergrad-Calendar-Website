@@ -27,8 +27,6 @@ def get_courses(name, code, weight, term):
     #get all courses
     coursedata = get_course_data(COURSE_INFO_JSON)
     courseList = []
-    
-    # print(name + " " + code + " " + weight + " " + term + ":")
 
     try:
         attr = get_course_attr(code)
@@ -42,35 +40,28 @@ def get_courses(name, code, weight, term):
                 if name:
                     if name.lower() not in course['name'].lower():
                         check = False
-                        #print("name")
 
                 #code
                 if attr:
                     if get_course_attr(course['code']) not in attr:
                         check = False
-                        #print("attr")
                 if num:
                     if get_course_number(course['code']) not in num:
                         check = False
-                        #print("num")
                 
                 #weight
                 if weight in "0.25":
                     if course['weight'] != 0.25:
                         check = False
-                        #print("weight")
                 elif weight in "0.5":
                     if course['weight'] != 0.5:
                         check = False
-                        #print("weight")
                 elif weight in "0.75":
                     if course['weight'] != 0.75:
                         check = False
-                        #print("weight")
                 elif weight in "1.0":
                     if course['weight'] != 1.0:
                         check = False
-                        #print("weight")
 
                 #term
                 termcheck = False
@@ -86,19 +77,38 @@ def get_courses(name, code, weight, term):
                     termcheck = True
                 
                 if not termcheck:
-                    #print("term")
                     check = False
                     
                 
                 #if satisfies all searches add
                 if check:
-                    # print(course['code'])
+                    print(course['code'])
                     courseList.append(course)
     except KeyError:
         return []
 
+    return json.dumps(courseList)
 
-    #for course in courseList:
-    #    print(course['code'])
+def get_department_courses(code):
+    #get all courses
+    coursedata = get_course_data(COURSE_INFO_JSON)
+    courseList = []
+
+    try:
+        attr = get_course_attr(code)
+
+        for dept in coursedata['courses']:
+            for course in coursedata['courses'][dept]:
+                check = True
+
+                if get_course_attr(course['code']) not in attr:
+                    check = False
+                
+                #if satisfies all searches add
+                if check:
+                    print(course['code'])
+                    courseList.append(course)
+    except KeyError:
+        return []
 
     return json.dumps(courseList)
