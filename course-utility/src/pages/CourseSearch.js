@@ -93,21 +93,21 @@ const CourseSearch = () => {
         setCourses(courses_copy);
     }
 
-    // sorts bythe correct sort type when the dropdown option is selected
+    // sorts by the correct sort type when the dropdown option is selected
     function updateSortTypeOption(event) {
         event.preventDefault();
 
-        console.log(event.target.value);
+        // update stored sort type
         sortType = event.target.value;
 
+        // sort by that type and take into consideration the order (ascending or descending)
         if (sortType == "courseNameOption") {
-            // sort by course name
             let sortedCourses = sortResultsByCustomType(courses, "name")
-            setCourses(sortedCourses);
+            sortOrder == "ascending" ? setCourses(sortedCourses) : setCourses(sortedCourses.reverse());
         }
         else { // sort by course code
             let sortedCourses = sortResultsByCustomType(courses, "code")
-            setCourses(sortedCourses);
+            sortOrder == "ascending" ? setCourses(sortedCourses) : setCourses(sortedCourses.reverse());
         }
     }
 
