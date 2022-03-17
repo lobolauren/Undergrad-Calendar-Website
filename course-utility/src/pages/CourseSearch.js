@@ -88,7 +88,6 @@ const CourseSearch = () => {
         if (courses == null) return;
 
         let courses_copy = courses.slice();
-        console.log(courses_copy);
         courses_copy.reverse();
         setCourses(courses_copy);
     }
