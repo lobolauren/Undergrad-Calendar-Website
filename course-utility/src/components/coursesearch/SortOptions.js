@@ -4,7 +4,7 @@ import { Form, Dropdown, Row, Col } from 'react-bootstrap'
 const SortOptions = ({sortTypeHandler, sortOrderHandler}) => {
 
     return (
-        <div class="container">
+        <div className="container">
             <div className='sortOptions mt-5 row'>
                 <Row>
                     <div className="align-items-center col-2">

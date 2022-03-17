@@ -8,9 +8,10 @@ import ResultsTable from '../components/coursesearch/ResultsTable'
 import InfoModal from '../components/coursesearch/InfoModal'
 import SortOptions from '../components/coursesearch/SortOptions'
 
+let sortType = "courseCodeOption";
+let sortOrder = "ascending";
+
 const CourseSearch = () => {
-    let sortType = "courseCodeOption";
-    let sortOrder = "ascending";
 
     // get the data with the given search params
     const fetchData = async (param) => {
@@ -25,6 +26,7 @@ const CourseSearch = () => {
             else {
                 setCourses(correctSortedOrder);
             }
+            
         }, (err) => { // and error occured
             console.log(err);
         });
@@ -67,6 +69,7 @@ const CourseSearch = () => {
         return terms.length === 0 ? ["F", "W", "S"] : terms;
     }
 
+    // sorts the passed in courses by the specified type alphabetically
     const sortResultsByCustomType = (courses, type) => {
         if (courses == null) return;
 
@@ -80,6 +83,7 @@ const CourseSearch = () => {
         return courses_copy;
     }
 
+    // reverses the set courses
     const reverseCourseOrder = () => {
         if (courses == null) return;
 
@@ -89,6 +93,7 @@ const CourseSearch = () => {
         setCourses(courses_copy);
     }
 
+    // sorts bythe correct sort type when the dropdown option is selected
     function updateSortTypeOption(event) {
         event.preventDefault();
 
@@ -106,9 +111,11 @@ const CourseSearch = () => {
         }
     }
 
+    // called when the new sort order is changed
     function updateSortOrderOption(event) {
         event.preventDefault();
 
+        // update selected sort order and reverse
         sortOrder = event.target.value;
         reverseCourseOrder();
     }
