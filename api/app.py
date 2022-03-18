@@ -1,7 +1,7 @@
 from flask import Flask, redirect, request
 from flask_cors import CORS
 
-from course_search import get_course_data, get_course_info, get_courses
+from course_search import get_course_data, get_course_info, get_courses, get_department_courses, get_all_courses, get_program_courses
 from make_graph import make_course_graph
 from helpers import make_code_valid
 
@@ -57,6 +57,39 @@ def get_courses_list():
         weight=get_arg(args, 'weight'),
         term=terms_array
     )
+
+@app.route(f'{BASE_URL}/dept')
+def get_dept_courses_list():
+    args = request.args
+    
+    # Convert terms string back into list
+    terms = get_arg(args, 'terms')
+    terms_array = terms.split(",")
+
+    # args ex. /api/dept?name=cis
+    return get_department_courses(
+        name=get_arg(args, 'name'),
+    )
+
+@app.route(f'{BASE_URL}/program')
+def get_program_courses_list():
+    args = request.args
+    
+    # Convert terms string back into list
+    terms = get_arg(args, 'terms')
+    terms_array = terms.split(",")
+
+    # args ex. /api/program?name=cis&mom=minor
+    return get_program_courses(
+        name=get_arg(args, 'name'),
+        mom=get_arg(args, 'mom'),
+    )
+
+@app.route(f'{BASE_URL}/catalog')
+def get_catalog():
+
+    # args ex. /api/catalog
+    return get_all_courses()
 
 
 @app.route(f'{BASE_URL}/graph/course/<code>')
