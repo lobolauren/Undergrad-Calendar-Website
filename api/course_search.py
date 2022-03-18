@@ -89,26 +89,65 @@ def get_courses(name, code, weight, term):
 
     return json.dumps(courseList)
 
-def get_department_courses(code):
+def get_department_courses(name):
     #get all courses
     coursedata = get_course_data(COURSE_INFO_JSON)
     courseList = []
 
     try:
-        attr = get_course_attr(code)
+        attr = get_course_attr(name)
 
         for dept in coursedata['courses']:
-            for course in coursedata['courses'][dept]:
-                check = True
-
-                if get_course_attr(course['code']) not in attr:
-                    check = False
-                
-                #if satisfies all searches add
-                if check:
-                    print(course['code'])
+            if dept in attr:
+                for course in coursedata['courses'][dept]:
+                    #print(course['code'])
                     courseList.append(course)
     except KeyError:
         return []
 
     return json.dumps(courseList)
+
+def get_program_courses(name, mom):
+    #get all courses
+    coursedata = get_course_data(COURSE_INFO_JSON)
+    programList = []
+    courseList = []
+
+    try:
+        attr = get_course_attr(name)
+
+        for program in coursedata['programs']:
+            if program in attr:
+                if mom.lower() in "minor":
+                    #print(coursedata['programs'][program]["minor_reqs"])
+                    programList = coursedata['programs'][program]["minor_reqs"]
+                    courseList = coursedata['programs'][program]["minor_extras"]
+                if mom.lower() in "major":
+                    #print(coursedata['programs'][program]["major_reqs"])
+                    programList = coursedata['programs'][program]["major_reqs"]
+                    courseList = coursedata['programs'][program]["major_extras"]
+
+        for course in programList:
+            #print(get_course_info(course))
+            courseList.append(get_course_info(course))
+
+    except KeyError:
+        return []
+
+    return json.dumps(courseList)
+
+def get_all_courses():
+    #get all courses
+    coursedata = get_course_data(COURSE_INFO_JSON)
+    courseList = []
+
+    try:
+        for dept in coursedata['courses']:
+                for course in coursedata['courses'][dept]:
+                    #print(course['code'])
+                    courseList.append(course)
+    except KeyError:
+        return []
+
+    return json.dumps(courseList)
+
