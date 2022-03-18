@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import ReactFlow, { Background } from 'react-flow-renderer';
+import ReactFlow, { Background } from 'react-flow-renderer/nocss';
 import { useParams } from 'react-router-dom';
 import axios from 'axios'
 import dagre from 'dagre';

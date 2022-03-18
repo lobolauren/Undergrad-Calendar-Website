@@ -1,3 +1,6 @@
+@import 'react-flow-renderer/dist/style.css';
+@import 'react-flow-renderer/dist/theme-default.css';
+
 .react-flow__node-default {
     color: #fff;
     border: none;
