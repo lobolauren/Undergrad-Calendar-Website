@@ -7,7 +7,7 @@ User=sysadmin
 Group=www-data
 WorkingDirectory=/home/sysadmin/3760-project
 Environment="PATH=/home/sysadmin/3760-project/api/apiVENV/bin"
-ExecStart=/home/sysadmin/3760-project/api/apiVENV/bin/uwsgi --ini app.ini
+ExecStart=/home/sysadmin/3760-project/api/env/bin/uwsgi --ini app.ini
 
 [Install]
 WantedBy=multi-user.target
