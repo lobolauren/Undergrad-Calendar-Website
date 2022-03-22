@@ -33,13 +33,13 @@ const MakeGraph=()=>{
       }
     }
 
-
+    // navigates to a separate page to display the desired graph
     if (graphWanted["type"] == "course" || graphWanted["type"] == "department"){
       navigate('/graph/' + graphWanted["type"] + '/' + graphWanted["code"]);
     }else if (graphWanted["type"] == "program" && graphWanted["minor"]==true){
-      navigate('/graph/' + graphWanted["type"] + '/' + "minor");
+      navigate('/graph/' + graphWanted["type"] + '/' + "minor" + '/' + graphWanted["code"]);
     }else if (graphWanted["type"]=="catalog" || (graphWanted["type"] == "program" && graphWanted["minor"]==false)){
-      navigate('/graph/' + graphWanted["type"]);
+      navigate('/graph/' + graphWanted["type"] + '/' + graphWanted["code"]);
     }
   }
     

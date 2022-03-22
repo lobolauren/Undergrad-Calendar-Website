@@ -54,7 +54,9 @@ const Graph = () => {
 
   useEffect(() => {
     const getGraph = () => {
-      axios.get(global.config.base_url + '/graph/course/' + params.code).then((res) => {
+      // where the actually graphing is done
+      axios.get(global.config.base_url + '/graph/' + params.type + '/' + params.code).then((res) => {
+        console.log("Test");
 
         const { nodes: layoutedNodes, edges: layoutedEdges } = getLayoutedElements(
           res.data.nodes,
