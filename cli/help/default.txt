@@ -1,0 +1,5 @@
+These are the current commands you can use:
+
+coursesearch (c)    search courses by their name, code, offerings, etc.
+help (h)            shows a list of commands and their usage
+makegraph (m)       create a graph that shows how courses connect with their prerequisites

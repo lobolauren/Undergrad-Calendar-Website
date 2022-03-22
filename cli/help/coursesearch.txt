@@ -1,0 +1,3 @@
+usage: coursesearch
+
+searches university courses in given json file

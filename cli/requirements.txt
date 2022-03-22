@@ -1,0 +1,5 @@
+graphviz==0.19.1
+playwright==1.18.1
+pytest==7.0.0
+PyPDF2==1.26.0
+pylint==2.12.2
