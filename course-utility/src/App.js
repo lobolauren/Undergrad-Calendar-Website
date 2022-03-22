@@ -31,7 +31,7 @@ function App() {
           <Route path="/*" element={<NoPage />} />
           <Route path="/makegraph" element={<MakeGraph />} />
           <Route path="/coursesearch" element={<CourseSearch />} />
-          <Route path="/graph/course/:code" element={<Graph />} />
+          <Route path="/graph/:type/:code" element={<Graph />} />
         </Routes>
       </Router>
     </div>

@@ -101,3 +101,38 @@ def make_course_graph(code):
         'nodes': nodes,
         'edges': edges
     }
+
+
+def make_department_graph(department):
+
+    data = get_course_data()
+
+    nodes = []
+    edges = []
+
+    for course_value in data["courses"][department]:
+        cur_course_code = course_value["code"]
+        cur_course = get_course(data, cur_course_code)
+        color = get_node_color(cur_course_code, department, cur_course_code)
+        add_node(nodes, cur_course_code, color)
+
+        # TODO: Add prereqs to the list as edges
+        for prereq in get_reg_prereqs(course_value):
+            if prereq == []:
+                continue
+            print(prereq)
+
+            # TODO: Only add edge if course is in department
+            add_edge(edges, cur_course_code, prereq, animated=True)
+            color = get_node_color(prereq, department, cur_course_code)
+            add_node(nodes, prereq, color)
+            pass
+        pass
+
+        # TODO: Go through the eq_prereqs
+
+    # TODO: Complete
+    return {
+        'nodes': nodes,
+        'edges': edges
+    }
