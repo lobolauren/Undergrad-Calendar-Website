@@ -23,7 +23,6 @@ const MakeGraphForm = ({ handler }) => {
             <option value="course">Course</option>
             <option value="department">Department</option>
             <option value="program">Program</option>
-            <option value="catalog">Catalog</option>
           </Form.Select>
         </Form.Group>
 
