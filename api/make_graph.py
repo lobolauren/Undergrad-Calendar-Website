@@ -97,9 +97,12 @@ def make_course_graph(code):
                         visited.add(prereq)
                         q.append(prereq)
 
+    # add the legend
+    legend = build_legend()
+
     return {
-        'nodes': nodes,
-        'edges': edges
+        'nodes': nodes + legend["nodes"],
+        'edges': edges + legend["edges"]
     }
 
 
@@ -141,9 +144,12 @@ def make_department_graph(department):
                     color = get_node_color(course, department, cur_course_code)
                 add_node(nodes, course, color)               
 
+    # add the legend
+    legend = build_legend()
+
     return {
-        'nodes': nodes,
-        'edges': edges
+        'nodes': nodes + legend["nodes"],
+        'edges': edges + legend["edges"]
     }
 
 def make_major_program_graph(program):
@@ -189,9 +195,12 @@ def make_major_program_graph(program):
     print(q)
     print(nodes)
     print(edges)
+    # add the legend
+    legend = build_legend()
+
     return {
-        'nodes': nodes,
-        'edges': edges
+        'nodes': nodes + legend["nodes"],
+        'edges': edges + legend["edges"]
     }
 
 def make_minor_program_graph(program):
@@ -237,7 +246,25 @@ def make_minor_program_graph(program):
     print(q)
     print(nodes)
     print(edges)
+    # add the legend
+    legend = build_legend()
+
     return {
-        'nodes': nodes,
-        'edges': edges
+        'nodes': nodes + legend["nodes"],
+        'edges': edges + legend["edges"]
+    }
+
+def build_legend():
+    legendNodes = []
+    legendEdges = []
+
+    add_node(legendNodes, "Course not required by degree program", NODE_COLORS["diff_dept"])
+    add_node(legendNodes, "Course outside department", NODE_COLORS["diff_dept"])
+    add_node(legendNodes, "Course in department", NODE_COLORS["same_dept"])
+    add_node(legendNodes, "One of prerequisite", NODE_COLORS["searched_course"])
+    add_node(legendNodes, "Course", NODE_COLORS["searched_course"])
+
+    return {
+        "nodes": legendNodes,
+        "edges": legendEdges
     }

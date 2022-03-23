@@ -63,8 +63,6 @@ const Graph = () => {
       }
 
       axios.get(checkMinor).then((res) => {
-        // debugger;
-        console.log(res);
         const { nodes: layoutedNodes, edges: layoutedEdges } = getLayoutedElements(
           res.data.nodes,
           res.data.edges,
