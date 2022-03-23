@@ -54,8 +54,15 @@ const Graph = () => {
 
   useEffect(() => {
     const getGraph = () => {
-      // debugger;
-      axios.get(global.config.base_url + '/graph/' + params.type +  '/' + params.code).then((res) => {
+      let checkMinor ="";
+
+      if ( typeof params.minor !== 'undefined'){
+        checkMinor = global.config.base_url + '/graph/'+params.type +"/"+ params.minor +"/"+ params.code;
+      }else{
+        checkMinor = global.config.base_url + '/graph/'+params.type+'/' + params.code;
+      }
+
+      axios.get(checkMinor).then((res) => {
         // debugger;
         console.log(res);
         const { nodes: layoutedNodes, edges: layoutedEdges } = getLayoutedElements(

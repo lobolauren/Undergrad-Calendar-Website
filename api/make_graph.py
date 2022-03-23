@@ -111,8 +111,10 @@ def make_department_graph(department):
     edges = []
 
     for course_value in data["courses"][department]:
+        # print(coure_value)
         cur_course_code = course_value["code"]
         cur_course = get_course(data, cur_course_code)
+        print(cur_course)
         color = get_node_color(cur_course_code, department, cur_course_code)
         add_node(nodes, cur_course_code, color)
 
@@ -120,11 +122,13 @@ def make_department_graph(department):
         for prereq in get_reg_prereqs(course_value):
             if prereq == []:
                 continue
-            print(prereq)
+            # print(prereq)
 
             # TODO: Only add edge if course is in department
             add_edge(edges, cur_course_code, prereq, animated=True)
-            color = get_node_color(prereq, department, cur_course_code)
+
+            if(get_course_attr(prereq, upper=True) != department.upper()):
+                color = get_node_color(prereq, department, cur_course_code)
             add_node(nodes, prereq, color)
             pass
         pass
@@ -132,6 +136,102 @@ def make_department_graph(department):
         # TODO: Go through the eq_prereqs
 
     # TODO: Complete
+    return {
+        'nodes': nodes,
+        'edges': edges
+    }
+
+def make_major_program_graph(program):
+    data = get_course_data()
+
+    nodes = []
+    edges = []
+
+    dept = get_course_attr(program).upper()
+    all_courses = data["programs"][program]
+
+    major_courses = all_courses["major_reqs"]
+    minor_courses = all_courses["minor_reqs"]
+    required_courses = major_courses
+    visited = set()
+    q = required_courses
+
+    print(q)
+    while q:
+        cur_course_code = q.pop(0)
+        cur_course = get_course(data, cur_course_code)
+        color = get_node_color(cur_course_code, dept, program)
+        add_node(nodes, cur_course_code, color)
+        for prereq in get_reg_prereqs(cur_course):
+                if get_course_attr(prereq) not in data['courses']:
+                    continue
+
+                add_edge(edges, cur_course_code, prereq)
+
+                if prereq not in visited:
+                    visited.add(prereq)
+                    q.append(prereq)
+        for group in get_eq_prereqs(cur_course):
+            for prereq in group:
+                if get_course_attr(prereq) not in data['courses']:
+                    continue
+
+                add_edge(edges, cur_course_code, prereq, animated=True)
+
+                if prereq not in visited:
+                    visited.add(prereq)
+                    q.append(prereq)
+    print(q)
+    print(nodes)
+    print(edges)
+    return {
+        'nodes': nodes,
+        'edges': edges
+    }
+
+def make_minor_program_graph(program):
+    data = get_course_data()
+
+    nodes = []
+    edges = []
+
+    dept = get_course_attr(program).upper()
+    all_courses = data["programs"][program]
+
+    major_courses = all_courses["major_reqs"]
+    minor_courses = all_courses["minor_reqs"]
+    required_courses = minor_courses
+    visited = set()
+    q = required_courses
+
+    print(q)
+    while q:
+        cur_course_code = q.pop(0)
+        cur_course = get_course(data, cur_course_code)
+        color = get_node_color(cur_course_code, dept, program)
+        add_node(nodes, cur_course_code, color)
+        for prereq in get_reg_prereqs(cur_course):
+                if get_course_attr(prereq) not in data['courses']:
+                    continue
+
+                add_edge(edges, cur_course_code, prereq)
+
+                if prereq not in visited:
+                    visited.add(prereq)
+                    q.append(prereq)
+        for group in get_eq_prereqs(cur_course):
+            for prereq in group:
+                if get_course_attr(prereq) not in data['courses']:
+                    continue
+
+                add_edge(edges, cur_course_code, prereq, animated=True)
+
+                if prereq not in visited:
+                    visited.add(prereq)
+                    q.append(prereq)
+    print(q)
+    print(nodes)
+    print(edges)
     return {
         'nodes': nodes,
         'edges': edges

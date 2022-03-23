@@ -2,7 +2,7 @@ from flask import Flask, redirect, request
 from flask_cors import CORS
 
 from course_search import get_course_data, get_course_info, get_courses, get_department_courses, get_all_courses, get_program_courses
-from make_graph import make_course_graph, make_department_graph
+from make_graph import make_course_graph, make_department_graph, make_major_program_graph, make_minor_program_graph
 from helpers import make_code_valid
 
 import json
@@ -105,9 +105,15 @@ def get_course_graph(code):
 
 @app.route(f'{BASE_URL}/graph/department/<code>')
 def get_department_graph(code):
-    print(code)
-    print("Testing")
     return make_department_graph(code.lower())
+
+@app.route(f'{BASE_URL}/graph/program/<code>')
+def get_major_program_graph(code):
+    return make_major_program_graph(code.lower())
+
+@app.route(f'{BASE_URL}/graph/program/minor/<code>')
+def get_minor_program_graph(code):
+    return make_minor_program_graph(code.lower())
 
 
 if __name__ == '__main__':

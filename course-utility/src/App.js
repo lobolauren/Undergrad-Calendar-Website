@@ -32,6 +32,7 @@ function App() {
           <Route path="/makegraph" element={<MakeGraph />} />
           <Route path="/coursesearch" element={<CourseSearch />} />
           <Route path="/graph/:type/:code" element={<Graph />} />
+          <Route path="/graph/:type/:minor/:code" element={<Graph />} />
         </Routes>
       </Router>
     </div>
