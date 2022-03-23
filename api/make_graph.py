@@ -111,31 +111,36 @@ def make_department_graph(department):
     edges = []
 
     for course_value in data["courses"][department]:
-        # print(coure_value)
         cur_course_code = course_value["code"]
         cur_course = get_course(data, cur_course_code)
-        print(cur_course)
         color = get_node_color(cur_course_code, department, cur_course_code)
         add_node(nodes, cur_course_code, color)
 
-        # TODO: Add prereqs to the list as edges
+        # go through mandatory prereqs
         for prereq in get_reg_prereqs(course_value):
             if prereq == []:
                 continue
-            # print(prereq)
 
-            # TODO: Only add edge if course is in department
-            add_edge(edges, cur_course_code, prereq, animated=True)
+            add_edge(edges, cur_course_code, prereq, animated=False)
 
+            # Change colour for courses outside department
             if(get_course_attr(prereq, upper=True) != department.upper()):
                 color = get_node_color(prereq, department, cur_course_code)
             add_node(nodes, prereq, color)
-            pass
-        pass
+            
+        # go through the other cases for pre-reqs
+        for eq_prereq in get_eq_prereqs(course_value):
+            if eq_prereq == []:
+                continue
 
-        # TODO: Go through the eq_prereqs
+            # iterate through each array in eq_prereq
+            for course in eq_prereq:
+                add_edge(edges, cur_course_code, course, animated=True)   
+                # Change colour for courses outside department
+                if(get_course_attr(course, upper=True) != department.upper()):
+                    color = get_node_color(course, department, cur_course_code)
+                add_node(nodes, course, color)               
 
-    # TODO: Complete
     return {
         'nodes': nodes,
         'edges': edges
