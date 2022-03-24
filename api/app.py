@@ -4,7 +4,7 @@ from flask_cors import CORS
 
 from course_search import get_course_data, get_course_info, get_courses, get_department_courses, get_all_courses, get_program_courses
 from make_graph import make_course_graph, make_department_graph, make_major_program_graph, make_minor_program_graph
-from helpers import make_code_valid
+from helpers import make_code_valid, get_all_programs,get_programs_info
 
 import json
 
@@ -24,6 +24,10 @@ def hello():
 @app.route(f'{BASE_URL}/get_course_data', methods=['GET'])
 def get_course_data_json():
     return get_course_data()
+
+@app.route(f'{BASE_URL}/get_programs_list', methods=['GET'])
+def get_program_list_json():
+    return get_programs_info(get_course_data())
 
 
 @app.route(f'{BASE_URL}/course/<code>')
