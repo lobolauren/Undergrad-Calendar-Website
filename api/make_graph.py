@@ -10,8 +10,8 @@ NODE_COLORS = {
     'diff_dept': '#6c757d'          # course in different department
 }
 
-default_node_textsize = 14.0;
-legend_node_textsize = 10.0;
+default_node_textsize = 14.0
+legend_node_textsize = 10.0
 
 def add_node(nodes: list, course_code: str, color, is_legend_node: bool = False):
     course_code = course_code.lower()
