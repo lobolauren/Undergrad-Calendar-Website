@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import axios from 'axios';
 
-import { Form, Button, Row, Col } from 'react-bootstrap'
 import { Container } from 'react-bootstrap'
 import SearchForm from '../components/coursesearch/SearchForm'
 import ResultsTable from '../components/coursesearch/ResultsTable'
@@ -18,16 +17,16 @@ const CourseSearch = () => {
         axios.get(global.config.base_url + '/courses', { params: param }).then((res) => {
 
             // no courses were found
-            if (res.data.length == 0) {
+            if (res.data.length === 0) {
                 // Reset courses to initial state, so it shows no courses found
                 setCourses(null);
                 return;
             }
 
             // leave as is if courseCodeOption is picked. Otherwise, sort by name
-            let correctSortedOrder = (sortType == "courseCodeOption" ? res.data : sortResultsByCustomType(res.data, "name"));
+            let correctSortedOrder = (sortType === "courseCodeOption" ? res.data : sortResultsByCustomType(res.data, "name"));
 
-            if (sortOrder == "descending") {// && sortType == "courseCodeOption") {
+            if (sortOrder === "descending") {// && sortType == "courseCodeOption") {
                 let reversedCopy = correctSortedOrder.reverse();
                 setCourses(reversedCopy);
             }
@@ -59,6 +58,14 @@ const CourseSearch = () => {
             "code": courseCode,
             "weight": courseWeight,
             "terms": terms.toString() // convert to string because array causes issues with axios params
+        }
+
+        // If the school is Carelton, dont specify the terms since that isnt a parameter for their courses
+        if (courseSearchQuery.school === "Carleton University") {
+            courseSearchQuery.terms = ["F", "W", "S"].toString();
+            setSchool('carleton');
+        } else {
+            setSchool('guelph');
         }
 
         // get the input data from the server
@@ -109,13 +116,13 @@ const CourseSearch = () => {
         sortType = event.target.value;
 
         // sort by that type and take into consideration the order (ascending or descending)
-        if (sortType == "courseNameOption") {
+        if (sortType === "courseNameOption") {
             let sortedCourses = sortResultsByCustomType(courses, "name")
-            sortOrder == "ascending" ? setCourses(sortedCourses) : setCourses(sortedCourses.reverse());
+            sortOrder === "ascending" ? setCourses(sortedCourses) : setCourses(sortedCourses.reverse());
         }
         else { // sort by course code
             let sortedCourses = sortResultsByCustomType(courses, "code")
-            sortOrder == "ascending" ? setCourses(sortedCourses) : setCourses(sortedCourses.reverse());
+            sortOrder === "ascending" ? setCourses(sortedCourses) : setCourses(sortedCourses.reverse());
         }
     }
 
@@ -130,15 +137,19 @@ const CourseSearch = () => {
     
     // hook containing courses
     const [courses, setCourses] = useState();
+    // hook containing current school
+    const [schoolToUse, setSchool] = useState();
+
 
     return (
         <Container className="mt-5">
             <h2>Course Search <InfoModal/></h2>
+            
             <SearchForm handler={handleSubmit}/>
             <SortOptions sortTypeHandler={updateSortTypeOption} sortOrderHandler={updateSortOrderOption}/>
             <br/>
 
-            <ResultsTable courses={courses}/>
+            <ResultsTable courses={courses} school={schoolToUse}/>
         </Container>
     )
 }

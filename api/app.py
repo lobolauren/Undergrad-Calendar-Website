@@ -1,3 +1,4 @@
+from cv2 import log
 from flask import Flask, redirect, request
 from flask_cors import CORS
 
@@ -94,15 +95,15 @@ def get_catalog():
     return get_all_courses()
 
 
-@app.route(f'{BASE_URL}/graph/course/<code>')
-def get_course_graph(code):
+@app.route(f'{BASE_URL}/graph/<school>/course/<code>')
+def get_course_graph(school, code):
     if '*' in code:
         # in order to keep urls clean we'll remove the * from the course codes
-        new_url = f'{BASE_URL}/graph/course/{code.replace("*", "")}'
+        new_url = f'{BASE_URL}/graph/{school}/course/{code.replace("*", "")}'
         return redirect(new_url, code=308)
     else:
         code = make_code_valid(code)
-        return make_course_graph(code.lower())
+        return make_course_graph(code.lower(), school)
 
 
 @app.route(f'{BASE_URL}/graph/department/<code>')

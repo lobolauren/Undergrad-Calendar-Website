@@ -1,7 +1,7 @@
 import React from "react";
 import CourseBlock from "./CourseBlock";
 
-const ResultsTable = ({ courses }) => {
+const ResultsTable = ({ courses, school }) => {
   return (
     <div className="resultsTable">
       {courses ? (
@@ -13,6 +13,7 @@ const ResultsTable = ({ courses }) => {
               weight={course.weight}
               term={course.terms}
               description={course.description}
+              school={school}
             />
           ))
         )

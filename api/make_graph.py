@@ -1,5 +1,5 @@
 from helpers import *
-from course_search import get_course_data
+from course_search import get_course_data, COURSE_INFO_JSON
 import json
 
 DEBUG = False
@@ -61,10 +61,18 @@ def get_node_shape(code, og_dept, og_code):
     else:
         return NODE_SHAPE['diff_dept']
 
-def make_course_graph(code):
 
-    data = get_course_data()
+# makes a graph of a course
+def make_course_graph(code, school: str = COURSE_INFO_JSON):
 
+    # get the correct file name
+    if school == 'guelph':
+        school = COURSE_INFO_JSON
+    elif school == 'carleton':
+        school = 'course_info_carleton.json'
+
+    data = get_course_data(school)
+    
     nodes = []
     edges = []
 
@@ -115,9 +123,10 @@ def make_course_graph(code):
         'edges': edges
     }
 
-def make_department_graph(department):
 
-    data = get_course_data()
+def make_department_graph(department, school: str = COURSE_INFO_JSON):
+
+    data = get_course_data(school)
 
     nodes = []
     edges = []
@@ -158,8 +167,9 @@ def make_department_graph(department):
         'edges': edges
     }
 
-def make_major_program_graph(program):
-    data = get_course_data()
+
+def make_major_program_graph(program, school: str = COURSE_INFO_JSON):
+    data = get_course_data(school)
 
     nodes = []
     edges = []
@@ -205,8 +215,9 @@ def make_major_program_graph(program):
         'edges': edges
     }
 
-def make_minor_program_graph(program):
-    data = get_course_data()
+
+def make_minor_program_graph(program, school: str = COURSE_INFO_JSON):
+    data = get_course_data(school)
 
     nodes = []
     edges = []

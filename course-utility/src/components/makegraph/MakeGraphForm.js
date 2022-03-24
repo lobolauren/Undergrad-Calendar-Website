@@ -1,6 +1,6 @@
 import React from "react";
-import { useEffect, useState } from 'react';
-import { Form, Button, Row, Col } from "react-bootstrap";
+import { useState } from 'react';
+import { Form, Button, Col } from "react-bootstrap";
 
 const MakeGraphForm = ({ handler }) => {
 
@@ -14,6 +14,15 @@ const MakeGraphForm = ({ handler }) => {
     <div className="graph-form">
         <Form onSubmit={handler} bg="dark" expand="lg" letiant="dark">
         <Form.Group className="mb-3">
+
+          <Form.Group as={Col} className="mb-3">
+            <Form.Label>Select School</Form.Label>
+            <Form.Select defaultValue='guelph' id="courseSearchSchoolId">
+              <option>Guelph University</option>
+              <option>Carleton University</option>
+            </Form.Select>
+          </Form.Group>
+
           <Form.Label>Graph Type</Form.Label>
           <Form.Select 
             id="graphType"
@@ -26,14 +35,14 @@ const MakeGraphForm = ({ handler }) => {
           </Form.Select>
         </Form.Group>
 
-        {selectOption != 'catalog'
+        {selectOption !== 'catalog'
         ? <Form.Group className="mb-3">
             <Form.Label>{toTitleCase(selectOption)} Code</Form.Label>
             <Form.Control type="text" id="courseCode" required />
           </Form.Group>
         : null}
 
-        {selectOption == 'program' 
+        {selectOption === 'program' 
         ? <Form.Group className="mb-3">
             <Form.Label>Major or Minor</Form.Label>
             <Form.Check type="radio" name="major-minor" label="Major" value="major" required />

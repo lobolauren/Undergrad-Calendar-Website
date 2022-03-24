@@ -17,17 +17,21 @@ const MakeGraph=()=>{
     let minorValue=false;
     let graphType = event.target.graphType.value;
     let courseCode = event.target.courseCode.value;
+    let school = (event.target.courseSearchSchoolId.value === 'Guelph University' ? 'guelph' : 'carleton');
+
     let graphWanted = {}
     
     if (graphType == "program"){
       minorValue = event.target.minorId.checked;
       graphWanted = {
+        "school": school,
         "type": graphType,
         "code": courseCode,
         "minor":minorValue
       }
     }else{
       graphWanted = {
+        "school": school,
         "type": graphType,
         "code": courseCode
       }
@@ -35,11 +39,11 @@ const MakeGraph=()=>{
 
     // navigates to a separate page to display the desired graph
     if (graphWanted["type"] == "course" || graphWanted["type"] == "department"){
-      navigate('/graph/' + graphWanted["type"] + '/' + graphWanted["code"]);
+      navigate('/graph/' + graphWanted["school"] + '/' + graphWanted["type"] + '/' + graphWanted["code"]);
     }else if (graphWanted["type"] == "program" && graphWanted["minor"]==true){
-      navigate('/graph/' + graphWanted["type"] + '/' + "minor" + '/' + graphWanted["code"]);
+      navigate('/graph/' + graphWanted["school"] + '/' + graphWanted["type"] + '/' + "minor" + '/' + graphWanted["code"]);
     }else if (graphWanted["type"]=="catalog" || (graphWanted["type"] == "program" && graphWanted["minor"]==false)){
-      navigate('/graph/' + graphWanted["type"] + '/' + graphWanted["code"]);
+      navigate('/graph/' + graphWanted["school"] + '/' + graphWanted["type"] + '/' + graphWanted["code"]);
     }
   }
     
