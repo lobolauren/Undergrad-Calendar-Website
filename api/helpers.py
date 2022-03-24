@@ -1,3 +1,4 @@
+import json
 from typing import List
 
 # Given a full course code (i.e. CIS*3760), return course attr (i.e. cis)
@@ -138,3 +139,15 @@ def get_all_programs(data: dict) -> List[str]:
         return data['programs'].keys()
     except KeyError:
         return []
+
+# get list of programs in json form
+def get_programs_info(data: dict) -> List[str]:
+    programs = {}
+    programs["programs"] = []
+    try:
+        for program in data["programs"]:
+            programs["programs"].append(program)
+                
+        return json.dumps(programs)
+    except KeyError:
+        return programs
