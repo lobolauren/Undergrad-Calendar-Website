@@ -23,9 +23,13 @@ def get_course_info(code: str):
         return get_course(get_course_data(COURSE_INFO_JSON), code)
 
 #returns dict of courses with the given paraemeters(which can have no data in the call)
-def get_courses(name, code, weight, term):
+def get_courses(school,name, code, weight, term):
     #get all courses
-    coursedata = get_course_data(COURSE_INFO_JSON)
+    if school != "Guelph University":
+        jsonfile = 'course_info_carleton.json'
+    else:
+        jsonfile=COURSE_INFO_JSON
+    coursedata = get_course_data(jsonfile)
     courseList = []
 
     try:
@@ -82,7 +86,7 @@ def get_courses(name, code, weight, term):
                 
                 #if satisfies all searches add
                 if check:
-                    print(course['code'])
+                    #print(course['code'])
                     courseList.append(course)
     except KeyError:
         return []

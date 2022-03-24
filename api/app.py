@@ -42,6 +42,7 @@ def get_course_json(code: str):
 def get_arg(args, arg, default=''):
     return args[arg] if arg in args else default
 
+
 @app.route(f'{BASE_URL}/courses')
 def get_courses_list():
     args = request.args
@@ -52,6 +53,7 @@ def get_courses_list():
 
     # args ex. /api/courses?name=programming&code=cis*2500&weight=0.25&term=W
     return get_courses(
+        school=get_arg(args,"school"),
         name=get_arg(args, 'name'),
         code=get_arg(args, 'code'),
         weight=get_arg(args, 'weight'),

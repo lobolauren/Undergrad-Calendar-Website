@@ -8,6 +8,14 @@ const SearchForm = ({ handler }) => {
       <div className='courseSearch'>
           <Form onSubmit={handler} bg="dark" expand="lg" letiant="dark">
 
+          <Form.Group as={Col} className="mb-3">
+                      <Form.Label>Select School</Form.Label>
+                      <Form.Select defaultValue='guelph' id="courseSearchSchoolId">
+                          <option>Guelph University</option>
+                          <option>Carleton University</option>
+                      </Form.Select>
+            </Form.Group>
+
               <Row>
                   <Form.Group as={Col} className="mb-3">
                       <Form.Label>Course Name</Form.Label>

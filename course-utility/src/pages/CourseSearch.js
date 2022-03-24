@@ -49,11 +49,12 @@ const CourseSearch = () => {
         let isFallSelected = event.target.fallCheckbox.checked;
         let isWinterSelected = event.target.winterCheckbox.checked;
         let isSummerSelected = event.target.summerCheckbox.checked;
-
+        let isGuelphSelected = event.target.courseSearchSchoolId.value;
         // get terms selected
         let terms = buildTermsList(isFallSelected, isWinterSelected, isSummerSelected);
 
         let courseSearchQuery = {
+            "school":isGuelphSelected,
             "name": courseName,
             "code": courseCode,
             "weight": courseWeight,
