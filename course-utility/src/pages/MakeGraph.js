@@ -18,6 +18,7 @@ const MakeGraph=()=>{
     let graphType = event.target.graphType.value;
     let courseCode = event.target.courseCode.value;
     let graphWanted = {}
+    let checkHold
     
     if (graphType == "program"){
       minorValue = event.target.minorId.checked;
@@ -33,14 +34,48 @@ const MakeGraph=()=>{
       }
     }
 
-    // navigates to a separate page to display the desired graph
-    if (graphWanted["type"] == "course" || graphWanted["type"] == "department"){
-      navigate('/graph/' + graphWanted["type"] + '/' + graphWanted["code"]);
-    }else if (graphWanted["type"] == "program" && graphWanted["minor"]==true){
-      navigate('/graph/' + graphWanted["type"] + '/' + "minor" + '/' + graphWanted["code"]);
-    }else if (graphWanted["type"]=="catalog" || (graphWanted["type"] == "program" && graphWanted["minor"]==false)){
-      navigate('/graph/' + graphWanted["type"] + '/' + graphWanted["code"]);
+    //make call to check if page exists
+    let courseSearchQuery = {
+      "name": "",
+      "code": courseCode,
+      "weight": "all",
+      "terms": "F,W,S" // convert to string because array causes issues with axios params
     }
+    axios.get(global.config.base_url + '/courses', { params: courseSearchQuery }).then((res) => {
+      checkHold = Object.keys(res.data).length;
+
+      // navigates to a separate page to display the desired graph
+      if (graphWanted["type"] == "course"){
+        if(checkHold == 1){
+          navigate('/graph/' + graphWanted["type"] + '/' + graphWanted["code"]);
+        }
+        else{
+          alert("Invalid input. Could not graph.");
+        }
+      }
+      if (graphWanted["type"] == "department"){
+        if(checkHold > 1){
+          navigate('/graph/' + graphWanted["type"] + '/' + graphWanted["code"]);
+        }
+        else{
+          alert("Invalid input. Could not graph.");
+        }
+      }else if (graphWanted["type"] == "program" && graphWanted["minor"]==true){
+        if(checkHold > 0){
+          navigate('/graph/' + graphWanted["type"] + '/' + "minor" + '/' + graphWanted["code"]);
+        }
+        else{
+          alert("Invalid input. Could not graph.");
+        }
+      //catalog has been removed, this should not occur
+      }else if (graphWanted["type"]=="catalog" || (graphWanted["type"] == "program" && graphWanted["minor"]==false)){
+        navigate('/graph/' + graphWanted["type"] + '/' + graphWanted["code"]);
+      }
+
+    }, (err) => { // an error occured
+      console.log(err);
+    });
+
   }
     
   return (
