@@ -25,7 +25,6 @@ const MakeGraph=()=>{
     if (graphType == "program"){
       minorValue = event.target.minorId.checked;
       graphWanted = {
-        "school": school,
         "type": graphType,
         "code": courseCode,
         "minor":minorValue
@@ -39,11 +38,17 @@ const MakeGraph=()=>{
     }
 
     if (graphWanted["type"] == "course" || graphWanted["type"] == "department"){
+
       navigate('/graph/' + graphWanted["school"] + '/' + graphWanted["type"] + '/' + graphWanted["code"]);
+
     }else if (graphWanted["type"] == "program" && graphWanted["minor"]==true){
-      navigate('/graph/' + graphWanted["school"] + '/' + graphWanted["type"] + '/' + "minor" + '/' + graphWanted["code"]);
+
+      navigate('/graph/' + graphWanted["type"] + '/' + "minor" + '/' + graphWanted["code"]);
+
     }else if (graphWanted["type"]=="catalog" || (graphWanted["type"] == "program" && graphWanted["minor"]==false)){
-      navigate('/graph/' + graphWanted["school"] + '/' + graphWanted["type"] + '/' + graphWanted["code"]);
+
+      navigate('/graph/' + graphWanted["type"] + '/' + graphWanted["code"]);
+      
       //make call to check if page exists
       let courseSearchQuery = {
         "name": "",

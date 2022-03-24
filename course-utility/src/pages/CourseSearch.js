@@ -45,10 +45,10 @@ const CourseSearch = () => {
         let courseName = event.target.courseName.value;
         let courseCode = event.target.courseCode.value;
         let courseWeight = event.target.courseWeights.value;
-        let isFallSelected = event.target.fallCheckbox.checked;
-        let isWinterSelected = event.target.winterCheckbox.checked;
-        let isSummerSelected = event.target.summerCheckbox.checked;
         let isGuelphSelected = event.target.courseSearchSchoolId.value;
+        let isFallSelected = (isGuelphSelected === 'Guelph University' ? event.target.fallCheckbox.checked : '');
+        let isWinterSelected = (isGuelphSelected === 'Guelph University' ? event.target.winterCheckbox.checked : '');
+        let isSummerSelected = (isGuelphSelected === 'Guelph University' ? event.target.summerCheckbox.checked : '');
         // get terms selected
         let terms = buildTermsList(isFallSelected, isWinterSelected, isSummerSelected);
 

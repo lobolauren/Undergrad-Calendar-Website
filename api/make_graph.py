@@ -126,6 +126,13 @@ def make_course_graph(code, school: str = COURSE_INFO_JSON):
 
 def make_department_graph(department, school: str = COURSE_INFO_JSON):
 
+    # get the correct file name
+    if school == 'guelph':
+        school = COURSE_INFO_JSON
+    elif school == 'carleton':
+        school = 'course_info_carleton.json'
+
+
     data = get_course_data(school)
 
     nodes = []

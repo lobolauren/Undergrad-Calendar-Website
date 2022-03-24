@@ -110,13 +110,15 @@ def get_course_graph(school, code):
         return make_course_graph(code.lower(), school)
 
 
-@app.route(f'{BASE_URL}/graph/department/<code>')
-def get_department_graph(code):
-    return make_department_graph(code.lower())
+@app.route(f'{BASE_URL}/graph/<school>/department/<code>')
+def get_department_graph(school, code):
+    return make_department_graph(code.lower(), school)
+
 
 @app.route(f'{BASE_URL}/graph/program/<code>')
 def get_major_program_graph(code):
     return make_major_program_graph(code.lower())
+
 
 @app.route(f'{BASE_URL}/graph/program/minor/<code>')
 def get_minor_program_graph(code):
