@@ -10,7 +10,10 @@ NODE_COLORS = {
     'diff_dept': '#6c757d'          # course in different department
 }
 
-def add_node(nodes: list, course_code: str, color):
+default_node_textsize = 14.0;
+legend_node_textsize = 10.0;
+
+def add_node(nodes: list, course_code: str, color, is_legend_node: bool = False):
     course_code = course_code.lower()
     nodes.append({
         'id': course_code.replace('*', ''),
@@ -23,6 +26,9 @@ def add_node(nodes: list, course_code: str, color):
         'draggable': False,
         'style': {
             'background': color,
+            'font-size': (default_node_textsize if not is_legend_node else legend_node_textsize),
+            'margin': 'auto',
+            'padding': 10
         },
     })
 
@@ -255,16 +261,23 @@ def make_minor_program_graph(program):
     }
 
 def build_legend():
-    legendNodes = []
-    legendEdges = []
+    legend_nodes = []
+    legend_edges = []
 
-    add_node(legendNodes, "Course not required by degree program", NODE_COLORS["diff_dept"])
-    add_node(legendNodes, "Course outside department", NODE_COLORS["diff_dept"])
-    add_node(legendNodes, "Course in department", NODE_COLORS["same_dept"])
-    add_node(legendNodes, "One of prerequisite", NODE_COLORS["searched_course"])
-    add_node(legendNodes, "Course", NODE_COLORS["searched_course"])
+    add_node(legend_nodes, "Course not required by degree", NODE_COLORS["diff_dept"], True)
+    add_node(legend_nodes, "Course outside department", NODE_COLORS["diff_dept"], True)
+    add_node(legend_nodes, "Course in department", NODE_COLORS["same_dept"], True)
+    add_node(legend_nodes, "One of prerequisite", NODE_COLORS["searched_course"], True)
+    add_node(legend_nodes, "Required course", NODE_COLORS["searched_course"], True)
+    add_node(legend_nodes, "Course", NODE_COLORS["searched_course"], True)
+
+    add_edge(legend_edges, "Course in department", "Course not required by degree")
+    add_edge(legend_edges, "Course in department", "Course outside department")
+    # TODO: Add coloured arrows if possible
+    add_edge(legend_edges, "Course", "Required course", animated=False)
+    add_edge(legend_edges, "Course", "One of prerequisite", animated=True)
 
     return {
-        "nodes": legendNodes,
-        "edges": legendEdges
+        "nodes": legend_nodes,
+        "edges": legend_edges
     }
