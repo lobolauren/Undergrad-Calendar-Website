@@ -10,10 +10,7 @@ NODE_COLORS = {
     'diff_dept': '#6c757d'          # course in different department
 }
 
-default_node_textsize = 14.0
-legend_node_textsize = 10.0
-
-def add_node(nodes: list, course_code: str, color, is_legend_node: bool = False):
+def add_node(nodes: list, course_code: str, color):
     course_code = course_code.lower()
     nodes.append({
         'id': course_code.replace('*', ''),
@@ -26,9 +23,6 @@ def add_node(nodes: list, course_code: str, color, is_legend_node: bool = False)
         'draggable': False,
         'style': {
             'background': color,
-            'font-size': (default_node_textsize if not is_legend_node else legend_node_textsize),
-            'margin': 'auto',
-            'padding': 10
         },
     })
 
@@ -86,7 +80,7 @@ def make_course_graph(code):
                 if get_course_attr(prereq) not in data['courses']:
                     continue
 
-                add_edge(edges, cur_course_code, prereq)
+                add_edge(edges, prereq, cur_course_code)
 
                 if prereq not in visited:
                     visited.add(prereq)
@@ -97,18 +91,15 @@ def make_course_graph(code):
                     if get_course_attr(prereq) not in data['courses']:
                         continue
                     
-                    add_edge(edges, cur_course_code, prereq, animated=True)
+                    add_edge(edges, prereq, cur_course_code, animated=True)
 
                     if prereq not in visited:
                         visited.add(prereq)
                         q.append(prereq)
 
-    # add the legend
-    legend = build_legend()
-
     return {
-        'nodes': nodes + legend["nodes"],
-        'edges': edges + legend["edges"]
+        'nodes': nodes,
+        'edges': edges
     }
 
 
@@ -120,207 +111,31 @@ def make_department_graph(department):
     edges = []
 
     for course_value in data["courses"][department]:
+        # print(coure_value)
         cur_course_code = course_value["code"]
         cur_course = get_course(data, cur_course_code)
+        print(cur_course)
         color = get_node_color(cur_course_code, department, cur_course_code)
         add_node(nodes, cur_course_code, color)
 
-        # go through mandatory prereqs
+        # TODO: Add prereqs to the list as edges
         for prereq in get_reg_prereqs(course_value):
             if prereq == []:
                 continue
+            # print(prereq)
 
-            add_edge(edges, cur_course_code, prereq, animated=False)
+            # TODO: Only add edge if course is in department
+            add_edge(edges, cur_course_code, prereq, animated=True)
 
-            # Change colour for courses outside department
             if(get_course_attr(prereq, upper=True) != department.upper()):
                 color = get_node_color(prereq, department, cur_course_code)
             add_node(nodes, prereq, color)
-            
-        # go through the other cases for pre-reqs
-        for eq_prereq in get_eq_prereqs(course_value):
-            if eq_prereq == []:
-                continue
+            pass
+        pass
 
-            # iterate through each array in eq_prereq
-            for course in eq_prereq:
-                add_edge(edges, cur_course_code, course, animated=True)   
-                # Change colour for courses outside department
-                if(get_course_attr(course, upper=True) != department.upper()):
-                    color = get_node_color(course, department, cur_course_code)
-                add_node(nodes, course, color)               
+        # TODO: Go through the eq_prereqs
 
-    # add the legend
-    legend = build_legend()
-
-    return {
-        'nodes': nodes + legend["nodes"],
-        'edges': edges + legend["edges"]
-    }
-
-def make_major_program_graph(program):
-    data = get_course_data()
-
-    nodes = []
-    edges = []
-
-    dept = get_course_attr(program).upper()
-    all_courses = data["programs"][program]
-
-    major_courses = all_courses["major_reqs"]
-    minor_courses = all_courses["minor_reqs"]
-    required_courses = major_courses
-    visited = set()
-    q = required_courses
-
-    print(q)
-    while q:
-        cur_course_code = q.pop(0)
-        cur_course = get_course(data, cur_course_code)
-        color = get_node_color(cur_course_code, dept, program)
-        add_node(nodes, cur_course_code, color)
-        for prereq in get_reg_prereqs(cur_course):
-                if get_course_attr(prereq) not in data['courses']:
-                    continue
-
-                add_edge(edges, cur_course_code, prereq)
-
-                if prereq not in visited:
-                    visited.add(prereq)
-                    q.append(prereq)
-        for group in get_eq_prereqs(cur_course):
-            for prereq in group:
-                if get_course_attr(prereq) not in data['courses']:
-                    continue
-
-                add_edge(edges, cur_course_code, prereq, animated=True)
-
-                if prereq not in visited:
-                    visited.add(prereq)
-                    q.append(prereq)
-    print(q)
-    print(nodes)
-    print(edges)
-    # add the legend
-    legend = build_legend()
-
-    return {
-        'nodes': nodes + legend["nodes"],
-        'edges': edges + legend["edges"]
-    }
-
-def make_minor_program_graph(program):
-    data = get_course_data()
-
-    nodes = []
-    edges = []
-
-    dept = get_course_attr(program).upper()
-    all_courses = data["programs"][program]
-
-    major_courses = all_courses["major_reqs"]
-    minor_courses = all_courses["minor_reqs"]
-    required_courses = minor_courses
-    visited = set()
-    q = required_courses
-
-    print(q)
-    while q:
-        cur_course_code = q.pop(0)
-        cur_course = get_course(data, cur_course_code)
-        color = get_node_color(cur_course_code, dept, program)
-        add_node(nodes, cur_course_code, color)
-        for prereq in get_reg_prereqs(cur_course):
-                if get_course_attr(prereq) not in data['courses']:
-                    continue
-
-                add_edge(edges, cur_course_code, prereq)
-
-                if prereq not in visited:
-                    visited.add(prereq)
-                    q.append(prereq)
-        for group in get_eq_prereqs(cur_course):
-            for prereq in group:
-                if get_course_attr(prereq) not in data['courses']:
-                    continue
-
-                add_edge(edges, cur_course_code, prereq, animated=True)
-
-                if prereq not in visited:
-                    visited.add(prereq)
-                    q.append(prereq)
-    print(q)
-    print(nodes)
-    print(edges)
-    # add the legend
-    legend = build_legend()
-
-    return {
-        'nodes': nodes + legend["nodes"],
-        'edges': edges + legend["edges"]
-    }
-
-def build_legend():
-    legend_nodes = []
-    legend_edges = []
-
-    add_node(legend_nodes, "Course not required by degree", NODE_COLORS["diff_dept"], True)
-    add_node(legend_nodes, "Course outside department", NODE_COLORS["diff_dept"], True)
-    add_node(legend_nodes, "Course in department", NODE_COLORS["same_dept"], True)
-    add_node(legend_nodes, "One of prerequisite", NODE_COLORS["searched_course"], True)
-    add_node(legend_nodes, "Required course", NODE_COLORS["searched_course"], True)
-    add_node(legend_nodes, "Course", NODE_COLORS["searched_course"], True)
-
-    add_edge(legend_edges, "Course in department", "Course not required by degree")
-    add_edge(legend_edges, "Course in department", "Course outside department")
-    # TODO: Add coloured arrows if possible
-    add_edge(legend_edges, "Course", "Required course", animated=False)
-    add_edge(legend_edges, "Course", "One of prerequisite", animated=True)
-
-    return {
-        "nodes": legend_nodes,
-        "edges": legend_edges
-    }
-
-
-def make_department_graph(department):
-
-    data = get_course_data()
-
-    nodes = []
-    edges = []
-
-    for course_value in data["courses"][department]:
-        cur_course_code = course_value["code"]
-        cur_course = get_course(data, cur_course_code)
-        color = get_node_color(cur_course_code, department, cur_course_code)
-        add_node(nodes, cur_course_code, color)
-
-        # go through mandatory prereqs
-        for prereq in get_reg_prereqs(course_value):
-            if prereq == []:
-                continue
-
-            add_edge(edges, cur_course_code, prereq, animated=False)
-
-            # Change colour for courses outside department
-            if(get_course_attr(prereq, upper=True) != department.upper()):
-                color = get_node_color(prereq, department, cur_course_code)
-            add_node(nodes, prereq, color)
-            
-        # go through the other cases for pre-reqs
-        for eq_prereq in get_eq_prereqs(course_value):
-            if eq_prereq == []:
-                continue
-
-            # iterate through each array in eq_prereq
-            for course in eq_prereq:
-                add_edge(edges, cur_course_code, course, animated=True)   
-                # Change colour for courses outside department
-                if(get_course_attr(course, upper=True) != department.upper()):
-                    color = get_node_color(course, department, cur_course_code)
-                add_node(nodes, course, color)               
-
+    # TODO: Complete
     return {
         'nodes': nodes,
         'edges': edges
@@ -351,7 +166,7 @@ def make_major_program_graph(program):
                 if get_course_attr(prereq) not in data['courses']:
                     continue
 
-                add_edge(edges, cur_course_code, prereq)
+                add_edge(edges, prereq, cur_course_code)
 
                 if prereq not in visited:
                     visited.add(prereq)
@@ -361,7 +176,7 @@ def make_major_program_graph(program):
                 if get_course_attr(prereq) not in data['courses']:
                     continue
 
-                add_edge(edges, cur_course_code, prereq, animated=True)
+                add_edge(edges, prereq, cur_course_code, animated=True)
 
                 if prereq not in visited:
                     visited.add(prereq)
@@ -399,7 +214,7 @@ def make_minor_program_graph(program):
                 if get_course_attr(prereq) not in data['courses']:
                     continue
 
-                add_edge(edges, cur_course_code, prereq)
+                add_edge(edges, prereq, cur_course_code)
 
                 if prereq not in visited:
                     visited.add(prereq)
@@ -409,7 +224,7 @@ def make_minor_program_graph(program):
                 if get_course_attr(prereq) not in data['courses']:
                     continue
 
-                add_edge(edges, cur_course_code, prereq, animated=True)
+                add_edge(edges, prereq, cur_course_code, animated=True)
 
                 if prereq not in visited:
                     visited.add(prereq)
