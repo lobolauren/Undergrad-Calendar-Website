@@ -46,5 +46,11 @@ or
 `sudo crontab -e <username>` (for non sudo users)
 
  - Select a text editor
- - Modify the crontab file
-    - You may copy the text from the given file or create a custom crontab 
+ - Modify the crontab file accordingly:
+
+    #### Copy the below line into the crontab file after running crontab -e 
+
+    `0,30 * * * * python3 /home/sysadmin/3760-project/tests/test_main.py > /home/sysadmin/3760-project/course-utility.log`
+
+    #### !NOTE! : replace the path of the `test_main.py` & `course-utility.log` files with the correct path for your system
+    #### This line runs the script every 30 minutes & outputs the latest results to `course-utility.log`
