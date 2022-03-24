@@ -4,6 +4,8 @@ import { Form, Button, Row, Col } from 'react-bootstrap'
 // Contains forms for searching for a course
 // The function for handling the submit button (handler) is passed in as a prop
 const SearchForm = ({ handler }) => {
+  let courseName = JSON.parse(localStorage.getItem('courseName'));
+  console.log(courseName)
   return (
       <div className='courseSearch'>
           <Form onSubmit={handler} bg="dark" expand="lg" letiant="dark">
@@ -19,7 +21,7 @@ const SearchForm = ({ handler }) => {
               <Row>
                   <Form.Group as={Col} className="mb-3">
                       <Form.Label>Course Name</Form.Label>
-                      <Form.Control type='name' placeholder='Course Name' id="courseName" />
+                      <Form.Control type='name' placeholder='Course Name' value={courseName['name']} id="courseName" />
                   </Form.Group>
               </Row>
 

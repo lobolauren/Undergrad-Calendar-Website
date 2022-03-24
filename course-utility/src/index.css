@@ -15,6 +15,17 @@ body {
     background-color: #F7F7F7;
 }
 
+.home, .home-search {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.home-search {
+    min-height: 30vh;
+}
+
 .courseblock {
   padding: 5px;
   border-radius: 5px;
