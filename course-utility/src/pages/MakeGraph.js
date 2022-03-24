@@ -34,49 +34,50 @@ const MakeGraph=()=>{
       }
     }
 
-    //make call to check if page exists
-    let courseSearchQuery = {
-      "name": "",
-      "code": courseCode,
-      "weight": "all",
-      "terms": "F,W,S" // convert to string because array causes issues with axios params
-    }
-    axios.get(global.config.base_url + '/courses', { params: courseSearchQuery }).then((res) => {
-      checkHold = Object.keys(res.data).length;
-
-      // navigates to a separate page to display the desired graph
-      if (graphWanted["type"] == "course"){
-        if(checkHold == 1){
-          navigate('/graph/' + graphWanted["type"] + '/' + graphWanted["code"]);
-        }
-        else{
-          alert("Invalid input. Could not graph.");
-        }
+    if (graphWanted["type"] == "course" || graphWanted["type"] == "department"){
+      //make call to check if page exists
+      let courseSearchQuery = {
+        "name": "",
+        "code": courseCode,
+        "weight": "all",
+        "terms": "F,W,S" // convert to string because array causes issues with axios params
       }
-      if (graphWanted["type"] == "department"){
-        if(checkHold > 1){
-          navigate('/graph/' + graphWanted["type"] + '/' + graphWanted["code"]);
+      
+      axios.get(global.config.base_url + '/courses', { params: courseSearchQuery }).then((res) => {
+        checkHold = Object.keys(res.data).length;
+
+        // navigates to a separate page to display the desired graph
+        if (graphWanted["type"] == "course"){
+          if(checkHold == 1){
+            navigate('/graph/' + graphWanted["type"] + '/' + graphWanted["code"]);
+          }
+          else{
+            alert("Invalid input. Could not graph.");
+          }
+        }else if (graphWanted["type"] == "department"){
+          if(checkHold > 1){
+            navigate('/graph/' + graphWanted["type"] + '/' + graphWanted["code"]);
+          }
+          else{
+            alert("Invalid input. Could not graph.");
+          }
         }
-        else{
-          alert("Invalid input. Could not graph.");
-        }
-      }else if (graphWanted["type"] == "program" && graphWanted["minor"]==true){
-        if(checkHold > 0){
-          navigate('/graph/' + graphWanted["type"] + '/' + "minor" + '/' + graphWanted["code"]);
-        }
-        else{
-          alert("Invalid input. Could not graph.");
-        }
-      //catalog has been removed, this should not occur
-      }else if (graphWanted["type"]=="catalog" || (graphWanted["type"] == "program" && graphWanted["minor"]==false)){
+
+      }, (err) => { // an error occured
+        console.log(err);
+      });
+    }else if(graphWanted["type"] == "program"){
+
+      if(graphWanted["minor"]==true){
+        navigate('/graph/' + graphWanted["type"] + '/' + "minor" + '/' + graphWanted["code"]);
+      }else if(graphWanted["minor"]==false){
         navigate('/graph/' + graphWanted["type"] + '/' + graphWanted["code"]);
       }
 
-    }, (err) => { // an error occured
-      console.log(err);
-    });
-
+    }
   }
+
+  
     
   return (
     <Container className="mt-5">
