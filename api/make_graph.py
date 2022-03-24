@@ -125,7 +125,7 @@ def make_department_graph(department):
             # print(prereq)
 
             # TODO: Only add edge if course is in department
-            add_edge(edges, cur_course_code, prereq, animated=True)
+            add_edge(edges, prereq, cur_course_code, animated=True)
 
             if(get_course_attr(prereq, upper=True) != department.upper()):
                 color = get_node_color(prereq, department, cur_course_code)
