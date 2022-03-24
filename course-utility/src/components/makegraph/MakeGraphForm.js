@@ -14,6 +14,18 @@ const MakeGraphForm = ({ handler }) => {
     <div className="graph-form">
         <Form onSubmit={handler} bg="dark" expand="lg" letiant="dark">
         <Form.Group className="mb-3">
+
+          {/* Input for school */}
+          <Form.Label>Desired School</Form.Label>
+          <Form.Select 
+            id="schoolChoice"
+            defaultValue="guelph" 
+            
+          >
+            <option value="guelph">Guelph</option>
+            <option value="carleton">Carleton</option>
+          </Form.Select>
+
           <Form.Label>Graph Type</Form.Label>
           <Form.Select 
             id="graphType"

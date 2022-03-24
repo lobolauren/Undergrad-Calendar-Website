@@ -18,16 +18,20 @@ const MakeGraph=()=>{
     let graphType = event.target.graphType.value;
     let courseCode = event.target.courseCode.value;
     let graphWanted = {}
+    let schoolChoice = event.target.schoolChoice.value;
+    console.log("School choosen is " + schoolChoice);
     
     if (graphType == "program"){
       minorValue = event.target.minorId.checked;
       graphWanted = {
+        "school": schoolChoice,
         "type": graphType,
         "code": courseCode,
         "minor":minorValue
       }
     }else{
       graphWanted = {
+        "school": schoolChoice,
         "type": graphType,
         "code": courseCode
       }
