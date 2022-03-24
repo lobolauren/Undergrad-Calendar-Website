@@ -80,12 +80,21 @@ const Graph = () => {
   return <div>
     {receivedRequest == false || nodes.length > 0
     ? <div className='reactflow-container'>
+      <div className="p-3" style={{background:"transparent", position: "absolute", bottom: 0}}>
+        <p>Required prerequisite</p>
+        <p>'One of' prerequisite</p>
+        <p>Searched course</p>
+        <p>Course in same department</p>
+        <p>Course in different department</p>
+      </div>
+
       <ReactFlow 
         nodes={nodes} 
         edges={edges} 
         fitView 
       >
         <Background color="#aaa" gap={15} size={0.6} />
+        
       </ReactFlow>
     </div>
     : <NoPage />}
