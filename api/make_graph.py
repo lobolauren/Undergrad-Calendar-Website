@@ -140,12 +140,11 @@ def make_department_graph(department, school: str = COURSE_INFO_JSON):
     nodes = []
     edges = []
 
+
     for course_value in data["courses"][department]:
-        # print(coure_value)
+        # get the current course and add the course node with the correct colour
         cur_course_code = course_value["code"]
-        cur_course = get_course(data, cur_course_code)
-        print(cur_course)
-        color = get_node_color(cur_course_code, department, cur_course_code)
+        color = get_node_color(cur_course_code, department.upper(), department.upper())
         add_node(nodes, cur_course_code, color)
 
         for prereq in get_reg_prereqs(course_value):

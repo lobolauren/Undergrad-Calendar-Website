@@ -80,12 +80,19 @@ const Graph = () => {
   return <div>
     {receivedRequest == false || nodes.length > 0
     ? <div className='reactflow-container'>
-      <div className="p-3" style={{background:"transparent", position: "absolute", bottom: 0}}>
+      {/* Add legend to bottom */}
+      <div className="p-3" style={{background:"transparent", position: "absolute", bottom: 0, fontSize: 10}}>
         <p>Required prerequisite</p>
         <p>'One of' prerequisite</p>
         <p>Searched course</p>
+        <div className="searchCourseRect" />
+
         <p>Course in same department</p>
+
+        <div className="sameDepartmentRect" />
+        
         <p>Course in different department</p>
+        <div className="differentDepartmentRect" />
       </div>
 
       <ReactFlow 
