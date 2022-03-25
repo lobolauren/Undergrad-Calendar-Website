@@ -87,7 +87,7 @@ def get_courses(school, name, code, weight, term):
                 
                 #if satisfies all searches add
                 if check:
-                    print(course['code'])
+                    #print(course['code'])
                     courseList.append(course)
     except KeyError:
         return []
