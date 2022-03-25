@@ -14,7 +14,7 @@ const SearchForm = ({ handler }) => {
             <Form.Group as={Col} className="mb-3">
                       <Form.Label>Select School</Form.Label>
                       <Form.Select 
-                        defaultValue='guelph' 
+                        defaultValue='Guelph University' 
                         id="courseSearchSchoolId"
                         onChange={(e) => setSchool(e.target.value)}
                         >

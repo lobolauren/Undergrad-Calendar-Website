@@ -37,20 +37,12 @@ const MakeGraph=()=>{
       }
     }
 
+
     if (graphWanted["type"] == "course" || graphWanted["type"] == "department"){
-
-      navigate('/graph/' + graphWanted["school"] + '/' + graphWanted["type"] + '/' + graphWanted["code"]);
-
-    }else if (graphWanted["type"] == "program" && graphWanted["minor"]==true){
-
-      navigate('/graph/' + graphWanted["type"] + '/' + "minor" + '/' + graphWanted["code"]);
-
-    }else if (graphWanted["type"]=="catalog" || (graphWanted["type"] == "program" && graphWanted["minor"]==false)){
-
-      navigate('/graph/' + graphWanted["type"] + '/' + graphWanted["code"]);
-      
       //make call to check if page exists
+      console.log(graphWanted["school"]);
       let courseSearchQuery = {
+        "school": graphWanted["school"],
         "name": "",
         "code": courseCode,
         "weight": "all",
@@ -59,18 +51,19 @@ const MakeGraph=()=>{
       
       axios.get(global.config.base_url + '/courses', { params: courseSearchQuery }).then((res) => {
         checkHold = Object.keys(res.data).length;
+        console.log(res.data);
 
         // navigates to a separate page to display the desired graph
         if (graphWanted["type"] == "course"){
           if(checkHold == 1){
-            navigate('/graph/' + graphWanted["type"] + '/' + graphWanted["code"]);
+            navigate('/graph/' + graphWanted["school"] + '/' + graphWanted["type"] + '/' + graphWanted["code"]);
           }
           else{
             alert("Invalid input. Could not graph.");
           }
         }else if (graphWanted["type"] == "department"){
           if(checkHold > 1){
-            navigate('/graph/' + graphWanted["type"] + '/' + graphWanted["code"]);
+            navigate('/graph/' + graphWanted["school"] + '/' + graphWanted["type"] + '/' + graphWanted["code"]);
           }
           else{
             alert("Invalid input. Could not graph.");
