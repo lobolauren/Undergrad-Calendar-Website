@@ -1,58 +1,70 @@
-import React, { useState, useEffect } from 'react'
-import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
-
-import { Container } from 'react-bootstrap'
-import InfoModal from '../components/makegraph/InfoModal'
-import MakeGraphForm from '../components/makegraph/MakeGraphForm'
+import React, { useState } from 'react'
 import { Form, Button, Row, Col } from 'react-bootstrap'
 
-const MakeGraph=()=>{
+// Contains forms for searching for a course
+// The function for handling the submit button (handler) is passed in as a prop
+const SearchForm = ({ handler }) => {
 
-  const navigate = useNavigate();
-  
-  const handleSubmit = (event) => {
-    event.preventDefault();
+    const [school, setSchool] = useState('Guelph University');
 
-    let minorValue=false;
-    let graphType = event.target.graphType.value;
-    let courseCode = event.target.courseCode.value;
-    let graphWanted = {}
-    let schoolChoice = event.target.schoolChoice.value;
-    console.log("School choosen is " + schoolChoice);
-    
-    if (graphType == "program"){
-      minorValue = event.target.minorId.checked;
-      graphWanted = {
-        "school": schoolChoice,
-        "type": graphType,
-        "code": courseCode,
-        "minor":minorValue
-      }
-    }else{
-      graphWanted = {
-        "school": schoolChoice,
-        "type": graphType,
-        "code": courseCode
-      }
-    }
-
-    // navigates to a separate page to display the desired graph
-    if (graphWanted["type"] == "course" || graphWanted["type"] == "department"){
-      navigate('/graph/' + graphWanted["type"] + '/' + graphWanted["code"]);
-    }else if (graphWanted["type"] == "program" && graphWanted["minor"]==true){
-      navigate('/graph/' + graphWanted["type"] + '/' + "minor" + '/' + graphWanted["code"]);
-    }else if (graphWanted["type"]=="catalog" || (graphWanted["type"] == "program" && graphWanted["minor"]==false)){
-      navigate('/graph/' + graphWanted["type"] + '/' + graphWanted["code"]);
-    }
-  }
-    
   return (
-    <Container className="mt-5">
-      <h2>Make Graph <InfoModal/></h2>      
-      <MakeGraphForm handler={handleSubmit}/>
-    </Container>
+      <div className='courseSearch'>
+          <Form onSubmit={handler} bg="dark" expand="lg" letiant="dark">
+
+            <Form.Group as={Col} className="mb-3">
+                      <Form.Label>Select School</Form.Label>
+                      <Form.Select 
+                        defaultValue='guelph' 
+                        id="courseSearchSchoolId"
+                        onChange={(e) => setSchool(e.target.value)}
+                        >
+                          <option>Guelph University</option>
+                          <option>Carleton University</option>
+                      </Form.Select>
+            </Form.Group>
+
+              <Row>
+                  <Form.Group as={Col} className="mb-3">
+                      <Form.Label>Course Name</Form.Label>
+                      <Form.Control type='name' placeholder='Course Name' id="courseName" />
+                  </Form.Group>
+              </Row>
+
+              <Row>
+                  <Form.Group as={Col} className="mb-3">
+                      <Form.Label>Course Code</Form.Label>
+                      <Form.Control type='code' placeholder='Course Code/Number' id="courseCode" />
+                  </Form.Group>
+
+                  <Form.Group as={Col} className="mb-3">
+                      <Form.Label>Select Weights</Form.Label>
+                      <Form.Select defaultValue='all' id="courseWeights">
+                          <option>all</option>
+                          <option>0.25</option>
+                          <option>0.5</option>
+                          <option>0.75</option>
+                          <option>1.0</option>
+                      </Form.Select>
+                  </Form.Group>
+
+              </Row>
+
+            {school === 'Guelph University' ?
+                <Row>
+                    <Form.Group className='mb-3'>
+                        <Form.Check type='checkbox' label='F' inline='true' id="fallCheckbox" />
+                        <Form.Check type='checkbox' label='W' inline='true' id="winterCheckbox" />
+                        <Form.Check type='checkbox' label='S' inline='true' id="summerCheckbox" />
+                    </Form.Group>
+                </Row>
+              : null}
+
+              <Button type='submit'>Search</Button>
+
+              
+          </Form>
+      </div>
   )
 }
 
-export default MakeGraph
+export default SearchForm

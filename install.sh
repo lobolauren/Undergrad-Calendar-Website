@@ -53,6 +53,8 @@ apt update
 # install nginx
 apt install nginx
 
+apt-get install cron
+
 # npm
 if [ -x "$(command -v npm)" ]; then
     echo "npm already installed"

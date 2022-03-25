@@ -19,6 +19,7 @@ def test_get_course():
     if not r.ok:
         return False
 
+    # what the request should get if the api is working correctly
     expected_response = {
         "code": "CIS*3110",
         "coreqs": "",
