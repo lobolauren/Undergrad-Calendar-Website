@@ -1,3 +1,4 @@
+from cv2 import log
 from flask import Flask, redirect, request
 from flask_cors import CORS
 
