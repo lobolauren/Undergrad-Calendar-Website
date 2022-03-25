@@ -33,6 +33,7 @@ const MakeGraphForm = ({ handler }) => {
             id="graphType"
             defaultValue="course" 
             onChange={(e) => setSelectOption(e.target.value)}
+            className="mb-3"
           >
             <option value="course">Course</option>
             <option value="department">Department</option>
