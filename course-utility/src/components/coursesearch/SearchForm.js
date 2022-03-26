@@ -5,7 +5,7 @@ import { Form, Button, Row, Col } from 'react-bootstrap'
 // The function for handling the submit button (handler) is passed in as a prop
 const SearchForm = ({ handler }) => {
 
-    const [school, setSchool] = useState('Guelph University');
+    const [school, setSchool] = useState('guelph');
 
   return (
       <div className='courseSearch'>
@@ -14,7 +14,7 @@ const SearchForm = ({ handler }) => {
             <Form.Group as={Col} className="mb-3">
                       <Form.Label>Select School</Form.Label>
                       <Form.Select 
-                        defaultValue='Guelph University' 
+                        defaultValue='guelph' 
                         id="courseSearchSchoolId"
                         onChange={(e) => setSchool(e.target.value)}
                         >
@@ -49,7 +49,7 @@ const SearchForm = ({ handler }) => {
 
               </Row>
 
-            {school === 'Guelph University' ?
+            {school === 'guelph' ?
                 <Row>
                     <Form.Group className='mb-3'>
                         <Form.Check type='checkbox' label='F' inline='true' id="fallCheckbox" />
