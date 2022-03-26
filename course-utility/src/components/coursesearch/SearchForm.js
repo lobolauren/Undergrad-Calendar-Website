@@ -6,6 +6,7 @@ import { Form, Button, Row, Col } from 'react-bootstrap'
 const SearchForm = ({ handler }) => {
 
     const [school, setSchool] = useState('guelph');
+    let courseObj = JSON.parse(localStorage.getItem('courseName'))
 
   return (
       <div className='courseSearch'>
@@ -26,7 +27,7 @@ const SearchForm = ({ handler }) => {
               <Row>
                   <Form.Group as={Col} className="mb-3">
                       <Form.Label>Course Name</Form.Label>
-                      <Form.Control type='name' placeholder='Course Name' id="courseName" />
+                      <Form.Control type='name' value={courseObj['name']} placeholder='Course Name' id="courseName" />
                   </Form.Group>
               </Row>
 
