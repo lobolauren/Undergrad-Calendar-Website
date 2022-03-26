@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
 import React, { useEffect } from 'react'
-import ReactDOM from 'react-dom'
 import Navbar from './components/global/Navbar'
 import CourseSearch from './pages/CourseSearch';
 import MakeGraph from './pages/MakeGraph';

@@ -1,13 +1,10 @@
 import React from 'react'
 import logo from '../assets/uogLogo.png'
-import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
-import { Form, Button, Row, Col } from 'react-bootstrap'
 import { Container } from 'react-bootstrap'
-import ResultsTable from '../components/coursesearch/ResultsTable'
 import HomeSearch from '../components/home/HomeSearch'
 
 const Home = () => {
@@ -31,8 +28,12 @@ const Home = () => {
     
     return (
         <Container className="mt-5">
-            <div class="home"><img src={logo} alt="logo" className="img-fluid" /></div>
-            <div class="home"><h1>Welcome to University of Guelph Course Utility!</h1></div>
+            <div class="home">
+                <img src={logo} alt="logo" className="img-fluid" />
+            </div>
+            <div class="home">
+                <h1>Welcome to University of Guelph Course Utility!</h1>
+            </div>
             <HomeSearch handler={handleSubmit}/>
         </Container>
     )

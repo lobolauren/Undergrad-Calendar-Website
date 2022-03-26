@@ -56,10 +56,10 @@ const Graph = () => {
     const getGraph = () => {
       let checkMinor ="";
 
-      if ( typeof params.minor !== 'undefined'){
-        checkMinor = global.config.base_url + '/graph/'+params.type +"/"+ params.minor +"/"+ params.code;
-      }else{
-        checkMinor = global.config.base_url + '/graph/'+params.type+'/' + params.code;
+      if (typeof params.minor !== 'undefined') {
+        checkMinor = global.config.base_url + '/graph/' + params.type + "/"+ params.minor + "/" + params.code;
+      } else {
+        checkMinor = global.config.base_url + '/graph/' + params.type + '/' + params.code;
       }
 
       axios.get(checkMinor).then((res) => {
@@ -75,27 +75,27 @@ const Graph = () => {
       });
     }
     getGraph();
-  }, [])
+  }, [params])
 
   return <div>
-    {receivedRequest == false || nodes.length > 0
+    {receivedRequest === false || nodes.length > 0
     ? <div className='reactflow-container'>
       {/* Add legend to bottom */}
-      <div className="p-3" style={{background:"transparent", position: "absolute", bottom: 0, fontSize: 10}}>
+      <div className="legend p-3">
         <p>Required prerequisite</p>
-        <div className="solidLine" style={{display: "inline-block", "border-bottom": "3px solid black", width: 60, height: 10}}/>
+        <div className="solidLine"/>
         
         <p>'One of' prerequisite</p>
-        <div className="dottedLine" style={{display: "inline-block", "border-bottom": "3px dashed black", width: 60, height: 10}}/>
+        <div className="dottedLine"/>
         
         <p>Searched course</p>
-        <div className="searchCourseRect" style={{display: "inline-block", width: 20, height: 20, background: "#ffc107"}}/>
+        <div className="searchCourseRect"/>
 
         <p>Course in same department</p>
-        <div className="sameDepartmentRect" style={{display: "inline-block", width: 20, height: 20, background: "#0d6efd"}}/>
+        <div className="sameDepartmentRect"/>
 
         <p>Course in different department</p>  
-        <div className="differentDepartmentRect" style={{display: "inline-block", width: 20, height: 20, background: "#6c757d"}}/>
+        <div className="differentDepartmentRect"/>
       </div>
 
       <ReactFlow 
@@ -110,4 +110,5 @@ const Graph = () => {
     : <NoPage />}
   </div>
 }
+
 export default Graph;
