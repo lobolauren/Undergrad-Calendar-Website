@@ -42,7 +42,11 @@ def test_course_submit():
         page = context.new_page()
 
         # try to go to the page, if failed, return false
-        page.goto(url_to_use+'/coursesearch')
+        try:
+            page.goto(url_to_use+'/coursesearch')
+        except:
+            browser.close()
+            return False
 
         course_search = page.query_selector('.courseSearch')
 
@@ -80,7 +84,11 @@ def test_graph_submit():
         page = context.new_page()
 
         # try to go to the page, if failed, return false
-        page.goto(url_to_use+'/makegraph')
+        try:
+            page.goto(url_to_use+'/makegraph')
+        except:
+            browser.close()
+            return False
 
         # fill in the form so it doesnt take too long (cis*2500 by default)
         page.fill('#courseCode', 'cis*2500')
@@ -100,7 +108,3 @@ def test_graph_submit():
         browser.close()
 
     return button_working
-
-print(test_home())
-print(test_course_submit())
-print(test_graph_submit())
