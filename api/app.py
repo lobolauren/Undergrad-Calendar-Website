@@ -59,7 +59,7 @@ def get_courses_list():
     return get_courses(
         school=get_arg(args,"school"),
         name=get_arg(args, 'name'),
-        code=get_arg(args, 'code'),
+        code=get_arg(args, 'code').lower(),
         weight=get_arg(args, 'weight'),
         term=terms_array
     )

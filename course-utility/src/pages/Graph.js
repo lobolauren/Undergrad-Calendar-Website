@@ -83,10 +83,10 @@ const Graph = () => {
       {/* Add legend to bottom */}
       <div className="p-3" style={{background:"transparent", position: "absolute", bottom: 0, fontSize: 10}}>
         <p>Required prerequisite</p>
-        <div className="solidLine" style={{display: "inline-block", "border-bottom": "3px solid black", width: 60, height: 10}}/>
+        <div className="solidLine" style={{display: "inline-block", "borderBottom": "3px solid black", width: 60, height: 10}}/>
         
         <p>'One of' prerequisite</p>
-        <div className="dottedLine" style={{display: "inline-block", "border-bottom": "3px dashed black", width: 60, height: 10}}/>
+        <div className="dottedLine" style={{display: "inline-block", "borderBottom": "3px dashed black", width: 60, height: 10}}/>
         
         <p>Searched course</p>
         <div className="searchCourseRect" style={{display: "inline-block", width: 20, height: 20, background: "#ffc107"}}/>
