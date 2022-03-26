@@ -34,7 +34,7 @@ def main():
 
     out_str = f'''
             Date: {curr_time}
-            
+
             API Status:
                 Base URL Working: {url_test}
                 get_course Working: {get_course_test}
@@ -51,7 +51,7 @@ def main():
         if t == False:
             send_email(RECEIVER_EMAIL, SENDER_EMAIL,
                        SENDER_PASSWORD, "CIS*3760 - Team 2, Server Status Fail Detected", out_str)
-            pass # remove this line when email sent
+            break
 
     print(out_str)
 
