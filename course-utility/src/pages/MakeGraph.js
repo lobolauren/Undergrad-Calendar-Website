@@ -17,7 +17,10 @@ const MakeGraph=()=>{
     let minorValue=false;
     let graphType = event.target.graphType.value;
     let courseCode = event.target.courseCode.value;
+    let school = (event.target.courseSearchSchoolId.value === 'Guelph University' ? 'guelph' : 'carleton');
+
     let graphWanted = {}
+    let checkHold
     
     if (graphType == "program"){
       minorValue = event.target.minorId.checked;
@@ -28,20 +31,75 @@ const MakeGraph=()=>{
       }
     }else{
       graphWanted = {
+        "school": school,
         "type": graphType,
         "code": courseCode
       }
     }
 
-    // navigates to a separate page to display the desired graph
+
     if (graphWanted["type"] == "course" || graphWanted["type"] == "department"){
-      navigate('/graph/' + graphWanted["type"] + '/' + graphWanted["code"]);
-    }else if (graphWanted["type"] == "program" && graphWanted["minor"]==true){
-      navigate('/graph/' + graphWanted["type"] + '/' + "minor" + '/' + graphWanted["code"]);
-    }else if (graphWanted["type"]=="catalog" || (graphWanted["type"] == "program" && graphWanted["minor"]==false)){
-      navigate('/graph/' + graphWanted["type"] + '/' + graphWanted["code"]);
+      //make call to check if page exists
+      console.log(graphWanted["school"]);
+      let courseSearchQuery = {
+        "school": graphWanted["school"],
+        "name": "",
+        "code": courseCode,
+        "weight": "all",
+        "terms": "F,W,S" // convert to string because array causes issues with axios params
+      }
+      
+      axios.get(global.config.base_url + '/courses', { params: courseSearchQuery }).then((res) => {
+        checkHold = Object.keys(res.data).length;
+        console.log(res.data);
+
+        // navigates to a separate page to display the desired graph
+        if (graphWanted["type"] == "course"){
+          if(checkHold == 1){
+            navigate('/graph/' + graphWanted["school"] + '/' + graphWanted["type"] + '/' + graphWanted["code"]);
+          }
+          else{
+            alert("Invalid input. Could not graph.");
+          }
+        }else if (graphWanted["type"] == "department"){
+          if(checkHold > 1){
+            navigate('/graph/' + graphWanted["school"] + '/' + graphWanted["type"] + '/' + graphWanted["code"]);
+          }
+          else{
+            alert("Invalid input. Could not graph.");
+          }
+        }
+
+      }, (err) => { // an error occured
+        console.log(err);
+      });
+    }else if(graphWanted["type"] == "program"){
+      axios.get(global.config.base_url + '/get_programs_list', { }).then((res) => {
+        checkHold = 0;
+        
+        for(let i = 0; i < Object.keys(res.data["programs"]).length; i++){
+          if(courseCode.toLowerCase() == res.data["programs"][i].toLowerCase()){
+            checkHold = 1;
+          }
+        }
+
+        if(checkHold == 1){
+          if(graphWanted["minor"]==true){
+            navigate('/graph/' + graphWanted["type"] + '/' + "minor" + '/' + graphWanted["code"]);
+          }else if(graphWanted["minor"]==false){
+            navigate('/graph/' + graphWanted["type"] + '/' + graphWanted["code"]);
+          }
+        }
+        else{
+          alert("Invalid input. Could not graph.");
+        }
+      }, (err) => { // an error occured
+        console.log(err);
+      });
     }
   }
+
+  
     
   return (
     <Container className="mt-5">

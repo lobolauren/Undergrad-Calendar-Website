@@ -1,5 +1,5 @@
 from helpers import *
-from course_search import get_course_data
+from course_search import get_course_data, COURSE_INFO_JSON
 import json
 
 DEBUG = False
@@ -10,6 +10,8 @@ NODE_COLORS = {
     'diff_dept': '#6c757d'          # course in different department
 }
 
+default_node_textsize = 14.0
+legend_node_textsize = 10.0
 COLORS = ['blue', 'orange', 'red', 'purple', 'yellow']
 
 
@@ -61,10 +63,18 @@ def get_node_shape(code, og_dept, og_code):
     else:
         return NODE_SHAPE['diff_dept']
 
-def make_course_graph(code):
 
-    data = get_course_data()
+# makes a graph of a course
+def make_course_graph(code, school: str = COURSE_INFO_JSON):
 
+    # get the correct file name
+    if school == 'guelph':
+        school = COURSE_INFO_JSON
+    elif school == 'carleton':
+        school = 'course_info_carleton.json'
+
+    data = get_course_data(school)
+    
     nodes = []
     edges = []
 
@@ -115,27 +125,34 @@ def make_course_graph(code):
         'edges': edges
     }
 
-def make_department_graph(department):
 
-    data = get_course_data()
+def make_department_graph(department, school: str = COURSE_INFO_JSON):
+
+    # get the correct file name
+    if school == 'guelph':
+        school = COURSE_INFO_JSON
+    elif school == 'carleton':
+        school = 'course_info_carleton.json'
+
+
+    data = get_course_data(school)
 
     nodes = []
     edges = []
 
+
     for course_value in data["courses"][department]:
+        # get the current course and add the course node with the correct colour
         cur_course_code = course_value["code"]
-        cur_course = get_course(data, cur_course_code)
-        color = get_node_color(cur_course_code, department, cur_course_code)
+        color = get_node_color(cur_course_code, department.upper(), department.upper())
         add_node(nodes, cur_course_code, color)
 
-        # go through mandatory prereqs
         for prereq in get_reg_prereqs(course_value):
             if prereq == []:
                 continue
 
             add_edge(edges, cur_course_code, prereq,color='green', animated=False)
 
-            # Change colour for courses outside department
             if(get_course_attr(prereq, upper=True) != department.upper()):
                 color = get_node_color(prereq, department, cur_course_code)
             add_node(nodes, prereq, color)
@@ -158,8 +175,9 @@ def make_department_graph(department):
         'edges': edges
     }
 
-def make_major_program_graph(program):
-    data = get_course_data()
+
+def make_major_program_graph(program, school: str = COURSE_INFO_JSON):
+    data = get_course_data(school)
 
     nodes = []
     edges = []
@@ -205,8 +223,9 @@ def make_major_program_graph(program):
         'edges': edges
     }
 
-def make_minor_program_graph(program):
-    data = get_course_data()
+
+def make_minor_program_graph(program, school: str = COURSE_INFO_JSON):
+    data = get_course_data(school)
 
     nodes = []
     edges = []

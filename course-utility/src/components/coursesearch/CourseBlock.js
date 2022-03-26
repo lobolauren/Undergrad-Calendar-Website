@@ -1,8 +1,8 @@
 import React from "react";
 import { Button, Card } from "react-bootstrap";
 
-const CourseBlock = ({ code, name, term, weight, description }) => {
-  let graphLink = "/graph/course/" + code;
+const CourseBlock = ({ code, name, term, weight, description, school }) => {
+  let graphLink = "/graph/" + school + "/course/" + code;
 
   const weightFormat = new Intl.NumberFormat('en-US', { 
     minimumIntegerDigits: 1, 
