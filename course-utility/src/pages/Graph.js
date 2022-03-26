@@ -56,10 +56,10 @@ const Graph = () => {
     const getGraph = () => {
       let checkMinor ="";
 
-      if ( typeof params.minor !== 'undefined'){
-        checkMinor = global.config.base_url + '/graph/'+params.type +"/"+ params.minor +"/"+ params.code;
-      }else{
-        checkMinor = global.config.base_url + '/graph/'+params.type+'/' + params.code;
+      if (typeof params.minor !== 'undefined') {
+        checkMinor = global.config.base_url + '/graph/' + params.type + "/"+ params.minor + "/" + params.code;
+      } else {
+        checkMinor = global.config.base_url + '/graph/' + params.type + '/' + params.code;
       }
 
       axios.get(checkMinor).then((res) => {
@@ -75,10 +75,10 @@ const Graph = () => {
       });
     }
     getGraph();
-  }, [])
+  }, [params])
 
   return <div>
-    {receivedRequest == false || nodes.length > 0
+    {receivedRequest === false || nodes.length > 0
     ? <div className='reactflow-container'>
       {/* Add legend to bottom */}
       <div className="p-3" style={{background:"transparent", position: "absolute", bottom: 0, fontSize: 10}}>
@@ -110,4 +110,5 @@ const Graph = () => {
     : <NoPage />}
   </div>
 }
+
 export default Graph;

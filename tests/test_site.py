@@ -23,6 +23,12 @@ def test_home():
         except:
             site_running = False
 
+
+        navbar = page.query_selector('.navbar')
+
+        if not navbar:
+            site_running = False
+
         browser.close()
 
     return site_running
@@ -42,23 +48,30 @@ def test_course_submit():
         page = context.new_page()
 
         # try to go to the page, if failed, return false
-        page.goto(url_to_use+'/coursesearch')
+        try:
+            page.goto(url_to_use+'/coursesearch')
+        except:
+            browser.close()
+            return False
 
         course_search = page.query_selector('.courseSearch')
 
-        # fill in the form so it doesnt take too long (cis*2500 by default)
-        page.fill('#courseCode', 'cis*2500')
+        if course_search:
+            # fill in the form so it doesnt take too long (cis*2500 by default)
+            page.fill('#courseCode', 'cis*2500')
 
-        button_submit = course_search.query_selector('.btn')
-   
-        button_submit.click()
+            button_submit = course_search.query_selector('.btn')
+    
+            button_submit.click()
 
-        # give the submit time to load (1 second by default - it shouldnt take that long)
-        time.sleep(1)
+            # give the submit time to load (1 second by default - it shouldnt take that long)
+            time.sleep(1)
 
-        # check if the search returned anything
-        courses = page.query_selector('.courseblock')
-        if not courses:
+            # check if the search returned anything
+            courses = page.query_selector('.courseblock')
+            if not courses:
+                button_working = False
+        else:
             button_working = False
 
         browser.close()
@@ -80,27 +93,32 @@ def test_graph_submit():
         page = context.new_page()
 
         # try to go to the page, if failed, return false
-        page.goto(url_to_use+'/makegraph')
+        try:
+            page.goto(url_to_use+'/makegraph')
+        except:
+            browser.close()
+            return False
 
-        # fill in the form so it doesnt take too long (cis*2500 by default)
-        page.fill('#courseCode', 'cis*2500')
+        navbar = page.query_selector('.navbar')
 
-        # go to the correct button
-        button_submit = page.query_selector('.btn-primary')
+        if navbar:
+            # fill in the form so it doesnt take too long (cis*2500 by default)
+            page.fill('#courseCode', 'cis*2500')
 
-        button_submit.click()
+            # go to the correct button
+            button_submit = page.query_selector('.btn-primary')
 
-        # give page time to navigate (2 seconds)
-        time.sleep(2)
+            button_submit.click()
 
-        # check that we went to the correct url
-        if not page.url == (url_to_use+'/graph/course/cis*2500'):
+            # give page time to navigate (2 seconds)
+            time.sleep(2)
+
+            # check that we went to the correct url
+            if not page.url == (url_to_use+'/graph/course/cis*2500'):
+                button_working = False
+        else:
             button_working = False
 
         browser.close()
 
     return button_working
-
-print(test_home())
-print(test_course_submit())
-print(test_graph_submit())

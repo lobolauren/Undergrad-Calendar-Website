@@ -11,6 +11,9 @@ let sortType = "courseCodeOption";
 let sortOrder = "ascending";
 
 const CourseSearch = () => {
+    
+    const [courses, setCourses] = useState([]);
+    const [schoolToUse, setSchool] = useState('guelph');
 
     // get the data with the given search params
     const fetchData = async (param) => {
@@ -45,15 +48,15 @@ const CourseSearch = () => {
         let courseName = event.target.courseName.value;
         let courseCode = event.target.courseCode.value;
         let courseWeight = event.target.courseWeights.value;
-        let isGuelphSelected = event.target.courseSearchSchoolId.value;
-        let isFallSelected = (isGuelphSelected === 'Guelph University' ? event.target.fallCheckbox.checked : '');
-        let isWinterSelected = (isGuelphSelected === 'Guelph University' ? event.target.winterCheckbox.checked : '');
-        let isSummerSelected = (isGuelphSelected === 'Guelph University' ? event.target.summerCheckbox.checked : '');
+        let school = event.target.courseSearchSchoolId.value;
+        let isFallSelected = (school === 'guelph' ? event.target.fallCheckbox.checked : 'F');
+        let isWinterSelected = (school === 'guelph' ? event.target.winterCheckbox.checked : 'W');
+        let isSummerSelected = (school === 'guelph' ? event.target.summerCheckbox.checked : 'S');
         // get terms selected
         let terms = buildTermsList(isFallSelected, isWinterSelected, isSummerSelected);
 
         let courseSearchQuery = {
-            "school":isGuelphSelected,
+            "school": school,
             "name": courseName,
             "code": courseCode,
             "weight": courseWeight,
@@ -61,11 +64,10 @@ const CourseSearch = () => {
         }
 
         // If the school is Carelton, dont specify the terms since that isnt a parameter for their courses
-        if (courseSearchQuery.school === "Carleton University") {
-            courseSearchQuery.terms = ["F", "W", "S"].toString();
-            setSchool('carleton');
-        } else {
+        if (courseSearchQuery.school == 'guelph') {
             setSchool('guelph');
+        } else {
+            setSchool('carleton');
         }
 
         // get the input data from the server
@@ -134,12 +136,6 @@ const CourseSearch = () => {
         sortOrder = event.target.value;
         reverseCourseOrder();
     }
-    
-    // hook containing courses
-    const [courses, setCourses] = useState();
-    // hook containing current school
-    const [schoolToUse, setSchool] = useState();
-
 
     return (
         <Container className="mt-5">
