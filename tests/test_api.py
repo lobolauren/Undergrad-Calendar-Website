@@ -36,7 +36,7 @@ def test_get_course():
         },
         "restrictions": "",
         "terms": ["W"],
-        "weight":0.5
+        "weight":0.5    
     }
 
     if r.json() == expected_response:
@@ -44,7 +44,7 @@ def test_get_course():
     return False
 
 def test_get_courses():
-    r = requests.get(BASEURL + '/courses?name=intro&weight=0.5&terms=F', verify=False)
+    r = requests.get(BASEURL + '/courses?school=guelph&name=intro&weight=0.5&terms=F', verify=False)
     if not r.ok:
         return False
 
