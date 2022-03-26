@@ -3,7 +3,7 @@ import urllib3
 
 urllib3.disable_warnings()
 
-BASEURL = 'https://localhost:3000/api'
+BASEURL = 'https://131.104.49.102/api'
 
 def test_base_url():
     try:
