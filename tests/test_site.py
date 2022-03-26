@@ -21,12 +21,12 @@ def test_home():
         try:
             page.goto(url_to_use)
         except:
-            site_running = False
+            browser.close()
+            return False
 
+        app = page.query_selector('.App')
 
-        navbar = page.query_selector('.navbar')
-
-        if not navbar:
+        if not app:
             site_running = False
 
         browser.close()
@@ -56,7 +56,9 @@ def test_course_submit():
 
         course_search = page.query_selector('.courseSearch')
 
+
         if course_search:
+
             # fill in the form so it doesnt take too long (cis*2500 by default)
             page.fill('#courseCode', 'cis*2500')
 
@@ -79,7 +81,7 @@ def test_course_submit():
     return button_working
 
 
-# tests the make-graph page by clicking the graph button, returns false if nothing is returned or it takes too long
+# tests the make-graph page by going to the graph link, returns false if nothing is returned or it takes too long
 def test_graph_submit():
 
     button_working = True
@@ -94,31 +96,17 @@ def test_graph_submit():
 
         # try to go to the page, if failed, return false
         try:
-            page.goto(url_to_use+'/makegraph')
+            page.goto(url_to_use+'/graph/guelph/course/cis*2500')
         except:
             browser.close()
             return False
 
-        navbar = page.query_selector('.navbar')
+        time.sleep(2)
 
-        if navbar:
-            # fill in the form so it doesnt take too long (cis*2500 by default)
-            page.fill('#courseCode', 'cis*2500')
+        # check if we're on a graph page
+        node = page.query_selector('.reactflow-container')
 
-            # go to the correct button
-            button_submit = page.query_selector('.btn-primary')
-
-            button_submit.click()
-
-            # give page time to navigate (2 seconds)
-            time.sleep(2)
-
-            # check that we went to the correct url
-            if not page.url == (url_to_use+'/graph/course/cis*2500'):
-                button_working = False
-        else:
+        if not node:
             button_working = False
-
-        browser.close()
 
     return button_working
