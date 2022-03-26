@@ -39,6 +39,12 @@ Follow the steps included in `config-file-example`.
 
 Automated tests are done using crontab to run the tests script (/tests/test_main.py) every 30 minutes
 
+ - Set environment variables in a .env file in the tests folder (create the .env file)
+   -  RECEIVER_EMAIL=?
+      SENDER_EMAIL=?
+      SENDER_PASSWORD=?
+   - Alternatively, you may modify the `test_main.py` file to set globals
+
 ### Set up crontab for your user account
 
 `crontrab -e` 
@@ -54,3 +60,4 @@ or
 
     #### !NOTE! : replace the path of the `test_main.py` & `course-utility.log` files with the correct path for your system
     #### This line runs the script every 30 minutes & outputs the latest results to `course-utility.log`
+
