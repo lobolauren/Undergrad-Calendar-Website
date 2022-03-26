@@ -100,7 +100,3 @@ def test_graph_submit():
         browser.close()
 
     return button_working
-
-print(test_home())
-print(test_course_submit())
-print(test_graph_submit())

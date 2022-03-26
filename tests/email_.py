@@ -26,7 +26,7 @@ def send_email(receiver, sender, sender_pw, subject, message_str):
             print('Email failed to send.')
             print(e)
 
-
+# for testing
 def main():
 
     RECEIVER_EMAIL=input("who are you sending email to: ")
