@@ -18,8 +18,8 @@ const SearchForm = ({ handler }) => {
                         id="courseSearchSchoolId"
                         onChange={(e) => setSchool(e.target.value)}
                         >
-                          <option>Guelph University</option>
-                          <option>Carleton University</option>
+                          <option value='guelph'>Guelph University</option>
+                          <option value='carleton'>Carleton University</option>
                       </Form.Select>
             </Form.Group>
 
