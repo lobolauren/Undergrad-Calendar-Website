@@ -28,10 +28,10 @@ const Home = () => {
     
     return (
         <Container className="mt-5">
-            <div class="home">
+            <div className="home">
                 <img src={logo} alt="logo" className="img-fluid" />
             </div>
-            <div class="home">
+            <div className="home">
                 <h1>Welcome to University of Guelph Course Utility!</h1>
             </div>
             <HomeSearch handler={handleSubmit}/>
