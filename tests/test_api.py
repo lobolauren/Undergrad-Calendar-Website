@@ -6,7 +6,11 @@ urllib3.disable_warnings()
 BASEURL = 'https://131.104.49.102/api'
 
 def test_base_url():
-    r = requests.get(BASEURL, verify=False)
+    try:
+        r = requests.get(BASEURL, verify=False)
+    except:
+        return False
+
     if not r.ok:
         return False
 
@@ -15,7 +19,12 @@ def test_base_url():
     return False
 
 def test_get_course():
-    r = requests.get(BASEURL + '/course/cis3110', verify=False)
+
+    try:
+        r = requests.get(BASEURL + '/course/cis3110', verify=False)
+    except:
+        return False
+
     if not r.ok:
         return False
 
@@ -44,7 +53,11 @@ def test_get_course():
     return False
 
 def test_get_courses():
-    r = requests.get(BASEURL + '/courses?school=guelph&name=intro&weight=0.5&terms=F', verify=False)
+    try:
+        r = requests.get(BASEURL + '/courses?school=guelph&name=intro&weight=0.5&terms=F', verify=False)
+    except:
+        return False
+
     if not r.ok:
         return False
 
