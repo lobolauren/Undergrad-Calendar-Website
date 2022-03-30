@@ -1,5 +1,6 @@
 import React from 'react'
-import logo from '../assets/uogLogo.png'
+import uogLogo from '../assets/uogLogoAlt.png'
+import carletonLogo from '../assets/carletonLogo.png'
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
@@ -11,6 +12,9 @@ import ResultsTable from '../components/coursesearch/ResultsTable'
 import HomeSearch from '../components/home/HomeSearch'
 
 const Home = () => {
+
+    // Clear potential course name from home search
+    localStorage.clear();
 
     const navigate = useNavigate();
 
@@ -31,11 +35,12 @@ const Home = () => {
     
     return (
         <Container className="mt-5">
-            <div className="home">
-                <img src={logo} alt="logo" className="img-fluid" />
+            <div className="home-img">
+                <img src={uogLogo} alt="logo" className="uog" />
+                <img src={carletonLogo} alt="logo" className="carleton" />
             </div>
             <div className="home">
-                <h1>Welcome to University of Guelph Course Utility!</h1>
+                <h1>Course Utility</h1>
             </div>
             <HomeSearch handler={handleSubmit}/>
         </Container>

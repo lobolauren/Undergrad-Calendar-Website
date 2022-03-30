@@ -5,7 +5,7 @@ const _Navbar = () => {
   return (
     <Navbar bg="dark" expand="lg" variant="dark">
       <Container>
-        <Navbar.Brand href="/">Guelph Course Utility</Navbar.Brand>
+        <Navbar.Brand href="/">Course Utility</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="justify-content-end">
