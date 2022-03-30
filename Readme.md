@@ -69,3 +69,4 @@ or
 
 ### Make Graph
 - Graphing by program is not supported for Carleton
+- The colour of the dotted lines alternate between a list of pre-determined colours: 'blue', 'orange', 'red', 'purple', 'yellow'. When a group of dotted lines are the same colour, they are related by the 1 OF/OR pre-requsite.
