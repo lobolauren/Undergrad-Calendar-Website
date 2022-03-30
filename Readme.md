@@ -1,6 +1,6 @@
 README for 3760 Project - Team 2, UoGuelph W22
 
-# Sprint 7
+# Sprint 9
 
 ## Installation
 
@@ -61,3 +61,11 @@ or
     #### !NOTE! : replace the path of the `test_main.py` & `course-utility.log` files with the correct path for your system
     #### This line runs the script every 30 minutes & outputs the latest results to `course-utility.log`
 
+## General Use Documentation
+
+### Course Search
+- You can use the quick search on the home page which will auto-fill the course name input and navigate to the course search page.
+- Searching by terms for Carleton is not supported. Thus, terms will not be shown in the course blocks for Carleton courses.
+
+### Make Graph
+- Graphing by program is not supported for Carleton

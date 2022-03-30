@@ -14,6 +14,8 @@ const ResultsTable = ({ courses, school }) => {
               term={course.terms}
               description={course.description}
               school={school}
+              requiredPrereqs={course.prereqs["reg_prereqs"]}
+              eqPrereqs={course.prereqs["eq_prereqs"]}
             />
           ))
         )

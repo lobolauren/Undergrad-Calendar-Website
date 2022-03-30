@@ -81,21 +81,21 @@ const Graph = () => {
     {receivedRequest === false || nodes.length > 0
     ? <div className='reactflow-container'>
       {/* Add legend to bottom */}
-      <div className="legend p-3">
+      <div className="p-3" style={{background:"transparent", position: "absolute", bottom: 0, fontSize: 10}}>
         <p>Required prerequisite</p>
-        <div className="solidLine"/>
+        <div className="solidLine" style={{display: "inline-block", "border-bottom": "3px solid black", width: 60, height: 10}}/>
         
         <p>'One of' prerequisite</p>
-        <div className="dottedLine"/>
+        <div className="dottedLine" style={{display: "inline-block", "border-bottom": "3px dashed black", width: 60, height: 10}}/>
         
         <p>Searched course</p>
-        <div className="searchCourseRect"/>
+        <div className="searchCourseRect" style={{display: "inline-block", width: 20, height: 20, background: "#ffc107"}}/>
 
         <p>Course in same department</p>
-        <div className="sameDepartmentRect"/>
+        <div className="sameDepartmentRect" style={{display: "inline-block", width: 20, height: 20, background: "#0d6efd"}}/>
 
         <p>Course in different department</p>  
-        <div className="differentDepartmentRect"/>
+        <div className="differentDepartmentRect" style={{display: "inline-block", width: 20, height: 20, background: "#6c757d"}}/>
       </div>
 
       <ReactFlow 
