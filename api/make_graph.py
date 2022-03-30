@@ -140,7 +140,6 @@ def make_department_graph(department, school: str = COURSE_INFO_JSON):
     nodes = []
     edges = []
 
-
     for course_value in data["courses"][department]:
         # get the current course and add the course node with the correct colour
         cur_course_code = course_value["code"]
@@ -151,10 +150,9 @@ def make_department_graph(department, school: str = COURSE_INFO_JSON):
             if prereq == []:
                 continue
 
-            add_edge(edges, cur_course_code, prereq,color='green', animated=False)
-
-            if(get_course_attr(prereq, upper=True) != department.upper()):
-                color = get_node_color(prereq, department, cur_course_code)
+            add_edge(edges, cur_course_code, prereq, color='green', animated=False)
+            # Change colour for courses outside department
+            color = get_node_color(prereq, department.upper(), cur_course_code)
             add_node(nodes, prereq, color)
             
         # go through the other cases for pre-reqs
@@ -166,10 +164,9 @@ def make_department_graph(department, school: str = COURSE_INFO_JSON):
             for course in eq_prereq:
                 add_edge(edges, cur_course_code, course,color=COLORS[i % len(COLORS)], animated=True)   
                 # Change colour for courses outside department
-                if(get_course_attr(course, upper=True) != department.upper()):
-                    color = get_node_color(course, department, cur_course_code)
+                color = get_node_color(course, department.upper(), cur_course_code)
                 add_node(nodes, course, color)               
-
+    
     return {
         'nodes': nodes,
         'edges': edges
