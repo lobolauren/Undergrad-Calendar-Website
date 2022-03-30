@@ -22,6 +22,18 @@ body {
     text-align: center;
 }
 
+.home-img .uog{
+  height: 100%;
+  width: 20%;
+  float: left;
+}
+
+.home-img .carleton{
+  height: 50%;
+  width: 15%;
+  float: right;
+}
+
 .home-search {
     min-height: 30vh;
 }

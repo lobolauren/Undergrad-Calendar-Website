@@ -5,6 +5,10 @@ import { useNavigate } from "react-router-dom";
 import { Button } from 'react-bootstrap'
 
 const NoPage = () => {
+    
+    // Clear potential course name from home search
+    localStorage.clear();
+    
     let navigate = useNavigate();
     const goHome = () =>{
         let path = "/";

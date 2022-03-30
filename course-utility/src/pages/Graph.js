@@ -10,6 +10,9 @@ import CourseNode from '../components/graph/CourseNode'
 
 import '../styles/graph.css'
 
+// Clear potential course name from home search
+localStorage.clear();
+
 const dagreGraph = new dagre.graphlib.Graph();
 dagreGraph.setDefaultEdgeLabel(() => ({}));
 

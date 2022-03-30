@@ -7,6 +7,10 @@ import InfoModal from "../components/makegraph/InfoModal";
 import MakeGraphForm from "../components/makegraph/MakeGraphForm";
 
 const MakeGraph = () => {
+  
+  // Clear potential course name from home search
+  localStorage.clear();
+  
   const navigate = useNavigate();
 
   const handleSubmit = (event) => {
