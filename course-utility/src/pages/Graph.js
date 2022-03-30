@@ -1,10 +1,12 @@
 import { useEffect, useState } from 'react';
-import ReactFlow, { Background } from 'react-flow-renderer/nocss';
+import ReactFlow, { Background } from 'react-flow-renderer';
 import { useParams } from 'react-router-dom';
 import axios from 'axios'
 import dagre from 'dagre';
 
 import NoPage from './NoPage';
+import Legend from '../components/graph/Legend'
+import CourseNode from '../components/graph/CourseNode'
 
 import '../styles/graph.css'
 
@@ -44,6 +46,8 @@ const getLayoutedElements = (nodes, edges, direction = 'TB') => {
   return { nodes, edges };
 };
 
+const nodeTypes = { courseNode: CourseNode };
+
 const Graph = () => {
 
   const params = useParams();
@@ -51,6 +55,7 @@ const Graph = () => {
   const [nodes, setNodes] = useState([]);
   const [edges, setEdges] = useState([]);
   const [receivedRequest, setReceivedRequest] = useState(false);
+  
 
   useEffect(() => {
     const getGraph = () => {
@@ -80,33 +85,17 @@ const Graph = () => {
   return <div>
     {receivedRequest === false || nodes.length > 0
     ? <div className='reactflow-container'>
-      {/* Add legend to bottom */}
-      <div className="p-3" style={{background:"transparent", position: "absolute", bottom: 0, fontSize: 10}}>
-        <p>Required prerequisite</p>
-        <div className="solidLine" style={{display: "inline-block", "border-bottom": "3px solid black", width: 60, height: 10}}/>
-        
-        <p>'One of' prerequisite</p>
-        <div className="dottedLine" style={{display: "inline-block", "border-bottom": "3px dashed black", width: 60, height: 10}}/>
-        
-        <p>Searched course</p>
-        <div className="searchCourseRect" style={{display: "inline-block", width: 20, height: 20, background: "#ffc107"}}/>
+        <Legend />
 
-        <p>Course in same department</p>
-        <div className="sameDepartmentRect" style={{display: "inline-block", width: 20, height: 20, background: "#0d6efd"}}/>
-
-        <p>Course in different department</p>  
-        <div className="differentDepartmentRect" style={{display: "inline-block", width: 20, height: 20, background: "#6c757d"}}/>
+        <ReactFlow 
+          nodes={nodes} 
+          edges={edges} 
+          nodeTypes={nodeTypes}
+          fitView 
+        >
+          <Background color="#aaa" gap={15} size={0.6} />
+        </ReactFlow>
       </div>
-
-      <ReactFlow 
-        nodes={nodes} 
-        edges={edges} 
-        fitView 
-      >
-        <Background color="#aaa" gap={15} size={0.6} />
-        
-      </ReactFlow>
-    </div>
     : <NoPage />}
   </div>
 }

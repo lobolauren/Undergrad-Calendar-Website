@@ -2,7 +2,7 @@ import React from 'react'
 import sad_face from '../assets/404-sadface.png'
 import { Container } from 'react-bootstrap'
 import { useNavigate } from "react-router-dom";
-import { Form, Button, Row, Col } from 'react-bootstrap'
+import { Button } from 'react-bootstrap'
 
 const NoPage = () => {
     let navigate = useNavigate();
