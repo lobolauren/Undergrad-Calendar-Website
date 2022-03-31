@@ -156,7 +156,7 @@ def make_department_graph(department, school: str = COURSE_INFO_JSON):
             add_edge(edges, cur_course_code, prereq, color='green', animated=False)
             # Change colour for courses outside department
             color = get_node_color(prereq, department.upper(), cur_course_code)
-            course_code = get_course(get_course_data(school), prereq)
+            course_code = get_course(data, prereq)
             add_node(nodes, prereq, color, course_code['name'], course_code['description']) 
 
             
@@ -170,7 +170,7 @@ def make_department_graph(department, school: str = COURSE_INFO_JSON):
                 add_edge(edges, cur_course_code, course,color=COLORS[i % len(COLORS)], animated=True)   
                 # Change colour for courses outside department
                 color = get_node_color(course, department.upper(), cur_course_code)
-                course_code = get_course(get_course_data(school), course)
+                course_code = get_course(data, course)
                 add_node(nodes, course, color, course_code['name'], course_code['description'])           
     
     return {
