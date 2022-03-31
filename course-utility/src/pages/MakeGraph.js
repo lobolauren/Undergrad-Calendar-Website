@@ -81,15 +81,15 @@ const MakeGraph = () => {
     } else if (graphWanted["type"] === "program") {
 
       axios.get(global.config.base_url + "/get_programs_list", {}).then((res) => {
-        checkHold = 0;
+        checkHold = false;
 
         for (let i = 0; i < Object.keys(res.data["programs"]).length; i++) {
           if (courseCode.toLowerCase() === res.data["programs"][i].toLowerCase()) {
-            checkHold = 1;
+            checkHold = true;
           }
         }
 
-        if (checkHold === 1) {
+        if (checkHold === true) {
           if (graphWanted["minor"] === true) {
             navigate(`/graph/${graphWanted["type"]}/minor/${graphWanted["code"]}`);
           } else if (graphWanted["minor"] === false) {
