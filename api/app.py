@@ -1,9 +1,10 @@
+from cv2 import log
 from flask import Flask, redirect, request
 from flask_cors import CORS
 
-from course_search import get_course_data, get_course_info, get_courses, get_department_courses, get_all_courses, get_program_courses
+from course_search import get_course_data, get_course_info, get_courses, get_department_courses, get_all_courses, get_program_courses, COURSE_INFO_JSON
 from make_graph import make_course_graph, make_department_graph, make_major_program_graph, make_minor_program_graph
-from helpers import make_code_valid, get_all_programs,get_programs_info
+from helpers import make_code_valid, get_all_programs, get_programs_info, get_departments_info
 
 import json
 
@@ -27,6 +28,20 @@ def get_course_data_json():
 @app.route(f'{BASE_URL}/get_programs_list', methods=['GET'])
 def get_program_list_json():
     return get_programs_info(get_course_data())
+
+
+@app.route(f'{BASE_URL}/get_departments_list')
+def get_departments_list_json():
+
+    args = request.args
+    school = get_arg(args, "school")
+
+    if school != "guelph":
+        jsonfile = 'course_info_carleton.json'
+    else:
+        jsonfile = COURSE_INFO_JSON
+
+    return get_departments_info(get_course_data(jsonfile))
 
 
 @app.route(f'{BASE_URL}/course/<code>')

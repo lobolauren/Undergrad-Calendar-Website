@@ -151,3 +151,18 @@ def get_programs_info(data: dict) -> List[str]:
         return json.dumps(programs)
     except KeyError:
         return programs
+
+
+# get list of departments in json form
+def get_departments_info(data: dict) -> List[str]:
+    depts = []
+    try:
+        for dept in data["courses"]:
+            depts.append({
+                "label": dept,
+                "value": dept
+            })
+        
+        return json.dumps(depts)
+    except KeyError:
+        return depts
