@@ -20,6 +20,7 @@ def add_node(nodes: list, course_code: str, color, course_name='', description='
     nodes.append({
         'id': course_code.replace('*', ''),
         'data': {
+            'id': course_code.replace('*', ''),
             'label': make_code_valid(course_code).upper().replace('*', ' '),
             'code': course_code,
             'color': color,
@@ -57,15 +58,6 @@ def get_node_color(code, og_dept, og_code):
         return NODE_COLORS['same_dept']
     else:
         return NODE_COLORS['diff_dept']
-
-def get_node_shape(code, og_dept, og_code):
-    if make_code_valid(code) == og_code.upper():
-        return NODE_SHAPE['searched_course']
-    elif get_course_attr(make_code_valid(code), upper=True) == og_dept:
-        return NODE_SHAPE['same_dept']
-    else:
-        return NODE_SHAPE['diff_dept']
-
 
 # makes a graph of a course
 def make_course_graph(code, school: str = COURSE_INFO_JSON):
@@ -113,7 +105,7 @@ def make_course_graph(code, school: str = COURSE_INFO_JSON):
                     visited.add(prereq)
                     q.append(prereq)
 
-            for i,group in enumerate(get_eq_prereqs(cur_course)):
+            for i, group in enumerate(get_eq_prereqs(cur_course)):
                 for prereq in group:
                     if get_course_attr(prereq) not in data['courses']:
                         continue
