@@ -72,6 +72,7 @@ const CourseSearch = () => {
 
         // get the input data from the server
         fetchData(courseSearchQuery);
+        console.log(courses);
     }
 
     // builds a list out of the check boxes for term

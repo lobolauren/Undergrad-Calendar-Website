@@ -10,9 +10,9 @@ const bodystyle = {
 
 const CourseNode = ({ data }) => {
 
-  const simulateDropButtonClick = () => {
+  const simulateDropButtonClick = useCallback(() => {
     data.simulateDrop(data.id);
-  }
+  });
 
   const CoursePopup = (
     <Popover>

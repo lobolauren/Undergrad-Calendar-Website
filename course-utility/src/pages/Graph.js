@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import ReactFlow, { Background, getIncomers, getOutgoers, getConnectedEdges } from 'react-flow-renderer';
+import ReactFlow, { Background, getIncomers } from 'react-flow-renderer';
 import { useParams } from 'react-router-dom';
 import axios from 'axios'
 import dagre from 'dagre';
@@ -9,6 +9,7 @@ import Legend from '../components/graph/Legend'
 import CourseNode from '../components/graph/CourseNode'
 
 import '../styles/graph.css'
+import { Button } from 'react-bootstrap';
 
 // Clear potential course name from home search
 localStorage.clear();
@@ -56,32 +57,31 @@ const Graph = () => {
   const [nodes, setNodes] = useState([]);
   const [edges, setEdges] = useState([]);
   const [receivedRequest, setReceivedRequest] = useState(false);
-  
+  const nodeTypes = { courseNode: CourseNode };
+
   const getNode = (course) => {
     return nodes.filter(node => node.id === course)[0];
   }
-
+  
   const simulateDrop = (course) => {
-    console.log(course)
-    // console.log(nodes)
-    console.log(getNode(course))
-    let result = getOutgoers(getNode(course), nodes, edges)
-    console.log(result)
+    console.log(nodes)
+
+    // let result = getIncomers(getNode(course), nodes, edges)
+    // console.log(result)
   }
 
-  const nodeTypes = { courseNode: CourseNode };
-
   useEffect(() => {
+
     const getGraph = () => {
-      let checkMinor = "";
+      let request_url = "";
 
       if (typeof params.minor !== 'undefined') {
-        checkMinor = global.config.base_url + '/graph/' + params.type + "/"+ params.minor + "/" + params.code;
+        request_url = global.config.base_url + '/graph/' + params.type + "/"+ params.minor + "/" + params.code;
       } else {
-        checkMinor = global.config.base_url + '/graph/' + params.type + '/' + params.code;
+        request_url = global.config.base_url + '/graph/' + params.type + '/' + params.code;
       }
 
-      axios.get(checkMinor).then((res) => {
+      axios.get(request_url).then((res) => {
         const { nodes: layoutedNodes, edges: layoutedEdges } = getLayoutedElements(
           res.data.nodes,
           res.data.edges,
@@ -101,12 +101,13 @@ const Graph = () => {
         setReceivedRequest(true)
       });
     }
-    getGraph();  
+    getGraph();
   }, [params])
 
   return <div>
     {receivedRequest === false || nodes.length > 0
     ? <div className='reactflow-container'>
+        <Button onClick={() => {console.log(nodes)}}>test</Button>
         <Legend />
 
         <ReactFlow 
