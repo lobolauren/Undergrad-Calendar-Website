@@ -1,5 +1,6 @@
 import { Button, OverlayTrigger, Popover } from 'react-bootstrap'
-import { Handle } from 'react-flow-renderer';
+import { Handle, Node, Edge } from 'react-flow-renderer';
+import React, { useCallback } from 'react';
 
 const handleStyle = {opacity: 0}
 const bodystyle = {
@@ -7,25 +8,29 @@ const bodystyle = {
   overflowY: "auto"
 }
 
-function courseNode({ data }) {
+const CourseNode = ({ data }) => {
+
+  const simulateDropButtonClick = () => {
+    data.simulateDrop(data.id);
+  }
 
   const CoursePopup = (
     <Popover>
-        <Popover.Header>
-            {data.label} - {data.name}
-        </Popover.Header>
-        <Popover.Body style={bodystyle}>
-            <p>{data.description}</p>
-            { data.courseSearched
-            ? null
-            : <Button variant='danger'>Simulate Drop</Button>}
-        </Popover.Body>
+      <Popover.Header>
+        {data.label} - {data.name}
+      </Popover.Header>
+      <Popover.Body style={bodystyle}>
+        <p>{data.description}</p>
+        { data.courseSearched
+        ? null
+        : <Button variant='danger' onClick={simulateDropButtonClick}>Simulate Drop</Button>}
+      </Popover.Body>
     </Popover>
   );
 
   return (
     <div className="course-node">
-      <OverlayTrigger trigger="focus" placement="top" overlay={CoursePopup}>
+      <OverlayTrigger trigger={['focus']} placement="top" overlay={CoursePopup}>
         <Button variant={data.color}>{data.label}</Button>
       </OverlayTrigger>
       <Handle type='target' position="left" style={handleStyle} />
@@ -34,4 +39,4 @@ function courseNode({ data }) {
   );
 }
 
-export default courseNode;
+export default CourseNode;

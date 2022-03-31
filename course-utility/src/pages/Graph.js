@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import ReactFlow, { Background } from 'react-flow-renderer';
+import ReactFlow, { Background, getIncomers, getOutgoers, getConnectedEdges } from 'react-flow-renderer';
 import { useParams } from 'react-router-dom';
 import axios from 'axios'
 import dagre from 'dagre';
@@ -49,20 +49,31 @@ const getLayoutedElements = (nodes, edges, direction = 'TB') => {
   return { nodes, edges };
 };
 
-const nodeTypes = { courseNode: CourseNode };
-
 const Graph = () => {
-
+  
   const params = useParams();
-
+  
   const [nodes, setNodes] = useState([]);
   const [edges, setEdges] = useState([]);
   const [receivedRequest, setReceivedRequest] = useState(false);
   
+  const getNode = (course) => {
+    return nodes.filter(node => node.id === course)[0];
+  }
+
+  const simulateDrop = (course) => {
+    console.log(course)
+    // console.log(nodes)
+    console.log(getNode(course))
+    let result = getOutgoers(getNode(course), nodes, edges)
+    console.log(result)
+  }
+
+  const nodeTypes = { courseNode: CourseNode };
 
   useEffect(() => {
     const getGraph = () => {
-      let checkMinor ="";
+      let checkMinor = "";
 
       if (typeof params.minor !== 'undefined') {
         checkMinor = global.config.base_url + '/graph/' + params.type + "/"+ params.minor + "/" + params.code;
@@ -77,12 +88,20 @@ const Graph = () => {
           'LR'
         );
 
-        setNodes([...layoutedNodes]);
+        setNodes([...layoutedNodes.map((node) => {
+          return {
+            ...node,
+            data: {
+              ...node.data,
+              simulateDrop: simulateDrop
+            },
+          }
+        })]);
         setEdges([...layoutedEdges]);
         setReceivedRequest(true)
       });
     }
-    getGraph();
+    getGraph();  
   }, [params])
 
   return <div>
