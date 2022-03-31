@@ -10,7 +10,7 @@ const HomeSearch = ({ handler }) => {
   
                 <Row>
                     <Form.Group as={Col} className="mb-3">
-                        <Form.Label><h5>Search Course</h5></Form.Label>
+                        <Form.Label><h5>Search course:</h5></Form.Label>
                         <Form.Control type='name' placeholder='Course Name' id="courseName" />
                     </Form.Group>
                 </Row>
