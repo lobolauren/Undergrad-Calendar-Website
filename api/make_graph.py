@@ -140,8 +140,10 @@ def make_department_graph(department, school: str = COURSE_INFO_JSON):
         # get the current course and add the course node with the correct colour
         cur_course_code = course_value["code"]
         color = get_node_color(cur_course_code, department.upper(), department.upper())
-        add_node(nodes, cur_course_code, color, course_value['name'], course_value['description'])
-        visited.add(cur_course_code)
+        if cur_course_code not in visited:
+            visited.add(cur_course_code)
+            add_node(nodes, cur_course_code, color, course_value['name'], course_value['description'])
+        
 
         for prereq in get_reg_prereqs(course_value):
             if prereq == []:
