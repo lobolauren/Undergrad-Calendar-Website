@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { Form, Button, Row, Col } from 'react-bootstrap'
 import axios from 'axios';
-import DepartmentSelect from '../global/DepartmentSelect';
 import Select from 'react-select';
 
 // Contains forms for searching for a course
