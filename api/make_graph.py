@@ -142,12 +142,14 @@ def make_department_graph(department, school: str = COURSE_INFO_JSON):
 
     nodes = []
     edges = []
+    visited = set()
 
     for course_value in data["courses"][department]:
         # get the current course and add the course node with the correct colour
         cur_course_code = course_value["code"]
         color = get_node_color(cur_course_code, department.upper(), department.upper())
         add_node(nodes, cur_course_code, color, course_value['name'], course_value['description'])
+        visited.add(cur_course_code)
 
         for prereq in get_reg_prereqs(course_value):
             if prereq == []:
@@ -156,8 +158,12 @@ def make_department_graph(department, school: str = COURSE_INFO_JSON):
             add_edge(edges, cur_course_code, prereq, color='green', animated=False)
             # Change colour for courses outside department
             color = get_node_color(prereq, department.upper(), cur_course_code)
-            course_code = get_course(data, prereq)
-            add_node(nodes, prereq, color, course_code['name'], course_code['description']) 
+
+            if prereq not in visited:
+                visited.add(prereq)
+                course_code = get_course(data, prereq)
+                add_node(nodes, prereq, color, course_code['name'], course_code['description']) 
+            
 
             
         # go through the other cases for pre-reqs
@@ -170,8 +176,11 @@ def make_department_graph(department, school: str = COURSE_INFO_JSON):
                 add_edge(edges, cur_course_code, course,color=COLORS[i % len(COLORS)], animated=True)   
                 # Change colour for courses outside department
                 color = get_node_color(course, department.upper(), cur_course_code)
-                course_code = get_course(data, course)
-                add_node(nodes, course, color, course_code['name'], course_code['description'])           
+
+                if course not in visited:
+                    visited.add(course)
+                    course_code = get_course(data, course)
+                    add_node(nodes, course, color, course_code['name'], course_code['description'])          
     
     return {
         'nodes': nodes,
