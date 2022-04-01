@@ -1,5 +1,5 @@
-import React, { useCallback, useEffect, useState } from 'react';
-import ReactFlow, { Handle, Node, Edge, Background, getIncomers } from 'react-flow-renderer';
+import React, { useEffect, useState } from 'react';
+import ReactFlow, { Background, getIncomers } from 'react-flow-renderer';
 import { useParams } from 'react-router-dom';
 import axios from 'axios'
 import dagre from 'dagre';
@@ -9,7 +9,6 @@ import Legend from '../components/graph/Legend'
 import CourseNode from '../components/graph/CourseNode'
 
 import '../styles/graph.css'
-import { Button, OverlayTrigger, Popover } from 'react-bootstrap'
 
 // Clear potential course name from home search
 localStorage.clear();
@@ -59,47 +58,6 @@ const Graph = () => {
   const [receivedRequest, setReceivedRequest] = useState(false);
   const nodeTypes = { courseNode: CourseNode };
 
-  const getNode = (course) => {
-    for(let i = 0; i < Object.keys(nodes).length; i++){
-      //console.log(nodes[i].id);
-      if(course.localeCompare(nodes[i].id) === 0){
-        return nodes[i];
-      }
-    }
-  }
-  
-  const updateDrop = (course, count) => {
-    console.log(nodes)
-    let droppedCourseNode = getNode(course);
-    
-    let unavailableCourses = [];
-    let visited = new Set();
-    let q = [droppedCourseNode];
-
-    while (q.length > 0) {
-      let currentNode = q.shift()
-      unavailableCourses.push(currentNode.id)
-
-      let incomingNodes = getIncomers(currentNode, nodes, edges)
-      incomingNodes.forEach(node => {
-        if (!visited.has(node.id)) {
-          visited.add(node.id)
-          q.push(node)
-        } 
-      })
-    }
-
-    setNodes(nodes.map(node => {
-      if (unavailableCourses.includes(node.id)) {
-        node.data.dropValue += count;
-      }
-      return node;
-    }))
-  }
-  // useEffect(() => {
-  // }, [nodes, edges])
-
-
   useEffect(() => {
 
     const getGraph = () => {
@@ -118,15 +76,7 @@ const Graph = () => {
           'LR'
         );
 
-        setNodes([...layoutedNodes.map((node) => {
-          return {
-            ...node,
-            data: {
-              ...node.data,
-              updateDrop: updateDrop
-            },
-          }
-        })]);
+        setNodes([...layoutedNodes]);
         setEdges([...layoutedEdges]);
         setReceivedRequest(true)
       });
@@ -134,16 +84,46 @@ const Graph = () => {
     getGraph();
   }, [params])
 
+  const nodeDoubleClick = (event, clickedNode) => {
+    console.log(clickedNode)
+    let unavailableCourses = [];
+    let visited = new Set();
+    let q = [clickedNode];
+
+    while (q.length > 0) {
+      let currentNode = q.shift()
+      unavailableCourses.push(currentNode.id)
+
+      let incomingNodes = getIncomers(currentNode, nodes, edges)
+      incomingNodes.forEach(node => {
+        if (!visited.has(node.id)) {
+          visited.add(node.id)
+          q.push(node)
+        } 
+      })
+    }
+
+    let newVal = !clickedNode.data.dropped
+
+    setNodes(nodes.map(node => {
+      if (unavailableCourses.includes(node.id)) {
+        node.data.dropped = newVal
+      }
+      return node;
+    }))
+    console.log(nodes)
+  }
+
   return <div>
     {receivedRequest === false || nodes.length > 0
     ? <div className='reactflow-container'>
-        {/* <Button onClick={() => {console.log(nodes)}}>test</Button> */}
         <Legend />
 
         <ReactFlow 
           nodes={nodes} 
           edges={edges} 
           nodeTypes={nodeTypes}
+          onNodeDoubleClick={nodeDoubleClick}
           fitView 
         >
           <Background color="#aaa" gap={15} size={0.6} />
