@@ -21,7 +21,13 @@ const nodeHeight = 38;
 
 const getLayoutedElements = (nodes, edges, direction = 'TB') => {
   const isHorizontal = direction === 'LR';
-  dagreGraph.setGraph({ rankdir: direction, ranksep: 150, nodesep: 50 });
+  
+  console.log(nodes.length)
+  if(nodes.length > 100){
+    dagreGraph.setGraph({ rankdir: direction, ranksep: 550, nodesep: 50 });
+  }else{
+    dagreGraph.setGraph({ rankdir: direction, ranksep: 150, nodesep: 50 });
+  }
 
   nodes.forEach((node) => {
     dagreGraph.setNode(node.id, { width: nodeWidth, height: nodeHeight });
@@ -125,7 +131,7 @@ const Graph = () => {
           edges={edges} 
           nodeTypes={nodeTypes}
           onNodeDoubleClick={nodeDoubleClick}
-          fitView 
+          fitView
         >
           <Background color="#aaa" gap={15} size={0.6} />
         </ReactFlow>
