@@ -68,5 +68,7 @@ or
 - Searching by terms for Carleton is not supported. Thus, terms will not be shown in the course blocks for Carleton courses.
 
 ### Make Graph
-- Graphing by program is not supported for Carleton
+- To view the description of a particular course, you can click on that course in the graph.
+  - You also have the ability to simulate dropping the course which will show what courses you can't take if that course was dropped.
+- Graphing by program is not supported for Carleton.
 - The colour of the dotted lines alternate between a list of pre-determined colours: 'blue', 'orange', 'red', 'purple', 'yellow'. When a group of dotted lines are the same colour, they are related by the 1 OF/OR pre-requsite.
