@@ -60,15 +60,28 @@ const Graph = () => {
   const nodeTypes = { courseNode: CourseNode };
 
   const getNode = (course) => {
-    return nodes.filter(node => node.id === course)[0];
+    for(let i = 0; i < Object.keys(nodes).length; i++){
+      //console.log(nodes[i].id);
+      if(course.localeCompare(nodes[i].id) === 0){
+        return nodes[i];
+      }
+    }
   }
   
   const simulateDrop = (course) => {
-    console.log(nodes)
+    //console.log(nodes)
+    //console.log(getNode(course))
 
-    // let result = getIncomers(getNode(course), nodes, edges)
-    // console.log(result)
+    let result = getIncomers(getNode(course), nodes, edges)
+    for(let i = 0; i < Object.keys(result).length; i++){
+      console.log(result[i].id);
+      simulateDrop(result[i].id);
+      
+      //change the color of the node
+      
+    }
   }
+
 
   useEffect(() => {
 
