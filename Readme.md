@@ -69,6 +69,6 @@ or
 
 ### Make Graph
 - To view the description of a particular course, you can click on that course in the graph.
-  - You also have the ability to simulate dropping the course which will show what courses you can't take if that course was dropped.
-- Graphing by program is not supported for Carleton.
+  - Also, you can simulate dropping a course by double clicking that course. Courses that you can't take will be highlighted in red.
+- Graphing by program is not supported for Carleton. Courses that you can't take will be highlighted in red.
 - The colour of the dotted lines alternate between a list of pre-determined colours: 'blue', 'orange', 'red', 'purple', 'yellow'. When a group of dotted lines are the same colour, they are related by the 1 OF/OR pre-requsite.
