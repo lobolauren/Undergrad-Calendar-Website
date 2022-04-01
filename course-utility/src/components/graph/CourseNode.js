@@ -1,6 +1,6 @@
 import { Button, OverlayTrigger, Popover } from 'react-bootstrap'
-import { Handle } from 'react-flow-renderer';
-import React from 'react';
+import { Handle, Node, Edge } from 'react-flow-renderer';
+import React, { useCallback } from 'react';
 
 const handleStyle = {opacity: 0}
 const bodystyle = {
@@ -24,7 +24,8 @@ const CourseNode = ({ data }) => {
   return (
     <div className="course-node">
       <OverlayTrigger trigger={['focus']} placement="top" overlay={CoursePopup}>
-        <Button variant={data.dropped === true ? 'danger' : data.color}>{data.label}</Button>
+        {/* <Button variant={data.dropped === true ? 'danger' : data.color}>{data.label}</Button> */}
+        <Button variant={data.dropValue > 0 ? 'danger' : data.color}>{data.label}</Button>
       </OverlayTrigger>
       <Handle type='target' position="left" style={handleStyle} />
       <Handle type='source' position="right" style={handleStyle} />

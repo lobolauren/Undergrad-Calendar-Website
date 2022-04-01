@@ -103,11 +103,11 @@ const Graph = () => {
       })
     }
 
-    let newVal = !clickedNode.data.dropped
+    let newVal = clickedNode.data.dropValue > 0 ? -1 : 1
 
     setNodes(nodes.map(node => {
       if (unavailableCourses.includes(node.id)) {
-        node.data.dropped = newVal
+        node.data.dropValue += newVal
       }
       return node;
     }))
