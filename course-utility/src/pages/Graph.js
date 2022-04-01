@@ -85,7 +85,6 @@ const Graph = () => {
   }, [params])
 
   const nodeDoubleClick = (event, clickedNode) => {
-    console.log(clickedNode)
     let unavailableCourses = [];
     let visited = new Set();
     let q = [clickedNode];
@@ -108,10 +107,12 @@ const Graph = () => {
     setNodes(nodes.map(node => {
       if (unavailableCourses.includes(node.id)) {
         node.data.dropValue += newVal
+        if (node.data.dropValue < 0) {
+          node.data.dropValue = 0
+        }
       }
       return node;
     }))
-    console.log(nodes)
   }
 
   return <div>
