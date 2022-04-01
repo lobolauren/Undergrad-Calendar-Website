@@ -27,6 +27,7 @@ def add_node(nodes: list, course_code: str, color, course_name='', description='
             'description': description,
             'name': course_name,
             'courseSearched': courseSearched,
+            'dropValue': 0,
         },
         'type': 'courseNode',
         'targetPosition': 'left',

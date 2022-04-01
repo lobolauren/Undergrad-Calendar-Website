@@ -1,5 +1,5 @@
-import { useEffect, useState } from 'react';
-import ReactFlow, { Background, getIncomers } from 'react-flow-renderer';
+import React, { useCallback, useEffect, useState } from 'react';
+import ReactFlow, { Handle, Node, Edge, Background, getIncomers } from 'react-flow-renderer';
 import { useParams } from 'react-router-dom';
 import axios from 'axios'
 import dagre from 'dagre';
@@ -9,7 +9,7 @@ import Legend from '../components/graph/Legend'
 import CourseNode from '../components/graph/CourseNode'
 
 import '../styles/graph.css'
-import { Button } from 'react-bootstrap';
+import { Button, OverlayTrigger, Popover } from 'react-bootstrap'
 
 // Clear potential course name from home search
 localStorage.clear();
@@ -68,19 +68,36 @@ const Graph = () => {
     }
   }
   
-  const simulateDrop = (course) => {
-    //console.log(nodes)
-    //console.log(getNode(course))
+  const updateDrop = (course, count) => {
+    console.log(nodes)
+    let droppedCourseNode = getNode(course);
+    
+    let unavailableCourses = [];
+    let visited = new Set();
+    let q = [droppedCourseNode];
 
-    let result = getIncomers(getNode(course), nodes, edges)
-    for(let i = 0; i < Object.keys(result).length; i++){
-      console.log(result[i].id);
-      simulateDrop(result[i].id);
-      
-      //change the color of the node
-      
+    while (q.length > 0) {
+      let currentNode = q.shift()
+      unavailableCourses.push(currentNode.id)
+
+      let incomingNodes = getIncomers(currentNode, nodes, edges)
+      incomingNodes.forEach(node => {
+        if (!visited.has(node.id)) {
+          visited.add(node.id)
+          q.push(node)
+        } 
+      })
     }
+
+    setNodes(nodes.map(node => {
+      if (unavailableCourses.includes(node.id)) {
+        node.data.dropValue += count;
+      }
+      return node;
+    }))
   }
+  // useEffect(() => {
+  // }, [nodes, edges])
 
 
   useEffect(() => {
@@ -106,7 +123,7 @@ const Graph = () => {
             ...node,
             data: {
               ...node.data,
-              simulateDrop: simulateDrop
+              updateDrop: updateDrop
             },
           }
         })]);
@@ -120,7 +137,7 @@ const Graph = () => {
   return <div>
     {receivedRequest === false || nodes.length > 0
     ? <div className='reactflow-container'>
-        <Button onClick={() => {console.log(nodes)}}>test</Button>
+        {/* <Button onClick={() => {console.log(nodes)}}>test</Button> */}
         <Legend />
 
         <ReactFlow 

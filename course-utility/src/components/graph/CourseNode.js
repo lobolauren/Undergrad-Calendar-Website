@@ -11,7 +11,11 @@ const bodystyle = {
 const CourseNode = ({ data }) => {
 
   const simulateDropButtonClick = useCallback(() => {
-    data.simulateDrop(data.id);
+    data.updateDrop(data.id, 1);
+  });
+
+  const simulateUndropButtonClick = useCallback(() => {
+    data.updateDrop(data.id, -1);
   });
 
   const CoursePopup = (
@@ -21,9 +25,14 @@ const CourseNode = ({ data }) => {
       </Popover.Header>
       <Popover.Body style={bodystyle}>
         <p>{data.description}</p>
-        { data.courseSearched
-        ? null
-        : <Button variant='danger' onClick={simulateDropButtonClick}>Simulate Drop</Button>}
+        {!data.courseSearched
+        ? <Button 
+            variant={data.dropValue > 0 ? 'success' : 'danger'}
+            onClick={data.dropValue > 0 ? simulateUndropButtonClick : simulateDropButtonClick}
+          >
+            {data.dropValue > 0 ? 'Undrop' : 'Simulate Drop'} 
+          </Button>
+        : null} 
       </Popover.Body>
     </Popover>
   );
@@ -31,7 +40,7 @@ const CourseNode = ({ data }) => {
   return (
     <div className="course-node">
       <OverlayTrigger trigger={['focus']} placement="top" overlay={CoursePopup}>
-        <Button variant={data.color}>{data.label}</Button>
+        <Button variant={data.dropValue > 0 ? 'danger' : data.color}>{data.label}</Button>
       </OverlayTrigger>
       <Handle type='target' position="left" style={handleStyle} />
       <Handle type='source' position="right" style={handleStyle} />
