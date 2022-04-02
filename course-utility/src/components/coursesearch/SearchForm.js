@@ -5,12 +5,15 @@ import Select from 'react-select';
 
 // Contains forms for searching for a course
 // The function for handling the submit button (handler) is passed in as a prop
-const SearchForm = ({ handler }) => {
+// Note: because of the way react-select works, we cannot get the department value from the event and we must pass the value in as a prop to access it in the handler
+const SearchForm = ({ handler, selectedDept, setSelectedDept }) => {
 
     const [school, setSchool] = useState('guelph');
     let courseObj = JSON.parse(localStorage.getItem('courseName'));
 
-    const [depts, setDepts] = useState();
+    const [depts, setDepts] = useState([
+        {label: 'all', value: ''}
+    ]);
 
     const fetchDepts = async (param) => {
         axios.get(global.config.base_url + '/get_departments_list', { params: param }).then((res) => {
@@ -35,7 +38,6 @@ const SearchForm = ({ handler }) => {
 
     }, [])
     
-
     return (
         <div className='courseSearch'>
             <Form onSubmit={handler} bg="dark" expand="lg" letiant="dark">
@@ -66,12 +68,19 @@ const SearchForm = ({ handler }) => {
                     
                     <Form.Group as={Col} className="mb-3">
                         <Form.Label>Select Department</Form.Label>
-                        <Select options={depts}/>
+                        <Select options={depts} onChange={ (e) => {
+                            setSelectedDept(e.value);
+                        } }/>
                     </Form.Group>
 
                     <Form.Group as={Col} className="mb-3">
                         <Form.Label>Course Code</Form.Label>
-                        <Form.Control type='code' placeholder='Course Code/Number' id="courseCode" />
+                        <Form.Control type='code' placeholder='Enter Digits Only (ex. 1300)' id="courseCode" onKeyPress={(e) => {
+                            const re = /[0-9]/;
+                            if(!re.test(e.key)){
+                                e.preventDefault();
+                            }      
+                        }}/>
                     </Form.Group>
 
                     <Form.Group as={Col} className="mb-3">

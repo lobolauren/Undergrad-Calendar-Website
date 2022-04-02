@@ -14,6 +14,7 @@ const CourseSearch = () => {
     
     const [courses, setCourses] = useState([]);
     const [schoolToUse, setSchool] = useState('guelph');
+    const [selectedDept, setSelectedDept] = useState();
 
     // get the data with the given search params
     const fetchData = async (param) => {
@@ -42,10 +43,12 @@ const CourseSearch = () => {
         });
     }
 
+    // handles the submission (note: relies on hooks outside of itself)
     const handleSubmit = (event) => {
         event.preventDefault();
 
         let courseName = event.target.courseName.value;
+        let department = selectedDept;
         let courseCode = event.target.courseCode.value;
         let courseWeight = event.target.courseWeights.value;
         let school = event.target.courseSearchSchoolId.value;
@@ -55,10 +58,12 @@ const CourseSearch = () => {
         // get terms selected
         let terms = buildTermsList(isFallSelected, isWinterSelected, isSummerSelected);
 
+        let completeCode = department+'*'+courseCode;
+
         let courseSearchQuery = {
             "school": school,
             "name": courseName,
-            "code": courseCode,
+            "code": completeCode,
             "weight": courseWeight,
             "terms": terms.toString() // convert to string because array causes issues with axios params
         }
@@ -72,7 +77,6 @@ const CourseSearch = () => {
 
         // get the input data from the server
         fetchData(courseSearchQuery);
-        console.log(courses);
     }
 
     // builds a list out of the check boxes for term
@@ -142,7 +146,7 @@ const CourseSearch = () => {
         <Container className="mt-5">
             <h2>Course Search <InfoModal/></h2>
             
-            <SearchForm handler={handleSubmit}/>
+            <SearchForm handler={handleSubmit} selectedDept={selectedDept} setSelectedDept={setSelectedDept}/>
             <SortOptions sortTypeHandler={updateSortTypeOption} sortOrderHandler={updateSortOrderOption}/>
             <br/>
 

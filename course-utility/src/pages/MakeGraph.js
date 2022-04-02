@@ -1,6 +1,7 @@
 import React from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 
 import { Container } from "react-bootstrap";
 import InfoModal from "../components/makegraph/InfoModal";
@@ -13,15 +14,15 @@ const MakeGraph = () => {
   
   const navigate = useNavigate();
 
+  const [selectedDept, setSelectedDept] = useState();
+
   const handleSubmit = (event) => {
     event.preventDefault();
 
     let minorValue = false;
     let graphType = event.target.graphType.value;
-    let courseCode = event.target.courseCode.value;
-    let school = event.target.courseSearchSchoolId.value === "Guelph University"
-      ? "guelph"
-      : "carleton";
+    let courseCode = '';
+    let school = event.target.courseSearchSchoolId.value;
 
     let graphWanted = {};
     let checkHold;
@@ -30,22 +31,36 @@ const MakeGraph = () => {
       minorValue = event.target.minorId.checked;
       graphWanted = {
         type: graphType,
-        code: courseCode,
+        code: selectedDept,
         minor: minorValue,
       };
 
-    } else {
+    } else if (graphType === 'course') {
+
+      courseCode = event.target.courseCode.value;
+      let completeCode = selectedDept + "*" + courseCode;
+
       graphWanted = {
         school: school,
         type: graphType,
-        code: courseCode,
+        code: completeCode,
       };
+
+    } else {
+
+      graphWanted = {
+        school: school,
+        type: graphType,
+        code: selectedDept,
+      };
+
     }
+
+    console.log(graphWanted);
 
     if (graphWanted["type"] === "course" || graphWanted["type"] === "department") {
 
       //make call to check if page exists
-      console.log(graphWanted["school"]);
       let courseSearchQuery = {
         school: graphWanted["school"],
         name: "",
@@ -109,7 +124,7 @@ const MakeGraph = () => {
   return (
     <Container className="mt-5">
       <h2>Make Graph<InfoModal /></h2>
-      <MakeGraphForm handler={handleSubmit} />
+      <MakeGraphForm handler={handleSubmit} setSelectedDept={setSelectedDept} />
     </Container>
   );
 };

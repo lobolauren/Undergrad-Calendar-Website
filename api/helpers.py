@@ -155,7 +155,11 @@ def get_programs_info(data: dict) -> List[str]:
 
 # get list of departments in json form
 def get_departments_info(data: dict) -> List[str]:
-    depts = []
+    # include basic default value
+    depts = [{
+        'label': 'all',
+        'value': ''
+    }]
     try:
         for dept in data["courses"]:
             depts.append({
