@@ -177,12 +177,12 @@ def make_department_graph(department, school: str = COURSE_INFO_JSON):
                 color = get_node_color(course, department.upper(), cur_course_code)
 
                 if course not in visited:
-                    visited.add(prereq)
-                    if "*" in prereq:
+                    visited.add(course)
+                    if "*" in course:
                         course_code = get_course(data, course)
                         add_node(nodes, course, color, course_code['name'], course_code['description'])    
                     else:
-                        add_node(nodes, prereq, color)        
+                        add_node(nodes, course, color)        
     
     return {
         'nodes': nodes,
