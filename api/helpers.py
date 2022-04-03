@@ -163,8 +163,8 @@ def get_departments_info(data: dict) -> List[str]:
     try:
         for dept in data["courses"]:
             depts.append({
-                "label": dept,
-                "value": dept
+                "label": dept.upper(),
+                "value": dept.upper()
             })
         
         return json.dumps(depts)

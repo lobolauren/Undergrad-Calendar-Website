@@ -22,7 +22,6 @@ const nodeHeight = 38;
 const getLayoutedElements = (nodes, edges, direction = 'TB') => {
   const isHorizontal = direction === 'LR';
   
-  console.log(nodes.length)
   if(nodes.length > 100){
     dagreGraph.setGraph({ rankdir: direction, ranksep: 550, nodesep: 50 });
   }else{

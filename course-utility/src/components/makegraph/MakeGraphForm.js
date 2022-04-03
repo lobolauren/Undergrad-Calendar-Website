@@ -110,7 +110,7 @@ const MakeGraphForm = ({ handler, setSelectedDept }) => {
 
           <Form.Group as={Col} className="mb-3">
             <Form.Label>Select {selectOption === 'program' ? 'Program' : 'Department'}</Form.Label>
-            <Select options={depts} onChange={(e) => {
+            <Select required options={depts} onChange={(e) => {
               setSelectedDept(e.value);
             }} />
           </Form.Group>

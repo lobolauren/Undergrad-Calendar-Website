@@ -26,6 +26,7 @@ const MakeGraph = () => {
 
     let graphWanted = {};
     let checkHold;
+    let completeCode;
 
     if (graphType === "program") {
       minorValue = event.target.minorId.checked;
@@ -38,7 +39,7 @@ const MakeGraph = () => {
     } else if (graphType === 'course') {
 
       courseCode = event.target.courseCode.value;
-      let completeCode = selectedDept + "*" + courseCode;
+      completeCode = selectedDept + '*' + courseCode;
 
       graphWanted = {
         school: school,
@@ -56,22 +57,19 @@ const MakeGraph = () => {
 
     }
 
-    console.log(graphWanted);
-
     if (graphWanted["type"] === "course" || graphWanted["type"] === "department") {
 
       //make call to check if page exists
       let courseSearchQuery = {
         school: graphWanted["school"],
         name: "",
-        code: courseCode,
+        code: completeCode,
         weight: "all",
         terms: "F,W,S", // convert to string because array causes issues with axios params
       };
 
       axios.get(global.config.base_url + "/courses", { params: courseSearchQuery }).then((res) => {
         checkHold = Object.keys(res.data).length;
-        console.log(res.data);
 
         // navigates to a separate page to display the desired graph
         if (graphWanted["type"] === "course") {
@@ -99,11 +97,12 @@ const MakeGraph = () => {
         checkHold = false;
 
         for (let i = 0; i < Object.keys(res.data["programs"]).length; i++) {
-          if (courseCode.toLowerCase() === res.data["programs"][i].toLowerCase()) {
+          if (graphWanted["code"].toLowerCase() === res.data["programs"][i].toLowerCase()) {
             checkHold = true;
           }
         }
-
+        
+        console.log(checkHold);
         if (checkHold === true) {
           if (graphWanted["minor"] === true) {
             navigate(`/graph/${graphWanted["type"]}/minor/${graphWanted["code"]}`);

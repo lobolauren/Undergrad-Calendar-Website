@@ -68,7 +68,7 @@ const SearchForm = ({ handler, selectedDept, setSelectedDept }) => {
                     
                     <Form.Group as={Col} className="mb-3">
                         <Form.Label>Select Department</Form.Label>
-                        <Select options={depts} onChange={ (e) => {
+                        <Select options={depts} defaultValue={''} onChange={ (e) => {
                             setSelectedDept(e.value);
                         } }/>
                     </Form.Group>

@@ -14,7 +14,7 @@ const CourseSearch = () => {
     
     const [courses, setCourses] = useState([]);
     const [schoolToUse, setSchool] = useState('guelph');
-    const [selectedDept, setSelectedDept] = useState();
+    const [selectedDept, setSelectedDept] = useState('');
 
     // get the data with the given search params
     const fetchData = async (param) => {
