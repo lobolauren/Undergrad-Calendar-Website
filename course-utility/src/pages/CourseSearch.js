@@ -69,7 +69,7 @@ const CourseSearch = () => {
         }
 
         // If the school is Carelton, dont specify the terms since that isnt a parameter for their courses
-        if (courseSearchQuery.school == 'guelph') {
+        if (courseSearchQuery.school === 'guelph') {
             setSchool('guelph');
         } else {
             setSchool('carleton');

@@ -72,3 +72,10 @@ or
   - Also, you can simulate dropping a course by double clicking that course. Courses that you can't take will be highlighted in red.
 - Graphing by program is not supported for Carleton. Courses that you can't take will be highlighted in red.
 - The colour of the dotted lines alternate between a list of pre-determined colours: 'blue', 'orange', 'red', 'purple', 'yellow'. When a group of dotted lines are the same colour, they are related by the 1 OF/OR pre-requsite.
+
+- NOTE: Graphing does not currently support carleton programs
+
+## Updating Course Info(s):
+   - It is recommended to run the `scraper.py` & `scraper_carleton.py` scripts inside the `/cli` directory at least every new academic year (ex. at the end of the summer)
+   - Courses & prerequisites are sometimes subject to change
+   - Once each of these scripts have completed running, copy the `course_info.json` & `course_info_carleton.json` into the `/api` directory

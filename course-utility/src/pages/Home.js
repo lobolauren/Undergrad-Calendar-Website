@@ -1,14 +1,9 @@
 import React from 'react'
 import uogLogo from '../assets/uogLogoAlt.png'
 import carletonLogo from '../assets/carletonLogo.png'
-import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
-import { useEffect, useState } from "react";
-
-import { Form, Button, Row, Col } from 'react-bootstrap'
 import { Container } from 'react-bootstrap'
-import ResultsTable from '../components/coursesearch/ResultsTable'
 import HomeSearch from '../components/home/HomeSearch'
 
 const Home = () => {
@@ -29,9 +24,6 @@ const Home = () => {
 
         navigate('/coursesearch')
     }
-
-    // hook containing courses
-    const [courses, setCourses] = useState();
     
     return (
         <Container className="mt-5">

@@ -9,10 +9,7 @@ const MakeGraphForm = ({ handler, setSelectedDept }) => {
   const [selectOption, setSelectOption] = useState('course');
   const [selectOptionSchool, setSelectSchool] = useState('guelph');
 
-  const toTitleCase = (string) => {
-    return string.charAt(0).toUpperCase() + string.slice(1);
-  }
-
+  // department list with default value
   const [depts, setDepts] = useState([
     { label: 'all', value: '' }
   ]);

@@ -1,6 +1,6 @@
 import { Button, OverlayTrigger, Popover } from 'react-bootstrap'
-import { Handle, Node, Edge } from 'react-flow-renderer';
-import React, { useCallback } from 'react';
+import { Handle } from 'react-flow-renderer';
+import React from 'react';
 
 const handleStyle = {opacity: 0}
 const bodystyle = {

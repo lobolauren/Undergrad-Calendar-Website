@@ -14,21 +14,22 @@ app.url_map.strict_slashes = False
 
 CORS(app)
 
-
+# basic test route
 @app.route(f'{BASE_URL}')
 def hello():
     return 'Hello world!'
 
-
+# get all course data
 @app.route(f'{BASE_URL}/get_course_data', methods=['GET'])
 def get_course_data_json():
     return get_course_data()
 
+# list of programs (guelph only)
 @app.route(f'{BASE_URL}/get_programs_list', methods=['GET'])
 def get_program_list_json():
     return get_programs_info(get_course_data())
 
-
+# list of departments for a given school
 @app.route(f'{BASE_URL}/get_departments_list')
 def get_departments_list_json():
 
@@ -42,7 +43,7 @@ def get_departments_list_json():
 
     return get_departments_info(get_course_data(jsonfile))
 
-
+# get info about a specific course
 @app.route(f'{BASE_URL}/course/<code>')
 def get_course_json(code: str):
     if '*' in code:
@@ -60,7 +61,7 @@ def get_course_json(code: str):
 def get_arg(args, arg, default=''):
     return args[arg] if arg in args else default
 
-
+# list courses
 @app.route(f'{BASE_URL}/courses')
 def get_courses_list():
     args = request.args
@@ -78,6 +79,7 @@ def get_courses_list():
         term=terms_array
     )
 
+# list of courses in a department
 @app.route(f'{BASE_URL}/department')
 def get_dept_courses_list():
     args = request.args
@@ -91,6 +93,7 @@ def get_dept_courses_list():
         name=get_arg(args, 'name'),
     )
 
+# list of courses in a program
 @app.route(f'{BASE_URL}/program')
 def get_program_courses_list():
     args = request.args
@@ -105,13 +108,15 @@ def get_program_courses_list():
         mom=get_arg(args, 'mom'),
     )
 
+
+# get all courses (currently unused)
 @app.route(f'{BASE_URL}/catalog')
 def get_catalog():
 
     # args ex. /api/catalog
     return get_all_courses()
 
-
+# get a graph for a course at a school
 @app.route(f'{BASE_URL}/graph/<school>/course/<code>')
 def get_course_graph(school, code):
     if '*' in code:
@@ -122,17 +127,17 @@ def get_course_graph(school, code):
         code = make_code_valid(code)
         return make_course_graph(code.lower(), school)
 
-
+# get a graph of a department at a school
 @app.route(f'{BASE_URL}/graph/<school>/department/<code>')
 def get_department_graph(school, code):
     return make_department_graph(code.lower(), school)
 
-
+# get a graph of a program at guelph (for now)
 @app.route(f'{BASE_URL}/graph/program/<code>')
 def get_major_program_graph(code):
     return make_major_program_graph(code.lower())
 
-
+# graph a minor program at guelph
 @app.route(f'{BASE_URL}/graph/program/minor/<code>')
 def get_minor_program_graph(code):
     return make_minor_program_graph(code.lower())
