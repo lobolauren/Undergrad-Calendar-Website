@@ -17,6 +17,7 @@ const CourseNode = ({ data }) => {
       </Popover.Header>
       <Popover.Body style={bodystyle}>
         <p>{data.description}</p>
+        <b>To simulate drop double click course</b>
       </Popover.Body>
     </Popover>
   );
